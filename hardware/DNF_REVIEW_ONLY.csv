@@ -1,0 +1,10 @@
+﻿Designator,Comment,Footprint,LCSC Part #,MPN
+C101,4.7 nF,Capacitor_SMD:C_0402_1005Metric,C1538,FH 0402B472K500NT
+C441,1 µF,Capacitor_SMD:C_0603_1608Metric,C15849,Samsung CL10A105KB8NNNC
+C513,10 µF,Capacitor_SMD:C_0805_2012Metric,C15850,Samsung CL21A106KAYNNNE
+J703,1 × 6,Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical,—,Generic 2.54 mm header
+R241,0 Ω,Resistor_SMD:R_0402_1005Metric,C17168,UNI-ROYAL 0402WGF0000TCE
+R446,DNF (237 k … 2 M),Resistor_SMD:R_0603_1608Metric,—,YAGEO RT0603BRD07xxxL (value from the trim table)
+R447,DNF (237 k … 2 M),Resistor_SMD:R_0603_1608Metric,—,YAGEO RT0603BRD07xxxL (value from the trim table)
+R531,1 Ω,Resistor_SMD:R_0603_1608Metric,C22936,UNI-ROYAL 0603WAF100KT5E
+R703,1 kΩ,Resistor_SMD:R_0402_1005Metric,C11702,UNI-ROYAL 0402WGF1001TCE

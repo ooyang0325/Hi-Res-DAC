@@ -1,0 +1,1 @@
+(sym_lib_table (lib (name "DAC_HPA") (type "KiCad") (uri "${KIPRJMOD}/DAC_HPA.kicad_sym") (options "") (descr "DAC-HPA capture symbols")) (lib (name "JLC_DAC_HPA") (type "EasyEDA (JLCEDA) Pro") (uri "${KIPRJMOD}/JLC_Source/JLC_DAC_HPA.elibz") (options "") (descr "JLCPCB source symbols for cross-check")))
