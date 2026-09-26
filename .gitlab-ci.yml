@@ -26,8 +26,6 @@ deliver_review_package:
   stage: deliver
   needs:
     - validate_schematic
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   script:
     - python3 hardware/export_assembly_review.py
     - kicad-cli sch export pdf -o hardware/DAC_HPA_review_only.pdf hardware/DAC_HPA.kicad_sch
