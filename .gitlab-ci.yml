@@ -9,6 +9,8 @@ default:
     - sudo apt-get install -y --no-install-recommends python3-openpyxl
     - python3 -c 'import openpyxl, pcbnew; print("openpyxl and pcbnew available")'
     - kicad-cli version
+    - sudo chown -R "$(id -u):$(id -g)" "$CI_PROJECT_DIR/.git"
+    - git config --global --add safe.directory "$CI_PROJECT_DIR"
 
 validate_schematic:
   stage: validate
