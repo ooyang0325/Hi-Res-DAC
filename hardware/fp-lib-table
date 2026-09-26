@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name "DAC_HPA") (type "KiCad") (uri "${KIPRJMOD}/DAC_HPA.pretty") (options "") (descr "DAC-HPA PCB lands"))
+  (lib (name "JLC_Imported") (type "KiCad") (uri "${KIPRJMOD}/JLC_Imported.pretty") (options "") (descr "JLCPCB library footprints, pending physical overlay"))
+)

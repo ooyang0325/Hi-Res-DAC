@@ -1,0 +1,40 @@
+stages:
+  - validate
+  - deliver
+
+default:
+  image: kicad/kicad:10.0.1
+  before_script:
+    - sudo apt-get update -qq
+    - sudo apt-get install -y --no-install-recommends python3-openpyxl
+    - python3 -c 'import openpyxl, pcbnew; print("openpyxl and pcbnew available")'
+    - kicad-cli version
+    - sudo chown -R "$(id -u):$(id -g)" "$CI_PROJECT_DIR/.git"
+    - git config --global --add safe.directory "$CI_PROJECT_DIR"
+
+validate_schematic:
+  stage: validate
+  script:
+    - python3 hardware/generate_schematic.py
+    - python3 hardware/verify_schematic.py
+    - python3 hardware/verify_design_notes.py
+    - python3 hardware/verify_critical_footprints.py
+    - python3 hardware/export_assembly_review.py
+    - git diff --exit-code -- hardware/DAC_HPA.kicad_sch hardware/0*.kicad_sch hardware/DAC_HPA.kicad_sym hardware/sym-lib-table hardware/*_REVIEW_ONLY.csv
+
+deliver_review_package:
+  stage: deliver
+  needs:
+    - validate_schematic
+  script:
+    - python3 hardware/export_assembly_review.py
+    - kicad-cli sch export pdf -o hardware/DAC_HPA_review_only.pdf hardware/DAC_HPA.kicad_sch
+    - test -s hardware/DAC_HPA_review_only.pdf
+  artifacts:
+    name: "dac-hpa-review-$CI_COMMIT_SHORT_SHA"
+    expire_in: 30 days
+    paths:
+      - hardware/DAC_HPA_review_only.pdf
+      - hardware/JLCPCB_BOM_REVIEW_ONLY.csv
+      - hardware/OWNER_FITTED_REVIEW_ONLY.csv
+      - hardware/DNF_REVIEW_ONLY.csv
