@@ -16,7 +16,7 @@ If you have them, the following files would help with the later G-3 physical ove
 ## Physical and electrical decisions still required
 
 - **J101:** The GCT USB4105 drawing has 12 PCB solder lands, four shell stakes, and two locating holes. JLCPCB C3020560 CAD splits four paired solder lands into separate pad IDs. The project footprint follows GCT's composite 12-land map and remains provisional until G-1/G-3 sample checks.
-- **J701:** Parts List v0.9 carries the approved 12-pad G-Switch map. The custom footprint restores the maker's slot-pad dimensions and adds two NPTH peg holes. Pads 11/12 are soldered mounting tabs with no-connect flags. G-2 must establish whether they are common with the sleeve or bushing; G-3 checks the physical overlay and the open copper-ring decision.
-- **J702:** Parts List v0.9 carries the HRO maker map: pins 1/2 GND, 3 `JACK_RP`, 4 `JACK_LP`, and 5/6 break contacts with no-connect flags. The custom footprint adds two NPTH peg holes. G-2 checks continuity and break operation; G-3 checks the overlay and copper ring; G-6 resolves soldering pads 1/2.
+- **J701:** Parts List v0.9 carries the approved 12-pad G-Switch map. The custom footprint keeps the maker slots and pad centres, enlarges copper for a 0.30 mm worst ring, and adds two NPTH peg holes. Pads 11/12 are soldered mounting tabs with no-connect flags. G-2 must establish whether they are common with the sleeve or bushing; G-3 checks the physical overlay and enlarged copper.
+- **J702:** Parts List v0.9 carries the HRO maker map: pins 1/2 GND, 3 `JACK_RP`, 4 `JACK_LP`, and 5/6 break contacts with no-connect flags. The custom footprint keeps the slots and pad centres, enlarges copper for a 0.30 mm ring, and adds two NPTH peg holes. The owner reports both samples match the TRS contact and break behavior; the full G-2 record, G-3 overlay and G-6 slot soldering remain open.
 
 Do not release PCB manufacturing or PCBA data from the provisional connector mapping.

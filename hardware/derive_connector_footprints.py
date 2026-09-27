@@ -3,9 +3,11 @@
 
 The JLC import draws the locating holes as graphics rather than drill objects.
 J701 also uses larger copper and slots than the maker dimensions recorded in
-Design Spec v1.1. This script preserves the imported pad centres and other
-geometry, replaces the hole graphics with Ø1.20 mm NPTH pads, and restores
-the maker's J701 slot and copper dimensions. G-3 overlays remain required.
+Design Spec v1.1. The owner subsequently chose a copper-only enlargement to
+meet the design's 0.30 mm ring rule at the stated slot tolerance. This script
+preserves the imported pad centres and slot drills, replaces hole graphics
+with Ø1.20 mm NPTH pads, and applies the approved copper sizes. G-3 overlays
+and JLCPCB DFM confirmation remain required.
 """
 
 from __future__ import annotations
@@ -96,16 +98,26 @@ def convert(source_name: str, target_name: str, holes: list[tuple[float, float]]
         assert moved_guides == 3, (source_name, moved_guides)
 
     if j701:
-        def maker_slot(block: str) -> str:
+        def approved_slot(block: str) -> str:
             if not re.match(r'\(pad "(?:[1-9]|1[0-2])" thru_hole oval', block):
                 return block
-            updated, size_count = re.subn(r'\(size 2 (?:1\.4|1\.3)\)', '(size 1.9 1)', block, count=1)
+            updated, size_count = re.subn(r'\(size 2 (?:1\.4|1\.3)\)', '(size 2 1.2)', block, count=1)
             updated, drill_count = re.subn(r'\(drill oval 1\.4 0\.6\)', '(drill oval 1.4 0.5)', updated, count=1)
             assert (size_count, drill_count) == (1, 1), block[:80]
             return updated
 
-        result, changed = transform_blocks(result, "pad", maker_slot)
+        result, changed = transform_blocks(result, "pad", approved_slot)
         assert changed == 12, changed
+    else:
+        def approved_slot(block: str) -> str:
+            if not re.match(r'\(pad "[12]" thru_hole oval', block):
+                return block
+            updated, size_count = re.subn(r'\(size 1 1\.9\)', '(size 1.2 2.1)', block, count=1)
+            assert size_count == 1, block[:80]
+            return updated
+
+        result, changed = transform_blocks(result, "pad", approved_slot)
+        assert changed == 2, changed
 
     additions = "".join(hole(x, y, target_name, index) for index, (x, y) in enumerate(holes, 1))
     assert result.count("\n\t(embedded_fonts no)") == 1

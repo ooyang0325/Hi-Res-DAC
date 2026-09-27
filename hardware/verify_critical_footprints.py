@@ -82,8 +82,8 @@ def main() -> None:
     assert all(not p.GetNumber() and near(pcbnew.ToMM(p.GetDrillSize().x), 0.65) for p in locating)
     checks += 4
     j702 = footprint("DAC_HPA", "J702_PJ-332A-6A_peg_holes")
-    pad(j702, "1", (-4.725, 2.95), (1.0, 1.9), pcbnew.PAD_ATTRIB_PTH)
-    pad(j702, "2", (-4.725, -2.5), (1.0, 1.9), pcbnew.PAD_ATTRIB_PTH)
+    pad(j702, "1", (-4.725, 2.95), (1.2, 2.1), pcbnew.PAD_ATTRIB_PTH)
+    pad(j702, "2", (-4.725, -2.5), (1.2, 2.1), pcbnew.PAD_ATTRIB_PTH)
     assert all(not p.IsOnLayer(pcbnew.F_Paste) for p in j702.Pads() if p.GetNumber() in {"1", "2"})
     for p in j702.Pads():
         if p.GetNumber() in {"1", "2"}:
@@ -106,17 +106,18 @@ def main() -> None:
         "11": (2.2, -4.05), "12": (2.2, 4.05),
     }
     for number, centre in expected_centres.items():
-        pad(j701, number, centre, (1.9, 1.0), pcbnew.PAD_ATTRIB_PTH)
+        pad(j701, number, centre, (2.0, 1.2), pcbnew.PAD_ATTRIB_PTH)
     for p in j701_pads:
         if p.GetNumber():
             assert near(pcbnew.ToMM(p.GetDrillSize().x), 1.4)
             assert near(pcbnew.ToMM(p.GetDrillSize().y), 0.5)
     locating_holes(j701, {(-3.55, 0.0), (3.95, -1.55)})
     assert all(item.GetLayerName() != "Edge.Cuts" for item in j701.GraphicalItems())
-    # Maker slots are below the design's 0.30 mm ring rule; do not enlarge
-    # before the owner's G-3 decision. Both remain above JLC's 0.18 mm minimum.
-    assert near((1.0 - 0.6) / 2, 0.20)  # J702, nominal
-    assert near((1.0 - 0.5) / 2, 0.25) and near((1.0 - 0.6) / 2, 0.20)  # J701 nominal / +0.10
+    # Owner-approved copper-only enlargement. J701 retains the maker's
+    # 0.50 × 1.40 mm slot (+0.10 mm width tolerance); J702 retains its
+    # 0.60 × 1.50 mm slot. The worst copper ring is 0.30 mm on both jacks.
+    assert near(min((2.0 - 1.4) / 2, (1.2 - 0.6) / 2), 0.30)
+    assert near(min((2.1 - 1.5) / 2, (1.2 - 0.6) / 2), 0.30)
     checks += 8
     dgk = footprint("JLC_Imported", "VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL")
     assert {p.GetNumber() for p in dgk.Pads()} == {str(i) for i in range(1, 9)}
