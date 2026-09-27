@@ -12,8 +12,10 @@ on all five boards. Each has 536 footprints: **470 component bodies resolve**
 (466 STEP and four VRML), while 66 copper-only items intentionally have no
 model (53 test pads, seven fiducials, four mounting holes, and J201/J202 debug
 pads). Of the 470, 380 use KiCad 10 stock models and 90 use files kept in this
-project. The 90 project files are 82 instances of 30 JLC package models, four
-Toshiba relays, and four Panasonic body envelopes.
+project. The 90 project-file instances are 82 instances of 30 JLC package
+models, four Toshiba relays, and four Panasonic body envelopes. The 380 stock
+instances use only 11 distinct KiCad STEP files; unchanged copies are bundled
+in `KICAD_STOCK_MODELS` for headless CI, with KiCad's license and hashes.
 
 | Parts | 3D source and alignment | Confidence for 3D inspection |
 | --- | --- | --- |
@@ -30,7 +32,9 @@ extracting its STEP. Its source ZIP SHA-256 is
 `fetch_jlc_3d_models.py` can restore the 30 JLC STEP files from the saved
 `JLC_Source/JLC_DAC_HPA.elibz` identifiers when network access is available;
 it does not move footprints. `attach_3d_models.py` adds the twelve custom
-model links to the five board snapshots if absent.
+model links to the five board snapshots if absent. GitLab CI sets
+`KICAD10_3DMODEL_DIR` to the bundled stock library so its GLB includes the
+same 11 package shapes as the KiCad desktop installation.
 
 ## Limits
 

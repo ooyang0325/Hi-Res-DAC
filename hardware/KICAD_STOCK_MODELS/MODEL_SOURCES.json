@@ -1,0 +1,62 @@
+{
+  "upstream": "https://gitlab.com/kicad/libraries/kicad-packages3D",
+  "license": "CC-BY-SA-4.0 with KiCad design exception",
+  "source": "KiCad 10 installed stock 3D library, files copied without modification",
+  "models": [
+    {
+      "path": "Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "bytes": 43502,
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "path": "Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "bytes": 43450,
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "path": "Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "bytes": 43618,
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "path": "Capacitor_SMD.3dshapes/C_1206_3216Metric.step",
+      "bytes": 43450,
+      "sha256": "11e948c72c90e2b6322436b72745f40ff4e8ba0da64fb2a0df943dfa61e89c1a"
+    },
+    {
+      "path": "Connector_USB.3dshapes/USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.step",
+      "bytes": 1059856,
+      "sha256": "6338ce740fa231c2d3dcc6384e0576994a47240a312a21413cb85d76990a69a0"
+    },
+    {
+      "path": "Crystal.3dshapes/Crystal_SMD_2520-4Pin_2.5x2.0mm.step",
+      "bytes": 305966,
+      "sha256": "cd0c53e8a35a3cb36fc18e5248a2acf382b94b62d156b7bb9cc398eef3e21c4a"
+    },
+    {
+      "path": "Diode_SMD.3dshapes/D_SMC.step",
+      "bytes": 70688,
+      "sha256": "30dab4c2e22239b7e3694a4d45304e04255c6b70a79d28e9c34c6072ba647991"
+    },
+    {
+      "path": "Inductor_SMD.3dshapes/L_0603_1608Metric.step",
+      "bytes": 43450,
+      "sha256": "b0136ad7160588d2f5dac8c85da84a35646db656b5bc54bbb873b6b548eedbb3"
+    },
+    {
+      "path": "Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "bytes": 40756,
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "path": "Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "bytes": 40618,
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "path": "Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+      "bytes": 40592,
+      "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2"
+    }
+  ]
+}

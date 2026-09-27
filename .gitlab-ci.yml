@@ -5,6 +5,7 @@ stages:
 default:
   image: kicad/kicad:10.0.1
   before_script:
+    - export KICAD10_3DMODEL_DIR="$CI_PROJECT_DIR/hardware/KICAD_STOCK_MODELS"
     - sudo apt-get update -qq
     - sudo apt-get install -y --no-install-recommends python3-openpyxl
     - python3 -c 'import openpyxl, pcbnew; print("openpyxl and pcbnew available")'

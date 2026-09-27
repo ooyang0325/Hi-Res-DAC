@@ -32,6 +32,7 @@ LOCAL_PREFIX = "${KIPRJMOD}/"
 def stock_model_dir() -> Path | None:
     candidates = [
         os.environ.get("KICAD10_3DMODEL_DIR", ""),
+        str(HERE / "KICAD_STOCK_MODELS"),
         "/Applications/KiCad/KiCad.app/Contents/SharedSupport/3dmodels",
         "/usr/share/kicad/3dmodels",
         "/usr/local/share/kicad/3dmodels",
@@ -48,7 +49,9 @@ def model_file(board: Path, reference: str, model: str, stock: Path | None,
         return board.parent / model[len(LOCAL_PREFIX):]
     if model.startswith(STOCK_PREFIX):
         if stock is None:
-            errors.append(f"{board.name}: {reference}: KiCad 10 3D library not found")
+            message = "KiCad 10 3D library not found (install it or run vendor_kicad_stock_3d_models.py)"
+            if message not in errors:
+                errors.append(message)
             return None
         return stock / model[len(STOCK_PREFIX):]
     errors.append(f"{board.name}: {reference}: unsupported model path {model}")
@@ -92,6 +95,29 @@ def check_jlc_manifest(errors: list[str]) -> int:
     return len(records)
 
 
+def check_stock_manifest(stock: Path | None, required: set[str],
+                         errors: list[str]) -> int:
+    if stock is None or stock.resolve() != (HERE / "KICAD_STOCK_MODELS").resolve():
+        return 0
+    manifest_path = stock / "MODEL_SOURCES.json"
+    if not manifest_path.is_file():
+        errors.append("Bundled KiCad model manifest is missing")
+        return 0
+    records = json.loads(manifest_path.read_text())["models"]
+    names = set()
+    for record in records:
+        name = record["path"]
+        names.add(name)
+        path = stock / name
+        if not path.is_file():
+            errors.append(f"missing bundled KiCad model: {path}")
+        elif hashlib.sha256(path.read_bytes()).hexdigest() != record["sha256"]:
+            errors.append(f"bundled KiCad model checksum changed: {path}")
+    for name in sorted(required - names):
+        errors.append(f"bundled KiCad model absent from manifest: {name}")
+    return len(records)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("boards", nargs="*", type=Path,
@@ -104,6 +130,7 @@ def main() -> None:
     validated_files: set[Path] = set()
     reports = []
     required_jlc: set[str] = set()
+    required_stock: set[str] = set()
     for board_path in args.boards:
         board_path = board_path.resolve()
         if not board_path.is_file():
@@ -140,6 +167,7 @@ def main() -> None:
                 name = model.m_Filename
                 if name.startswith(STOCK_PREFIX):
                     counts["stock"] += 1
+                    required_stock.add(name[len(STOCK_PREFIX):])
                 if name.startswith(LOCAL_PREFIX):
                     counts["project_local"] += 1
                 if "/EASYEDA_MODELS/" in name:
@@ -154,13 +182,16 @@ def main() -> None:
         reports.append({"board": board_path.name, **counts})
 
     manifest_count = check_jlc_manifest(errors)
+    stock_manifest_count = check_stock_manifest(stock, required_stock, errors)
     recorded = {item["converted_file"] for item in json.loads(
         (HERE / "EASYEDA_MODELS/MODEL_SOURCES.json").read_text()
     )} if manifest_count else set()
     for filename in sorted(required_jlc - recorded):
         errors.append(f"JLC model absent from provenance manifest: {filename}")
     result = {"stock_model_dir": str(stock) if stock else None,
-              "jlc_model_files": manifest_count, "boards": reports,
+              "jlc_model_files": manifest_count,
+              "bundled_stock_model_files": stock_manifest_count,
+              "boards": reports,
               "errors": errors, "ok": not errors}
     rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
