@@ -1,6 +1,6 @@
 # G-1/G-2 physical continuity record — design set v1.1
 
-This is the signed measurement record needed before schematic freeze and routing. The findings below are owner-reported in chat; enter the two physical sample IDs, actual DMM short/open or ohm readings, plug ID, date and reviewer before marking a gate passed. Label pads from the **PCB top view** in the G-3 overlay; do not infer measurements from a connector drawing. J702 is for TRS plugs only.
+**Disposition (27 September 2026):** after reporting two-sample checks, the owner explicitly instructed us to skip the G-1/G-2 measurement log. The results in `PRELAYOUT_GATES.md` are owner-accepted for layout planning, with sample IDs, raw readings and signature waived. This worksheet preserves the original Design Spec v1.1 protocol if the checks are ever repeated; blank cells are not recorded passes. Label pads from the **PCB top view** in the G-3 overlay. J702 is for TRS plugs only.
 
 ## G-1 — J101 USB4105-GF-A
 
@@ -52,6 +52,6 @@ Sample 1 ID: __________. Sample 2 ID: __________. Intended TRS plug ID: ________
 
 Owner reports both samples match the endpoint TRS and break-contact map, and both insertion/removal sweeps show only the expected break-pair transitions without pads 5/6 contacting sleeve or the opposite channel. Record all internally common terminal pairs and any temporary contact during slow insertion/removal: _______________________________________________.
 
-G-1 result: ☐ pass ☐ fail. G-2 result: ☐ pass ☐ fail. Measurement date: __________. Reviewer/signature: ____________________.
+Optional future repeat: G-1 result ☐ pass ☐ fail; G-2 result ☐ pass ☐ fail. Measurement date: __________. Reviewer/signature: ____________________.
 
-Any deviation requires schematic/footprint correction and repeat measurement before routing. A passing ERC or netlist comparison does not close these physical gates.
+Any later discovered deviation requires schematic/footprint correction before routing. A passing ERC or netlist comparison does not verify the physical contacts.
