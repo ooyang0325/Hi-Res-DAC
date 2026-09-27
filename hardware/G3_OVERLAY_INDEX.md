@@ -2,6 +2,8 @@
 
 Print both review-only SVGs at 100% / Actual Size. First measure each 10 mm bar. Place a real part on each 1:1 footprint and check that every terminal overlaps its pad by at least 0.1 mm on each side, that pin-1/polarity marks and body orientation agree, and that slots/peg holes clear the part. Record deviations in `G3_OVERLAY_CHECKLIST.md` before routing. The printed sheets are review aids, not fabrication outputs.
 
+Use manufacturer dimensions or a calibrated optical/CAD overlay for 0.4/0.5 mm pitch and the 0.1 mm overlap limit; a normal paper print cannot certify that margin on its own.
+
 | Cell | References represented by one land pattern | KiCad footprint |
 | --- | --- | --- |
 | 01 | J101 | `DAC_HPA:J101_USB4105-GF-A_12lands_4stakes` |

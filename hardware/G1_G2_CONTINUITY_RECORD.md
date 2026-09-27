@@ -48,9 +48,9 @@ Sample 1 ID: __________. Sample 2 ID: __________. Intended TRS plug ID: ________
 | 3↔5 | Short without plug; open fully inserted. Pad 5 is no-connect in KiCad. |  |  |
 | 4↔6 | Short without plug; open fully inserted. Pad 6 is no-connect in KiCad. |  |  |
 | 5/6 ↔ sleeve or opposite channel | Open, including during insertion/removal |  |  |
-| Any metal shell ↔ pads 1–6 | Record measured status |  |  |
+| Metal shell ↔ pads 1–6 | Not applicable: owner reports no accessible metal shell on either J702 sample. | N/A | N/A |
 
-Owner reports both samples match the endpoint TRS and break-contact map. Record all internally common terminal pairs and any temporary contact during slow insertion/removal: _______________________________________________.
+Owner reports both samples match the endpoint TRS and break-contact map, and both insertion/removal sweeps show only the expected break-pair transitions without pads 5/6 contacting sleeve or the opposite channel. Record all internally common terminal pairs and any temporary contact during slow insertion/removal: _______________________________________________.
 
 G-1 result: ☐ pass ☐ fail. G-2 result: ☐ pass ☐ fail. Measurement date: __________. Reviewer/signature: ____________________.
 

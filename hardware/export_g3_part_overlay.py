@@ -140,6 +140,10 @@ def main() -> None:
         "in `G3_OVERLAY_CHECKLIST.md` before routing. The printed sheets are review "
         "aids, not fabrication outputs.",
         "",
+        "Use manufacturer dimensions or a calibrated optical/CAD overlay for 0.4/0.5 mm "
+        "pitch and the 0.1 mm overlap limit; a normal paper print cannot certify that "
+        "margin on its own.",
+        "",
         "| Cell | References represented by one land pattern | KiCad footprint |",
         "| --- | --- | --- |",
     ]

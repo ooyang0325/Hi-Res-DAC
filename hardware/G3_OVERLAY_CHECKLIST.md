@@ -2,6 +2,8 @@
 
 Print both review-only SVGs at 100% / Actual Size. First measure each 10 mm bar. Place a real part on each 1:1 footprint and check that every terminal overlaps its pad by at least 0.1 mm on each side, that pin-1/polarity marks and body orientation agree, and that slots/peg holes clear the part. Record deviations before routing. Use the generated `G3_OVERLAY_INDEX.md` to identify each cell. This checklist is editable; the generated index and SVGs are review aids, not fabrication outputs.
 
+For 0.4/0.5 mm pitch and the 0.1 mm overlap limit, use manufacturer dimensions or a calibrated optical/CAD overlay; an ordinary paper print alone cannot certify that margin.
+
 | Cell | Physical sample ID(s) | Overlap, pin-1, hole and body observations | Pass/fail or measured mismatch |
 | --- | --- | --- | --- |
 | 01 |  |  |  |
