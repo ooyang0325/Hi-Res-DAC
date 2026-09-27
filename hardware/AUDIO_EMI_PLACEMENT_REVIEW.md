@@ -6,7 +6,7 @@ For the current hand-placed 120 × 100 mm primary and its routed J701 TVS escape
 
 ## Ground and return architecture to implement
 
-The v1.1 Spec R07/R10 and Notes §9.3.2 specify **one GND net and an unbroken L2 ground plane**. Digital devices stay west, analog signal paths east, and power conversion south-west. Separation comes from component placement and controlled signal/return paths; no ground-plane split is permitted. L1 carries USB, clocks, I²S and audio; L3 carries regional power and slow controls, L4 slow analog/control over a stitched GND pour. The current board has **zero copper zones and zero tracks**, so this architecture is still a routing requirement.
+The v1.1 Spec R07/R10 and Notes §9.3.2 specify **one GND net and an unbroken L2 ground plane**. Digital devices stay west, analog signal paths east, and power conversion south-west. Separation comes from component placement and controlled signal/return paths; no ground-plane split is permitted. L1 carries USB, clocks, I²S and audio; L3 carries regional power and slow controls, L4 slow analog/control over a stitched GND pour. The historical 100 × 100 mm baseline had no copper. The 120 × 100 mm primary now has one filled L2 GND zone, four TVS signal tracks, four GND stubs and four vias; the remaining architecture is still a routing requirement.
 
 At the DAC, DGND, AGND and AGND_L/R need local L2 vias and the exposed pad needs five vias. Each fast signal must retain its L2 return beneath the entire route, including at the digital-to-DAC boundary. The output-stage ground and headphone sleeves need a dedicated ≥3 mm L1 return strip with at least four L2 vias at each jack ground pin; USB surge, LED-string and jack ESD currents must not share that strip. Jack ESD returns go through L2 to the jack ground pins. These are concrete topology checks for the eventual PCB, not connections inferred from the GND net name.
 
@@ -23,7 +23,7 @@ The earlier audit measured minimum copper-to-copper gaps between *pad bounding r
 | R932.2 `N6_LWRP` | J703.4 `SDATA` | 1.98 mm | 5 mm |
 | U620.3 `N6_VLLN` | D609.3 `N6_PMP` | 3.08 mm | 10 mm |
 
-Moving R940/R941 away from the MCLK corridor removed the previous 0.83 mm `N6_VLLN`–`N6_MCK_IN` pad conflict. The wider problem remains: C624, D609 and their 80 MHz surveillance network are scattered around the LPW/high-impedance group rather than clustered around U607. J703 is a DNF service header, but its copper pads and branches still exist on the high-speed I²S nets. A fixed-footprint search found no free position near U202; the nearest alternative was about 24 mm from the CPLD centre, which would add a long clock branch. The disposition of J703 is an owner decision.
+Moving R940/R941 away from the MCLK corridor removed the previous 0.83 mm `N6_VLLN`–`N6_MCK_IN` pad conflict. In that historical baseline, C624, D609 and their 80 MHz surveillance network were scattered around the LPW/high-impedance group rather than clustered around U607. J703 was a DNF service header with copper pads and branches on high-speed I²S nets. A fixed-footprint search found no free position near U202; the nearest alternative was about 24 mm from the CPLD centre, adding a long clock branch. The owner subsequently removed J703's physical pads from the 120 × 100 mm primary while keeping the schematic DNF option; that board reports zero pad-level sensitive-to-clock gap findings.
 
 The independent 0.20 mm grid probes estimate R204/R205/R206 to DAC BCLK/LRCLK/SDATA at 19.60/18.57/21.10 mm, within 25 mm individually. They omit the three signal branches and do not establish 3W spacing, length matching within 5 mm, uninterrupted L2 returns or guard copper. FAM_CLK probes at 3.25 mm, also individually. The USB pair has no valid probe result because the conservative rectangular obstacle model cannot resolve the fine-pitch connector escape; a real 0.235/0.15 mm, 90 Ω pair with permitted short neck-downs and zero vias must be routed and field-solver checked.
 
@@ -35,8 +35,8 @@ The headphone output rule calls for 0.5 mm L1 paths from each relay through the 
 
 ## Route acceptance checks
 
-1. Resolve the service-header and MCLK test-point choices. A no-stub X201→R203→DAC path probes at 9.60 mm; forcing the present TP711 through it has a 10.77 mm straight-line lower bound against the absolute 10 mm rule.
-2. Repack the U607/C624/D609 clock monitor away from the LPW and 3V3A high-impedance nodes; rerun the pad-gap audit until every required separation is geometrically possible. Keep the MCLK and I²S paths above continuous L2 GND.
+1. Keep J703's service-header pads off the primary and resolve the MCLK test-point path. A no-stub X201→R203→DAC path probes at 9.60 mm; forcing TP711 through it has a 10.77 mm straight-line lower bound against the absolute 10 mm rule.
+2. Preserve the primary's zero pad-level U607/C624/D609 versus LPW/3V3A gap findings while routing the clock monitor. Rerun the copper-gap audit after traces and pours are drawn. Keep MCLK and I²S above continuous L2 GND.
 3. Route the four DAC inputs together with guards, VREF, feedback and supply decoupling; measure actual lengths, neighbourhood symmetry, feedback-loop copper area and the 2 mm digital exclusion. Recheck the provisional 7 mm model envelope with extracted capacitance.
 4. Route every relay-to-ESD-to-jack output at 0.5 mm and show length, L/R separation, ESD return and the dedicated jack-ground strip on the real board. The 20 mm output limit must apply to copper, not pad distance.
 5. Fill and inspect L2/L4, place the local ground/stitch vias, run full KiCad DRC, review return-current continuity and near-field/crosstalk risk, then validate noise, THD+N, output impedance and channel separation on hardware against the Spec's limits.

@@ -90,12 +90,38 @@ deliver_review_package:
     - test -s hardware/DAC_HPA_review_only.pdf
     - kicad-cli pcb export glb --force -o hardware/DAC_HPA_3D_REVIEW_ONLY.glb hardware/DAC_HPA.kicad_pcb
     - test -s hardware/DAC_HPA_3D_REVIEW_ONLY.glb
+    - git rev-parse HEAD > hardware/REVIEW_COMMIT.txt
+    - git archive --format=zip --output=hardware/DAC_HPA_REVIEW_SOURCE.zip HEAD
+    - test -s hardware/DAC_HPA_REVIEW_SOURCE.zip
   artifacts:
     name: "dac-hpa-review-$CI_COMMIT_SHORT_SHA"
     expire_in: 30 days
     paths:
       - hardware/DAC_HPA_review_only.pdf
       - hardware/DAC_HPA_3D_REVIEW_ONLY.glb
+      - hardware/DAC_HPA_REVIEW_SOURCE.zip
+      - hardware/REVIEW_COMMIT.txt
+      - README.md
+      - hardware/REVIEWER_START_HERE.md
+      - hardware/PCB_CLI_VISUAL_REVIEW.md
+      - hardware/make_review_views.sh
+      - hardware/SCHEMATIC_REVIEW_GUIDE.md
+      - hardware/PLACEMENT_REVIEW_GUIDE.md
+      - hardware/REVIEW_FINDINGS_TEMPLATE.md
+      - hardware/README.md
+      - hardware/SOURCE_RECONCILIATION.md
+      - hardware/PRELAYOUT_GATES.md
+      - hardware/CONNECTOR_REVIEW.md
+      - hardware/POLARITY_REVIEW.md
+      - hardware/PCBA_PROCESS_REVIEW.md
+      - hardware/FOOTPRINT_SOURCES.md
+      - hardware/3D_MODEL_REVIEW.md
+      - hardware/PLACEMENT_AUDIT.json
+      - hardware/MODEL_3D_AUDIT.json
+      - hardware/MANUAL_120x100_PRIMARY_DFA_DFM_AUDIT.json
+      - hardware/MANUAL_120x100_PRIMARY_JLC_FAB_AUDIT.json
+      - hardware/MANUAL_120x100_ESD_ROUTE_AUDIT.json
+      - hardware/MANUAL_120x100_PRIMARY_DRC.json
       - hardware/JLCPCB_BOM_REVIEW_ONLY.csv
       - hardware/OWNER_FITTED_REVIEW_ONLY.csv
       - hardware/DNF_REVIEW_ONLY.csv
@@ -117,6 +143,8 @@ deliver_review_package:
       - hardware/DAC_HPA_120x100_output_zoom.png
       - hardware/DAC_HPA_120x100_timer_zoom.png
       - hardware/DAC_HPA_120x100_clock_zoom.png
+      - hardware/DAC_HPA_3D_review.png
+      - hardware/DAC_HPA_J101_3D_detail.png
       - hardware/JLCPCB_DFA_DFM_RULES.md
       - hardware/MANUAL_PLACEMENT_REVIEW.md
       - hardware/ROUTABILITY_REVIEW.md

@@ -8,7 +8,7 @@ For the current hand-placed 120 × 100 mm primary with four J701 TVS routes and 
 
 ## Effect of the iteration
 
-| Measurement | First 100 × 80 SOIC pass | 100 × 80 VSSOP comparison | 100 × 100 VSSOP primary |
+| Measurement | First 100 × 80 SOIC pass | 100 × 80 VSSOP comparison | Historical 100 × 100 VSSOP board |
 | --- | ---: | ---: | ---: |
 | Schematic-linked footprints / named nets | 537 / 246 | 537 / 246 | 537 / 246 |
 | Footprint bounding-box overlaps | 0 | 0 | 0 |
@@ -29,10 +29,10 @@ The fill values clip component bounding rectangles to approximate, overlapping f
 - **Headphone outputs:** J701/J702 moved 1.5 mm toward each other, and the two upper relays moved closer to J701 on the 100 × 100 mm board while K601–K604 retain ≥1.5 mm owner-fitted iron clearance. At the required 0.5 mm width, independent probes now estimate `JACK_LN` K602→J701 at 12.74 mm and `JACK_RN` K604→J701 at 7.94 mm; `JACK_LP` K601→J702 is 19.50 mm. The K601→J701 path is still 20.48 mm, K603→J701 is 27.69 mm, and K603→J702 was blocked by the conservative pad model. The 20 mm rule is not yet met. J701's paired contact pads require local branches, and the dedicated ≥3 mm headphone ground strip has not been laid out.
 - **Jack ESD and assembly:** D701–D704 are 2.76–2.98 mm straight from the nearest J701 audio pads, meeting the ≤3 mm signal-pad target. Their footprints intrude on the Notes' ≥3 mm hand-solder access region around J701; the assembly and ESD placement instructions conflict and need a reviewed solution.
 
-`AUDIO_EMI_PLACEMENT_REVIEW.md` lists the 15 pad-level clock/high-impedance conflicts and the required continuous L2 return and headphone-ground topology. The current board contains **zero tracks and zero copper zones**, so audio quality, EMI behaviour, USB impedance and crosstalk are not yet verified. The larger outline does not confer electrical isolation by itself.
+`AUDIO_EMI_PLACEMENT_REVIEW.md` lists the historical 15 pad-level clock/high-impedance conflicts and the required continuous L2 return and headphone-ground topology. This 100 × 100 mm comparison contains **zero tracks and zero copper zones**; the later 120 × 100 mm primary has eight tracks, four vias and one filled L2 zone but still cannot verify audio quality, EMI behaviour, USB impedance or crosstalk. The larger outline does not confer electrical isolation by itself.
 
 ## Remaining decisions and release work
 
-The service-header J703 pads create several high-speed I²S proximity conflicts in the analog protection area; its purpose and PCB footprint need a decision. TP711 forces the MCLK path beyond the absolute limit if it stays on the trace. Those decisions, the U607 clock-monitor repack, Z4S/Z4L density, 0.5 mm headphone routes and jack ESD/iron clearance remain before a route-ready placement can be claimed.
+On this historical board, J703 pads created high-speed I²S proximity conflicts, and the U607 clock-monitor, Z4S/Z4L density and jack ESD/iron access still needed work. The 120 × 100 mm manual primary removes physical J703 pads and clears its measured pad-gap and top-side J701 access findings. TP711's MCLK path, 0.5 mm headphone output routes and actual copper/return checks remain open there; see `MANUAL_PLACEMENT_REVIEW.md`.
 
-After the decisions, draw the actual copper, ground and power pours, then measure routed lengths, feedback-loop area, differential impedance, L/R spacing, return paths and thermal clearance. Run complete KiCad DRC and JLC DFM, and retain G-3/G-4 physical gates. [JLCPCB lists OPA2210IDGKR/C2876414](https://jlcpcb.com/partdetail/TexasInstruments-OPA2210IDGKR/C2876414) for Extended SMT assembly with pre-order instructions; five-board quantity and reserved stock are unconfirmed. The source DOCX/XLSX set still needs the owner-approved MPN, 7 mm candidate rule and 100 × 100 mm outline recorded before manufacturing freeze.
+After routing the manual primary, measure routed lengths, feedback-loop area, differential impedance, L/R spacing, return paths and thermal clearance. Run complete KiCad DRC and JLC DFM, and retain G-3/G-4 physical gates. [JLCPCB lists OPA2210IDGKR/C2876414](https://jlcpcb.com/partdetail/TexasInstruments-OPA2210IDGKR/C2876414) for Extended SMT assembly with pre-order instructions; five-board quantity and reserved stock are unconfirmed. The source DOCX/XLSX set still needs the owner-approved MPN, 7 mm candidate rule, 4.2 mm ESD candidate and 120 × 100 mm primary outline recorded before manufacturing freeze.

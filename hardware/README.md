@@ -1,4 +1,6 @@
-# DAC-HPA KiCad schematic capture
+# DAC-HPA KiCad schematic and placement
+
+**Sending this design for peer review?** Begin with [REVIEWER_START_HERE.md](REVIEWER_START_HERE.md), then use the [schematic](SCHEMATIC_REVIEW_GUIDE.md), [placement](PLACEMENT_REVIEW_GUIDE.md), and [command-line visual inspection](PCB_CLI_VISUAL_REVIEW.md) guides. The [findings template](REVIEW_FINDINGS_TEMPLATE.md) records actionable review results against one Git commit.
 
 Open `DAC_HPA.kicad_pro` or `DAC_HPA.kicad_sch` in KiCad 10. The root page links eight circuit sheets following Design Spec v1.1, Schematic Design Notes v1.0, Parts List v0.9, and Capture Update Note v1.0.
 
