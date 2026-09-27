@@ -1,29 +1,31 @@
 # DAC-HPA KiCad schematic capture
 
-Open `DAC_HPA.kicad_pro` or `DAC_HPA.kicad_sch` in KiCad 10. The root page links eight circuit sheets following the blocks in Design Spec v1.0, Schematic Design Notes v0.9, and Parts List v0.8.
+Open `DAC_HPA.kicad_pro` or `DAC_HPA.kicad_sch` in KiCad 10. The root page links eight circuit sheets following Design Spec v1.1, Schematic Design Notes v1.0, Parts List v0.9, and Capture Update Note v1.0.
 
-`DAC_HPA_review_only.pdf` is a nine-page visual export of the current provisional capture. Smaller blocks use A3/A4 pages for legibility, and each sheet title block marks the open G-1–G-4 hold. The KiCad project is the editable source.
+`DAC_HPA_review_only.pdf` is a nine-page visual export of the current provisional capture. The expanded protection sheet uses A1; smaller blocks use A2/A3/A4. Each sheet title block names the v1.1 design set and marks the open G-1–G-4 hold. The KiCad project is the editable source.
 
 ## Current status
 
-- 483 designators from the workbook netlist, plus four grounded mounting holes and seven fiducials.
-- 1,305 workbook pin rows match the merged netlist in Calculation Package v1.0. The approved KiCad schematic has 1,310 pins and 1,268 connected assignments. Exactly 16 pin/net entries differ from the workbook through the owner-approved D705/D706 and J701 corrections recorded in `POLARITY_REVIEW.md` and `CONNECTOR_REVIEW.md`.
+- 526 designators from the workbook netlist (474 parts and 52 one-pin test pads), plus four grounded mounting holes and seven fiducials. Sheet 6 removes 22 retired parts and adds 65 new over-range, low-level persistence, and self-test parts. Q623–Q626 use onsemi MMBT3904LT1G; U201 pin 4 drives `N6_ORTEST`.
+- The 1,445 workbook pin rows match Calculation Package v1.1. The KiCad capture has 1,402 connected and 43 no-connect pins across 247 workbook nets including NC. Only four pin/net entries differ from the workbook: the owner-approved D705/D706 LED pad-polarity corrections in `POLARITY_REVIEW.md`. J701 and J702 follow Parts List v0.9 directly; J702 pins 5/6 are no-connect break contacts and never GND.
 - Per-part MPN, LCSC code, fit class, package, and rating/tolerance properties are included for later [JLCPCB BOM preparation](https://jlcpcb.com/help/article/how-to-generate-the-bom-and-centroid-file-from-kicad). CPL positions will come from the later PCB layout.
-- The review-only JLCPCB BOM contains 412 placed parts and excludes seven owner-fitted and nine DNF parts. Fourteen placed parts have no LCSC code and need the documented global-sourcing process. The three CSVs are **not** an order package; a routed PCB and CPL are still required.
-- All 494 PCB items have assigned footprints with pad-number sets matching their schematic symbols. J701 uses the 12-pad JLCPCB candidate footprint, subject to G-2/G-3 physical checks.
-- `verify_critical_footprints.py` checks 30 critical pad dimensions, pad types and hole/paste properties against the recorded drawings, including U202's exposed pad and the J101/J701/J702 plated slots. Physical G-3 overlays are still open.
+- The review-only JLCPCB BOM contains 455 placed parts and excludes seven owner-fitted and nine DNF parts. Fourteen placed parts have no LCSC code and need the documented global-sourcing process. The three CSVs are **not** an order package; a routed PCB and CPL are still required.
+- All 537 PCB items have assigned footprints with pad-number sets matching their schematic symbols. The custom J701/J702 footprints add real Ø1.20 mm NPTH locating holes; J701 uses the maker's slot and copper sizes. Their 0.20–0.25 mm copper rings clear the stated JLCPCB 0.18 mm minimum but remain below this design's 0.30 mm rule. The owner decision is open before G-3, and the pads remain at maker dimensions.
+- `verify_critical_footprints.py` checks 56 critical pad dimensions, pad types and hole/paste properties, including U202's exposed pad, the new TI DGK and onsemi SOT-23 lands, and J101/J701/J702 slots and locating holes. Physical G-3 overlays are still open.
 - KiCad ERC reports zero violations. Confirmed power, logic, oscillator and open-collector outputs are typed; most other generated pins remain passive, so ERC does **not** substitute for a datasheet-level electrical review.
-- `verify_design_notes.py` checks 623 selected circuit and approved-correction assertions. `SOURCE_RECONCILIATION.md` records stale checklist entries where the detailed notes, specification, and workbook agree on a different value or connection.
+- `verify_design_notes.py` checks 947 selected circuit and approved-correction assertions. `SOURCE_RECONCILIATION.md` records stale checklist entries and the owner's correction of the workbook's D705 row.
 - The design documents mark schematic capture GO and schematic freeze HOLD. See `CONNECTOR_REVIEW.md` for the J101/J701/J702 issues, `POLARITY_REVIEW.md` for the approved D705/D706 correction, and `CAD_models_to_upload.md` for optional 3D models.
-- `PCBA_PROCESS_REVIEW.md` records the J101/J702 plated slots with no paste apertures and the exact JLCPCB process question to resolve before assembly release.
+- `PCBA_PROCESS_REVIEW.md` records the J101/J702 plated slots with no paste apertures and the exact JLCPCB process question to resolve before assembly release. The output-impedance estimates remain 0.251 Ω (3.5 mm) and 0.383 Ω (4.4 mm); 50 mΩ per jack contact and 0 Ω link is an engineering estimate until bring-up measures each jack against ≤ 0.5 Ω.
 
-The included JLCPCB library data came from LCSC codes through `dsa-t/jlc-kicad-lib-loader` 1.0.11 on 26 September 2026. `JLC_Source/JLC_DAC_HPA.elibz` keeps the source models, `JLC_Imported.pretty` contains the native KiCad footprint copies, and `jlc_footprints.json` records pad-set comparisons. The project's own footprints are in `DAC_HPA.pretty`; custom land-pattern sources are in `FOOTPRINT_SOURCES.md`. All imported and custom physical lands remain subject to G-1–G-4 sample and drawing checks.
+The included JLCPCB library data came from LCSC codes through `dsa-t/jlc-kicad-lib-loader` 1.0.11, updated on 27 September 2026 for C140314 and C81464. `JLC_Source/JLC_DAC_HPA.elibz` keeps 41 source CAD entries, `JLC_Imported.pretty` contains the native KiCad footprint copies, and `jlc_footprints.json` records pad-set comparisons. The project's own footprints are in `DAC_HPA.pretty`; custom land-pattern sources are in `FOOTPRINT_SOURCES.md`. All imported and custom physical lands remain subject to G-1–G-4 sample and drawing checks.
 
 ## Regenerate and verify
 
 With Python 3, `openpyxl`, and KiCad 10 installed:
 
 ```sh
+python3 hardware/audit_jlc_library.py
+python3 hardware/derive_connector_footprints.py
 python3 hardware/generate_schematic.py
 python3 hardware/verify_schematic.py
 python3 hardware/verify_design_notes.py
@@ -32,4 +34,4 @@ python3 hardware/export_assembly_review.py
 /Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli sch export pdf -o hardware/DAC_HPA_review_only.pdf hardware/DAC_HPA.kicad_sch
 ```
 
-`generate_schematic.py` reads `doc/DAC_HPA_Parts_List_v0.8.xlsx` and rewrites the generated schematic sheets and custom symbol library. Run `audit_jlc_library.py` if the JLC source library changes, and `alias_exposed_pads.py` if the imported exposed-pad footprints change. Manual KiCad edits to generated schematic files will be replaced by regeneration; edit the generator or resolve changes back into the workbook first.
+`generate_schematic.py` reads `doc/DAC_HPA_Parts_List_v0.9.xlsx` and rewrites the generated schematic sheets and custom symbol library. Run `audit_jlc_library.py` and `derive_connector_footprints.py` before generation when their source CAD data changes, and `alias_exposed_pads.py` if the imported exposed-pad footprints change. Manual KiCad edits to generated schematic files will be replaced by regeneration; edit the generator or resolve changes back into the workbook first.

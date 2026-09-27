@@ -1,7 +1,7 @@
 # D705/D706 LED polarity correction — approved and applied
 
-The ordered LED part numbers conflict with the pin map in Parts List v0.8 and Schematic Design Notes v0.9 Section 6 rule 53.
-On 26 September 2026 the owner approved correcting the KiCad pad-to-net mapping to the manufacturer/JLC pinout. Parts List v0.8 remains unchanged as the versioned source; `generate_schematic.py` applies this explicit override on regeneration.
+The ordered LED part numbers still conflict with the pin map in Parts List v0.9 and Schematic Design Notes v1.0 Section 6 rule 53.
+On 26 September 2026 the owner approved correcting the KiCad pad-to-net mapping to the manufacturer/JLC pinout. The workbook's LED rows remain as supplied; `generate_schematic.py` applies this explicit override on regeneration.
 
 | Ref | Ordered part / JLC code | Manufacturer and JLC pin assignment | Original workbook assignment | Corrected KiCad assignment |
 | --- | --- | --- | --- | --- |

@@ -15,12 +15,14 @@ default:
 validate_schematic:
   stage: validate
   script:
+    - python3 hardware/audit_jlc_library.py
+    - python3 hardware/derive_connector_footprints.py
     - python3 hardware/generate_schematic.py
     - python3 hardware/verify_schematic.py
     - python3 hardware/verify_design_notes.py
     - python3 hardware/verify_critical_footprints.py
     - python3 hardware/export_assembly_review.py
-    - git diff --exit-code -- hardware/DAC_HPA.kicad_sch hardware/0*.kicad_sch hardware/DAC_HPA.kicad_sym hardware/sym-lib-table hardware/*_REVIEW_ONLY.csv
+    - git diff --exit-code -- hardware/DAC_HPA.kicad_sch hardware/0*.kicad_sch hardware/DAC_HPA.kicad_sym hardware/sym-lib-table hardware/jlc_footprints.json hardware/DAC_HPA.pretty/J701_GT-3321667P-01_maker_slots.kicad_mod hardware/DAC_HPA.pretty/J702_PJ-332A-6A_peg_holes.kicad_mod hardware/*_REVIEW_ONLY.csv
 
 deliver_review_package:
   stage: deliver

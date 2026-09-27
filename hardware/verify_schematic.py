@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the KiCad capture against Parts List v0.8 and run KiCad ERC."""
+"""Check the KiCad capture against Parts List v0.9 and run KiCad ERC."""
 
 from __future__ import annotations
 
@@ -129,8 +129,10 @@ def run() -> None:
         if extras:
             raise AssertionError(f"Unexpected KiCad pin nodes: {list(extras.items())[:20]}")
         connected = sum(pin.net != "NC" for pins in design_pins.values() for pin in pins)
-        if connected != 1268 or len(expected_nodes) != 1310:
-            raise AssertionError("Unexpected approved schematic pin counts")
+        nc_count = len(expected_nodes) - connected
+        named_nets = {pin.net for group in workbook_pins.values() for pin in group if pin.net != "NC"}
+        if (len(parts), len(expected_nodes), connected, nc_count, len(named_nets)) != (526, 1445, 1402, 43, 246):
+            raise AssertionError("Unexpected v0.9 designator, pin or net counts")
 
         source_nodes = {(ref, pin.number): pin.net for ref, group in workbook_pins.items() for pin in group}
         actual_delta = {key: (source_nodes.get(key), expected_nodes.get(key))
@@ -139,25 +141,13 @@ def run() -> None:
         approved_delta = {
             ("D705", "1"): ("GND", "N7_LEDG_A"), ("D705", "2"): ("N7_LEDG_A", "GND"),
             ("D706", "1"): ("GND", "N7_LEDR_A"), ("D706", "2"): ("N7_LEDR_A", "GND"),
-            ("J701", "1"): ("JACK_LP", "GND"),
-            ("J701", "2"): ("JACK_LN", "JACK_RN"),
-            ("J701", "3"): ("JACK_RP", "JACK_RN"),
-            ("J701", "4"): ("JACK_RN", "JACK_RP"),
-            ("J701", "5"): ("GND", "JACK_RP"),
-            ("J701", "6"): ("GND", "JACK_LN"),
-            ("J701", "7"): ("GND", "JACK_LP"),
-            ("J701", "8"): (None, "JACK_LP"),
-            ("J701", "9"): (None, "NC"),
-            ("J701", "10"): (None, "NC"),
-            ("J701", "11"): (None, "NC"),
-            ("J701", "12"): (None, "NC"),
         }
         if actual_delta != approved_delta:
             raise AssertionError(f"Unapproved workbook-to-schematic net overrides: {actual_delta}")
 
-        package = HERE.parent / "doc" / "DAC_HPA_Calculation_Package_v1.0.zip"
+        package = HERE.parent / "doc" / "DAC_HPA_Calculation_Package_v1.1.zip"
         with zipfile.ZipFile(package) as archive:
-            with archive.open("calc_package/integration/netlist_merged.csv") as source:
+            with archive.open("calc_package_v11/integration/netlist_merged.csv") as source:
                 rows = list(csv.DictReader(io.TextIOWrapper(source, encoding="utf-8-sig")))
         package_nodes = {(row["refdes"], str(row["pin"])): row["net"] for row in rows}
         if len(rows) != len(package_nodes) or package_nodes != source_nodes:
@@ -193,7 +183,7 @@ def run() -> None:
                 if not identifier:
                     continue
                 expected = {pin.number for pin in design_pins[ref]} if ref in design_pins else ({"1"} if ref.startswith("MH") else set())
-                actual = set(pad_sets[identifier])
+                actual = set(pad_sets[identifier]) - {""}  # unnumbered NPTH locating pegs
                 if actual != expected:
                     raise AssertionError(f"{ref} footprint {identifier}: pads {sorted(actual)} != symbol pins {sorted(expected)}")
                 matched_footprints += 1
@@ -212,7 +202,7 @@ def run() -> None:
         print(f"PASS: {len(parts)} workbook components, 11 PCB items, {len(expected_nodes)} approved schematic pins")
         print(f"PASS: {connected} connected pins match the approved KiCad pin/net map exactly")
         print(f"PASS: {len(package_nodes)} workbook pins match the calculation package's merged netlist")
-        print(f"PASS: only {len(approved_delta)} owner-approved D705/D706/J701 pin/net entries differ from the workbook")
+        print(f"PASS: 247 workbook nets (including NC); only {len(approved_delta)} owner-approved D705/D706 pin/net entries differ")
         print(f"PASS: {fields_checked} MPN/LCSC/fit/package/source/value fields match")
         if matched_footprints is not None:
             print(f"PASS: {matched_footprints} assigned footprints have matching symbol pin/pad number sets")

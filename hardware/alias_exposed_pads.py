@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Give JLCPCB exposed pads the pad labels used in Parts List v0.8."""
+"""Give JLCPCB exposed pads the pad labels used in Parts List v0.9."""
 
 from __future__ import annotations
 

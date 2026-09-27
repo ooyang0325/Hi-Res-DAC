@@ -4,7 +4,7 @@
 (generator_version "10.0")
 (uuid "12ac7884-67bf-5554-9174-6b38c457f9c1")
 (paper "A2")
-(title_block (title "5  POWER DOMAINS / RAILS") (date "2026-09-26") (rev "Schematic capture v1.0") (comment 1 "REVIEW ONLY: G-1 to G-4 and J702 contact map remain open"))
+(title_block (title "5  POWER DOMAINS / RAILS") (date "2026-09-27") (rev "v1.1") (comment 1 "Design Spec v1.1 / Notes v1.0 / Parts List v0.9") (comment 2 "REVIEW ONLY: G-1 to G-4 remain open; J701/J702 maps from maker drawings"))
 (lib_symbols
 (symbol "DAC_HPA:P081"
 (pin_numbers (hide yes))
@@ -344,7 +344,7 @@
 (property "Value" "4.75 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "TPS2596 current-limit resistor, Default limit: IOS 180.05 / 201.3 / 222.6 mA (min/typ/max) against a guaranteed need of 178.82 mA (+1.23 mA; engineering estimate ≈ +11.0 mA); Default USB total 493.45 mA ≤ 500 mA on the planning values" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "TPS2596 current-limit resistor, Default limit: IOS 180.05 / 201.3 / 222.6 mA (min/typ/max) against a Default need of 178.961 mA (+1.090 mA, engineering estimate); Default USB total 493.46 mA ≤ 500 mA on the planning values" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P102_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))

@@ -87,7 +87,7 @@
 (property "Value" "GCT USB4105-GF-A" (at 0 -15.24 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "USB-C receptacle, USB 2.0, 16 contacts on 12 SMT pads (A1/B12, A4/B9, B4/A9, B1/A12 combined) + 4 THT shell stakes; 2 NPTH locating pegs; shell to GND via R107" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "USB-C receptacle, USB 2.0: 16 contacts on the 12 composite GCT solder lands (shared A1/B12, A4/B9, B4/A9, B1/A12; single A5, A6, A7, A8, B5, B6, B7, B8) plus the plated shell stakes S1–S4; the provisional footprint uses the 16 JLCPCB pad IDs (each shared land is two touching pads on one net), plus two Ø0.65 mm non-plated locating holes; pin-in-paste on S1–S4 only after JLCPCB confirms the process and the aperture geometry (G-6); fallback: the owner hand-solders S1–S4 from the bottom side before the first plug-in (the stakes carry the shell and the mechanical retention); shell to GND via R107" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P009_1_1"
 (rectangle (start -13.97 11.43) (end 13.97 -11.43) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -19.05 8.89 0) (length 5.08) (name "GND (A1+B12)" (effects (font (size 0.762 0.762)))) (number "A1/B12" (effects (font (size 0.762 0.762)))))
@@ -191,7 +191,7 @@
 (property "Value" "100 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U102 current-limit resistor (IOS 870/970/1077 mA ≥ the 760.76 mA of state S4: +109 mA to the minimum)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "U102 current-limit resistor (IOS 870/970/1077 mA ≥ the 760.77 mA of state S4: +109 mA to the minimum; 765.27 mA with the NDK X201 second source)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P015_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -524,7 +524,7 @@
 (pin passive line (at -25.4 39.37 0) (length 5.08) (name "VBAT" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -25.4 36.83 0) (length 5.08) (name "PC13-TAMPER-RTC" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -25.4 34.29 0) (length 5.08) (name "PC14-OSC32_IN" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
-(pin passive line (at -25.4 31.75 0) (length 5.08) (name "PC15-OSC32_OUT" (effects (font (size 0.762 0.762)))) (number "4" (effects (font (size 0.762 0.762)))))
+(pin output line (at -25.4 31.75 0) (length 5.08) (name "PC15-OSC32_OUT" (effects (font (size 0.762 0.762)))) (number "4" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -25.4 29.21 0) (length 5.08) (name "OSC_IN" (effects (font (size 0.762 0.762)))) (number "5" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -25.4 26.67 0) (length 5.08) (name "OSC_OUT" (effects (font (size 0.762 0.762)))) (number "6" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -25.4 24.13 0) (length 5.08) (name "NRST" (effects (font (size 0.762 0.762)))) (number "7" (effects (font (size 0.762 0.762)))))
@@ -1717,7 +1717,7 @@
 (property "Value" "4.75 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "TPS2596 current-limit resistor, Default limit: IOS 180.05 / 201.3 / 222.6 mA (min/typ/max) against a guaranteed need of 178.82 mA (+1.23 mA; engineering estimate ≈ +11.0 mA); Default USB total 493.45 mA ≤ 500 mA on the planning values" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "TPS2596 current-limit resistor, Default limit: IOS 180.05 / 201.3 / 222.6 mA (min/typ/max) against a Default need of 178.961 mA (+1.090 mA, engineering estimate); Default USB total 493.46 mA ≤ 500 mA on the planning values" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P102_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2043,10 +2043,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "2.2 µF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "4.7 µF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Leg DC-window filter capacitor (with 115 kΩ; aged range 1.79–2.42 µF used)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "DC-sense filter (C608-C611) and reference-network filter (C616)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P122_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2059,10 +2059,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "4.7 µF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "1 µF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "DC-sense filter (C608-C611) and reference-network filter (C616)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Permit node H capacitor (minimum switch-off time 53-135 ms with R647 100 k, glitch filter)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P123_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2078,7 +2078,7 @@
 (property "Value" "100 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Decoupling: TLV1704 V+/V− to GND (C612–C615, C618, C619; C635–C638 for U609/U610), U604 supply (C622); C623 U607 VCC (3V3D), C626/C627 U606 V+/V−, C628 U605 VCC (3V3M), C630 U608 VCC (3V3D)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Decoupling 100 nF: TLV1704 V+/V− to GND (C618/C619 for U603, C635–C638 for U609/U610, C655–C658 for U611/U612), U604 supply (C622); C623 U607 VCC (3V3D), C626/C627 U606 V+/V−, C628 U605 VCC (3V3M), C630 U608 VCC (3V3D); C659–C666 VCC–GND (VPOS–VNEG) of the TLV3402 stages U613–U620" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P124_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2091,10 +2091,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "1 µF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "10 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Permit node H capacitor (minimum switch-off time 53-135 ms with R647 100 k, glitch filter)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "I/V common-mode node filter (tau 0.5 ms with 50 kΩ)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P125_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2107,10 +2107,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "10 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "100 pF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "I/V common-mode node filter (tau 0.5 ms with 50 kΩ)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "MCLK pump capacitor" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P126_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2123,10 +2123,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "100 pF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "82 pF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "MCLK pump capacitor" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "MCLK pump hold capacitor (dead detection ≤ 0.42 ms)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P127_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2139,10 +2139,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "82 pF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "1 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "MCLK pump hold capacitor (dead detection ≤ 0.42 ms)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "1 nF C0G: 1V3-good input filter (C629, τ 10 µs with R670); C639–C642 over-range (OR) tap filters (τ 0.33 ms with R926–R929 330 kΩ)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P128_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2155,10 +2155,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "1 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "220 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "1V3-good input filter (tau 10 µs with R670)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Persistence-detector timer capacitor C_T: 220 nF, ±2 % required, PPS film (T_P 19.50–23.37 ms including 1 µA leakage)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P129_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2171,10 +2171,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "220 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "3.3 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Persistence-detector timer capacitor C_T: 220 nF ±2 % PPS film (T_P 19.5–23.2 ms including ≤ 1 µA leakage per timer node; 22.1 ms nominal without leakage)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Low-level persistence (LPW) tap filter capacitors (τ 3.3 ms with 1.00 MΩ)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P130_1_1"
 (polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
@@ -2186,19 +2186,35 @@
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
+(property "Reference" "C" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "100 nF" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "LPW timer capacitors C_T2 (timer node → GND)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(symbol "P131_1_1"
+(polyline (pts (xy -1.27 2.54) (xy -1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
+(polyline (pts (xy 1.27 2.54) (xy 1.27 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
+(pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
+)
+)
+(symbol "P132"
+(pin_numbers (hide yes))
+(pin_names (offset 0.508))
+(exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "D" (at 0 7.62 0) (effects (font (size 1.016 1.016))))
 (property "Value" "BAS70-04" (at 0 -7.62 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Dual Schottky, series (BAS70-04): D609 MCLK pump clamp + rectifier; D610 1V3-good test injection (one diode only: A1 pin 1, K1 pin 3; pin 2 NC)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P131_1_1"
+(symbol "P132_1_1"
 (rectangle (start -10.16 3.81) (end 10.16 -3.81) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -15.24 1.27 0) (length 5.08) (name "A1" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -15.24 -1.27 0) (length 5.08) (name "K2" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 15.24 1.27 180) (length 5.08) (name "K1/A2" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P132"
+(symbol "P133"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2207,7 +2223,7 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Photorelay 1 Form A, MOSFET output (A connection 4-6), output switch in each leg" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P132_1_1"
+(symbol "P133_1_1"
 (rectangle (start -11.43 5.08) (end 11.43 -5.08) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -16.51 2.54 0) (length 5.08) (name "ANODE" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -16.51 0 0) (length 5.08) (name "CATHODE" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
@@ -2217,7 +2233,7 @@
 (pin passive line (at 16.51 -2.54 180) (length 5.08) (name "DRAIN" (effects (font (size 0.762 0.762)))) (number "6" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P133"
+(symbol "P134"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2226,14 +2242,14 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "NPN, LED-string current-sink pass transistor (driven by U604)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P133_1_1"
+(symbol "P134_1_1"
 (rectangle (start -10.16 3.81) (end 10.16 -3.81) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -15.24 1.27 0) (length 5.08) (name "B" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -15.24 -1.27 0) (length 5.08) (name "E" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 15.24 1.27 180) (length 5.08) (name "C" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P134"
+(symbol "P135"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2242,22 +2258,6 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "N-MOSFET, series permit switches (MCLK run-signal gate Q616, hardware permit H Q617); Q619/Q620: 3V3A-good pull-downs on N2_AVCC_EN_G / AUD_EN; Q622: re-arm latch switch in series with Q617 (Q617 source = N6_M3), gate from U608 Q through R692 1 k with the R696 pull-down" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P134_1_1"
-(rectangle (start -10.16 3.81) (end 10.16 -3.81) (stroke (width 0.254) (type default)) (fill (type background)))
-(pin passive line (at -15.24 1.27 0) (length 5.08) (name "G" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
-(pin passive line (at -15.24 -1.27 0) (length 5.08) (name "S" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
-(pin passive line (at 15.24 1.27 180) (length 5.08) (name "D" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
-)
-)
-(symbol "P135"
-(pin_numbers (hide yes))
-(pin_names (offset 0.508))
-(exclude_from_sim no) (in_bom yes) (on_board yes)
-(property "Reference" "Q" (at 0 7.62 0) (effects (font (size 1.016 1.016))))
-(property "Value" "2N7002" (at 0 -7.62 0) (effects (font (size 1.016 1.016))))
-(property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "N-MOSFET: permit readback DC_PERMIT_N (Q618, open drain to 3V3M); Q621 pulls N6_CLR_N low while U606 channel 4 releases N6_TRIP (latch clear)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P135_1_1"
 (rectangle (start -10.16 3.81) (end 10.16 -3.81) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -15.24 1.27 0) (length 5.08) (name "G" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2270,30 +2270,31 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "Q" (at 0 7.62 0) (effects (font (size 1.016 1.016))))
-(property "Value" "MMBT3904" (at 0 -7.62 0) (effects (font (size 1.016 1.016))))
+(property "Value" "2N7002" (at 0 -7.62 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Persistence-detector timer reset switches (NPN: C = timer node, E = GND, B = level-comparator output with the R916–R919 base pull-ups): saturated in the normal state (timer held at 0.02–0.20 V); reset ≤ 1.5 ms, well inside the 7.4 ms sine gap" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "N-MOSFET: permit readback DC_PERMIT_N (Q618, open drain to 3V3M); Q621 pulls N6_CLR_N low while U606 channel 4 releases N6_TRIP (latch clear)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P136_1_1"
 (rectangle (start -10.16 3.81) (end 10.16 -3.81) (stroke (width 0.254) (type default)) (fill (type background)))
-(pin passive line (at -15.24 1.27 0) (length 5.08) (name "B" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
-(pin passive line (at -15.24 -1.27 0) (length 5.08) (name "E" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
-(pin passive line (at 15.24 1.27 180) (length 5.08) (name "C" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -15.24 1.27 0) (length 5.08) (name "G" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -15.24 -1.27 0) (length 5.08) (name "S" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 15.24 1.27 180) (length 5.08) (name "D" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
 )
 )
 (symbol "P137"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
-(property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "115 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Reference" "Q" (at 0 7.62 0) (effects (font (size 1.016 1.016))))
+(property "Value" "MMBT3904" (at 0 -7.62 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Leg DC-window filter resistor (τ 253 ms nominal with 2.2 µF; covers the aged-capacitor corner)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "NPN: Q623–Q626 persistence-detector timer reset switches (C = timer node, E = GND, B = level, OR and LPW outputs with the R916–R919 base pull-ups; no clamp diode, no R_D); Q627 OR self-test switch (collector via R951 on N6_VORP)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P137_1_1"
-(rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
-(pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
-(pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
+(rectangle (start -10.16 3.81) (end 10.16 -3.81) (stroke (width 0.254) (type default)) (fill (type background)))
+(pin passive line (at -15.24 1.27 0) (length 5.08) (name "B" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -15.24 -1.27 0) (length 5.08) (name "E" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 15.24 1.27 180) (length 5.08) (name "C" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
 )
 )
 (symbol "P138"
@@ -2301,10 +2302,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "121 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "6.8 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Positive threshold divider, top (VTH+ = VPOS × 10/131 = +0.298 V nom.)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "6.8 kΩ 0.1 %: DC-sense series R_S (R624-R627), reference R_S (R661), CM chain middle (R658)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P138_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2316,10 +2317,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "115 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "5.1 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Negative threshold divider, top (VTH− = VNEG × 10/125 = −0.298 V nom.)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "5.1 kΩ 0.1 %: DC-sense bias R_U to 3V3A (R628-R631), reference R_U (R639), LED-sink reference bottom (R663)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P139_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2331,10 +2332,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "10.0 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "16.9 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "10.0 kΩ 0.1 %: threshold dividers bottom (R609, R610), CM threshold chain top/bottom (R657, R659); R670 1V3 series into U606 ch1" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "16.9 kΩ 0.1 %: DC-sense R_D to GND (R632-R635), reference R_D (R640)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P140_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2346,10 +2347,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "6.8 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "24.9 Ω" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "6.8 kΩ 0.1 %: DC-sense series R_S (R624-R627), reference R_S (R661), CM chain middle (R658)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "LED-string current-sense resistor R_S (≈ 5.26–6.60 mA per string; RELAY_EN ≥ 2.81 V at the 3.207 V 3V3M minimum)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P141_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2361,10 +2362,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "5.1 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "4.7 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "5.1 kΩ 0.1 %: DC-sense bias R_U to 3V3A (R628-R631), reference R_U (R639), LED-sink reference bottom (R663)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Base resistor, U604 output to the pass-transistor base" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P142_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2376,10 +2377,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "16.9 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "1 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "16.9 kΩ 0.1 %: DC-sense R_D to GND (R632-R635), reference R_D (R640)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Gate series resistors: R645 N2_MCLK_OE (X201 run signal) tap to Q616 (keeps the X201 INH edge clean); R692 Q622 gate series (re-arm latch)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P143_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2391,10 +2392,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "24.9 Ω" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "100 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "LED-string current-sense resistor R_S (≈ 5.26–6.60 mA per string; RELAY_EN ≥ 2.81 V at the 3.207 V 3V3M minimum)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "100 kΩ: RELAY_EN pull-down (R646), H pull-up to VPOS (R647), DC_PERMIT_N pull-up (R648); R667 MCLK-node series, R680/R687 U605 output pull-ups; R669 MCLK-alive threshold divider bottom; re-arm latch: R691 N6_CLR_N pull-up, R693 N6_HREF divider top, R695 N6_ARM readback to PB0, R696 Q622 gate-to-source pull-down (net N6_ARMG: an open R692 or an unpowered U608 turns Q622 off, so the switch opens); R939 V_LL+ divider bottom (LPW stages), R950 Q627 base (OR self-test)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P144_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2406,10 +2407,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "4.7 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "100 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Base resistor, U604 output to the pass-transistor base" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "100 kΩ 0.1 %: I/V common-mode summing resistors (R653–R656), LED-sink reference top (R662); R673 1V3 reference divider bottom; R925 persistence-detector V_T divider bottom" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P145_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2421,10 +2422,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "1 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "10.0 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Gate series resistors: R645 N2_MCLK_OE (X201 run signal) tap to Q616 (keeps the X201 INH edge clean); R692 Q622 gate series (re-arm latch)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "10.0 kΩ 0.1 %: CM threshold chain top/bottom (R657, R659); R670 1V3 series into U606 ch1" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P146_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2436,10 +2437,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "100 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "330 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "100 kΩ: comparator input series (R649–R652), RELAY_EN pull-down (R646), H pull-up to VPOS (R647), DC_PERMIT_N pull-up (R648); R667 MCLK-node series, R680/R687 U605 output pull-ups; R669 MCLK-alive threshold divider bottom; re-arm latch: R691 N6_CLR_N pull-up, R693 N6_HREF divider top, R695 N6_ARM readback to PB0, R696 Q622 gate-to-source pull-down (net N6_ARMG: an open R692 or an unpowered U608 turns Q622 off, so the switch opens)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "330 kΩ 1 %: R660 CM threshold offset from VPOS into CMTH_LO (permit off when 3V3A is absent); re-arm latch: R690 N6_TRIP pull-up to 3V3D, R694 N6_HREF divider bottom; persistence detector: R916–R919 base pull-ups of Q623–Q626 from VPOS; R926–R929 over-range (OR) taps from the legs" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P147_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2451,10 +2452,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "100 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "330 Ω" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "100 kΩ 0.1 %: I/V common-mode summing resistors (R653–R656), LED-sink reference top (R662); R673 1V3 reference divider bottom; R925 persistence-detector V_T divider bottom" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "MCLK-alive tap at the U301 XI pin (330 Ω; layout rules: X201 → R203 → XI ≤ 10 mm, R665 at XI, R665 → U607 ≤ 3 mm; X201 load ≤ 14.23 pF)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P148_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2466,10 +2467,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "330 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "1.00 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "330 kΩ 1 %: R660 CM threshold offset from VPOS into CMTH_LO (permit off when 3V3A is absent); re-arm latch: R690 N6_TRIP pull-up to 3V3D, R694 N6_HREF divider bottom; persistence detector: R916–R919 base pull-ups of Q623–Q626 from VPOS" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "1.00 MΩ 1 %: MCLK pump bleed (R666), MCLK-alive threshold divider top (R668, was 866 k 0.1 %); R930–R933 low-level persistence (LPW) taps from the legs, R938 V_LL+ divider top (3V3A), R940 V_LL− divider top (VNEG)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P149_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2481,10 +2482,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "330 Ω" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "2.2 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "MCLK-alive tap at the U301 XI pin (330 Ω; layout rules: X201 → R203 → XI ≤ 10 mm, R665 at XI, R665 → U607 ≤ 3 mm; X201 load ≤ 14.23 pF)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "U606 ch1 hysteresis from N6_H" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P150_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2496,10 +2497,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "1.00 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "237 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "1.00 MΩ 1 %: MCLK pump bleed (R666), MCLK-alive threshold divider top (R668, was 866 k 0.1 %)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "1V3-good reference top (VPOS divider)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P151_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2511,10 +2512,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "2.2 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "2.2 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U606 ch1 hysteresis from N6_H" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "1V3-good boot-test injection (PB8 via D610)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P152_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2526,10 +2527,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "237 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "44.2 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "1V3-good reference top (VPOS divider)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "U605 3V3A dividers, top (re-scaled to a 0402 value ≤ 240 k)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P153_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2541,10 +2542,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "2.2 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "200 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "1V3-good boot-test injection (PB8 via D610)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "U605 3V3A dividers, bottom (IN−), re-scaled (was 953 k)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P154_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2556,10 +2557,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "44.2 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "300 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U605 3V3A dividers, top (re-scaled to a 0402 value ≤ 240 k)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "U605 3V3M reference dividers, top (IN+): 300 k 0603 (was 330 k 0402)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P155_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2571,10 +2572,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "200 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "1.00 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U605 3V3A dividers, bottom (IN−), re-scaled (was 953 k)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "1.00 MΩ 0.1 % 0603: 3V3M reference dividers, bottom (U605 IN+; R678/R685); persistence-detector difference divider Rb (R901–R915 odd)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P156_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2586,10 +2587,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "300 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "22 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U605 3V3M reference dividers, top (IN+): 300 k 0603 (was 330 k 0402)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "U605 hysteresis (output to IN+)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P157_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2601,10 +2602,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "1.00 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "4.7 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "1.00 MΩ 0.1 % 0603: 3V3M reference dividers, bottom (U605 IN+; R678/R685); persistence-detector difference divider Rb (R901–R915 odd)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "U605A output to U606 ch3 (limits injection into the unpowered U606)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P158_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2616,10 +2617,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "22 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "470 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U605 hysteresis (output to IN+)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "470 kΩ: U605 output readback to MCU PA12 / PB9 (a mis-driven pin cannot mask the gate); R935 V_OR+ divider bottom, R936/R937 V_OR− divider (R937 returned to the OR test line N6_ORTEST)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P159_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2631,10 +2632,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "4.7 MΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "487 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U605A output to U606 ch3 (limits injection into the unpowered U606)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "487 kΩ 0.1 % 0603: persistence-detector difference divider Ra (V_L = VPOS × Ra/Rb = 1.80–2.00 V pair difference, with the 1.00 M Rb)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P160_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2646,10 +2647,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "470 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "110 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U605 output readback to MCU PA12 / PB9 (a mis-driven pin cannot mask the gate)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Persistence-detector timer resistor R_T from VPOS (110 k 0.1 %, leakage-robust value)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P161_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2661,10 +2662,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "487 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "69.8 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "487 kΩ 0.1 % 0603: persistence-detector difference divider Ra (V_L = VPOS × Ra/Rb = 1.80–2.00 V pair difference, with the 1.00 M Rb)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Persistence-detector timer threshold divider, top (V_T = 0.589 × VPOS with R925)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P162_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2676,10 +2677,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "110 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "360 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Persistence-detector timer resistor R_T from VPOS (110 k 0.1 %, leakage-robust value)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "OR stage V_OR+ divider top (3V3A)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P163_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2691,10 +2692,10 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
-(property "Value" "69.8 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "88.7 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Persistence-detector timer threshold divider, top (V_T = 0.589 × VPOS with R925)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "LPW stage V_LL− divider bottom (VNEG × 88.7/1088.7)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P164_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
@@ -2705,12 +2706,42 @@
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
+(property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "910 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "LPW timer charging resistors R_T2 (VPOS → timer node)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(symbol "P165_1_1"
+(rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
+(pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
+)
+)
+(symbol "P166"
+(pin_numbers (hide yes))
+(pin_names (offset 0.508))
+(exclude_from_sim no) (in_bom yes) (on_board yes)
+(property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "10 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "OR self-test: series resistor in the Q627 collector (defined positive test threshold V_OR+ 0.086–0.141 V)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(symbol "P166_1_1"
+(rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
+(pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
+)
+)
+(symbol "P167"
+(pin_numbers (hide yes))
+(pin_names (offset 0.508))
+(exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "U" (at 0 13.97 0) (effects (font (size 1.016 1.016))))
 (property "Value" "TLV1704" (at 0 -13.97 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Comparator, quad, micropower, rail-to-rail input, open-collector output, on VPOS/VNEG; U606: 1V3-good, MCLK-alive and 3V3A-good repeater into N6_H, and channel 4 = the re-arm latch H-OK detector (pin 10 = N6_H, pin 11 = N6_HREF, pin 13 = N6_TRIP; not spare); U609/U610: pair-difference large-DC persistence detectors L/R (2 level + 2 timer channels each)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P165_1_1"
+(property "Description" "Comparator, quad, micropower, rail-to-rail input, open-collector output, on VPOS/VNEG: U603 I/V common-mode windows; U606: 1V3-good, MCLK-alive and 3V3A-good repeater into N6_H, and channel 4 = the re-arm latch H-OK detector (pin 10 = N6_H, pin 11 = N6_HREF, pin 13 = N6_TRIP; not spare); U609/U610: pair-difference persistence detectors L/R (2 level + 2 timer channels each; their timers and timer comparators also serve the OR and LPW stages); U611/U612: per-leg over-range (OR) stages L/R (tap > V_OR+ / tap < V_OR− per leg; outputs sink the timer-reset NPN bases)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(symbol "P167_1_1"
 (rectangle (start -10.16 10.16) (end 10.16 -10.16) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin open_collector line (at -15.24 7.62 0) (length 5.08) (name "2OUT" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin open_collector line (at -15.24 5.08 0) (length 5.08) (name "1OUT" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
@@ -2728,7 +2759,7 @@
 (pin open_collector line (at 15.24 -7.62 180) (length 5.08) (name "3OUT" (effects (font (size 0.762 0.762)))) (number "14" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P166"
+(symbol "P168"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2737,7 +2768,7 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Dual zero-drift RRIO op-amp, LED-string current-sink regulator (supply 3V3D, reference from RELAY_EN)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P166_1_1"
+(symbol "P168_1_1"
 (rectangle (start -10.16 6.35) (end 10.16 -6.35) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin output line (at -15.24 3.81 0) (length 5.08) (name "OUT A" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin input line (at -15.24 1.27 0) (length 5.08) (name "-IN A" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
@@ -2749,7 +2780,7 @@
 (pin passive line (at 15.24 -3.81 180) (length 5.08) (name "V+" (effects (font (size 0.762 0.762)))) (number "8" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P167"
+(symbol "P169"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2758,7 +2789,7 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Dual nanopower comparator, open drain, on 3V3M: two independent 3V3A-good channels" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P167_1_1"
+(symbol "P169_1_1"
 (rectangle (start -10.16 6.35) (end 10.16 -6.35) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin open_collector line (at -15.24 3.81 0) (length 5.08) (name "OUT1" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin input line (at -15.24 1.27 0) (length 5.08) (name "IN1-" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
@@ -2770,7 +2801,7 @@
 (pin passive line (at 15.24 -3.81 180) (length 5.08) (name "VCC" (effects (font (size 0.762 0.762)))) (number "8" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P168"
+(symbol "P170"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2779,7 +2810,7 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Schmitt-trigger buffer, MCLK activity detector input (3V3D, Ioff)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P168_1_1"
+(symbol "P170_1_1"
 (rectangle (start -10.16 5.08) (end 10.16 -5.08) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -15.24 2.54 0) (length 5.08) (name "NC" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin input line (at -15.24 0 0) (length 5.08) (name "A" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
@@ -2788,7 +2819,7 @@
 (pin passive line (at 15.24 0 180) (length 5.08) (name "VCC" (effects (font (size 0.762 0.762)))) (number "5" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P169"
+(symbol "P171"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2797,7 +2828,7 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Single D flip-flop with preset/clear (re-arm latch: CP = RELAY_EN, D = RD̄ = N6_CLR_N, Q = N6_ARM → Q622 gate through R692 1 k), on 3V3D, Ioff" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P169_1_1"
+(symbol "P171_1_1"
 (rectangle (start -10.16 6.35) (end 10.16 -6.35) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin input line (at -15.24 3.81 0) (length 5.08) (name "CP" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin input line (at -15.24 1.27 0) (length 5.08) (name "D" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
@@ -2809,7 +2840,28 @@
 (pin passive line (at 15.24 -3.81 180) (length 5.08) (name "VCC" (effects (font (size 0.762 0.762)))) (number "8" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P170"
+(symbol "P172"
+(pin_numbers (hide yes))
+(pin_names (offset 0.508))
+(exclude_from_sim no) (in_bom yes) (on_board yes)
+(property "Reference" "U" (at 0 10.16 0) (effects (font (size 1.016 1.016))))
+(property "Value" "TLV3402" (at 0 -10.16 0) (effects (font (size 1.016 1.016))))
+(property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "Comparator, dual, nanopower, open-drain, 2.5–16 V, on VPOS/VNEG: low-level persistence (LPW) stages LP+, LP−, LN+, LN−, RP+, RP−, RN+, RN− (channel 1 level → own timer node; channel 2 timer > 0 V → timer-reset NPN base)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(symbol "P172_1_1"
+(rectangle (start -10.16 6.35) (end 10.16 -6.35) (stroke (width 0.254) (type default)) (fill (type background)))
+(pin open_collector line (at -15.24 3.81 0) (length 5.08) (name "OUT1" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
+(pin input line (at -15.24 1.27 0) (length 5.08) (name "IN1-" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
+(pin input line (at -15.24 -1.27 0) (length 5.08) (name "IN1+" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -15.24 -3.81 0) (length 5.08) (name "GND" (effects (font (size 0.762 0.762)))) (number "4" (effects (font (size 0.762 0.762)))))
+(pin input line (at 15.24 3.81 180) (length 5.08) (name "IN2+" (effects (font (size 0.762 0.762)))) (number "5" (effects (font (size 0.762 0.762)))))
+(pin input line (at 15.24 1.27 180) (length 5.08) (name "IN2-" (effects (font (size 0.762 0.762)))) (number "6" (effects (font (size 0.762 0.762)))))
+(pin open_collector line (at 15.24 -1.27 180) (length 5.08) (name "OUT2" (effects (font (size 0.762 0.762)))) (number "7" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 15.24 -3.81 180) (length 5.08) (name "VCC" (effects (font (size 0.762 0.762)))) (number "8" (effects (font (size 0.762 0.762)))))
+)
+)
+(symbol "P173"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2818,14 +2870,14 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "ESD diode, bidirectional, one per jack contact on the jack side of the switches (JACK_LP, JACK_RP, JACK_LN, JACK_RN)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P170_1_1"
+(symbol "P173_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy -2.54 2.54) (xy -2.54 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P171"
+(symbol "P174"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2834,14 +2886,14 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "LED status green, 3.3 V GPIO" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P171_1_1"
+(symbol "P174_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy -2.54 2.54) (xy -2.54 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "A" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 5.08 0 180) (length 2.54) (name "K" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P172"
+(symbol "P175"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2850,14 +2902,14 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "LED fault red, 3.3 V GPIO" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P172_1_1"
+(symbol "P175_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (polyline (pts (xy -2.54 2.54) (xy -2.54 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "A" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 5.08 0 180) (length 2.54) (name "K" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P173"
+(symbol "P176"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2865,15 +2917,15 @@
 (property "Value" "G-Switch GT-3321667P-01" (at 0 -12.7 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Jack, 4.4 mm 5-pole balanced (L+, L-, R+, R-, GND)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P173_1_1"
+(property "Description" "Jack, 4.4 mm 5-pole balanced (L+, L−, R+, R−, GND); 12 pads: 10 contact pins (incl. SWITCH, DETECT) + 2 \"ep\" mounting tabs" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(symbol "P176_1_1"
 (rectangle (start -10.16 8.89) (end 10.16 -8.89) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -15.24 6.35 0) (length 5.08) (name "GND" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
-(pin passive line (at -15.24 3.81 0) (length 5.08) (name "R-" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
-(pin passive line (at -15.24 1.27 0) (length 5.08) (name "R-" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -15.24 3.81 0) (length 5.08) (name "R−" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -15.24 1.27 0) (length 5.08) (name "R−" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -15.24 -1.27 0) (length 5.08) (name "R+" (effects (font (size 0.762 0.762)))) (number "4" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -15.24 -3.81 0) (length 5.08) (name "R+" (effects (font (size 0.762 0.762)))) (number "5" (effects (font (size 0.762 0.762)))))
-(pin passive line (at -15.24 -6.35 0) (length 5.08) (name "L-" (effects (font (size 0.762 0.762)))) (number "6" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -15.24 -6.35 0) (length 5.08) (name "L−" (effects (font (size 0.762 0.762)))) (number "6" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 15.24 6.35 180) (length 5.08) (name "L+" (effects (font (size 0.762 0.762)))) (number "7" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 15.24 3.81 180) (length 5.08) (name "L+" (effects (font (size 0.762 0.762)))) (number "8" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 15.24 1.27 180) (length 5.08) (name "SWITCH" (effects (font (size 0.762 0.762)))) (number "9" (effects (font (size 0.762 0.762)))))
@@ -2882,7 +2934,7 @@
 (pin passive line (at 15.24 -6.35 180) (length 5.08) (name "EP" (effects (font (size 0.762 0.762)))) (number "12" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P174"
+(symbol "P177"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2890,18 +2942,18 @@
 (property "Value" "HRO PJ-332A-6A" (at 0 -8.89 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "Jack, 3.5 mm (TRRS body used with TRS plugs; ring 2 to GND)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P174_1_1"
-(rectangle (start -13.97 5.08) (end 13.97 -5.08) (stroke (width 0.254) (type default)) (fill (type background)))
-(pin passive line (at -19.05 2.54 0) (length 5.08) (name "Tip (L+)" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
-(pin passive line (at -19.05 0 0) (length 5.08) (name "Ring 1 (R+)" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
-(pin passive line (at -19.05 -2.54 0) (length 5.08) (name "Ring 2" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
-(pin passive line (at 19.05 2.54 180) (length 5.08) (name "Sleeve (GND)" (effects (font (size 0.762 0.762)))) (number "4" (effects (font (size 0.762 0.762)))))
-(pin passive line (at 19.05 0 180) (length 5.08) (name "Mount" (effects (font (size 0.762 0.762)))) (number "5" (effects (font (size 0.762 0.762)))))
-(pin passive line (at 19.05 -2.54 180) (length 5.08) (name "Mount" (effects (font (size 0.762 0.762)))) (number "6" (effects (font (size 0.762 0.762)))))
+(property "Description" "Jack, 3.5 mm (TRRS body used with TRS plugs; ring 2 to GND): SMD with two plated slot terminals (pins 1/2) and four surface lands (pins 3–6)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(symbol "P177_1_1"
+(rectangle (start -17.78 5.08) (end 17.78 -5.08) (stroke (width 0.254) (type default)) (fill (type background)))
+(pin passive line (at -22.86 2.54 0) (length 5.08) (name "Sleeve" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -22.86 0 0) (length 5.08) (name "Ring 2" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
+(pin passive line (at -22.86 -2.54 0) (length 5.08) (name "Ring 1 (R+)" (effects (font (size 0.762 0.762)))) (number "3" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 22.86 2.54 180) (length 5.08) (name "Tip (L+)" (effects (font (size 0.762 0.762)))) (number "4" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 22.86 0 180) (length 5.08) (name "Ring-1 break contact" (effects (font (size 0.762 0.762)))) (number "5" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 22.86 -2.54 180) (length 5.08) (name "Tip break contact" (effects (font (size 0.762 0.762)))) (number "6" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P175"
+(symbol "P178"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2910,7 +2962,7 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Header 1 × 6 2.54 mm, I²S test port (MCLK monitor, BCLK, LRCLK, SDATA, GND, 3V3D)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P175_1_1"
+(symbol "P178_1_1"
 (rectangle (start -11.43 5.08) (end 11.43 -5.08) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -16.51 2.54 0) (length 5.08) (name "MCLK_MON" (effects (font (size 0.762 0.762)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at -16.51 0 0) (length 5.08) (name "BCLK" (effects (font (size 0.762 0.762)))) (number "2" (effects (font (size 0.762 0.762)))))
@@ -2920,7 +2972,7 @@
 (pin passive line (at 16.51 -2.54 180) (length 5.08) (name "3V3D_REF" (effects (font (size 0.762 0.762)))) (number "6" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P176"
+(symbol "P179"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2929,13 +2981,13 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Green LED series" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P176_1_1"
+(symbol "P179_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P177"
+(symbol "P180"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2944,13 +2996,13 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Red LED series" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P177_1_1"
+(symbol "P180_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P178"
+(symbol "P181"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2959,13 +3011,13 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "J703 MCLK monitor series (monitor only)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P178_1_1"
+(symbol "P181_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
 (pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P179"
+(symbol "P182"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2974,12 +3026,12 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Test pad: PROG strap (MCU PC13), shorted to GND at reset" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P179_1_1"
+(symbol "P182_1_1"
 (circle (center 0 0) (radius 1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "PROG" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
 )
 )
-(symbol "P180"
+(symbol "P183"
 (pin_numbers (hide yes))
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
@@ -2988,7 +3040,7 @@
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Test pads, 1.0 mm round on L1, mask open, no paste (allocation in the layout package, test points); TP732 (PROG) is on its own line in block 7" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(symbol "P180_1_1"
+(symbol "P183_1_1"
 (circle (center 0 0) (radius 1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "TP" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
 )

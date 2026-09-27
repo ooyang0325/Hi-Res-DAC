@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check high-risk, machine-checkable schematic rules from Notes v0.9.
+"""Check high-risk, machine-checkable schematic rules from Notes v1.0.
 
 This complements verify_schematic.py: that script checks KiCad against the
 workbook, while this checks selected independently stated rules in the notes.
@@ -51,7 +51,7 @@ def main() -> None:
     pin("U101", "5", "3V3M")
     value("R108", "100 kΩ")
     value("R109", "470 kΩ")
-    value("C102", "2.2 µF")  # Spec v1.0 and detailed Notes; Section 6 row 4 is stale.
+    value("C102", "2.2 µF")  # Detailed notes and workbook; checklist row 4 is stale.
     value("C104", "100 nF")
 
     # Rules 12–18, 22, 25–28: clocks, DAC and current-to-voltage stage.
@@ -265,24 +265,126 @@ def main() -> None:
     value("R645", "1 kΩ")
     value("R646", "100 kΩ")
     value("R647", "100 kΩ")
-    # Rules 45–48: leg windows, common-mode window and slow DC sense.
-    for ref, leg, filtered in (("R601", "LEG_LP", "N6_FLP"),
-                               ("R602", "LEG_LN", "N6_FLN"),
-                               ("R603", "LEG_RP", "N6_FRP"),
-                               ("R604", "LEG_RN", "N6_FRN")):
-        value(ref, "115 kΩ")
-        pin(ref, "1", leg)
-        pin(ref, "2", filtered)
-    for ref, filtered, comparator in (("R649", "N6_FLP", "N6_CLP"),
-                                      ("R650", "N6_FLN", "N6_CLN"),
-                                      ("R651", "N6_FRP", "N6_CRP"),
-                                      ("R652", "N6_FRN", "N6_CRN")):
-        value(ref, "100 kΩ")
-        pin(ref, "1", filtered)
-        pin(ref, "2", comparator)
-    for ref, expected in (("R607", "121 kΩ"), ("R608", "115 kΩ"),
-                          ("R609", "10.0 kΩ"), ("R610", "10.0 kΩ")):
-        value(ref, expected)
+    # Notes 3.6.8: the retired leg-window stage is replaced by independent
+    # per-leg over-range and low-level persistence stages.
+    retired = {
+        *(f"C{n}" for n in (*range(601, 605), *range(612, 616))),
+        *(f"R{n}" for n in (*range(601, 605), *range(607, 611), *range(649, 653))),
+        "U601", "U602",
+    }
+    assert not retired & parts.keys()
+    assert not {"N6_FLP", "N6_FLN", "N6_FRP", "N6_FRN", "N6_CLP", "N6_CLN", "N6_CRP", "N6_CRN", "N6_VTHP", "N6_VTHN"} & {p.net for group in pins.values() for p in group}
+    checks += 2
+    added = {
+        *(f"C{n}" for n in range(639, 667)),
+        *(f"R{n}" for n in range(926, 952)),
+        *(f"U{n}" for n in range(611, 621)),
+        "Q627",
+    }
+    assert len(retired) == 22 and len(added) == 65
+    assert all(ref in parts and parts[ref].block == 6 for ref in added)
+    checks += 2
+    for index, leg in enumerate(("LP", "LN", "RP", "RN")):
+        leg_net = f"LEG_{leg}"
+        over = f"N6_OR{leg}"
+        low = f"N6_LW{leg}"
+        for ref, resistance, target in ((f"R{926+index}", "330 kΩ", over),
+                                        (f"R{930+index}", "1.00 MΩ", low)):
+            value(ref, resistance)
+            pin(ref, "1", leg_net)
+            pin(ref, "2", target)
+        for ref, target, capacitance, package in ((f"C{639+index}", over, "1 nF", "0402"),
+                                                   (f"C{643+index}", low, "3.3 nF", "0603")):
+            value(ref, capacitance)
+            pin(ref, "1", target)
+            pin(ref, "2", "GND")
+            assert parts[ref].package == package and "C0G" in parts[ref].rating_tolerance
+            checks += 1
+    for ref, resistance, top, bottom in (
+        ("R934", "360 kΩ", "3V3A", "N6_VORP"),
+        ("R935", "470 kΩ", "N6_VORP", "GND"),
+        ("R936", "470 kΩ", "VNEG", "N6_VORN"),
+        ("R937", "470 kΩ", "N6_VORN", "N6_ORTEST"),
+        ("R938", "1.00 MΩ", "3V3A", "N6_VLLP"),
+        ("R939", "100 kΩ", "N6_VLLP", "GND"),
+        ("R940", "1.00 MΩ", "VNEG", "N6_VLLN"),
+        ("R941", "88.7 kΩ", "N6_VLLN", "GND"),
+        ("R950", "100 kΩ", "N6_ORTEST", "N6_ORTB"),
+        ("R951", "10 kΩ", "N6_VORP", "N6_ORQC"),
+    ):
+        value(ref, resistance)
+        pin(ref, "1", top)
+        pin(ref, "2", bottom)
+    pin("U201", "4", "N6_ORTEST")
+    members("N6_ORTEST", {("U201", "4"), ("R937", "2"), ("R950", "1")})
+    for number, net in {"1": "N6_ORTB", "2": "GND", "3": "N6_ORQC"}.items():
+        pin("Q627", number, net)
+    for ref in ("Q623", "Q624", "Q625", "Q626", "Q627"):
+        assert parts[ref].mpn == "onsemi MMBT3904LT1G" and parts[ref].lcsc == "C81464"
+        checks += 1
+    for ref, p_leg, n_leg, p_reset, n_reset in (
+        ("U611", "LP", "LN", "N6_OLP_L", "N6_OLN_L"),
+        ("U612", "RP", "RN", "N6_OLP_R", "N6_OLN_R"),
+    ):
+        assert parts[ref].mpn == "TI TLV1704AIPWR" and parts[ref].lcsc == "C181596"
+        checks += 1
+        for number, net in {
+            "1": n_reset, "2": p_reset, "3": "VPOS", "4": f"N6_OR{p_leg}",
+            "5": "N6_VORP", "6": "N6_VORN", "7": f"N6_OR{p_leg}",
+            "8": f"N6_OR{n_leg}", "9": "N6_VORP", "10": "N6_VORN",
+            "11": f"N6_OR{n_leg}", "12": "VNEG", "13": p_reset, "14": n_reset,
+        }.items():
+            pin(ref, number, net)
+    stages = (
+        ("LP", "P", "N6_OLP_L"), ("LP", "N", "N6_OLN_L"),
+        ("LN", "P", "N6_OLN_L"), ("LN", "N", "N6_OLP_L"),
+        ("RP", "P", "N6_OLP_R"), ("RP", "N", "N6_OLN_R"),
+        ("RN", "P", "N6_OLN_R"), ("RN", "N", "N6_OLP_R"),
+    )
+    for index, (leg, polarity, reset) in enumerate(stages):
+        ref = f"U{613+index}"
+        timer = f"N6_TW{leg}{polarity}"
+        tap = f"N6_LW{leg}"
+        assert parts[ref].mpn == "TI TLV3402IDGKR" and parts[ref].lcsc == "C140314"
+        checks += 1
+        for number, net in {
+            "1": timer, "2": "N6_VLLP" if polarity == "P" else tap,
+            "3": tap if polarity == "P" else "N6_VLLN",
+            "4": "VNEG", "5": "GND", "6": timer, "7": reset, "8": "VPOS",
+        }.items():
+            pin(ref, number, net)
+        value(f"R{942+index}", "910 kΩ")
+        pin(f"R{942+index}", "1", "VPOS")
+        pin(f"R{942+index}", "2", timer)
+        cap = f"C{647+index}"
+        value(cap, "100 nF")
+        pin(cap, "1", timer)
+        pin(cap, "2", "GND")
+        assert parts[cap].package == "1206" and "C0G" in parts[cap].rating_tolerance
+        checks += 1
+    for index in range(12):
+        ref = f"C{655+index}"
+        value(ref, "100 nF")
+        pin(ref, "1", "VPOS" if index != 1 and index != 3 else "VNEG")
+        pin(ref, "2", "GND" if index < 4 else "VNEG")
+        assert parts[ref].mpn == "Samsung CL05B104KO5NNNC" and parts[ref].package == "0402"
+        checks += 1
+    net_counts = Counter(p.net for group in pins.values() for p in group)
+    target_counts = {
+        **{f"N6_OR{leg}": 4 for leg in ("LP", "LN", "RP", "RN")},
+        "N6_VORP": 7, "N6_VORN": 6, "N6_ORTB": 2, "N6_ORQC": 2,
+        "N6_ORTEST": 3,
+        **{f"N6_LW{leg}": 4 for leg in ("LP", "LN", "RP", "RN")},
+        "N6_VLLP": 6, "N6_VLLN": 6,
+        **{f"N6_TW{leg}{polarity}": 4 for leg in ("LP", "LN", "RP", "RN") for polarity in ("P", "N")},
+        **{f"N6_OL{leg}_{side}": 7 for leg in ("P", "N") for side in ("L", "R")},
+        **{f"LEG_{leg}": 7 for leg in ("LP", "LN", "RP", "RN")},
+        "JACK_LP": 5, "JACK_LN": 3, "JACK_RP": 5, "JACK_RN": 4,
+        "N6_H": 18, "3V3A": 21, "VPOS": 67, "VNEG": 43, "GND": 286,
+    }
+    for net, count in target_counts.items():
+        assert net_counts[net] == count, (net, net_counts[net], count)
+        checks += 1
     for ref, output, common in (("R653", "N4_IVL_P", "N6_CML"),
                                 ("R654", "N4_IVL_N", "N6_CML"),
                                 ("R655", "N4_IVR_P", "N6_CMR"),
@@ -371,7 +473,7 @@ def main() -> None:
     assert "RAIL_EN" not in {p.net for group in pins.values() for p in group}
     checks += 2
     fit = Counter(part.fit for part in parts.values())
-    assert fit == {"Yes": 412, "Owner": 7, "No": 9, "Pads": 3, "No part": 52}, fit
+    assert fit == {"Yes": 455, "Owner": 7, "No": 9, "Pads": 3, "No part": 52}, fit
     assert {ref for ref, part in parts.items() if part.fit == "Owner"} == {"K601", "K602", "K603", "K604", "J701", "D102", "R509"}
     assert {ref for ref, part in parts.items() if part.fit == "No"} == {"C101", "C441", "C513", "J703", "R241", "R446", "R447", "R531", "R703"}
     checks += 3
@@ -398,9 +500,9 @@ def main() -> None:
     j701 = {item.number: (item.name, item.net) for item in corrected_pins["J701"]}
     expected_j701 = {
         "1": ("GND", "GND"),
-        "2": ("R-", "JACK_RN"), "3": ("R-", "JACK_RN"),
+        "2": ("R−", "JACK_RN"), "3": ("R−", "JACK_RN"),
         "4": ("R+", "JACK_RP"), "5": ("R+", "JACK_RP"),
-        "6": ("L-", "JACK_LN"),
+        "6": ("L−", "JACK_LN"),
         "7": ("L+", "JACK_LP"), "8": ("L+", "JACK_LP"),
         "9": ("SWITCH", "NC"), "10": ("DETECT", "NC"),
         "11": ("EP", "NC"), "12": ("EP", "NC"),
@@ -411,9 +513,17 @@ def main() -> None:
         assert j701[number][0] == name, (number, j701[number], name)
         assert j701[number][1] == net, (number, j701[number], net)
         checks += 2
+    j702 = {item.number: (item.name, item.net) for item in corrected_pins["J702"]}
+    expected_j702 = {
+        "1": ("Sleeve", "GND"), "2": ("Ring 2", "GND"),
+        "3": ("Ring 1 (R+)", "JACK_RP"), "4": ("Tip (L+)", "JACK_LP"),
+        "5": ("Ring-1 break contact", "NC"), "6": ("Tip break contact", "NC"),
+    }
+    assert j702 == expected_j702, j702
+    checks += len(expected_j702)
     print(f"PASS: {checks} selected design-note pin, value, membership, and fit checks")
-    print("CORRECTED: D705/D706/J701 owner-approved physical pad maps differ from the source checklist")
-    print("OPEN: J101/J701/J702 and G-1–G-4 remain unverified")
+    print("CORRECTED: D705/D706 physical pad maps differ from the source checklist")
+    print("DOCUMENTED: J701/J702 maker-drawing contact maps; G-1–G-4 physical gates remain open")
 
 
 if __name__ == "__main__":

@@ -155,15 +155,62 @@
     "footprint_numbers_match": true,
     "status": "candidate_exact_numbers"
   },
+  "C140314": {
+    "manufacturer_part": "TLV3402IDGKR",
+    "refs": [
+      "U613",
+      "U614",
+      "U615",
+      "U616",
+      "U617",
+      "U618",
+      "U619",
+      "U620"
+    ],
+    "footprint": "VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL",
+    "symbol_pin_numbers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "footprint_pad_numbers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "workbook_pin_numbers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "symbol_numbers_match": true,
+    "footprint_numbers_match": true,
+    "status": "candidate_exact_numbers"
+  },
   "C181596": {
     "manufacturer_part": "TLV1704AIPWR",
     "refs": [
-      "U601",
-      "U602",
       "U603",
       "U606",
       "U609",
-      "U610"
+      "U610",
+      "U611",
+      "U612"
     ],
     "footprint": "TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL",
     "symbol_pin_numbers": [
@@ -469,11 +516,7 @@
     "refs": [
       "Q507",
       "Q612",
-      "Q614",
-      "Q623",
-      "Q624",
-      "Q625",
-      "Q626"
+      "Q614"
     ],
     "footprint": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
     "symbol_pin_numbers": [
@@ -756,16 +799,21 @@
     ],
     "workbook_pin_numbers": [
       "1",
+      "10",
+      "11",
+      "12",
       "2",
       "3",
       "4",
       "5",
       "6",
-      "7"
+      "7",
+      "8",
+      "9"
     ],
-    "symbol_numbers_match": false,
-    "footprint_numbers_match": false,
-    "status": "review_required"
+    "symbol_numbers_match": true,
+    "footprint_numbers_match": true,
+    "status": "candidate_exact_numbers"
   },
   "C2848334": {
     "manufacturer_part": "TLV76733DRVR",
@@ -1561,6 +1609,35 @@
       "3",
       "4",
       "5"
+    ],
+    "symbol_numbers_match": true,
+    "footprint_numbers_match": true,
+    "status": "candidate_exact_numbers"
+  },
+  "C81464": {
+    "manufacturer_part": "MMBT3904LT1G",
+    "refs": [
+      "Q623",
+      "Q624",
+      "Q625",
+      "Q626",
+      "Q627"
+    ],
+    "footprint": "SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR",
+    "symbol_pin_numbers": [
+      "1",
+      "2",
+      "3"
+    ],
+    "footprint_pad_numbers": [
+      "1",
+      "2",
+      "3"
+    ],
+    "workbook_pin_numbers": [
+      "1",
+      "2",
+      "3"
     ],
     "symbol_numbers_match": true,
     "footprint_numbers_match": true,

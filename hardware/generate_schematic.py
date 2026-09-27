@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Capture the DAC-HPA workbook's pin netlist as an editable KiCad schematic.
 
-This deliberately preserves the pin numbers and net names in Parts List v0.8.
-It does not resolve the physical-sample gates in Design Spec v1.0, section 7.
+This preserves the pin numbers and net names in Parts List v0.9, except for
+the owner-approved D705/D706 physical LED pad correction. Physical-sample
+gates in Design Spec v1.1 remain open.
 """
 
 from __future__ import annotations
@@ -21,7 +22,7 @@ from openpyxl import load_workbook
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-WORKBOOK = ROOT / "doc" / "DAC_HPA_Parts_List_v0.8.xlsx"
+WORKBOOK = ROOT / "doc" / "DAC_HPA_Parts_List_v0.9.xlsx"
 PROJECT = "DAC_HPA"
 GRID = 1.27
 ROOT_UUID = "0c6c0976-e401-5c8a-8977-bc60da031e5e"
@@ -133,9 +134,9 @@ def apply_approved_overrides(workbook_pins: dict[str, list[Pin]]) -> dict[str, l
     """Apply owner-approved physical corrections without editing versioned docs.
 
     On 26 September 2026 the owner approved correcting D705/D706 to the
-    manufacturer/JLC pin maps and correcting J701 to the G-Switch/JLC 12-pad
-    map. The input signatures are asserted so a later workbook revision cannot
-    silently invalidate these exceptions.
+    manufacturer/JLC pin maps. Parts List v0.9 now carries the owner-approved
+    J701 map and the HRO drawing's J702 map directly. Assert all three source
+    signatures so a later workbook revision cannot silently change them.
     """
     corrected = {ref: list(items) for ref, items in workbook_pins.items()}
     for ref, drive in (("D705", "N7_LEDG_A"), ("D706", "N7_LEDR_A")):
@@ -144,24 +145,28 @@ def apply_approved_overrides(workbook_pins: dict[str, list[Pin]]) -> dict[str, l
         if current != expected:
             raise ValueError(f"{ref} workbook pin map changed; re-review the approved LED override: {current}")
         corrected[ref] = [Pin("1", "A", drive), Pin("2", "K", "GND")]
-    current_j701 = {(pin.number, pin.name, pin.net) for pin in corrected["J701"]}
-    expected_j701 = {
-        ("1", "Tip (L+)", "JACK_LP"), ("2", "Ring 1 (L-)", "JACK_LN"),
-        ("3", "Ring 2 (R+)", "JACK_RP"), ("4", "Ring 3 (R-)", "JACK_RN"),
-        ("5", "Sleeve (GND)", "GND"), ("6", "Socket/mount", "GND"),
-        ("7", "Socket/mount", "GND"),
+    expected_connectors = {
+        "J701": {
+            ("1", "GND", "GND"),
+            ("2", "R−", "JACK_RN"), ("3", "R−", "JACK_RN"),
+            ("4", "R+", "JACK_RP"), ("5", "R+", "JACK_RP"),
+            ("6", "L−", "JACK_LN"),
+            ("7", "L+", "JACK_LP"), ("8", "L+", "JACK_LP"),
+            ("9", "SWITCH", "NC"), ("10", "DETECT", "NC"),
+            ("11", "EP", "NC"), ("12", "EP", "NC"),
+        },
+        "J702": {
+            ("1", "Sleeve", "GND"), ("2", "Ring 2", "GND"),
+            ("3", "Ring 1 (R+)", "JACK_RP"),
+            ("4", "Tip (L+)", "JACK_LP"),
+            ("5", "Ring-1 break contact", "NC"),
+            ("6", "Tip break contact", "NC"),
+        },
     }
-    if current_j701 != expected_j701:
-        raise ValueError(f"J701 workbook pin map changed; re-review the approved 12-pad override: {current_j701}")
-    corrected["J701"] = [
-        Pin("1", "GND", "GND"),
-        Pin("2", "R-", "JACK_RN"), Pin("3", "R-", "JACK_RN"),
-        Pin("4", "R+", "JACK_RP"), Pin("5", "R+", "JACK_RP"),
-        Pin("6", "L-", "JACK_LN"),
-        Pin("7", "L+", "JACK_LP"), Pin("8", "L+", "JACK_LP"),
-        Pin("9", "SWITCH", "NC"), Pin("10", "DETECT", "NC"),
-        Pin("11", "EP", "NC"), Pin("12", "EP", "NC"),
-    ]
+    for ref, expected in expected_connectors.items():
+        actual = {(pin.number, pin.name, pin.net) for pin in corrected[ref]}
+        if actual != expected:
+            raise ValueError(f"{ref} workbook pin map changed; review maker drawing: {actual ^ expected}")
     return corrected
 
 
@@ -181,15 +186,17 @@ def footprint(part: Part, ref: str) -> str:
     if ref == "J202":
         return "DAC_HPA:J202_5_JTAGPads_P2.54mm"
     if ref == "J701":
-        return "JLC_Imported:AUDIO-TH_GT-3321667P-01"
+        return "DAC_HPA:J701_GT-3321667P-01_maker_slots"
+    if ref == "J702":
+        return "DAC_HPA:J702_PJ-332A-6A_peg_holes"
     if ref == "J703":
         return "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical"
     if ref == "X201":
         return "DAC_HPA:X201_KC2520K80_Kyocera"
     if ref in {"X202", "X203"}:
         return "DAC_HPA:X202_X203_NDK_NZ2520SDA"
-    if package in {"0402", "0603", "0805"}:
-        size = {"0402": "0402_1005Metric", "0603": "0603_1608Metric", "0805": "0805_2012Metric"}[package]
+    if package in {"0402", "0603", "0805", "1206"}:
+        size = {"0402": "0402_1005Metric", "0603": "0603_1608Metric", "0805": "0805_2012Metric", "1206": "1206_3216Metric"}[package]
         family = {"R": "Resistor_SMD:R", "C": "Capacitor_SMD:C", "FB": "Inductor_SMD:L"}.get(prefix)
         if family:
             return f"{family}_{size}"
@@ -237,7 +244,7 @@ def symbol_value(part: Part) -> str:
 
 
 def datasheet_url(part: Part) -> str:
-    # Parts List v0.8 links these KYOCERA AVX TAJ capacitors to an unrelated
+    # The workbook links these KYOCERA AVX TAJ capacitors to an unrelated
     # Kemet T495 page. Keep the specified MPN and use its maker's TAJ sheet.
     if part.mpn == "Kyocera AVX TAJD227K010RNJ":
         return "https://datasheets.kyocera-avx.com/TAJ.pdf"
@@ -284,6 +291,7 @@ POWER_OUTPUT_PINS = {
 }
 
 PUSH_PULL_OUTPUT_PINS = {
+    "U201": {"4"},
     "U205": {"4"}, "U206": {"4"}, "U208": {"2", "5", "7"},
     "U301": {"9", "10", "13", "14", "23"},
     "U401": {"7", "9"}, "U402": {"7", "9"},
@@ -294,9 +302,11 @@ PUSH_PULL_OUTPUT_PINS = {
 
 OPEN_COLLECTOR_OUTPUT_PINS = {
     ref: {"1", "2", "13", "14"}
-    for ref in ("U601", "U602", "U603", "U606", "U609", "U610")
+    for ref in ("U603", "U606", "U609", "U610", "U611", "U612")
 }
 OPEN_COLLECTOR_OUTPUT_PINS["U605"] = {"1", "7"}
+for _comparator in (f"U{number}" for number in range(613, 621)):
+    OPEN_COLLECTOR_OUTPUT_PINS[_comparator] = {"1", "7"}
 
 INPUT_PINS = {
     "U102": {"4"}, "U205": {"1", "3", "6"}, "U206": {"1", "3", "6"},
@@ -311,8 +321,10 @@ INPUT_PINS = {
     "U608": {"1", "2", "6", "7"},
     "X201": {"1"}, "X202": {"1"}, "X203": {"1"},
 }
-for _comparator in ("U601", "U602", "U603", "U606", "U609", "U610"):
+for _comparator in ("U603", "U606", "U609", "U610", "U611", "U612"):
     INPUT_PINS[_comparator] = {"4", "5", "6", "7", "8", "9", "10", "11"}
+for _comparator in (f"U{number}" for number in range(613, 621)):
+    INPUT_PINS[_comparator] = {"2", "3", "5", "6"}
 
 
 def electrical_type(ref: str, pin: Pin) -> str:
@@ -419,7 +431,7 @@ REGIONS = {
     3: (16, 20, 145, 280),
     4: (16, 20, 323, 280),
     5: (16, 20, 205, 300),
-    6: (16, 20, 450, 280),
+    6: (16, 20, 620, 390),
     7: (16, 20, 174, 95),
     8: (16, 20, 174, 223),
 }
@@ -446,7 +458,7 @@ SHEET_FILES = {
     8: "08_test_pads.kicad_sch",
 }
 
-PAPER_BY_BLOCK = {1: "A3", 3: "A3", 7: "A4"}  # Other circuit blocks need A2.
+PAPER_BY_BLOCK = {1: "A3", 3: "A3", 6: "A1", 7: "A4"}  # Dense protection sheet needs A1.
 
 
 def layout(parts: dict[str, Part], pins: dict[str, list[Pin]]) -> dict[str, tuple[int, int]]:
@@ -589,10 +601,10 @@ def make() -> None:
         "(kicad_sch", "(version 20260306)", '(generator "eeschema")',
         '(generator_version "10.0")', f"(uuid {q(ROOT_UUID)})", '(paper "A3")',
         '(title_block (title "USB DAC + Balanced Headphone Amplifier") '
-        '(date "2026-09-26") (rev "Schematic capture v1.0") '
-        '(comment 1 "Design Spec v1.0 / Notes v0.9 / Parts List v0.8") '
-        '(comment 2 "Connector pin maps and footprint/polarity gates remain open"))',
-        text_note("CONNECTIVITY CAPTURE — eight circuit sheets; G-1 through G-4 remain open.", 20, 20, 1.524),
+        '(date "2026-09-27") (rev "v1.1") '
+        '(comment 1 "Design Spec v1.1 / Notes v1.0 / Parts List v0.9") '
+        '(comment 2 "J701/J702 maps from maker drawings; G-1 to G-4 remain open"))',
+        text_note("SCHEMATIC CAPTURE v1.1 — eight circuit sheets; G-1 through G-4 remain open.", 20, 20, 1.524),
     ]
     for block, title in TITLES.items():
         sheet_uuid = uid("sheet", block)
@@ -621,9 +633,10 @@ def make() -> None:
             "(kicad_sch", "(version 20260306)", '(generator "eeschema")',
             '(generator_version "10.0")', f"(uuid {q(document_uuid)})",
             f'(paper {q(PAPER_BY_BLOCK.get(block, "A2"))})',
-            f"(title_block (title {q(title)}) (date \"2026-09-26\") "
-            f"(rev \"Schematic capture v1.0\") "
-            f"(comment 1 \"REVIEW ONLY: G-1 to G-4 and J702 contact map remain open\"))",
+            f"(title_block (title {q(title)}) (date \"2026-09-27\") "
+            f"(rev \"v1.1\") "
+            f"(comment 1 \"Design Spec v1.1 / Notes v1.0 / Parts List v0.9\") "
+            f"(comment 2 \"REVIEW ONLY: G-1 to G-4 remain open; J701/J702 maps from maker drawings\"))",
             "(lib_symbols", *embedded, ")",
             text_note(title, 16, 12, 1.524),
         ]

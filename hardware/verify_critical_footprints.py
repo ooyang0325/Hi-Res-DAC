@@ -37,6 +37,19 @@ def pad(item, number: str, position: tuple[float, float], size: tuple[float, flo
     checks += 1
 
 
+def locating_holes(item, positions: set[tuple[float, float]]) -> None:
+    global checks
+    holes = [p for p in item.Pads() if p.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH]
+    found = {
+        tuple(round(pcbnew.ToMM(v), 3) for v in (p.GetPosition().x, p.GetPosition().y))
+        for p in holes
+    }
+    assert found == positions and len(holes) == len(positions), (item.GetFPIDAsString(), found)
+    assert all(not p.GetNumber() and near(pcbnew.ToMM(p.GetDrillSize().x), 1.2)
+               and near(pcbnew.ToMM(p.GetDrillSize().y), 1.2) for p in holes)
+    checks += len(holes)
+
+
 def main() -> None:
     global checks
     x201 = footprint("DAC_HPA", "X201_KC2520K80_Kyocera")
@@ -68,16 +81,49 @@ def main() -> None:
     assert all(not p.IsOnLayer(pcbnew.F_Paste) for p in stakes)
     assert all(not p.GetNumber() and near(pcbnew.ToMM(p.GetDrillSize().x), 0.65) for p in locating)
     checks += 4
-    j702 = footprint("JLC_Imported", "AUDIO-SMD_PJ-332A-6A")
+    j702 = footprint("DAC_HPA", "J702_PJ-332A-6A_peg_holes")
     pad(j702, "1", (-4.725, 2.95), (1.0, 1.9), pcbnew.PAD_ATTRIB_PTH)
     pad(j702, "2", (-4.725, -2.5), (1.0, 1.9), pcbnew.PAD_ATTRIB_PTH)
     assert all(not p.IsOnLayer(pcbnew.F_Paste) for p in j702.Pads() if p.GetNumber() in {"1", "2"})
-    checks += 1
-    j701 = footprint("JLC_Imported", "AUDIO-TH_GT-3321667P-01")
+    for p in j702.Pads():
+        if p.GetNumber() in {"1", "2"}:
+            assert near(pcbnew.ToMM(p.GetDrillSize().x), 0.6)
+            assert near(pcbnew.ToMM(p.GetDrillSize().y), 1.5)
+    locating_holes(j702, {(-4.275, -0.05), (2.725, -0.05)})
+    assert all(item.GetLayerName() != "Edge.Cuts" for item in j702.GraphicalItems())
+    checks += 3
+    j701 = footprint("DAC_HPA", "J701_GT-3321667P-01_maker_slots")
     j701_pads = list(j701.Pads())
-    assert {p.GetNumber() for p in j701_pads} == {str(number) for number in range(1, 13)}
-    assert all(p.GetAttribute() == pcbnew.PAD_ATTRIB_PTH for p in j701_pads)
+    assert {p.GetNumber() for p in j701_pads} == {""} | {str(number) for number in range(1, 13)}
+    assert all(p.GetAttribute() == pcbnew.PAD_ATTRIB_PTH for p in j701_pads if p.GetNumber())
     assert all(not p.IsOnLayer(pcbnew.F_Paste) for p in j701_pads)
+    expected_centres = {
+        "1": (-6.95, -3.25), "2": (-6.45, 3.25),
+        "3": (-4.25, -3.25), "4": (-3.75, 3.25),
+        "5": (-1.55, -3.25), "6": (-1.05, 3.25),
+        "7": (6.95, -3.45), "8": (6.95, 3.45),
+        "9": (6.95, 1.6), "10": (6.95, -1.95),
+        "11": (2.2, -4.05), "12": (2.2, 4.05),
+    }
+    for number, centre in expected_centres.items():
+        pad(j701, number, centre, (1.9, 1.0), pcbnew.PAD_ATTRIB_PTH)
+    for p in j701_pads:
+        if p.GetNumber():
+            assert near(pcbnew.ToMM(p.GetDrillSize().x), 1.4)
+            assert near(pcbnew.ToMM(p.GetDrillSize().y), 0.5)
+    locating_holes(j701, {(-3.55, 0.0), (3.95, -1.55)})
+    assert all(item.GetLayerName() != "Edge.Cuts" for item in j701.GraphicalItems())
+    # Maker slots are below the design's 0.30 mm ring rule; do not enlarge
+    # before the owner's G-3 decision. Both remain above JLC's 0.18 mm minimum.
+    assert near((1.0 - 0.6) / 2, 0.20)  # J702, nominal
+    assert near((1.0 - 0.5) / 2, 0.25) and near((1.0 - 0.6) / 2, 0.20)  # J701 nominal / +0.10
+    checks += 8
+    dgk = footprint("JLC_Imported", "VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL")
+    assert {p.GetNumber() for p in dgk.Pads()} == {str(i) for i in range(1, 9)}
+    assert near(pcbnew.ToMM(next(p for p in dgk.Pads() if p.GetNumber() == "2").GetPosition().x) -
+                pcbnew.ToMM(next(p for p in dgk.Pads() if p.GetNumber() == "1").GetPosition().x), 0.65)
+    transistor = footprint("JLC_Imported", "SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR")
+    assert {p.GetNumber() for p in transistor.Pads()} == {"1", "2", "3"}
     checks += 3
     print(f"PASS: {checks} selected pad dimensions, pad types and hole checks")
     print("OPEN: G-3 manufacturer drawing overlays and physical sample checks; J101/J702 through-hole soldering process")
