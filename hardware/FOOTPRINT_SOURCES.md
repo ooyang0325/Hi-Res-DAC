@@ -1,6 +1,6 @@
 # Custom footprint source record
 
-These 2D land patterns support schematic capture and pad-number checking. G-3 still requires a 1:1 drawing overlay and physical sample check before PCB routing.
+These 2D land patterns support schematic capture and pad-number checking. G-3 still requires a 1:1 drawing overlay and physical sample check before PCB routing. `3D_MODEL_REVIEW.md` records the separate model sources and inspection limits.
 
 | KiCad footprint | Source and dimensions used | Local change or unresolved check |
 | --- | --- | --- |

@@ -35,6 +35,7 @@ validate_placement:
     - python3 hardware/audit_placement.py hardware/DAC_HPA_100x80_REVIEW_ONLY.kicad_pcb --height 80 --check-invariants > hardware/PLACEMENT_100x80_AUDIT.json
     - python3 hardware/audit_placement.py hardware/DAC_HPA_100x100_BASELINE_REVIEW_ONLY.kicad_pcb --height 100 --check-invariants > hardware/PLACEMENT_100x100_BASELINE_AUDIT.json
     - python3 hardware/audit_placement.py hardware/DAC_HPA.kicad_pcb --height 100 --check-invariants > hardware/PLACEMENT_AUDIT.json
+    - python3 hardware/audit_3d_models.py --output hardware/MODEL_3D_AUDIT.json
     - echo "Baseline and 120 x 100 manual primary geometry checked. Routing remains HOLD."
   artifacts:
     when: always
@@ -43,6 +44,7 @@ validate_placement:
       - hardware/PLACEMENT_AUDIT.json
       - hardware/PLACEMENT_100x80_AUDIT.json
       - hardware/PLACEMENT_100x100_BASELINE_AUDIT.json
+      - hardware/MODEL_3D_AUDIT.json
 
 validate_manual_review:
   stage: validate
@@ -85,11 +87,14 @@ deliver_review_package:
     - python3 hardware/export_assembly_review.py
     - kicad-cli sch export pdf -o hardware/DAC_HPA_review_only.pdf hardware/DAC_HPA.kicad_sch
     - test -s hardware/DAC_HPA_review_only.pdf
+    - kicad-cli pcb export glb --force -o hardware/DAC_HPA_3D_REVIEW_ONLY.glb hardware/DAC_HPA.kicad_pcb
+    - test -s hardware/DAC_HPA_3D_REVIEW_ONLY.glb
   artifacts:
     name: "dac-hpa-review-$CI_COMMIT_SHORT_SHA"
     expire_in: 30 days
     paths:
       - hardware/DAC_HPA_review_only.pdf
+      - hardware/DAC_HPA_3D_REVIEW_ONLY.glb
       - hardware/JLCPCB_BOM_REVIEW_ONLY.csv
       - hardware/OWNER_FITTED_REVIEW_ONLY.csv
       - hardware/DNF_REVIEW_ONLY.csv

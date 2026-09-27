@@ -1,0 +1,3 @@
+# Generated CAD solids are opaque assets; do not show million-line text diffs.
+*.step binary
+*.stp binary

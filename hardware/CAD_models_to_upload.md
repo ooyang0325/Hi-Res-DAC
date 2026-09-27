@@ -1,17 +1,21 @@
-# CAD files and measurements still useful
+# Exact CAD models still useful
 
 The command-line JLCPCB KiCad loader supplied 41 LCSC CAD entries, including the new TI TLV3402IDGKR and onsemi MMBT3904LT1G. Manufacturer drawings supplied the 2D land dimensions for D102, X201–X203, C631–C634, K601–K604 and the connector slot corrections. All assigned footprints pass the symbol-pin/pad-number check. **No CAD upload is needed to continue schematic capture.**
 
-If you have them, the following files would help with the later G-3 physical overlay and 3D review. STEP is optional for the schematic; a model does not replace the sample checks.
+The boards now resolve 3D bodies for every component footprint; see
+`3D_MODEL_REVIEW.md`. The user-supplied exact Toshiba LF1 STEP is integrated.
+No additional CAD upload is needed for the KiCad 3D view. These manufacturer
+models would improve fidelity where a generic package or body envelope is used:
 
 | Designators | Exact MPN | Optional upload |
 | --- | --- | --- |
-| D102 | Littelfuse SMDJ12A | Manufacturer STEP or exact package model |
 | X201 | Kyocera KC2520K80.0000C1GE00 | Manufacturer STEP |
 | X202 | NDK NZ2520SDA-49.152MHZ-NSC5083D | Manufacturer STEP |
 | X203 | NDK NZ2520SDA-45.1584MHZ-NSC5083D | Manufacturer STEP; X202 geometry may be reused after checking |
 | C631–C634 | Panasonic ECH-U1H224GX9 | Manufacturer STEP |
-| K601–K604 | Toshiba TLP3545A(TP1,F) | Manufacturer STEP for the **LF1** lead form |
+
+A 3D body cannot replace the G-3 physical sample overlay or the remaining
+pad-number checks. D102 already displays with KiCad's SMC package STEP.
 
 ## Physical and electrical decisions still required
 

@@ -11144,6 +11144,17 @@
 			(uuid "d05690f5-a42e-49e3-8fef-c751cfe0040a")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/DAC_HPA_3D/ECHU1H224GX9_envelope_only.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
@@ -11604,6 +11615,17 @@
 			(uuid "20c4965e-8361-4294-b63e-0d3b15532413")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/DAC_HPA_3D/TLP3545A_LF1_UltraLibrarian.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -15011,6 +15033,17 @@
 			(uuid "be9083d3-aa62-453d-925c-aa63619c1c42")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/DAC_HPA_3D/ECHU1H224GX9_envelope_only.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -15392,6 +15425,17 @@
 			(uuid "cf7cf022-34e6-4c05-a6bb-6932c9014434")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_USB.3dshapes/USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.step"
+			(offset
+				(xyz 0 -1.295 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -18746,6 +18790,17 @@
 			(uuid "7da00426-234d-499e-a83e-0d14d79923a0")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Crystal.3dshapes/Crystal_SMD_2520-4Pin_2.5x2.0mm.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "JLC_Imported:SOD-523_L1.2-W0.8-LS1.6-BI"
 		(layer "F.Cu")
@@ -22414,6 +22469,17 @@
 			(uuid "71660449-18a7-4450-b440-67e658ff4f07")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/DAC_HPA_3D/TLP3545A_LF1_UltraLibrarian.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -23914,6 +23980,17 @@
 			(uuid "563fe23f-e809-467f-991a-c72ca9f5ee56")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/DAC_HPA_3D/TLP3545A_LF1_UltraLibrarian.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -37318,6 +37395,17 @@
 			(uuid "2d460f9e-0771-4cb8-aa0f-b9423821f2f3")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Crystal.3dshapes/Crystal_SMD_2520-4Pin_2.5x2.0mm.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
@@ -86485,6 +86573,17 @@
 			(uuid "c8ff0759-48c1-4c82-875f-f1ba9adaddae")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/DAC_HPA_3D/TLP3545A_LF1_UltraLibrarian.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -87778,6 +87877,17 @@
 			(uuid "181105ef-e1ae-4e31-b45c-2b1f51f541f7")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/DAC_HPA_3D/ECHU1H224GX9_envelope_only.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -88421,6 +88531,17 @@
 			(uuid "8c50510d-610b-42af-bfa7-dc932d57c412")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Crystal.3dshapes/Crystal_SMD_2520-4Pin_2.5x2.0mm.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
@@ -96782,6 +96903,17 @@
 			(uuid "bc001a49-1132-452d-95b6-c9345cecd075")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/DAC_HPA_3D/ECHU1H224GX9_envelope_only.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")

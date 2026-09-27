@@ -17,4 +17,6 @@
   (pad "4" smd rect (at 2.54 -4.5) (size 1.5 1.9) (layers "F.Cu" "F.Paste" "F.Mask"))
   (pad "5" smd rect (at 0 -4.5) (size 1.5 1.9) (layers "F.Cu" "F.Paste" "F.Mask"))
   (pad "6" smd rect (at -2.54 -4.5) (size 1.5 1.9) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (model "${KIPRJMOD}/DAC_HPA_3D/TLP3545A_LF1_UltraLibrarian.step"
+    (offset (xyz 0 0 0)) (scale (xyz 1 1 1)) (rotate (xyz 0 0 -90)))
 )
