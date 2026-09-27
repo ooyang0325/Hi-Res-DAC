@@ -22,7 +22,9 @@ validate_schematic:
     - python3 hardware/verify_design_notes.py
     - python3 hardware/verify_critical_footprints.py
     - python3 hardware/export_assembly_review.py
-    - git diff --exit-code -- hardware/DAC_HPA.kicad_sch hardware/0*.kicad_sch hardware/DAC_HPA.kicad_sym hardware/sym-lib-table hardware/jlc_footprints.json hardware/DAC_HPA.pretty/J701_GT-3321667P-01_maker_slots.kicad_mod hardware/DAC_HPA.pretty/J702_PJ-332A-6A_peg_holes.kicad_mod hardware/*_REVIEW_ONLY.csv
+    - python3 hardware/export_g3_connector_overlay.py
+    - python3 hardware/export_g3_part_overlay.py
+    - git diff --exit-code -- hardware/DAC_HPA.kicad_sch hardware/0*.kicad_sch hardware/DAC_HPA.kicad_sym hardware/sym-lib-table hardware/jlc_footprints.json hardware/DAC_HPA.pretty/J701_GT-3321667P-01_maker_slots.kicad_mod hardware/DAC_HPA.pretty/J702_PJ-332A-6A_peg_holes.kicad_mod hardware/*_REVIEW_ONLY.csv hardware/G3_*_REVIEW_ONLY.svg hardware/G3_OVERLAY_INDEX.md
 
 deliver_review_package:
   stage: deliver
@@ -40,3 +42,9 @@ deliver_review_package:
       - hardware/JLCPCB_BOM_REVIEW_ONLY.csv
       - hardware/OWNER_FITTED_REVIEW_ONLY.csv
       - hardware/DNF_REVIEW_ONLY.csv
+      - hardware/G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg
+      - hardware/G3_PART_OVERLAY_REVIEW_ONLY.svg
+      - hardware/G3_OVERLAY_INDEX.md
+      - hardware/G3_OVERLAY_CHECKLIST.md
+      - hardware/G1_G2_CONTINUITY_RECORD.md
+      - hardware/G4_POLARITY_CHECKLIST.md
