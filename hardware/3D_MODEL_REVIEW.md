@@ -3,7 +3,9 @@
 The editable **120 × 100 mm** primary board is `DAC_HPA.kicad_pcb`. Open it in
 KiCad 10 and choose **View → 3D Viewer**. The 100 × 80 mm comparison board and
 the other saved placement studies have the same model links. GitLab CI also
-exports a `DAC_HPA_3D_REVIEW_ONLY.glb` assembly in the review artifact.
+exports a `DAC_HPA_3D_REVIEW_ONLY.glb` assembly in the review artifact. The
+[full-board preview](DAC_HPA_3D_review.png) and [J101 closeup](DAC_HPA_J101_3D_detail.png)
+come from KiCad's 3D Viewer after the USB-C model alignment correction.
 
 ## Coverage and sources
 
