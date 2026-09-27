@@ -15,7 +15,7 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from generate_schematic import HERE, PROJECT, apply_approved_overrides, datasheet_url, read_source, symbol_value
+from generate_schematic import HERE, PROJECT, apply_approved_overrides, datasheet_url, read_source, symbol_value, workbook_value
 
 
 def cli() -> str:
@@ -88,7 +88,7 @@ def run() -> None:
                 "Package": part.package,
                 "Rating/Tolerance": part.rating_tolerance,
                 "Source": part.source,
-                "Workbook Value": part.value,
+                "Workbook Value": workbook_value(part, ref),
                 "Datasheet": datasheet_url(part),
             }
             for name, expected in expected_fields.items():

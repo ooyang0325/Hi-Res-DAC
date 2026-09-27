@@ -1,6 +1,6 @@
 # Pre-layout gate record — design set v1.1
 
-Design Spec v1.1 permits **provisional placement on a 100 × 80 mm board**. It originally held schematic freeze and routing until G-1–G-4 passed with signed measurement records. On 27 September 2026 the owner explicitly waived the G-1/G-2 measurement log after reporting the two-sample checks below. Treat G-1/G-2 as owner-accepted for layout planning, **not** as independently evidenced passes. G-3 and G-4 still hold routing. The KiCad netlist/ERC and a passing GitLab pipeline establish capture consistency, not physical contact or footprint fit.
+Design Spec v1.1 permits **provisional placement on a 100 × 80 mm board**. The owner later selected a 100 × 100 mm primary outline for this iteration. The Spec originally held schematic freeze and routing until G-1–G-4 passed with signed measurement records. On 27 September 2026 the owner explicitly waived the G-1/G-2 measurement log after reporting the two-sample checks below. Treat G-1/G-2 as owner-accepted for layout planning, **not** as independently evidenced passes. G-3 and G-4 still hold routing; the separate geometric and audio/EMI holds in `ROUTABILITY_REVIEW.md` and `AUDIO_EMI_PLACEMENT_REVIEW.md` also remain. The KiCad netlist/ERC and a passing GitLab pipeline establish capture consistency, not physical contact, footprint fit or route quality.
 
 | Gate | Evidence needed before schematic freeze and routing | Current record |
 | --- | --- | --- |
@@ -11,7 +11,8 @@ Design Spec v1.1 permits **provisional placement on a 100 × 80 mm board**. It o
 
 ## Decisions already in force
 
-- Board size 100 × 80 mm, four layers, top-side Standard PCBA and the owner-fitted list remain as in Spec v1.1. These permit provisional placement.
+- The owner selected a 100 × 100 mm primary, four-layer placement; 100 × 80 mm is a review comparison. Top-side Standard PCBA and the owner-fitted list remain as in Spec v1.1. The source document's outline needs revision before manufacturing freeze.
+- U403/U404 use the owner-approved OPA2210IDGKR VSSOP-8, JLCPCB C2876414, with a provisional ≤7 mm DAC-to-I/V input-route target. The source documents still specify SOIC-8 and ≤5 mm; routed geometry, extracted capacitance and step response must close the reassessment.
 - The 3.5 mm output is for TRS plugs only. The HRO jack has a TRRS body, but TRRS headphones are outside the supported use; G-2 needs the intended TRS test, which the owner reports matched on both samples. The PCB silkscreen/user instructions should say “3.5 SE · TRS only”.
 - The v1.1 defaults remain adopted: pairwise boot self-test with production per-leg injection, the Spec's DC-energy definition, and the High-mode 32 Ω frozen-full-scale engineering estimate with a bring-up energy test. Reopening self-test coverage would add parts and must happen before routing.
 - The owner kept the 50 mΩ-per-jack-contact and per-0 Ω-link assumption. Output impedance is measured at both jacks at bring-up against ≤0.5 Ω; this is not a pre-layout measurement.

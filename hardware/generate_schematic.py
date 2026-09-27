@@ -2,8 +2,9 @@
 """Capture the DAC-HPA workbook's pin netlist as an editable KiCad schematic.
 
 This preserves the pin numbers and net names in Parts List v0.9, except for
-the owner-approved D705/D706 physical LED pad correction. Physical-sample
-gates in Design Spec v1.1 remain open.
+the owner-approved D705/D706 physical LED pad correction. U403/U404 use the
+owner-approved OPA2210 DGK package substitution; the source workbook still
+describes the earlier SOIC MPN. Physical-sample gates remain open.
 """
 
 from __future__ import annotations
@@ -110,6 +111,22 @@ def read_source() -> tuple[dict[str, Part], dict[str, list[Pin]], dict[str, Part
             description=str(row[3] or ""),
             notes=str(row[24] or ""),
         )
+        if set(refs) == {"U403", "U404"}:
+            if (part.value, part.mpn, part.package, part.lcsc) != (
+                "OPA2210IDR", "TI OPA2210IDR", "SOIC-8", "C1849415"
+            ):
+                raise ValueError("U403/U404 source MPN changed; review the approved DGK override")
+            part.value = "OPA2210IDGKR"
+            part.mpn = "TI OPA2210IDGKR"
+            part.package = "VSSOP-8 (DGK)"
+            part.lcsc = "C2876414"
+            part.source = "JLCPCB Extended SMT (pre-order)"
+            part.notes = (
+                "Owner-approved 27 Sep 2026 package substitution; "
+                "provisional DAC-to-I/V routed limit 7 mm, subject to extraction "
+                "and I/V step-response bring-up. JLC extended part C2876414; "
+                "quantity and sourcing must be confirmed before order."
+            )
         libparts[part.symbol_id] = part
         for ref in refs:
             if ref in parts:
@@ -193,6 +210,10 @@ def footprint(part: Part, ref: str) -> str:
         return "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical"
     if ref == "X201":
         return "DAC_HPA:X201_KC2520K80_Kyocera"
+    if ref in {"U403", "U404"}:
+        # The existing JLC library land is for TI's same DGK0008A VSSOP-8
+        # package (C140314). TI's OPA2210 D/DGK pin table is identical.
+        return "JLC_Imported:VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL"
     if ref in {"X202", "X203"}:
         return "DAC_HPA:X202_X203_NDK_NZ2520SDA"
     if package in {"0402", "0603", "0805", "1206"}:
@@ -241,6 +262,11 @@ def symbol_value(part: Part) -> str:
     if part.mpn and part.mpn != "—":
         return part.mpn
     return part.description.split(";")[0][:35]
+
+
+def workbook_value(part: Part, ref: str) -> str:
+    """Keep the original v0.9 value visible when an owner override is applied."""
+    return "OPA2210IDR" if ref in {"U403", "U404"} else part.value
 
 
 def datasheet_url(part: Part) -> str:
@@ -539,7 +565,7 @@ def placed_symbol(ref: str, part: Part | None, pins: list[Pin], x: int, y: int, 
         prop("Package", package, x * GRID, y * GRID, hide=True),
         prop("Rating/Tolerance", part.rating_tolerance if part else "", x * GRID, y * GRID, hide=True),
         prop("Source", part.source if part else "PCB copper", x * GRID, y * GRID, hide=True),
-        prop("Workbook Value", part.value if part else "", x * GRID, y * GRID, hide=True),
+        prop("Workbook Value", workbook_value(part, ref) if part else "", x * GRID, y * GRID, hide=True),
         prop("Footprint status", "PROVISIONAL" if not fp else "VERIFY G-3", x * GRID, y * GRID, hide=True),
     ]
     for pin in pins:

@@ -1363,7 +1363,7 @@
 (pin_names (offset 0.508))
 (exclude_from_sim no) (in_bom yes) (on_board yes)
 (property "Reference" "U" (at 0 10.16 0) (effects (font (size 1.016 1.016))))
-(property "Value" "OPA2210IDR" (at 0 -10.16 0) (effects (font (size 1.016 1.016))))
+(property "Value" "OPA2210IDGKR" (at 0 -10.16 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Description" "Op-amp, dual, I/V converters (one amplifier per DAC pin)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))

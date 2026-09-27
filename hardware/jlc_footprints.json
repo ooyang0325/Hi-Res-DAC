@@ -380,47 +380,6 @@
     "footprint_numbers_match": false,
     "status": "review_required"
   },
-  "C1849415": {
-    "manufacturer_part": "OPA2210IDR",
-    "refs": [
-      "U403",
-      "U404"
-    ],
-    "footprint": "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL-2",
-    "symbol_pin_numbers": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8"
-    ],
-    "footprint_pad_numbers": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8"
-    ],
-    "workbook_pin_numbers": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8"
-    ],
-    "symbol_numbers_match": true,
-    "footprint_numbers_match": true,
-    "status": "candidate_exact_numbers"
-  },
   "C1852057": {
     "manufacturer_part": "TMUX1101DBVR",
     "refs": [
@@ -1767,5 +1726,48 @@
     "symbol_numbers_match": true,
     "footprint_numbers_match": true,
     "status": "candidate_exact_numbers"
+  },
+  "C2876414": {
+    "manufacturer_part": "OPA2210IDGKR",
+    "refs": [
+      "U403",
+      "U404"
+    ],
+    "footprint": "VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL",
+    "symbol_pin_numbers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "footprint_pad_numbers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "workbook_pin_numbers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "symbol_numbers_match": true,
+    "footprint_numbers_match": true,
+    "symbol_source": "TI OPA2210 datasheet Figure 5-3/Table 5-2",
+    "footprint_source_code": "C140314, TI DGK0008A package",
+    "status": "review_required"
   }
 }

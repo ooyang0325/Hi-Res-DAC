@@ -26,10 +26,27 @@ validate_schematic:
     - python3 hardware/export_g3_part_overlay.py
     - git diff --exit-code -- hardware/DAC_HPA.kicad_sch hardware/0*.kicad_sch hardware/DAC_HPA.kicad_sym hardware/sym-lib-table hardware/jlc_footprints.json hardware/DAC_HPA.pretty/J701_GT-3321667P-01_maker_slots.kicad_mod hardware/DAC_HPA.pretty/J702_PJ-332A-6A_peg_holes.kicad_mod hardware/*_REVIEW_ONLY.csv hardware/G3_*_REVIEW_ONLY.svg hardware/G3_OVERLAY_INDEX.md
 
+validate_placement:
+  stage: validate
+  needs:
+    - validate_schematic
+  script:
+    # KiCad assigns new UUIDs on regeneration; validate committed geometry and nets.
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_100x80_REVIEW_ONLY.kicad_pcb --height 80 --check-invariants > hardware/PLACEMENT_100x80_AUDIT.json
+    - python3 hardware/audit_placement.py hardware/DAC_HPA.kicad_pcb --height 100 --check-invariants > hardware/PLACEMENT_AUDIT.json
+    - echo "Placement geometry and netlist checked. Routing remains HOLD; see ROUTABILITY_REVIEW.md and AUDIO_EMI_PLACEMENT_REVIEW.md."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/PLACEMENT_AUDIT.json
+      - hardware/PLACEMENT_100x80_AUDIT.json
+
 deliver_review_package:
   stage: deliver
   needs:
     - validate_schematic
+    - validate_placement
   script:
     - python3 hardware/export_assembly_review.py
     - kicad-cli sch export pdf -o hardware/DAC_HPA_review_only.pdf hardware/DAC_HPA.kicad_sch
@@ -48,3 +65,10 @@ deliver_review_package:
       - hardware/G3_OVERLAY_CHECKLIST.md
       - hardware/G1_G2_CONTINUITY_RECORD.md
       - hardware/G4_POLARITY_CHECKLIST.md
+      - hardware/DAC_HPA.kicad_pcb
+      - hardware/DAC_HPA_placement_preview.png
+      - hardware/DAC_HPA_100x80_REVIEW_ONLY.kicad_pcb
+      - hardware/DAC_HPA_100x80_placement_preview.png
+      - hardware/ROUTABILITY_REVIEW.md
+      - hardware/AUDIO_EMI_PLACEMENT_REVIEW.md
+      - hardware/IV_7MM_RECHECK.md

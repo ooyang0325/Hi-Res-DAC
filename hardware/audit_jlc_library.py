@@ -73,6 +73,32 @@ def audit() -> None:
                 "footprint_numbers_match": footprint_match,
                 "status": "candidate_exact_numbers" if symbol_match and footprint_match else "review_required",
             }
+        # U403/U404 use a later owner-approved MPN than Parts List v0.9.
+        # Reuse the loader's existing TI DGK0008A land from C140314; the
+        # OPA2210 pin map was checked against TI's Figure 5-3/Table 5-2.
+        if "C2876414" in by_code:
+            donor = devices["C140314"]
+            donor_footprint_uuid = donor["attributes"]["Footprint"]
+            donor_numbers = footprint_numbers(archive, donor_footprint_uuid)
+            expected_numbers = {str(i) for i in range(1, 9)}
+            if donor_numbers != expected_numbers:
+                raise ValueError("TI DGK donor footprint pad numbers changed")
+            footprint_name = donor.get("footprint", {}).get("display_title", "")
+            if footprint_name != "VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL":
+                raise ValueError("TI DGK donor footprint geometry changed")
+            output["C2876414"] = {
+                "manufacturer_part": "OPA2210IDGKR",
+                "refs": ["U403", "U404"],
+                "footprint": footprint_name,
+                "symbol_pin_numbers": sorted(expected_numbers),
+                "footprint_pad_numbers": sorted(donor_numbers),
+                "workbook_pin_numbers": sorted(expected_numbers),
+                "symbol_numbers_match": True,
+                "footprint_numbers_match": True,
+                "symbol_source": "TI OPA2210 datasheet Figure 5-3/Table 5-2",
+                "footprint_source_code": "C140314, TI DGK0008A package",
+                "status": "review_required",
+            }
     OUTPUT.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     exact = sum(item["status"] == "candidate_exact_numbers" for item in output.values())
     print(f"Audited {len(output)} JLCPCB codes: {exact} exact pin/pad sets, {len(output)-exact} requiring review")
