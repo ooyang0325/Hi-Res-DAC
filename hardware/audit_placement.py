@@ -84,6 +84,7 @@ def check_board_netlist(path: Path) -> None:
     expected_footprints = {
         comp.get("ref"): comp.findtext("footprint")
         for comp in root.findall("./components/comp")
+        if comp.find("property[@name='exclude_from_board']") is None
     }
     if set(actual_footprints) != set(expected_footprints):
         missing = sorted(set(expected_footprints) - set(actual_footprints))
@@ -98,6 +99,7 @@ def check_board_netlist(path: Path) -> None:
         for net in root.findall("./nets/net")
         if not (net.get("name") or "").startswith("unconnected-")
         for node in net.findall("node")
+        if node.get("ref") in expected_footprints
     }
     actual_nets = {
         (fp.GetReference(), pad.GetNumber()): pad.GetNetname()
@@ -113,6 +115,11 @@ def check_board_netlist(path: Path) -> None:
 
 def audit(path: Path, height: float) -> dict:
     board = pcbnew.LoadBoard(str(path))
+    edge_points = [point for drawing in board.GetDrawings()
+                   if drawing.GetLayer() == pcbnew.Edge_Cuts
+                   for point in (drawing.GetStart(), drawing.GetEnd())]
+    outline_width = round(max(mm(point.x) for point in edge_points)
+                          - min(mm(point.x) for point in edge_points))
     footprints = {f.GetReference(): f for f in board.GetFootprints()}
     rectangles = {ref: box(fp, height) for ref, fp in footprints.items()}
     pads = {
@@ -171,15 +178,16 @@ def audit(path: Path, height: float) -> dict:
             if overlap(rect, other):
                 collisions.append([ref, other_ref])
 
-    if height == 100:
-        place_board.configure_100x100()
     zone_fill = {}
-    for name in ("Z1", "Z2", "Z4U", "Z4L", "Z4S", "Z5", "Z6", "Z7A", "Z7B", "Z8A"):
-        region = place_board.ROOMS[name]
-        zone = (region[0], region[1], region[2], region[3])
-        used = sum(area_in(rect, zone) for ref, rect in rectangles.items()
-                   if not ref.startswith(("FID", "TP", "MH")))
-        zone_fill[name] = r(100 * used / ((zone[1] - zone[0]) * (zone[3] - zone[2])))
+    if outline_width == 100 and height in (80, 100):
+        if height == 100:
+            place_board.configure_100x100()
+        for name in ("Z1", "Z2", "Z4U", "Z4L", "Z4S", "Z5", "Z6", "Z7A", "Z7B", "Z8A"):
+            region = place_board.ROOMS[name]
+            zone = (region[0], region[1], region[2], region[3])
+            used = sum(area_in(rect, zone) for ref, rect in rectangles.items()
+                       if not ref.startswith(("FID", "TP", "MH")))
+            zone_fill[name] = r(100 * used / ((zone[1] - zone[0]) * (zone[3] - zone[2])))
 
     dac_iv = {
         net: r(d("U301", dac_pin, opamp, input_pin))
@@ -244,7 +252,8 @@ def audit(path: Path, height: float) -> dict:
                 + d(resistor, 2, "U301", dac_pin)
             ),
             "test_pad_to_DAC": r(d(testpad, 1, "U301", dac_pin)),
-            "header_to_DAC": r(d("J703", header_pin, "U301", dac_pin)),
+            "header_to_DAC": (r(d("J703", header_pin, "U301", dac_pin))
+                              if "J703" in footprints else None),
             "net_hpwl": r(hpwl(all_nets[net])),
         }
         for net, resistor, testpad, header_pin, cpld_pin, dac_pin in (
@@ -286,8 +295,28 @@ def audit(path: Path, height: float) -> dict:
                 height - (mm(footprints[decap].GetPosition().y) - ORIGIN_Y)))),
         }
 
+    protection_timer = {}
+    for name, comparator, comparator_pin, cap, transistor, resistor in (
+        ("LP_L", "U609", 8, "C631", "Q623", "R920"),
+        ("LN_L", "U609", 10, "C632", "Q624", "R921"),
+        ("LP_R", "U610", 8, "C633", "Q625", "R922"),
+        ("LN_R", "U610", 10, "C634", "Q626", "R923"),
+    ):
+        target = pt(comparator, comparator_pin)
+        parts = {"cap": (cap, 1), "bleed": (transistor, 3),
+                 "charge_resistor": (resistor, 2)}
+        protection_timer[name] = {
+            part: {
+                "euclidean_pad_mm": r(distance(target, pt(ref, pin))),
+                "manhattan_pad_lower_bound_mm": r(
+                    abs(target[0] - pt(ref, pin)[0])
+                    + abs(target[1] - pt(ref, pin)[1])),
+            }
+            for part, (ref, pin) in parts.items()
+        }
+
     return {
-        "board": str(path), "size_mm": [100, int(height)],
+        "board": str(path), "size_mm": [outline_width, int(height)],
         "footprints": len(footprints), "named_nets": len(all_nets),
         "bbox_overlaps": collisions, "zone_bbox_fill_pct": zone_fill,
         "dac_iv_pad_distance_mm": dac_iv,
@@ -295,6 +324,7 @@ def audit(path: Path, height: float) -> dict:
         "clock_mm": clock, "i2s_mm": i2s, "usb_mm": usb,
         "relay_to_jack_pad_mm": jack,
         "esd_to_nearest_jack_pad_mm": esd, "lpw_group_center_mm": timer,
+        "protection_timer_pad_distance_mm": protection_timer,
         "fam_clk_hpwl_mm": r(hpwl(all_nets["FAM_CLK"])),
         "high_z_clock_pad_gap_violations": high_z_to_clock,
         "track_count": len(board.GetTracks()),
@@ -314,8 +344,8 @@ def main() -> None:
     result = audit(args.board, args.height)
     print(json.dumps(result, indent=2, sort_keys=True))
     if args.check_invariants and (
-        result["size_mm"] != [100, int(args.height)]
-        or result["footprints"] != 537 or result["named_nets"] != 246
+        result["size_mm"][1] != int(args.height)
+        or result["footprints"] != 536 or result["named_nets"] != 246
         or result["bbox_overlaps"]
     ):
         raise SystemExit("placement invariant failed")

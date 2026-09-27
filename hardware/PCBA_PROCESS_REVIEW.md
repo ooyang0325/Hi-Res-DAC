@@ -9,6 +9,6 @@ The schematic and library files are not a PCBA release. A footprint scan of all 
 
 [JLCPCB's stencil guidance](https://jlcpcb.com/help/article/opening-process-standard-of-stencil) says through-hole pads do not receive paste openings by default unless they are designed on the paste layer. Availability in the parts library does not establish the soldering process for these particular slots.
 
-The owner chose copper-only enlargement around the unchanged maker slot drills and pad centres. The current J701/J702 footprints reach a 0.30 mm worst copper ring; G-3 overlay and JLCPCB DFM acceptance remain open. No paste apertures have been added to the slots.
+The owner chose copper-only enlargement around the unchanged maker slot drills and pad centres. The current J701/J702 footprints reach ≥0.31 mm worst copper ring at JLC's +0.13 mm slot tolerance; the closest J701 pad gap is 0.25 mm. G-3 overlay and JLCPCB DFM acceptance remain open. No paste apertures have been added to the slots.
 
 Suggested question for JLCPCB: “For a top-side Standard PCBA order, can you solder the four plated shell slots S1–S4 of GCT USB4105-GF-A (J101) and the two plated slots 1/2 of HRO PJ-332A-6A, C2848643 (J702)? Do you require F.Paste apertures or an order remark, and what aperture geometry/hand-solder step do you recommend?”

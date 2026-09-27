@@ -38,7 +38,7 @@
     }
   },
   "fam_clk_hpwl_mm": 5.91,
-  "footprints": 537,
+  "footprints": 536,
   "high_z_clock_pad_gap_violations": [
     {
       "clock_net": "SDATA",
@@ -65,30 +65,6 @@
       "sensitive_pad": "R679.1"
     },
     {
-      "clock_net": "LRCLK",
-      "clock_pad": "J703.3",
-      "min_gap_mm": 1.42,
-      "net": "N6_V3A_DA",
-      "required_mm": 5.0,
-      "sensitive_pad": "R676.1"
-    },
-    {
-      "clock_net": "BCLK",
-      "clock_pad": "J703.2",
-      "min_gap_mm": 1.65,
-      "net": "N6_V3AG_B",
-      "required_mm": 5.0,
-      "sensitive_pad": "U605.7"
-    },
-    {
-      "clock_net": "BCLK",
-      "clock_pad": "J703.2",
-      "min_gap_mm": 1.65,
-      "net": "N6_V3A_DB",
-      "required_mm": 5.0,
-      "sensitive_pad": "U605.6"
-    },
-    {
       "clock_net": "N6_PMP",
       "clock_pad": "D609.3",
       "min_gap_mm": 1.89,
@@ -97,36 +73,12 @@
       "sensitive_pad": "R948.2"
     },
     {
-      "clock_net": "BCLK",
-      "clock_pad": "J703.2",
-      "min_gap_mm": 2.1,
-      "net": "N6_V3R_B",
-      "required_mm": 5.0,
-      "sensitive_pad": "U605.5"
-    },
-    {
       "clock_net": "SDATA",
       "clock_pad": "R206.2",
       "min_gap_mm": 2.32,
       "net": "N6_TWLPP",
       "required_mm": 5.0,
       "sensitive_pad": "U613.1"
-    },
-    {
-      "clock_net": "SDATA",
-      "clock_pad": "J703.4",
-      "min_gap_mm": 2.6,
-      "net": "N6_TWRPN",
-      "required_mm": 5.0,
-      "sensitive_pad": "U618.6"
-    },
-    {
-      "clock_net": "BCLK",
-      "clock_pad": "J703.2",
-      "min_gap_mm": 2.6,
-      "net": "N6_VLLN",
-      "required_mm": 10.0,
-      "sensitive_pad": "U618.3"
     },
     {
       "clock_net": "BCLK",
@@ -143,14 +95,6 @@
       "net": "N6_TWRPP",
       "required_mm": 5.0,
       "sensitive_pad": "C651.1"
-    },
-    {
-      "clock_net": "BCLK",
-      "clock_pad": "J703.2",
-      "min_gap_mm": 3.25,
-      "net": "N6_LWRP",
-      "required_mm": 5.0,
-      "sensitive_pad": "U618.2"
     },
     {
       "clock_net": "SDATA",
@@ -186,26 +130,26 @@
     },
     {
       "clock_net": "BCLK",
-      "clock_pad": "J703.2",
-      "min_gap_mm": 4.26,
-      "net": "N6_LWRN",
-      "required_mm": 5.0,
-      "sensitive_pad": "R933.2"
+      "clock_pad": "R204.2",
+      "min_gap_mm": 8.62,
+      "net": "N6_VLLN",
+      "required_mm": 10.0,
+      "sensitive_pad": "U616.3"
     }
   ],
   "i2s_mm": {
     "BCLK": {
       "core_R_to_DAC": 15.12,
       "core_euclidean_lower_bound": 19.83,
-      "header_to_DAC": 12.41,
-      "net_hpwl": 27.03,
+      "header_to_DAC": null,
+      "net_hpwl": 20.99,
       "source_to_R": 4.71,
       "test_pad_to_DAC": 12.53
     },
     "LRCLK": {
       "core_R_to_DAC": 21.38,
       "core_euclidean_lower_bound": 22.88,
-      "header_to_DAC": 10.75,
+      "header_to_DAC": null,
       "net_hpwl": 31.0,
       "source_to_R": 1.5,
       "test_pad_to_DAC": 16.01
@@ -213,8 +157,8 @@
     "SDATA": {
       "core_R_to_DAC": 21.05,
       "core_euclidean_lower_bound": 24.49,
-      "header_to_DAC": 12.87,
-      "net_hpwl": 33.04,
+      "header_to_DAC": null,
+      "net_hpwl": 30.5,
       "source_to_R": 3.43,
       "test_pad_to_DAC": 21.24
     }
@@ -272,6 +216,64 @@
     }
   },
   "named_nets": 246,
+  "protection_timer_pad_distance_mm": {
+    "LN_L": {
+      "bleed": {
+        "euclidean_pad_mm": 15.01,
+        "manhattan_pad_lower_bound_mm": 20.19
+      },
+      "cap": {
+        "euclidean_pad_mm": 21.93,
+        "manhattan_pad_lower_bound_mm": 24.2
+      },
+      "charge_resistor": {
+        "euclidean_pad_mm": 30.51,
+        "manhattan_pad_lower_bound_mm": 43.06
+      }
+    },
+    "LN_R": {
+      "bleed": {
+        "euclidean_pad_mm": 22.01,
+        "manhattan_pad_lower_bound_mm": 26.59
+      },
+      "cap": {
+        "euclidean_pad_mm": 32.2,
+        "manhattan_pad_lower_bound_mm": 42.2
+      },
+      "charge_resistor": {
+        "euclidean_pad_mm": 38.15,
+        "manhattan_pad_lower_bound_mm": 52.56
+      }
+    },
+    "LP_L": {
+      "bleed": {
+        "euclidean_pad_mm": 12.25,
+        "manhattan_pad_lower_bound_mm": 16.98
+      },
+      "cap": {
+        "euclidean_pad_mm": 15.58,
+        "manhattan_pad_lower_bound_mm": 16.5
+      },
+      "charge_resistor": {
+        "euclidean_pad_mm": 39.6,
+        "manhattan_pad_lower_bound_mm": 54.26
+      }
+    },
+    "LP_R": {
+      "bleed": {
+        "euclidean_pad_mm": 18.91,
+        "manhattan_pad_lower_bound_mm": 23.39
+      },
+      "cap": {
+        "euclidean_pad_mm": 31.21,
+        "manhattan_pad_lower_bound_mm": 44.0
+      },
+      "charge_resistor": {
+        "euclidean_pad_mm": 34.98,
+        "manhattan_pad_lower_bound_mm": 48.76
+      }
+    }
+  },
   "relay_to_jack_pad_mm": {
     "JACK_LN": {
       "J701.6": 16.56
@@ -295,7 +297,7 @@
     100,
     80
   ],
-  "total_nonpower_hpwl_mm": 8676.35,
+  "total_nonpower_hpwl_mm": 8637.08,
   "track_count": 0,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 5.97,
@@ -310,10 +312,10 @@
     "Y201_HSE_OUT_to_U201_6": 6.3
   },
   "zone_bbox_fill_pct": {
-    "Z1": 49.64,
+    "Z1": 49.85,
     "Z2": 48.41,
-    "Z4L": 65.23,
-    "Z4S": 74.27,
+    "Z4L": 65.51,
+    "Z4S": 63.27,
     "Z4U": 63.86,
     "Z5": 62.98,
     "Z6": 53.52,

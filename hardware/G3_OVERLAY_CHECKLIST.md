@@ -39,4 +39,4 @@ Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–28 are o
 
 Printed 10 mm bar: ______ mm. Review date: __________. Reviewer/signature: ____________________.
 
-JLCPCB DFM response for enlarged J701/J702 copper and the 0.30 mm J701 pad-to-pad gap: ______________________________________________________________.
+JLCPCB DFM response for enlarged J701/J702 copper, ≥0.31 mm worst ring under +0.13 mm slot tolerance, and the 0.25 mm J701 pad-to-pad gap: ______________________________________________________________.

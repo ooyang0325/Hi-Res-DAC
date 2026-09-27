@@ -1,6 +1,8 @@
 # Audio integrity and EMI placement review — 27 September 2026
 
-**Status: HOLD for routing.** The 100 × 100 mm board is the owner-selected primary outline, but it has no tracks, ground plane, power pours or stitching vias. Its analog/digital isolation, impedance, channel separation, noise and crosstalk therefore cannot be certified from this placement. `PLACEMENT_AUDIT.json` is a reproducible pad-level screen, not a field simulation or routed-board DRC.
+For the current hand-placed 120 × 100 mm primary and its routed J701 TVS escapes, see `MANUAL_PLACEMENT_REVIEW.md`. The pad-gap findings below describe the earlier 100 × 100 mm automatic baseline unless that review reports a correction.
+
+**Historical baseline status: HOLD.** The earlier 100 × 100 mm board had no tracks, ground plane, power pours or stitching vias. Its analog/digital isolation, impedance, channel separation, noise and crosstalk could not be certified from placement. `PLACEMENT_100x100_BASELINE_AUDIT.json` is its reproducible pad-level screen. The new primary has an L2 GND zone and four TVS routes but remains mostly unrouted and unqualified for audio or EMI performance.
 
 ## Ground and return architecture to implement
 
@@ -10,7 +12,7 @@ At the DAC, DGND, AGND and AGND_L/R need local L2 vias and the exposed pad needs
 
 ## Measured placement conflicts
 
-The audit measures minimum copper-to-copper gaps between *pad bounding rectangles* on high-impedance protection nets and clock nets. It finds **15 nets below the Notes' 5 or 10 mm separation targets** on the 100 × 100 mm primary board, versus 19 on the 100 × 80 mm comparison. The closest and most consequential examples are:
+The earlier audit measured minimum copper-to-copper gaps between *pad bounding rectangles* on high-impedance protection nets and clock nets. It found **15 nets below the Notes' 5 or 10 mm separation targets** on the historical 100 × 100 mm automatic board, versus 19 on the 100 × 80 mm comparison. The current 120 × 100 mm manual primary reports zero pad-gap findings; routed-copper review is still required. The earlier examples are:
 
 | Sensitive pad/net | Clock pad/net | Pad gap | Required separation |
 | --- | --- | ---: | ---: |

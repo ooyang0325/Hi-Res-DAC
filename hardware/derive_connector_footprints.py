@@ -4,7 +4,9 @@
 The JLC import draws the locating holes as graphics rather than drill objects.
 J701 also uses larger copper and slots than the maker dimensions recorded in
 Design Spec v1.1. The owner subsequently chose a copper-only enlargement to
-meet the design's 0.30 mm ring rule at the stated slot tolerance. This script
+meet the design's 0.30 mm ring rule. JLCPCB's published plated-slot size
+tolerance is +0.13 mm, so the copper is enlarged to retain at least 0.30 mm
+under that tolerance. This script
 preserves the imported pad centres and slot drills, replaces hole graphics
 with Ø1.20 mm NPTH pads, and applies the approved copper sizes. G-3 overlays
 and JLCPCB DFM confirmation remain required.
@@ -47,7 +49,8 @@ def block_end(source: str, start: int) -> int:
 
 
 def transform_blocks(source: str, kind: str, transform) -> tuple[str, int]:
-    starts = [match.start() + 2 for match in re.finditer(rf"\n\t\({kind}(?=\s)", source)]
+    starts = [match.start(1) for match in
+              re.finditer(rf"\n[\t ]+(\({kind}(?=\s))", source)]
     changed = 0
     for start in reversed(starts):
         end = block_end(source, start)
@@ -80,6 +83,29 @@ def drop_hole_graphic(block: str) -> str:
     return block
 
 
+def clear_j702_slot_silk(block: str) -> str:
+    """Keep the imported body legend clear of the enlarged slot mask openings."""
+    if '(layer "F.SilkS")' not in block:
+        return block
+    edits = {
+        ('-6.775', '-3.2', '-5.5115', '-3.2'): ('-6.775', '-3.2', '-6.2', '-3.2'),
+        ('-6.775', '3.1', '-5.7945', '3.1'): ('-6.775', '3.1', '-6.2', '3.1'),
+        ('-5.5115', '-3.2', '-5.2795', '-3.2'): None,
+        ('-3.9705', '-3.2', '-3.62', '-3.2'): None,
+        ('-3.7385', '-3.2', '1.544', '-3.2'): ('-3.3', '-3.2', '1.544', '-3.2'),
+        ('-3.4555', '3.1', '-2.256', '3.1'): ('-3.3', '3.1', '-2.256', '3.1'),
+    }
+    match = re.search(r'\(start ([\d.-]+) ([\d.-]+)\)\s*\(end ([\d.-]+) ([\d.-]+)\)', block)
+    if not match or match.groups() not in edits:
+        return block
+    replacement = edits[match.groups()]
+    if replacement is None:
+        return ''
+    return (block[:match.start()]
+            + f'(start {replacement[0]} {replacement[1]})\n\t\t(end {replacement[2]} {replacement[3]})'
+            + block[match.end():])
+
+
 def convert(source_name: str, target_name: str, holes: list[tuple[float, float]], j701: bool) -> None:
     original = (SOURCE / f"{source_name}.kicad_mod").read_text(encoding="utf-8")
     assert original.startswith(f'(footprint "{source_name}"'), source_name
@@ -96,12 +122,14 @@ def convert(source_name: str, target_name: str, holes: list[tuple[float, float]]
 
         result, moved_guides = transform_blocks(result, "fp_line", drawing_guide)
         assert moved_guides == 3, (source_name, moved_guides)
+        result, silk_edits = transform_blocks(result, "fp_line", clear_j702_slot_silk)
+        assert silk_edits == 6, (source_name, silk_edits)
 
     if j701:
         def approved_slot(block: str) -> str:
             if not re.match(r'\(pad "(?:[1-9]|1[0-2])" thru_hole oval', block):
                 return block
-            updated, size_count = re.subn(r'\(size 2 (?:1\.4|1\.3)\)', '(size 2 1.2)', block, count=1)
+            updated, size_count = re.subn(r'\(size 2 (?:1\.4|1\.3)\)', '(size 2.15 1.25)', block, count=1)
             updated, drill_count = re.subn(r'\(drill oval 1\.4 0\.6\)', '(drill oval 1.4 0.5)', updated, count=1)
             assert (size_count, drill_count) == (1, 1), block[:80]
             return updated
@@ -112,7 +140,7 @@ def convert(source_name: str, target_name: str, holes: list[tuple[float, float]]
         def approved_slot(block: str) -> str:
             if not re.match(r'\(pad "[12]" thru_hole oval', block):
                 return block
-            updated, size_count = re.subn(r'\(size 1 1\.9\)', '(size 1.2 2.1)', block, count=1)
+            updated, size_count = re.subn(r'\(size 1 1\.9\)', '(size 1.35 2.25)', block, count=1)
             assert size_count == 1, block[:80]
             return updated
 

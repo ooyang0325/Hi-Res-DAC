@@ -552,7 +552,8 @@ def placed_symbol(ref: str, part: Part | None, pins: list[Pin], x: int, y: int, 
     )
     lines = [
         f"(symbol (lib_id {q(PROJECT + ':' + sid)}) (at {mm(x)} {mm(y)} 0) (unit 1) "
-        f"(exclude_from_sim no) (in_bom {'yes' if is_bom else 'no'}) (on_board yes) "
+        f"(exclude_from_sim no) (in_bom {'yes' if is_bom else 'no'}) "
+        f"(on_board {'no' if ref == 'J703' else 'yes'}) "
         f"(dnp {'yes' if is_dnf else 'no'}) (uuid {q(uid('placed', ref))})",
         prop("Reference", ref, (x * GRID), (y - hh - 2) * GRID, size=0.889),
         prop("Value", value, (x * GRID), (y + hh + 2) * GRID, size=0.889),

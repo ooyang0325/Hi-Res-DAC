@@ -1,6 +1,6 @@
-# DAC-HPA 100 × 80 comparison placement
+# DAC-HPA historical 100 × 80 comparison placement
 
-This editable four-layer KiCad board places all schematic footprint items on a 100 × 80 mm R1 outline. The board has pad nets and schematic paths but no tracks or copper pours. See ROUTABILITY_REVIEW.md for the measured limits; this board is not a manufacturing release.
+This generated report predates the owner-approved J703 PCB-pad removal. Its 537-item count below is historical. Use `PLACEMENT_100x80_AUDIT.json` for the current 536-footprint comparison.
 
 - Schematic footprint items: **537** (including 7 fiducials)
 - Electrical nets: **246**

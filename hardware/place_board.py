@@ -48,7 +48,6 @@ ANCHORS: dict[str, tuple[float, float, int]] = {
     "D701": (80.5, 60.2, 0), "D703": (87.9, 60.2, 0),
     "D702": (90.8, 60.2, 0), "D704": (93.7, 60.2, 0),
     "J201": (12.0, 77.0, 0), "J202": (33.0, 77.0, 0),
-    "J703": (38.0, 51.0, 180),
     "TP711": (54.5, 40.2, 0),
     "TP712": (40.5, 61.7, 0),
     "TP715": (41.5, 59.0, 0), "TP716": (37.5, 61.0, 0),
@@ -268,7 +267,7 @@ def configure_100x100() -> None:
     global ALT_100, HEIGHT, OUTPUT, REPORT
     ALT_100 = True
     HEIGHT = 100.0
-    OUTPUT = HERE / "DAC_HPA.kicad_pcb"
+    OUTPUT = HERE / "DAC_HPA_100x100_BASELINE_REVIEW_ONLY.kicad_pcb"
     REPORT = HERE / "PLACEMENT_REPORT.md"
     for ref, (x, y, angle) in list(ANCHORS.items()):
         ANCHORS[ref] = (x, y + variant_offset(ref), angle)
@@ -366,12 +365,19 @@ def room_for(ref: str) -> str:
 
 
 def parse_parts(root: ET.Element) -> tuple[dict[str, Part], dict[str, list[tuple[str, str]]]]:
-    components = root.findall("./components/comp")
+    components = [comp for comp in root.findall("./components/comp")
+                  if comp.find("property[@name='exclude_from_board']") is None]
+    board_refs = {comp.get("ref") for comp in components}
     net_nodes: dict[str, list[tuple[str, str]]] = {}
     ref_nets: dict[str, set[str]] = collections.defaultdict(set)
     for item in root.findall("./nets/net"):
         name = item.get("name") or ""
-        net_nodes[name] = [(node.get("ref") or "", node.get("pin") or "") for node in item.findall("node")]
+        nodes = [(node.get("ref") or "", node.get("pin") or "")
+                 for node in item.findall("node")
+                 if node.get("ref") in board_refs]
+        if not nodes:
+            continue
+        net_nodes[name] = nodes
         for ref, _ in net_nodes[name]:
             ref_nets[ref].add(name)
     parts = {}
@@ -394,8 +400,6 @@ def parse_parts(root: ET.Element) -> tuple[dict[str, Part], dict[str, list[tuple
         fp.SetSheetfile(comp.find("property[@name='Sheetfile']").get("value") if comp.find("property[@name='Sheetfile']") is not None else "")
         if comp.find("exclude_from_bom") is not None:
             fp.SetAttributes(fp.GetAttributes() | pcbnew.FP_EXCLUDE_FROM_BOM)
-        if comp.find("exclude_from_board") is not None:
-            raise ValueError(f"board-excluded component in netlist: {ref}")
         fp.Reference().SetLayer(pcbnew.F_Fab)
         fp.Reference().SetVisible(True)
         fp.Value().SetVisible(False)

@@ -390,7 +390,7 @@
 (global_label "JACK_LP" (shape bidirectional) (at 148.59 63.5 0) (effects (font (size 0.762 0.762)) (justify left bottom)) (uuid "c1de5d10-6c30-5da3-a00a-648b03e7cb15"))
 (no_connect (at 146.05 66.04) (uuid "82031d00-391e-549f-9133-27c532a78ed2"))
 (no_connect (at 146.05 68.58) (uuid "918ff126-f180-5df2-9978-2f8b5659e96a"))
-(symbol (lib_id "DAC_HPA:P178") (at 190.5 66.04 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp yes) (uuid "a40a32de-4f66-511c-ab66-5222cba31995")
+(symbol (lib_id "DAC_HPA:P178") (at 190.5 66.04 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board no) (dnp yes) (uuid "a40a32de-4f66-511c-ab66-5222cba31995")
 (property "Reference" "J703" (at 190.5 58.42 0) (effects (font (size 0.889 0.889))))
 (property "Value" "1 × 6" (at 190.5 73.66 0) (effects (font (size 0.889 0.889))))
 (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" (at 190.5 66.04 0) (effects (font (size 1.016 1.016)) (hide yes)))

@@ -1,0 +1,315 @@
+{
+  "assumption": "4-layer FR-4, 1 oz outer copper; JLC plated-slot +0.13 mm size tolerance",
+  "board": "hardware/DAC_HPA_100x100_TIMER_STUDY_ONLY.kicad_pcb",
+  "jack_design_target_mm": 0.3,
+  "jlc_absolute_ring_failure_count": 0,
+  "jlc_recommended_ring_failure_count": 0,
+  "jlc_source": "https://jlcpcb.com/capabilities/pcb-capabilities",
+  "plated_slots": [
+    {
+      "copper_mm": [
+        1.14,
+        2.24
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": null,
+      "pad": "S1",
+      "ref": "J101",
+      "slot_mm": [
+        0.6,
+        1.7
+      ],
+      "worst_ring_mm": 0.205
+    },
+    {
+      "copper_mm": [
+        1.14,
+        2.24
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": null,
+      "pad": "S2",
+      "ref": "J101",
+      "slot_mm": [
+        0.6,
+        1.7
+      ],
+      "worst_ring_mm": 0.205
+    },
+    {
+      "copper_mm": [
+        1.14,
+        1.94
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": null,
+      "pad": "S3",
+      "ref": "J101",
+      "slot_mm": [
+        0.6,
+        1.4
+      ],
+      "worst_ring_mm": 0.205
+    },
+    {
+      "copper_mm": [
+        1.14,
+        1.94
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": null,
+      "pad": "S4",
+      "ref": "J101",
+      "slot_mm": [
+        0.6,
+        1.4
+      ],
+      "worst_ring_mm": 0.205
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "1",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "10",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "11",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "12",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "2",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "3",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "4",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "5",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "6",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "7",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "8",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        2.15,
+        1.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "9",
+      "ref": "J701",
+      "slot_mm": [
+        1.4,
+        0.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        1.35,
+        2.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "1",
+      "ref": "J702",
+      "slot_mm": [
+        0.6,
+        1.5
+      ],
+      "worst_ring_mm": 0.31
+    },
+    {
+      "copper_mm": [
+        1.35,
+        2.25
+      ],
+      "meets_jlc_absolute": true,
+      "meets_jlc_recommended": true,
+      "meets_project_jack_target": true,
+      "pad": "2",
+      "ref": "J702",
+      "slot_mm": [
+        0.6,
+        1.5
+      ],
+      "worst_ring_mm": 0.31
+    }
+  ],
+  "project_jack_ring_open_count": 0,
+  "project_rule_targets_mm": {
+    "min_clearance": 0.15,
+    "min_copper_edge_clearance": 0.4,
+    "min_hole_clearance": 0.28,
+    "min_silk_clearance": 0.15,
+    "min_text_height": 1.0,
+    "min_text_thickness": 0.15,
+    "min_track_width": 0.15,
+    "min_via_annular_width": 0.2,
+    "min_via_diameter": 0.6
+  },
+  "project_settings_below_target": {},
+  "slot_ring_jlc_absolute_min_mm": 0.15,
+  "slot_ring_jlc_recommended_min_mm": 0.2,
+  "via_target_failure_count": 0,
+  "vias": []
+}

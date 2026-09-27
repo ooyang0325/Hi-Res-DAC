@@ -1,6 +1,8 @@
 # DAC-HPA placement and routability review — 27 September 2026
 
-**Routing status: HOLD.** The owner selected 100 × 100 mm as the primary outline and approved OPA2210IDGKR VSSOP-8 plus a provisional reassessment of the DAC-to-I/V limit to 7 mm. The editable `DAC_HPA.kicad_pcb` reflects those choices. `DAC_HPA_100x80_REVIEW_ONLY.kicad_pcb` retains the original 100 × 80 mm outline for comparison. Neither has tracks or copper zones; neither is a fabrication or PCBA package.
+For the current hand-placed 120 × 100 mm primary with four J701 TVS routes and a filled L2 GND plane, see `MANUAL_PLACEMENT_REVIEW.md`. The measurements below describe the earlier automatic 100 × 100 mm baseline.
+
+**Historical baseline status: HOLD.** The owner selected 100 × 100 mm for the preceding placement and approved OPA2210IDGKR VSSOP-8 plus a provisional reassessment of the DAC-to-I/V limit to 7 mm. That unrouted state is preserved as `DAC_HPA_100x100_BASELINE_REVIEW_ONLY.kicad_pcb`; the older 100 × 80 mm comparison also remains. The current `DAC_HPA.kicad_pcb` is the 120 × 100 mm manual partial route described in `MANUAL_PLACEMENT_REVIEW.md`.
 
 `audit_placement.py` reads actual KiCad pad and courtyard geometry. A separate exploratory L1 grid probe uses 0.1 mm cells and rectangular pad obstacles; it routes each net independently. Those checks cannot prove simultaneous routing, real return paths, fabrication clearance, impedance or full DRC.
 

@@ -75,6 +75,12 @@ def run() -> None:
         expected_refs = set(parts) | {f"MH{i}" for i in range(1, 5)} | {f"FID{i}" for i in range(1, 8)}
         if set(components) != expected_refs:
             raise AssertionError(f"Component set differs: missing={set(expected_refs)-set(components)}, extra={set(components)-expected_refs}")
+        excluded_from_board = {
+            ref for ref, component in components.items()
+            if component.find("property[@name='exclude_from_board']") is not None
+        }
+        if excluded_from_board != {"J703"}:
+            raise AssertionError(f"Unexpected PCB-excluded symbols: {excluded_from_board}")
 
         fields_checked = 0
         for ref, part in parts.items():
@@ -208,6 +214,7 @@ def run() -> None:
             print(f"PASS: {matched_footprints} assigned footprints have matching symbol pin/pad number sets")
         print("PASS: KiCad ERC 0 violations (selected outputs are typed; remaining pins are mostly passive)")
         print("CORRECTED: D705/D706 physical pad polarity follows the manufacturer and JLC symbols")
+        print("PCB OPTION: J703 remains in the schematic but is excluded from the PCB")
         print("OPEN PHYSICAL GATES: G-1 through G-4; footprints with a provisional status still need review")
 
 

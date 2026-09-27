@@ -1,6 +1,6 @@
-# DAC-HPA provisional 100 × 100 placement
+# DAC-HPA historical 100 × 100 placement snapshot
 
-This editable four-layer KiCad board places all schematic footprint items on a 100 × 100 mm R1 outline. The board has pad nets and schematic paths but no tracks or copper pours. See ROUTABILITY_REVIEW.md for the measured limits; this board is not a manufacturing release.
+This generated report predates the owner-approved J703 PCB-pad removal and 120 × 100 mm manual primary. Its 537-item and primary-outline labels below are historical. Use `PLACEMENT_100x100_BASELINE_AUDIT.json` for the current 536-footprint baseline comparison and `MANUAL_PLACEMENT_REVIEW.md` for the current primary.
 
 - Schematic footprint items: **537** (including 7 fiducials)
 - Electrical nets: **246**
