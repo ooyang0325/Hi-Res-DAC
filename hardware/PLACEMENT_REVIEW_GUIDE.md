@@ -6,7 +6,7 @@ The [earlier macro-placement review](MACRO_PLACEMENT_REVIEW.md) explains the fir
 
 For scalable per-layer views, run the one-command [CLI visual inspection workflow](PCB_CLI_VISUAL_REVIEW.md). It exports the committed ECO board without modifying it.
 
-**Current state:** 544 footprints, 250 named PCB nets, 16 F.Cu tracks, six vias, one filled L2 GND zone, and 499 unconnected items. The tracks are the J701 and J702 TVS branches/short returns, including one K603→J702 RP trial path. KiCad DRC reports zero error/warning violations on this *partial* copper; all 478 component footprints resolve 3D bodies. [Layout summary](FUNCTIONAL_ECO_LAYOUT_SUMMARY.json) records exact counts and selected pad distances. Placement and distance proxies cannot certify simultaneous routes, audio performance, EMI or JLCPCB assembly.
+**Current state:** 544 footprints, 250 named PCB nets, 28 F.Cu tracks, seven vias and one filled L2 GND zone. The partial copper includes J701/J702 TVS branches, one K603→J702 RP trial path, and the X201→R203→U301 MCLK trunk with R227/R665 branches. KiCad DRC reports zero error/warning violations; its JSON lists 499 missing links while the full ratsnest counts 1,144. All 478 component footprints resolve 3D bodies. [Layout summary](FUNCTIONAL_ECO_LAYOUT_SUMMARY.json) records exact counts and selected routed lengths. Placement and partial routing cannot certify simultaneous audio routes, EMI performance or JLCPCB assembly.
 
 ## Review order
 
@@ -21,7 +21,7 @@ For scalable per-layer views, run the one-command [CLI visual inspection workflo
 
 | Circuit | Current geometry | Reviewer decision or evidence needed |
 | --- | --- | --- |
-| X201 → R203 → U301 MCLK | The current TP711 three-point pad-distance lower bound is **8.83 mm** against the 10 mm rule. | Draw the full route and R665/U607 monitor branch; measure routed length/loading and continuous L2 return. |
+| X201 → R203 → U301 MCLK | The hand-drawn L1 route passes through TP711: X201→R203 **1.832 mm**, R203→U301 **6.479 mm**, combined **8.311 mm**. R227 has a local GND via and R665→U607 pin 2 is connected; DNF R703 has no copper. | Inspect clock edge quality, oscillator supply/return loop, probe loading, actual duty and U607 monitor behavior. The route meets the geometric 2/8/10 mm screens, but extracted parasitics and powered validation remain open. |
 | Four protection timer branches | Worst C/R/Q Manhattan pad-distance lower bound is **7.91 mm** against an 8 mm route rule. | Draw all RC/bleed routes together and check *actual* copper length, reset level, leakage clearance and neighboring clock copper. A lower bound below 8 mm is not a pass. |
 | I²S BCLK/LRCLK/SDATA | Current core pad-distance lower bounds 22.11 / 21.24 / 20.48 mm against 25 mm. | Route source → series resistor → DAC with branches, skew, spacing and uninterrupted L2 return. J703 has no PCB pads. |
 | DAC → U403/U404 I/V | Four pad-distance lower bounds 3.83 / 6.65 / 6.23 / 3.81 mm against an owner-approved **provisional 7 mm** target. The five local HF bypasses are 1.86–2.30 mm from their DAC rail pins. | Draw all four inputs with GND guards and 2 mm no-digital-copper area, four-way VREF star, local rail returns and Rf/Cf loops. Check actual length, extracted summing-node capacitance and loop area <5 mm². |

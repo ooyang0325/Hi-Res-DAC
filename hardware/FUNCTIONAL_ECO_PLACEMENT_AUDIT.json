@@ -2,12 +2,12 @@
   "bbox_overlaps": [],
   "board": "hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb",
   "clock_mm": {
-    "MCLK_core_euclidean_lower_bound": 8.81,
-    "MCLK_via_TP711_euclidean_lower_bound": 8.83,
-    "R203.2_to_U301.7": 7.23,
+    "MCLK_core_euclidean_lower_bound": 8.05,
+    "MCLK_via_TP711_euclidean_lower_bound": 8.06,
+    "R203.2_to_U301.7": 6.21,
     "R665.1_to_U301.7": 1.6,
     "R665.2_to_U607.2": 1.75,
-    "X201.3_to_R203.1": 1.58
+    "X201.3_to_R203.1": 1.83
   },
   "dac_iv_pad_distance_mm": {
     "DACL": 3.83,
@@ -200,8 +200,8 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7437.89,
-  "track_count": 22,
+  "total_nonpower_hpwl_mm": 7437.59,
+  "track_count": 35,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 5.97,
     "D102_VBUS_to_J101_B4": 4.89,

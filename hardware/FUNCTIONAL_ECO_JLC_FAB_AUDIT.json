@@ -359,6 +359,14 @@
       "net": "GND",
       "ring_mm": 0.2,
       "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
     }
   ]
 }

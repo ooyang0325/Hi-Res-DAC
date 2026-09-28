@@ -55,6 +55,10 @@ EXISTING_MOVES: dict[str, tuple[float, float, int]] = {
     "C303": (91.9, 72.5, 90),
     "C304": (89.2, 72.5, 90),
     "R301": (93.0, 67.5, 90),
+    # Clock route trial 12: put the oscillator-side 10 kΩ pull-down beside
+    # R203. R703 is DNF and remains unrouted; its distant pads add no stub.
+    "R203": (92.5, 90.2, 90),
+    "R227": (93.3, 92.5, 270),
     # Relocate the I/V hold-up reservoirs and isolating diodes south-east,
     # leaving a copper passage below K601 for the J702 audio trunk.
     "C442": (139.0, 120.5, 180),
@@ -77,6 +81,20 @@ GROUND_TVS_WAYPOINTS = (
     ((148.31, 117.85), (148.31, 119.0)),
 )
 GROUND_TVS_VIAS = ((150.2, 102.3), (148.31, 119.0))
+
+# Hand-drawn L1 clock copper. Each waypoint is an explicit manual decision;
+# no router or placement search is used. TP711 lies on the R203-to-DAC trunk.
+CLOCK_PATHS: tuple[tuple[str, tuple[tuple[float, float], ...]], ...] = (
+    ("N2_X201_OUT", ((90.925, 89.775), (92.5, 90.71))),
+    ("N2_X201_OUT", ((92.5, 90.71), (93.3, 91.99))),
+    ("MCLK", ((92.5, 89.69), (92.5, 88.0), (92.6, 87.9),
+              (92.6, 85.1), (92.6, 84.1), (92.001, 83.5))),
+    ("MCLK", ((92.6, 85.1), (92.0, 85.1))),
+    ("N6_MCK_IN", ((92.0, 86.12), (91.5, 86.12),
+                   (91.5, 87.0), (90.49, 87.0))),
+)
+CLOCK_GROUND_PATH = ((93.3, 93.01), (93.3, 93.8))
+CLOCK_GROUND_VIA = (93.3, 93.8)
 
 
 def pos(x_mm: float, y_mm: float) -> pcbnew.VECTOR2I:
@@ -192,6 +210,31 @@ def main() -> None:
         via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
         via.SetNet(ensure_net(board, "GND"))
         board.Add(via)
+
+    for net_name, points in CLOCK_PATHS:
+        for start, end in zip(points, points[1:]):
+            track = pcbnew.PCB_TRACK(board)
+            track.SetStart(pos(*start))
+            track.SetEnd(pos(*end))
+            track.SetWidth(pcbnew.FromMM(0.15))
+            track.SetLayer(pcbnew.F_Cu)
+            track.SetNet(ensure_net(board, net_name))
+            board.Add(track)
+    ground_track = pcbnew.PCB_TRACK(board)
+    ground_track.SetStart(pos(*CLOCK_GROUND_PATH[0]))
+    ground_track.SetEnd(pos(*CLOCK_GROUND_PATH[1]))
+    ground_track.SetWidth(pcbnew.FromMM(0.25))
+    ground_track.SetLayer(pcbnew.F_Cu)
+    ground_track.SetNet(ensure_net(board, "GND"))
+    board.Add(ground_track)
+    ground_via = pcbnew.PCB_VIA(board)
+    ground_via.SetPosition(pos(*CLOCK_GROUND_VIA))
+    ground_via.SetWidth(pcbnew.FromMM(0.6))
+    ground_via.SetDrill(pcbnew.FromMM(0.2))
+    ground_via.SetViaType(pcbnew.VIATYPE_THROUGH)
+    ground_via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+    ground_via.SetNet(ensure_net(board, "GND"))
+    board.Add(ground_via)
 
     for drawing in board.GetDrawings():
         if (isinstance(drawing, pcbnew.PCB_TEXT)

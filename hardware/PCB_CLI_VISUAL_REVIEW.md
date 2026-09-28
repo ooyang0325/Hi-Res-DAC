@@ -32,14 +32,14 @@ The default current file is `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.
 | File | What to inspect |
 | --- | --- |
 | `01_body_courtyard.svg` | F.Fab bodies, F.CrtYd and board outline. Zoom in on J101/J702 edges, J701 top-side solder access, K601–K604 iron access, dense U301/U403/U404 and timer groups. Check that courtyard clearances leave routing channels. |
-| `02_top_copper.svg` | F.Cu pads and 16 existing tracks. Follow D701–D704 to J701 and D707/D708 to J702, including short GND returns. The LP main trunk and most other connections remain unrouted. Inspect J101 fine-pitch escape and the four output-leg crossovers. |
+| `02_top_copper.svg` | F.Cu pads and 28 existing tracks. Follow D701–D704 to J701, D707/D708 to J702, and X201→R203→TP711→U301 with the R227 ground via and R665→U607 branch. The LP main trunk and most other connections remain unrouted. Inspect J101 fine-pitch escape and the four output-leg crossovers. |
 | `03_l2_ground.svg` | Saved filled In1.Cu/L2 GND zone and outline. Look for continuous copper under future USB, clocks, I²S, DAC and analog paths. Refill the zone in KiCad and recheck after routes, holes and stitching vias are added. |
 | `04_top_mask.svg` | Top mask openings around fine-pitch parts and the plated jack/USB slots. Compare to copper to spot potential slivers or unexpected exposed metal. |
 | `05_top_paste.svg` | Top paste apertures. J101 shell stakes S1–S4 and J702 slots 1/2 currently have **no paste aperture**; this is a JLCPCB process hold, not an accidental omission to fix from the plot alone. |
 | `06_top_silkscreen.svg` | Top legend and polarity/pin-1 marks. Inspect D102, D705/D706, U202, X201–X203, jacks and dense assembly regions. |
 | `07_bottom_copper.svg` | Mirrored B.Cu view, useful for checking underside hand-solder access and later return routes. |
 | `08_board_3d.glb` | Portable 3D assembly for an external GLB viewer; inspect connector projection and component bodies/heights. The four C631–C634 VRML body envelopes do not appear in the GLB; they do appear in KiCad's 3D Viewer. |
-| `09_drc.json` | KiCad error/warning DRC report. Zero findings on this partial board do not mean all nets are routed; the present candidate has 499 unconnected items. |
+| `09_drc.json` | KiCad error/warning DRC report. Zero findings on this partial board do not mean all nets are routed. This JSON lists 499 missing links; the full `pcbnew` ratsnest counts 1,144. |
 
 ## Open or rasterize the output
 
@@ -65,7 +65,7 @@ Tiles 0/1 are the upper left/right and 2/3 the lower left/right. Use the same ap
 
 For terminal-only image display, `chafa /tmp/dac-hpa-review/01_body_courtyard.png` is optional if `chafa` is installed. At fine pitch, use the SVG/PNG at full resolution and KiCad pad measurements; terminal image characters cannot resolve a 0.1 mm overlap or solder-mask bridge. A command-line 3D geometry sanity check is `assimp info /tmp/dac-hpa-review/08_board_3d.glb` if Assimp is installed, but mesh counts do not prove model alignment.
 
-Summarize DRC from the terminal without confusing a clean partial board with a routed one:
+Summarize the exported DRC from the terminal without confusing a clean partial board with a routed one. The separate [layout summary](FUNCTIONAL_ECO_LAYOUT_SUMMARY.json) gives the full ratsnest count:
 
 ```sh
 python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("violations:",len(d["violations"]),"unconnected:",len(d["unconnected_items"]))' \

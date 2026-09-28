@@ -18,7 +18,7 @@ Design Spec v1.1 permits **provisional placement on a 100 × 80 mm board**. The 
 - The owner kept the 50 mΩ-per-jack-contact and per-0 Ω-link assumption. Output impedance is measured at both jacks at bring-up against ≤0.5 Ω; this is not a pre-layout measurement.
 - The owner chose at least a 0.30 mm worst copper ring by enlarging copper only. Using JLCPCB's +0.13 mm plated-slot tolerance, J701/J702 now reach ≥0.31 mm worst ring. Slots, pad centres and peg holes do not move. G-3 overlay and JLCPCB DFM acceptance remain required.
 - The ring calculation does not include slot-to-copper registration error; JLCPCB must confirm the final land in DFM. The nearest J701 pad-to-pad copper gap is 0.25 mm.
-- The owner approved a provisional ≤4.2 mm J701 TVS signal route with short L2 GND returns and a system IEC ESD test. The four actual partial routes measure 3.83–4.03 mm. The remaining 499 unconnected items and G-3/G-4 gates keep routing release on HOLD.
+- The owner approved a provisional ≤4.2 mm J701 TVS signal route with short L2 GND returns and a system IEC ESD test. The four actual partial routes measure 3.83–4.03 mm. The current ECO board also has an 8.311 mm hand-routed clock trunk, but its full ratsnest still counts 1,144 missing connections; G-3/G-4 and the other functional gates keep routing release on HOLD.
 
 ## Holds after layout
 

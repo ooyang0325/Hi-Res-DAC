@@ -2,7 +2,7 @@
 
 **Current board:** [DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb](DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb), 120 × 100 mm, four layers. It is a hand-placed, partially routed review candidate aligned with the [v1.1-ECO1 schematic](FUNCTIONAL_ECO_2026-09-28.md). The older `DAC_HPA.kicad_pcb`, macro study and separate J702 TVS option are historical comparisons; none includes the complete current footprint population.
 
-The [machine-checked summary](FUNCTIONAL_ECO_LAYOUT_SUMMARY.json) records **544 footprints, 250 named nets, zero footprint bounding-box overlaps, zero KiCad error/warning DRC findings and 499 unconnected items**. All populated pad nets match the ECO schematic. The conservative JLC package-pair/body-edge screens report zero classified findings, but exact machine access and JLC order DFM remain open. All 478 component bodies resolve to STEP/VRML models; 66 copper-only items intentionally have none.
+The [machine-checked summary](FUNCTIONAL_ECO_LAYOUT_SUMMARY.json) records **544 footprints, 250 named nets, zero footprint bounding-box overlaps and zero KiCad error/warning DRC findings**. The KiCad DRC JSON lists 499 missing connections; the full `pcbnew` ratsnest counts **1,144**. All populated pad nets match the ECO schematic. The conservative JLC package-pair/body-edge screens report zero classified findings, but exact machine access and JLC order DFM remain open. All 478 component bodies resolve to STEP/VRML models; 66 copper-only items intentionally have none.
 
 ## Hand changes in this iteration
 
@@ -12,8 +12,9 @@ The [machine-checked summary](FUNCTIONAL_ECO_LAYOUT_SUMMARY.json) records **544 
 | U301 supply row | C305/C306/C307/C308/C309 were placed in a pin-ordered HF bypass row; C303/C304 sit behind it. | DAC pin-to-100 nF pad distances are **2.236/1.863/1.888/2.296/2.236 mm** for AVCC_L/AVCC_R/VCCA/DVCC/1V3. Supply-and-return loop inductance needs routed copper and L2 via inspection. |
 | I/V hold-up | C442/C443 and D411/D412 moved south-east by explicit coordinates in `manual_functional_eco_layout.py`. | Opens the strip below K601 for audio routing while preserving zero courtyard/spacing findings. Diode-reservoir rail routing, access and voltage hold-up still require verification. |
 | J702 ESD | D707/D708 are now captured on JACK_RP/JACK_LP. One RP relay→TVS→J702 trial and both local signal/GND-via branches are drawn. | D707→J702 is **3.861 mm**, D708→J702 **3.250 mm**, under the provisional 4.2 mm screen. Full LP output, jack sleeves, return-current geometry and IEC system ESD remain open. |
+| X201 80 MHz clock | R203 was rotated; R227 was moved beside its oscillator-side node and given a short L2 GND via. The X201→R203→U301 top-layer trunk now passes through TP711, and the R665→U607 monitor input is connected. R703 remains a distant DNF footprint without copper. | Routed X201→R203 is **1.832 mm**, R203→U301 **6.479 mm**, total **8.311 mm**, inside the 2/8/10 mm screens. The R227 signal branch is **1.509 mm**. The actual pad groups pass `pcbnew` connectivity and KiCad custom-rule DRC. Clock edge integrity, loading/duty, oscillator supply return, full monitor circuit and L2 return geometry still need extraction and measurement. |
 
-The board has 16 F.Cu track segments, six through vias and one filled L2 GND zone. These are local TVS branches and returns; there is no USB pair, MCLK/I²S, complete DAC/I/V, output, power or protection routing. A clean DRC on these few segments is only a clearance result.
+The board has **28 F.Cu track segments, seven through vias** and one filled L2 GND zone. These are local TVS branches/returns and the clock trunk, pull-down return and monitor-input branch. There is no USB pair, I²S, complete DAC/I/V, output, power or protection routing. A clean DRC on this partial copper is only a geometry and rule result.
 
 ## Output-stage route blocker found by hand probes
 

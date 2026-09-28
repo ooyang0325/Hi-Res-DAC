@@ -12,6 +12,9 @@ import pcbnew
 
 from audit_placement import check_board_netlist
 from manual_functional_eco_layout import (
+    CLOCK_GROUND_PATH,
+    CLOCK_GROUND_VIA,
+    CLOCK_PATHS,
     EXISTING_MOVES,
     GROUND_TVS_VIAS,
     LP_TVS_WAYPOINTS,
@@ -105,13 +108,61 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         for a, b in zip(points, points[1:]):
             if (net, frozenset((a, b))) not in segments:
                 raise AssertionError(f"Missing hand-drawn {net} TVS segment {a}->{b}")
+    clock_segments = {
+        (track.GetNetname(), frozenset((
+            (round(pcbnew.ToMM(track.GetStart().x), 3), round(pcbnew.ToMM(track.GetStart().y), 3)),
+            (round(pcbnew.ToMM(track.GetEnd().x), 3), round(pcbnew.ToMM(track.GetEnd().y), 3)),
+        ))): track
+        for track in board.GetTracks()
+        if not isinstance(track, pcbnew.PCB_VIA) and track.GetLayer() == pcbnew.F_Cu
+    }
+    for net, points in CLOCK_PATHS:
+        for a, b in zip(points, points[1:]):
+            key = (net, frozenset((a, b)))
+            track = clock_segments.get(key)
+            if track is None or abs(pcbnew.ToMM(track.GetWidth()) - 0.15) > 0.001:
+                raise AssertionError(f"Missing 0.15 mm L1 clock segment {net} {a}->{b}")
+    clock_ground = clock_segments.get(("GND", frozenset(CLOCK_GROUND_PATH)))
+    if clock_ground is None or abs(pcbnew.ToMM(clock_ground.GetWidth()) - 0.25) > 0.001:
+        raise AssertionError("R227 is missing its local L2 GND return")
+    clock_lengths = {
+        "X201_to_R203": path_length(CLOCK_PATHS[0][1]),
+        "R203_to_R227": path_length(CLOCK_PATHS[1][1]),
+        "R203_to_DAC": path_length(CLOCK_PATHS[2][1]),
+        "R665_to_U607": path_length(CLOCK_PATHS[4][1]),
+    }
+    clock_lengths["X201_to_DAC"] = clock_lengths["X201_to_R203"] + clock_lengths["R203_to_DAC"]
+    if (clock_lengths["X201_to_R203"] > 2.0
+            or clock_lengths["R203_to_DAC"] > 8.0
+            or clock_lengths["X201_to_DAC"] > 10.0):
+        raise AssertionError(f"Routed clock source-to-DAC limit exceeded: {clock_lengths}")
+    board.BuildConnectivity()
+    connectivity = board.GetConnectivity()
+    connectivity.RecalculateRatsnest()
+    pad_ids = {
+        pad.m_Uuid.AsString(): (fp.GetReference(), pad.GetNumber())
+        for fp in board.GetFootprints() for pad in fp.Pads()
+    }
+    for ref, pin, wanted in (
+        ("X201", "3", {("X201", "3"), ("R203", "1"), ("R227", "1")}),
+        ("R203", "2", {("R203", "2"), ("TP711", "1"),
+                        ("R665", "1"), ("U301", "7")}),
+        ("R665", "2", {("R665", "2"), ("U607", "2")}),
+        ("R703", "1", {("R703", "1")}),
+    ):
+        pad = next(item for item in footprints[ref].Pads() if item.GetNumber() == pin)
+        actual = {pad_ids[item.m_Uuid.AsString()]
+                  for item in connectivity.GetConnectedItems(pad)
+                  if isinstance(item, pcbnew.PAD)}
+        if actual != wanted:
+            raise AssertionError(f"Clock copper connectivity {ref}.{pin}: {actual} != {wanted}")
     vias = {
         (round(pcbnew.ToMM(item.GetPosition().x), 2),
          round(pcbnew.ToMM(item.GetPosition().y), 2), item.GetNetname())
         for item in board.GetTracks() if isinstance(item, pcbnew.PCB_VIA)
     }
-    if {(x, y, "GND") for x, y in GROUND_TVS_VIAS} - vias:
-        raise AssertionError("J702 local TVS GND vias are missing")
+    if {(x, y, "GND") for x, y in (*GROUND_TVS_VIAS, CLOCK_GROUND_VIA)} - vias:
+        raise AssertionError("Local TVS or R227 GND via is missing")
     local_tvs = {
         "D707-RP_to_J702": path_length(RP_TVS_WAYPOINTS[3:]),
         "D708-LP_to_J702": path_length(LP_TVS_WAYPOINTS),
@@ -125,13 +176,15 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "schematic_pad_map": "exact",
         "drc_violations": 0,
         "unconnected_items": len(drc["unconnected_items"]),
+        "ratsnest_unconnected_items": connectivity.GetUnconnectedCount(False),
         "bbox_overlaps": 0,
         "jlc_package_spacing_proxy_findings": 0,
         "jlc_body_edge_proxy_findings": 0,
         "u621_local_pad_distances_mm": {key: round(value, 3) for key, value in local.items()},
         "dac_hf_bypass_pad_distances_mm": {key: round(value, 3) for key, value in dac_supply.items()},
         "j702_local_tvs_route_mm": {key: round(value, 3) for key, value in local_tvs.items()},
-        "routing_release": "HOLD: 499 unconnected items, output/clock/USB routes, returns, G-3/G-4 and functional tests",
+        "clock_route_mm": {key: round(value, 3) for key, value in clock_lengths.items()},
+        "routing_release": "HOLD: output/USB/I2S/power/protection routes, returns, G-3/G-4 and functional tests",
     }
 
 
