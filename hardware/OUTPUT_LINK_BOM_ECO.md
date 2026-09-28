@@ -36,14 +36,14 @@ via barrels. Its worst J701 pad paths with the candidate are:
 
 | Channel | 1 kHz model | 20 kHz model sensitivity |
 | --- | ---: | ---: |
-| Left | 0.3864 Ω | 0.3992 Ω |
+| Left | 0.3899 Ω | 0.4027 Ω |
 | Right | 0.3748 Ω | 0.3876 Ω |
 
 The 20 kHz estimate uses the calculation package's OPA1622 closed-loop
 output impedance. It is conditional on the **50 mΩ per jack-contact
 engineering estimate**, 35 µm copper at 50 °C, illustrative via plating,
 and the modelled amplifier response. The 3.5 mm audit gives signal-only
-lower bounds of 0.2272 Ω left and 0.2194 Ω right; its sleeve return is not
+lower bounds of 0.2267 Ω left and 0.2194 Ω right; its sleeve return is not
 routed/extracted. No maker maximum for the jack contact is available.
 **Neither jack has a measured ≤0.5 Ω R-15 result.**
 

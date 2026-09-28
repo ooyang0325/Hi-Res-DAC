@@ -12,6 +12,7 @@ from pathlib import Path
 import pcbnew
 
 from audit_placement import check_board_netlist
+from audit_audio_output_traces import route as copper_route
 from check_output_macro_study import CHANNELS, loop_area
 from manual_output_macro_study import FEEDBACK
 
@@ -25,6 +26,18 @@ JACK_GROUPS = {
            ("J702", "3"), ("D702", "1"), ("D707", "1")},
     "RN": {("K604", "6"), ("J701", "2"), ("J701", "3"), ("D704", "1")},
 }
+T_CELLS = (
+    ("LP−", "R401", "R438", "C431", "U401", "10"),
+    ("LP+", "R403", "R439", "C432", "U401", "1"),
+    ("LN−", "R405", "R440", "C433", "U401", "6"),
+    ("LN+", "R407", "R441", "C434", "U401", "5"),
+    ("RP−", "R409", "R442", "C435", "U402", "10"),
+    ("RP+", "R411", "R443", "C436", "U402", "1"),
+    ("RN−", "R413", "R444", "C437", "U402", "6"),
+    ("RN+", "R415", "R445", "C438", "U402", "5"),
+)
+NEGATIVE_T_SECOND = {"LP": "R438", "LN": "R440",
+                     "RP": "R442", "RN": "R444"}
 
 
 def check(board_path: Path, placement_path: Path, dfa_path: Path,
@@ -148,7 +161,10 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
             (opamp, out_pin), (rf, "2"), (cf, "2"), (link, "1"),
         }:
             raise AssertionError(f"{leg} amplifier output/load/feedback copper differs")
-        if group(opamp, inn_pin) != {(opamp, inn_pin), (rf, "1"), (cf, "1")}:
+        if group(opamp, inn_pin) != {
+            (opamp, inn_pin), (rf, "1"), (cf, "1"),
+            (NEGATIVE_T_SECOND[leg], "2"),
+        }:
             raise AssertionError(f"{leg} feedback return copper differs")
         if (link, "2") not in group(relay, "4"):
             raise AssertionError(f"{leg} link-to-relay copper is open")
@@ -209,6 +225,42 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         if not any(item.GetClass() == "ZONE"
                    for item in connectivity.GetConnectedItems(pad(cap, "2"))):
             raise AssertionError(f"{cap} 100 nF ground return is not on L2")
+    t_lengths = {}
+    for leg, first, second, cap, opamp, input_pin in T_CELLS:
+        t_net = pad(first, "2").GetNetname()
+        if group(first, "2") != {(first, "2"), (second, "1"), (cap, "1")}:
+            raise AssertionError(f"{leg} T resistor/capacitor copper is incomplete")
+        if (opamp, input_pin) not in group(second, "2"):
+            raise AssertionError(f"{leg} T output does not reach the amplifier input")
+        if not any(item.GetClass() == "ZONE"
+                   for item in connectivity.GetConnectedItems(pad(cap, "2"))):
+            raise AssertionError(f"{leg} T capacitor has no L2 ground return")
+        if any(t.GetNetname() == t_net and
+               (isinstance(t, pcbnew.PCB_VIA) or t.GetLayer() != pcbnew.F_Cu)
+               for t in board.GetTracks()):
+            raise AssertionError(f"{leg} T node left the top copper layer")
+        input_net = pad(second, "2").GetNetname()
+        lengths = {
+            "first_to_second": copper_route(board, footprints, t_net,
+                                              (first, "2"), (second, "1"))[1],
+            "capacitor_to_second": copper_route(board, footprints, t_net,
+                                                  (cap, "1"), (second, "1"))[1],
+            "second_to_amp": copper_route(board, footprints, input_net,
+                                           (second, "2"), (opamp, input_pin))[1],
+        }
+        if max(lengths.values()) > 10.0:
+            raise AssertionError(f"{leg} local T route exceeds the 10 mm review screen")
+        t_lengths[leg] = {name: round(length, 2)
+                          for name, length in lengths.items()}
+    for shunt, opamp, pin in (("R404", "U401", "1"),
+                              ("R408", "U401", "5"),
+                              ("R412", "U402", "1"),
+                              ("R416", "U402", "5")):
+        if (opamp, pin) not in group(shunt, "1"):
+            raise AssertionError(f"{shunt} input shunt does not reach {opamp}.{pin}")
+        if not any(item.GetClass() == "ZONE"
+                   for item in connectivity.GetConnectedItems(pad(shunt, "2"))):
+            raise AssertionError(f"{shunt} input shunt has no L2 return")
     return {
         "board": board_path.name,
         "footprints": 544,
@@ -222,6 +274,9 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "feedback_centreline_loop_area_mm2": feedback_areas,
         "local_tvs_routes_mm": tvs["local_routes_mm"],
         "output_amp_hf_bypass_pad_lower_bound_mm": bypass_pad_distances,
+        "routed_t_cell_count": len(t_lengths),
+        "routed_t_cell_branch_lengths_mm": t_lengths,
+        "iv_output_to_t_first_resistor_feeds": "OPEN: four low-impedance I/V output nets have no complete route to their first T resistors",
         "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
         "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
         "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
@@ -229,7 +284,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "balanced_4p4_model_sensitivity_20khz": trace["balanced_4p4_model_sensitivity_20khz"],
         "drc_reported_unconnected_items": len(drc["unconnected_items"]),
         "ratsnest_unconnected_items": connectivity.GetUnconnectedCount(False),
-        "routing_release": "HOLD: main rail feeds, input/T networks, EP thermal, L3/L4 return, R-15 measurement, F01–F04 and G-3/G-4",
+        "routing_release": "HOLD: I/V feedback and output feeds, DAC inputs, main rails/bulk, EP thermal, return extraction, R-15 measurement, F01–F04 and G-3/G-4",
     }
 
 

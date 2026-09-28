@@ -1,8 +1,8 @@
 {
   "balanced_4p4_model_sensitivity_20khz": {
     "left": {
-      "margin_to_0p5_mohm_if_same_limit": 100.8,
-      "worst_contact_path_ohm": 0.3992
+      "margin_to_0p5_mohm_if_same_limit": 97.3,
+      "worst_contact_path_ohm": 0.4027
     },
     "right": {
       "margin_to_0p5_mohm_if_same_limit": 112.4,
@@ -11,9 +11,9 @@
   },
   "balanced_4p4_planning_estimate_1khz": {
     "left": {
-      "best_contact_path_ohm": 0.375,
-      "worst_contact_path_ohm": 0.3864,
-      "worst_planning_margin_to_0p5_mohm": 113.6
+      "best_contact_path_ohm": 0.3785,
+      "worst_contact_path_ohm": 0.3899,
+      "worst_planning_margin_to_0p5_mohm": 110.1
     },
     "right": {
       "best_contact_path_ohm": 0.3591,
@@ -44,16 +44,16 @@
     },
     "LP": {
       "J701.7": {
-        "routed_mm": 60.43,
-        "trace_mohm_50c_excluding_vias": 43.79
+        "routed_mm": 65.18,
+        "trace_mohm_50c_excluding_vias": 47.3
       },
       "J701.8": {
-        "routed_mm": 70.83,
-        "trace_mohm_50c_excluding_vias": 55.25
+        "routed_mm": 75.58,
+        "trace_mohm_50c_excluding_vias": 58.76
       },
       "J702.4": {
-        "routed_mm": 73.79,
-        "trace_mohm_50c_excluding_vias": 40.69
+        "routed_mm": 73.74,
+        "trace_mohm_50c_excluding_vias": 40.23
       }
     },
     "RN": {
@@ -82,7 +82,7 @@
     }
   },
   "trs_3p5_signal_only_lower_bound_ohm": {
-    "LP": 0.2272,
+    "LP": 0.2267,
     "RP": 0.2194
   }
 }

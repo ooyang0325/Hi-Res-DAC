@@ -21,7 +21,16 @@ and the electrical schematic did not change.
   DRC now requires **2 mm left/right clearance on F.Cu pre-link
   `N4_*_OUT` copper** against the opposite channel's pre- and post-link
   output copper, alongside the existing post-link rule. L4 coupling still
-  needs extraction and measurement.
+  needs extraction and measurement. K601/R417 were shifted 2.4 mm and their
+  copper rerouted to open the input corridor; J701/J702 did not move.
+- All eight local input T triplets now have F.Cu copper from input resistor
+  through output resistor to the corresponding U401/U402 input, with their
+  shunt-capacitor branches connected and each capacitor returning to L2.
+  The routed branch maxima are
+  **6.53 mm Rin→Rout, 7.60 mm capacitor→Rout and 8.29 mm Rout→amplifier**.
+  R444 and C433 were rotated 180° to avoid T/ground crossings. These are
+  local connections: **U403/U404 I/V outputs do not yet feed the first T
+  resistors**, so the DAC-to-amplifier signal path is still open.
 - All four relay outputs physically reach the intended J701 audio contacts.
   LP and RP also reach J702 through their local TVS branches. J701 LP pads
   7/8 are joined around switch pads 9/10; RP pads 4/5 avoid the mounting peg;
@@ -44,11 +53,14 @@ and the electrical schematic did not change.
   requires a valid EN and close rail bypassing; the local copper alone does
   not establish powered operation.
 
-The exact board reports **zero KiCad custom-rule DRC violations**, zero
-footprint bounding-box overlaps, zero classified JLC package/edge proxy
+The manual record now contains **54 explicit footprint moves and 215 added
+copper items** relative to the functional-ECO board. The exact board keeps
+544 footprints and 250 named nets and reports **zero KiCad custom-rule DRC
+violations**, zero footprint bounding-box overlaps, zero classified JLC package/edge proxy
 findings and no via-ring failure. All populated pad nets match the schematic.
 The exported KiCad DRC still lists 499 missing links; the full `pcbnew`
-ratsnest counts **1,089**. These are partial-copper checks, not functional or
+ratsnest counts **1,049**, down 40 from the prior integrated checkpoint. These
+are partial-copper checks, not functional or
 PCBA acceptance. [Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
 [trace/impedance sensitivity](INTEGRATED_AUDIO_TRACE_BUDGET.json) and the
 [review guide](PLACEMENT_REVIEW_GUIDE.md) give the reproducible details.
@@ -68,15 +80,16 @@ whose manufacturer maximum is 1 mΩ per link.
 
 | 4.4 mm channel | Worst pad path, 1 kHz planning estimate | 20 kHz model sensitivity if the same 0.5 Ω limit applies |
 | --- | ---: | ---: |
-| Left | **0.3864 Ω** | **0.3992 Ω** |
+| Left | **0.3899 Ω** | **0.4027 Ω** |
 | Right | **0.3748 Ω** | **0.3876 Ω** |
 
 The 20 kHz sensitivity substitutes the calculation package's modelled
 OPA1622 closed-loop output impedance of 6.7 mΩ/leg for its 1 kHz value of
-0.33 mΩ/leg. The left 20 kHz candidate estimate leaves **100.8 mΩ** in
-the same conditional model. With the source 50 mΩ link allowance, the
-same copper would instead give 0.4972 Ω, leaving only 2.8 mΩ. The 3.5 mm
-candidate signal-only lower bounds are 0.2272 Ω (L) and 0.2194 Ω (R); the sleeve return
+0.33 mΩ/leg. The left 20 kHz candidate estimate leaves **97.3 mΩ** in
+the same conditional model. If the same 0.5 Ω criterion applies at 20 kHz,
+the former 50 mΩ-per-link allowance would put this copper at 0.5007 Ω;
+this is a sensitivity, not a measurement. The 3.5 mm candidate signal-only lower bounds are 0.2267 Ω (L)
+and 0.2194 Ω (R); the sleeve return
 has not been extracted. All these figures inherit the owner's **50 mΩ per
 jack contact engineering estimate**, which has no maker maximum. They omit
 contact variation, plated-via variation, connector solder joints, AC
@@ -101,14 +114,15 @@ exposed-pad thermal/electrical connection.
 
 ## Required before this placement can replace the primary
 
-1. **Finish each amplifier's input/T and supply subcircuit.** Rf/Cf, the four
-   input shunts, local 100 nF V+/V− capacitor links and both EN ties now have
-   copper, but the T-network and main rail source feeds remain open or remote.
-   Route VPOS and VNEG from their sources to the local amplifier groups,
-   establish the EP thermal path, then extract supply-and-return loop
-   impedance and test
-   amplifier stability and THD+N under cable/load corners. A clean partial
-   DRC cannot establish that the amplifiers will power or remain stable.
+1. **Finish the upstream I/V signal path and amplifier supplies.** The eight
+   local T triplets, four amplifier input shunts, Rf/Cf, local 100 nF V+/V−
+   links and both EN ties have copper. Route U403/U404 outputs into the first
+   T resistors, then finish the DAC→I/V inputs, I/V feedback and bypass
+   loops. Route VPOS and VNEG from their sources through bulk and local
+   bypass to the amplifier groups, establish the EP thermal path, then
+   extract supply-and-return loop impedance and test amplifier stability
+   and THD+N under cable/load corners. A clean partial DRC cannot establish
+   a complete audio path or powered operation.
 2. **Design the L3/L4 audio return.** Reserve quiet reference copper under
    the four L4 outputs, keep L2 continuous, keep switching and digital power
    away from their return currents, and add/check local stitching. Extract
@@ -117,9 +131,10 @@ exposed-pad thermal/electrical connection.
 3. **Close connector and manufacturing gates.** Verify relay/jack solder-iron
    access, J101/J702 slot soldering and board-edge process, J701 1:1 G-3
    overlay, all G-4 polarities, JLC order DFM, final BOM rotations and system
-   IEC ESD. Via-to-small-capacitor mask/tenting needs the order preview.
+   IEC ESD. Inspect the tight C437/J701/K602 region and via-to-small-capacitor
+   mask/tenting in the JLC order preview.
 4. **Complete the other circuit routes and functional holds.** USB, I²S,
-   rails, protection timers/control and most of the 1,089 ratsnest gaps remain.
+   rails, protection timers/control and most of the 1,049 ratsnest gaps remain.
    F01 all-rate post-CPLD capture and DAC-side WS fault coverage are unproven;
    F02 readback corners, F03 attach current and F04 ESD need validation.
 

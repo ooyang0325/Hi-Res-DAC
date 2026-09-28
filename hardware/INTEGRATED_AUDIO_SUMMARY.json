@@ -1,8 +1,8 @@
 {
   "balanced_4p4_model_sensitivity_20khz": {
     "left": {
-      "margin_to_0p5_mohm_if_same_limit": 100.8,
-      "worst_contact_path_ohm": 0.3992
+      "margin_to_0p5_mohm_if_same_limit": 97.3,
+      "worst_contact_path_ohm": 0.4027
     },
     "right": {
       "margin_to_0p5_mohm_if_same_limit": 112.4,
@@ -11,9 +11,9 @@
   },
   "balanced_4p4_planning_estimate_1khz": {
     "left": {
-      "best_contact_path_ohm": 0.375,
-      "worst_contact_path_ohm": 0.3864,
-      "worst_planning_margin_to_0p5_mohm": 113.6
+      "best_contact_path_ohm": 0.3785,
+      "worst_contact_path_ohm": 0.3899,
+      "worst_planning_margin_to_0p5_mohm": 110.1
     },
     "right": {
       "best_contact_path_ohm": 0.3591,
@@ -32,6 +32,7 @@
     "RP": 4.833
   },
   "footprints": 544,
+  "iv_output_to_t_first_resistor_feeds": "OPEN: four low-impedance I/V output nets have no complete route to their first T resistors",
   "jlc_spacing_and_edge_proxy_findings": 0,
   "l2_gnd_filled_polygons": 1,
   "local_tvs_routes_mm": {
@@ -44,8 +45,8 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
-  "manual_added_copper_items": 151,
-  "manual_moves": 41,
+  "manual_added_copper_items": 215,
+  "manual_moves": 54,
   "named_nets": 250,
   "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
   "output_amp_hf_bypass_pad_lower_bound_mm": {
@@ -56,6 +57,49 @@
     "U402.4 VNEG": 2.91,
     "U402.PAD VNEG": 3.0
   },
-  "ratsnest_unconnected_items": 1089,
-  "routing_release": "HOLD: main rail feeds, input/T networks, EP thermal, L3/L4 return, R-15 measurement, F01\u2013F04 and G-3/G-4"
+  "ratsnest_unconnected_items": 1049,
+  "routed_t_cell_branch_lengths_mm": {
+    "LN+": {
+      "capacitor_to_second": 2.08,
+      "first_to_second": 3.14,
+      "second_to_amp": 5.08
+    },
+    "LN\u2212": {
+      "capacitor_to_second": 4.49,
+      "first_to_second": 6.53,
+      "second_to_amp": 4.98
+    },
+    "LP+": {
+      "capacitor_to_second": 4.49,
+      "first_to_second": 4.43,
+      "second_to_amp": 3.87
+    },
+    "LP\u2212": {
+      "capacitor_to_second": 6.96,
+      "first_to_second": 6.13,
+      "second_to_amp": 8.29
+    },
+    "RN+": {
+      "capacitor_to_second": 7.6,
+      "first_to_second": 2.0,
+      "second_to_amp": 4.39
+    },
+    "RN\u2212": {
+      "capacitor_to_second": 3.24,
+      "first_to_second": 1.87,
+      "second_to_amp": 5.43
+    },
+    "RP+": {
+      "capacitor_to_second": 1.73,
+      "first_to_second": 2.55,
+      "second_to_amp": 6.57
+    },
+    "RP\u2212": {
+      "capacitor_to_second": 1.71,
+      "first_to_second": 6.13,
+      "second_to_amp": 7.09
+    }
+  },
+  "routed_t_cell_count": 8,
+  "routing_release": "HOLD: I/V feedback and output feeds, DAC inputs, main rails/bulk, EP thermal, return extraction, R-15 measurement, F01\u2013F04 and G-3/G-4"
 }

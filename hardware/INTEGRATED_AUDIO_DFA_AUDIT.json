@@ -29,7 +29,9 @@
       "K602",
       "R419"
     ],
-    "lower_relays_to_J701": []
+    "lower_relays_to_J701": [
+      "C437"
+    ]
   },
   "method": "F.Fab drawing rectangles where available, otherwise footprint bounds; body-spacing proxy",
   "outline_mm": [
