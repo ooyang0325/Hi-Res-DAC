@@ -49,6 +49,7 @@ python3 hardware/audit_placement.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUD
 python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb > /tmp/dfa_dfm.json
 python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb > /tmp/jlc_fab.json
 kicad-cli pcb drc --format json --severity-error --severity-warning -o /tmp/pcb_drc.json hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
+python3 hardware/audit_local_tvs_paths.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb --output /tmp/local_tvs.json
 python3 hardware/check_functional_eco_layout.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb /tmp/placement.json /tmp/dfa_dfm.json /tmp/jlc_fab.json /tmp/pcb_drc.json
 python3 hardware/audit_3d_models.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb --output /tmp/model_3d.json
 ```

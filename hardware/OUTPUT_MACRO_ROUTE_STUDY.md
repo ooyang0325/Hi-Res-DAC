@@ -59,6 +59,10 @@ spacing and board-edge proxies have zero classified findings; 16 placed
 references still need individual process review. The slot/via ring audit has
 no failure. The exported DRC lists 499 missing links; the full `pcbnew`
 ratsnest counts **1,120**, so most of the board remains unrouted.
+The separate [local TVS copper audit](OUTPUT_MACRO_LOCAL_TVS_AUDIT.json)
+checks all six provisional ≤4.2 mm named-pad paths. It remains valid as
+paired contacts and relay branches are added, when a generic net-length
+constraint can count the wrong branch.
 
 Before replacing the primary placement, draw these networks **on the same
 candidate** and repeat the electrical and manufacturing checks:

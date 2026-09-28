@@ -82,6 +82,21 @@ python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("violations:"
   /tmp/dac-hpa-review/09_drc.json
 ```
 
+The provisional 4.2 mm J701/J702 TVS limits need a **separate named-pad
+copper-path check** when paired jack contacts and relay branches are routed.
+Use the KiCad Python that includes `pcbnew` (`python3` in the GitLab KiCad
+image, or the bundled interpreter on macOS):
+
+```sh
+/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3 \
+  hardware/audit_local_tvs_paths.py \
+  hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
+```
+
+Pass the output-study PCB path instead to check that board. The script finds
+the actual shortest L1 path between each named jack and TVS pad; a generic
+KiCad net `length` check can count extra branches and report a false excess.
+
 ## What to measure after looking
 
 1. Mark suspicious locations by reference and **PCB x/y in mm**, side and layer in [Review findings template](REVIEW_FINDINGS_TEMPLATE.md). Use KiCad's PCB Editor for exact coordinates/pad numbers; plots are a fast visual screen.

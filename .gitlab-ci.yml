@@ -130,9 +130,10 @@ validate_functional_eco:
     - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb > hardware/FUNCTIONAL_ECO_DFA_AUDIT.json
     - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb > hardware/FUNCTIONAL_ECO_JLC_FAB_AUDIT.json
     - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/FUNCTIONAL_ECO_DRC.json hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/audit_local_tvs_paths.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb --output hardware/LOCAL_TVS_ROUTE_AUDIT.json
     - python3 hardware/check_functional_eco_layout.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb hardware/FUNCTIONAL_ECO_PLACEMENT_AUDIT.json hardware/FUNCTIONAL_ECO_DFA_AUDIT.json hardware/FUNCTIONAL_ECO_JLC_FAB_AUDIT.json hardware/FUNCTIONAL_ECO_DRC.json --output hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json
     - python3 hardware/audit_3d_models.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb --output hardware/FUNCTIONAL_ECO_3D_AUDIT.json
-    - git diff --exit-code -- hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json
+    - git diff --exit-code -- hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json hardware/LOCAL_TVS_ROUTE_AUDIT.json
     - echo "Current ECO schematic/board population, JLC geometry, DRC and 3D links checked. Full routing and functional qualification remain HOLD."
   artifacts:
     when: always
@@ -144,6 +145,7 @@ validate_functional_eco:
       - hardware/FUNCTIONAL_ECO_DRC.json
       - hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json
       - hardware/FUNCTIONAL_ECO_3D_AUDIT.json
+      - hardware/LOCAL_TVS_ROUTE_AUDIT.json
 
 validate_output_macro_study:
   stage: validate
@@ -156,8 +158,9 @@ validate_output_macro_study:
     - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb > hardware/OUTPUT_MACRO_STUDY_DFA_AUDIT.json
     - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb > hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json
     - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/OUTPUT_MACRO_STUDY_DRC.json hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/audit_local_tvs_paths.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb --output hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
     - python3 hardware/check_output_macro_study.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb hardware/OUTPUT_MACRO_STUDY_PLACEMENT_AUDIT.json hardware/OUTPUT_MACRO_STUDY_DFA_AUDIT.json hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json hardware/OUTPUT_MACRO_STUDY_DRC.json --output hardware/OUTPUT_MACRO_STUDY_SUMMARY.json
-    - git diff --exit-code -- hardware/OUTPUT_MACRO_STUDY_SUMMARY.json
+    - git diff --exit-code -- hardware/OUTPUT_MACRO_STUDY_SUMMARY.json hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
     - echo "Manual output-macro copper checked; jack, returns and qualification remain HOLD."
   artifacts:
     when: always
@@ -168,6 +171,7 @@ validate_output_macro_study:
       - hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json
       - hardware/OUTPUT_MACRO_STUDY_DRC.json
       - hardware/OUTPUT_MACRO_STUDY_SUMMARY.json
+      - hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
 
 deliver_review_package:
   stage: deliver
@@ -240,9 +244,11 @@ deliver_review_package:
       - hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json
       - hardware/FUNCTIONAL_ECO_3D_AUDIT.json
       - hardware/FUNCTIONAL_ECO_DRC.json
+      - hardware/LOCAL_TVS_ROUTE_AUDIT.json
       - hardware/OUTPUT_MACRO_ROUTE_STUDY.md
       - hardware/OUTPUT_MACRO_STUDY_SUMMARY.json
       - hardware/OUTPUT_MACRO_STUDY_DRC.json
+      - hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
       - hardware/OUTPUT_MACRO_STUDY_PLACEMENT_AUDIT.json
       - hardware/OUTPUT_MACRO_STUDY_DFA_AUDIT.json
       - hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json
