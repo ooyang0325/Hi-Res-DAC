@@ -1,24 +1,24 @@
 {
   "balanced_4p4_model_sensitivity_20khz": {
     "left": {
-      "margin_to_0p5_mohm_if_same_limit": 97.3,
-      "worst_contact_path_ohm": 0.4027
+      "margin_to_0p5_mohm_if_same_limit": 101.0,
+      "worst_contact_path_ohm": 0.399
     },
     "right": {
-      "margin_to_0p5_mohm_if_same_limit": 112.4,
-      "worst_contact_path_ohm": 0.3876
+      "margin_to_0p5_mohm_if_same_limit": 113.6,
+      "worst_contact_path_ohm": 0.3864
     }
   },
   "balanced_4p4_planning_estimate_1khz": {
     "left": {
-      "best_contact_path_ohm": 0.3785,
-      "worst_contact_path_ohm": 0.3899,
-      "worst_planning_margin_to_0p5_mohm": 110.1
+      "best_contact_path_ohm": 0.3754,
+      "worst_contact_path_ohm": 0.3862,
+      "worst_planning_margin_to_0p5_mohm": 113.8
     },
     "right": {
-      "best_contact_path_ohm": 0.3591,
-      "worst_contact_path_ohm": 0.3748,
-      "worst_planning_margin_to_0p5_mohm": 125.2
+      "best_contact_path_ohm": 0.358,
+      "worst_contact_path_ohm": 0.3737,
+      "worst_planning_margin_to_0p5_mohm": 126.3
     }
   },
   "bbox_overlaps": 0,
@@ -45,8 +45,9 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
-  "manual_added_copper_items": 215,
+  "manual_added_copper_items": 250,
   "manual_moves": 54,
+  "manual_replaced_source_copper_items": 4,
   "named_nets": 250,
   "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
   "output_amp_hf_bypass_pad_lower_bound_mm": {
@@ -58,6 +59,7 @@
     "U402.PAD VNEG": 3.0
   },
   "ratsnest_unconnected_items": 1049,
+  "right_angle_track_bends": 0,
   "routed_t_cell_branch_lengths_mm": {
     "LN+": {
       "capacitor_to_second": 2.08,
@@ -80,7 +82,7 @@
       "second_to_amp": 8.29
     },
     "RN+": {
-      "capacitor_to_second": 7.6,
+      "capacitor_to_second": 7.25,
       "first_to_second": 2.0,
       "second_to_amp": 4.39
     },
@@ -96,7 +98,7 @@
     },
     "RP\u2212": {
       "capacitor_to_second": 1.71,
-      "first_to_second": 6.13,
+      "first_to_second": 5.95,
       "second_to_amp": 7.09
     }
   },

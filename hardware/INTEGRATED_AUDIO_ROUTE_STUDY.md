@@ -1,4 +1,4 @@
-# Integrated amplifier-to-jack route study — 28 September 2026
+# Integrated amplifier-to-jack route study — 29 September 2026
 
 **Use this as the newest audio-routing review candidate, not as order data.**
 The editable [KiCad board](DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb)
@@ -27,7 +27,7 @@ and the electrical schematic did not change.
   through output resistor to the corresponding U401/U402 input, with their
   shunt-capacitor branches connected and each capacitor returning to L2.
   The routed branch maxima are
-  **6.53 mm Rin→Rout, 7.60 mm capacitor→Rout and 8.29 mm Rout→amplifier**.
+  **6.53 mm Rin→Rout, 7.25 mm capacitor→Rout and 8.29 mm Rout→amplifier**.
   R444 and C433 were rotated 180° to avoid T/ground crossings. These are
   local connections: **U403/U404 I/V outputs do not yet feed the first T
   resistors**, so the DAC-to-amplifier signal path is still open.
@@ -53,8 +53,16 @@ and the electrical schematic did not change.
   requires a valid EN and close rail bypassing; the local copper alone does
   not establish powered operation.
 
-The manual record now contains **54 explicit footprint moves and 215 added
-copper items** relative to the functional-ECO board. The exact board keeps
+After close visual review, 33 explicit 45° mitres replace the sharp
+two-segment turns on the amplifier inputs, clock monitor, power rail and
+headphone trunks. Two short 0.4/0.3 mm doglegs were redrawn directly as
+diagonals. The [integrated checker](check_integrated_audio_study.py) now
+rejects any remaining two-segment 90° track bend; this board has **zero**.
+Its geometry audit treats T junctions and pad entries separately from bends.
+
+The manual record now contains **54 explicit footprint moves, four replaced
+source tracks and 250 added copper items** relative to the functional-ECO
+board. The exact board keeps
 544 footprints and 250 named nets and reports **zero KiCad custom-rule DRC
 violations**, zero footprint bounding-box overlaps, zero classified JLC package/edge proxy
 findings and no via-ring failure. All populated pad nets match the schematic.
@@ -80,16 +88,17 @@ whose manufacturer maximum is 1 mΩ per link.
 
 | 4.4 mm channel | Worst pad path, 1 kHz planning estimate | 20 kHz model sensitivity if the same 0.5 Ω limit applies |
 | --- | ---: | ---: |
-| Left | **0.3899 Ω** | **0.4027 Ω** |
-| Right | **0.3748 Ω** | **0.3876 Ω** |
+| Left | **0.3862 Ω** | **0.3990 Ω** |
+| Right | **0.3737 Ω** | **0.3864 Ω** |
 
 The 20 kHz sensitivity substitutes the calculation package's modelled
 OPA1622 closed-loop output impedance of 6.7 mΩ/leg for its 1 kHz value of
-0.33 mΩ/leg. The left 20 kHz candidate estimate leaves **97.3 mΩ** in
+0.33 mΩ/leg. The left 20 kHz candidate estimate leaves **101.0 mΩ** in
 the same conditional model. If the same 0.5 Ω criterion applies at 20 kHz,
-the former 50 mΩ-per-link allowance would put this copper at 0.5007 Ω;
-this is a sensitivity, not a measurement. The 3.5 mm candidate signal-only lower bounds are 0.2267 Ω (L)
-and 0.2194 Ω (R); the sleeve return
+the former 50 mΩ-per-link allowance would put this copper at 0.4970 Ω,
+leaving only 3 mΩ in the model;
+this is a sensitivity, not a measurement. The 3.5 mm candidate signal-only lower bounds are 0.2255 Ω (L)
+and 0.2188 Ω (R); the sleeve return
 has not been extracted. All these figures inherit the owner's **50 mΩ per
 jack contact engineering estimate**, which has no maker maximum. They omit
 contact variation, plated-via variation, connector solder joints, AC

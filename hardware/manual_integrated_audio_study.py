@@ -24,6 +24,29 @@ def xy(x_mm: float, y_mm: float) -> pcbnew.VECTOR2I:
     return pcbnew.VECTOR2I(pcbnew.FromMM(x_mm), pcbnew.FromMM(y_mm))
 
 
+def copper_item(item: pcbnew.BOARD_CONNECTED_ITEM) -> tuple:
+    """Identify source copper exactly before replacing hand-picked bends."""
+    if isinstance(item, pcbnew.PCB_VIA):
+        at = item.GetPosition()
+        return ("via", item.GetNetname(), round(pcbnew.ToMM(at.x), 4),
+                round(pcbnew.ToMM(at.y), 4),
+                round(pcbnew.ToMM(item.GetWidth(pcbnew.F_Cu)), 4),
+                round(pcbnew.ToMM(item.GetDrillValue()), 4))
+    a, b = item.GetStart(), item.GetEnd()
+    return ("track", item.GetNetname(), item.GetLayerName(),
+            round(pcbnew.ToMM(a.x), 4), round(pcbnew.ToMM(a.y), 4),
+            round(pcbnew.ToMM(b.x), 4), round(pcbnew.ToMM(b.y), 4),
+            round(pcbnew.ToMM(item.GetWidth()), 4))
+
+
+def manifest_item(item: dict) -> tuple:
+    if item["kind"] == "via":
+        return ("via", item["net"], *item["at_mm"],
+                item["diameter_mm"], item["drill_mm"])
+    return ("track", item["net"], item["layer"],
+            *item["start_mm"], *item["end_mm"], item["width_mm"])
+
+
 def build(output_path: Path) -> None:
     record = json.loads(MANIFEST.read_text())
     source = HERE / record["source_board"]
@@ -33,6 +56,18 @@ def build(output_path: Path) -> None:
             or len(board.GetTracks()) != record["source_track_and_via_items"]
             or len(board.Zones()) != 1):
         raise AssertionError("ECO source geometry changed; review the manual delta before replay")
+    source_tracks = board.GetTracks()
+    to_remove = []
+    for removed in record.get("removed_source_copper", []):
+        wanted = manifest_item(removed)
+        matches = [item for item in source_tracks
+                   if copper_item(item) == wanted]
+        if len(matches) != 1:
+            raise AssertionError(f"Source copper to replace changed: {removed}")
+        source_tracks.remove(matches[0])
+        to_remove.append(matches[0])
+    for item in to_remove:
+        board.Remove(item)
     for ref, (x_mm, y_mm, angle) in record["moved_footprints"].items():
         footprint = footprints[ref]
         footprint.SetPosition(xy(x_mm, y_mm))

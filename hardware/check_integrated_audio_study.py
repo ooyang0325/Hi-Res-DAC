@@ -111,10 +111,39 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
 
     base_copper = collections.Counter(copper_item(item) for item in source.GetTracks())
     candidate_copper = collections.Counter(copper_item(item) for item in board.GetTracks())
+    removed_copper = collections.Counter(manifest_item(item)
+                                         for item in manual.get("removed_source_copper", []))
     added_copper = collections.Counter(manifest_item(item)
                                        for item in manual["added_copper"])
-    if candidate_copper != base_copper + added_copper:
+    if removed_copper - base_copper:
+        raise AssertionError("Manual source-copper removal record is stale")
+    if candidate_copper != base_copper - removed_copper + added_copper:
         raise AssertionError("Manual copper record differs from the PCB")
+
+    # A two-segment orthogonal corner concentrates the visual and physical
+    # route at one sharp bend. Pad fanouts and three-way joins are checked by
+    # the copper/DRC gates above; this catches actual track-to-track bends.
+    incident = collections.defaultdict(list)
+    for item in board.GetTracks():
+        if isinstance(item, pcbnew.PCB_VIA):
+            continue
+        a, b = item.GetStart(), item.GetEnd()
+        if a == b:
+            raise AssertionError("Zero-length audio-study track")
+        for here, other in ((a, b), (b, a)):
+            incident[(item.GetNetname(), item.GetLayer(), here.x, here.y)].append(
+                (other.x - here.x, other.y - here.y))
+    right_angle_bends = []
+    for (net, layer, x, y), vectors in incident.items():
+        if len(vectors) != 2:
+            continue
+        (ax, ay), (bx, by) = vectors
+        if abs(ax * bx + ay * by) < 1e-5 * math.hypot(ax, ay) * math.hypot(bx, by):
+            right_angle_bends.append((net, board.GetLayerName(layer),
+                                      round(pcbnew.ToMM(x), 3),
+                                      round(pcbnew.ToMM(y), 3)))
+    if right_angle_bends:
+        raise AssertionError(f"Right-angle track bends remain: {right_angle_bends[:8]}")
 
     zone = board.Zones()[0]
     if (len(board.Zones()) != 1 or zone.GetNetname() != "GND"
@@ -266,7 +295,9 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "footprints": 544,
         "named_nets": 250,
         "manual_moves": len(manual["moved_footprints"]),
+        "manual_replaced_source_copper_items": len(manual.get("removed_source_copper", [])),
         "manual_added_copper_items": len(manual["added_copper"]),
+        "right_angle_track_bends": 0,
         "drc_violations": 0,
         "bbox_overlaps": 0,
         "jlc_spacing_and_edge_proxy_findings": 0,
