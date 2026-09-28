@@ -1,0 +1,56 @@
+{
+  "board": "hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb",
+  "board_edge_body_spacing_violation_count": 0,
+  "board_edge_body_spacing_violations": [],
+  "jlc_classified_refs": 447,
+  "jlc_placed_refs": 463,
+  "jlc_source": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+  "jlc_unclassified_refs": [
+    "C442",
+    "C443",
+    "C631",
+    "C632",
+    "C633",
+    "C634",
+    "D411",
+    "D412",
+    "D705",
+    "D706",
+    "J101",
+    "J702",
+    "X201",
+    "X202",
+    "X203",
+    "Y201"
+  ],
+  "l1_output_corridor_blockers": {
+    "J702_to_lower_relays": [
+      "D707"
+    ],
+    "lower_relays_to_J701": [
+      "R419"
+    ]
+  },
+  "method": "F.Fab drawing rectangles where available, otherwise footprint bounds; body-spacing proxy",
+  "outline_mm": [
+    120.0,
+    100.0
+  ],
+  "package_pair_spacing_violation_count": 0,
+  "package_pair_spacing_worst_40": [],
+  "package_pair_violations_by_class": {},
+  "unclassified_body_edge_concerns": [
+    {
+      "body_to_edge_mm": -0.05,
+      "class": null,
+      "jlc_body_min_mm": 2.5,
+      "ref": "J101"
+    },
+    {
+      "body_to_edge_mm": 0.33,
+      "class": null,
+      "jlc_body_min_mm": 2.5,
+      "ref": "J702"
+    }
+  ]
+}

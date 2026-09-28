@@ -27,6 +27,16 @@ KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
   hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb
 ```
 
+To inspect the newer manual four-channel output route study, pass its separate
+board as the second argument. Compare the F.Cu, B.Cu and L2 plots at the same
+zoom; the L4 audio return and relay-to-jack routing remain under review:
+
+```sh
+KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
+  bash hardware/make_review_views.sh /tmp/dac-hpa-output-review \
+  hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
+```
+
 The default current file is `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb`. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison.
 
 | File | What to inspect |

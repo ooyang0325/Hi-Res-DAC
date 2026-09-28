@@ -240,6 +240,10 @@ def main() -> None:
         if (isinstance(drawing, pcbnew.PCB_TEXT)
                 and drawing.GetText().startswith("MACRO PLACEMENT V2")):
             drawing.SetText("FUNCTIONAL ECO / MANUAL PLACEMENT — REVIEW ONLY")
+    title = board.GetTitleBlock()
+    title.SetTitle("DAC-HPA — 120 × 100 mm functional ECO review")
+    title.SetComment(0, "Partial MCLK and connector ESD copper; review only")
+    title.SetComment(1, "Manual placement; not a fabrication or PCBA release")
     pcbnew.SaveBoard(str(OUTPUT), board)
     print(f"Saved {OUTPUT.name}: {len(board.GetFootprints())} footprints, "
           f"{len(NEW_POSITIONS)} manually located ECO parts")
