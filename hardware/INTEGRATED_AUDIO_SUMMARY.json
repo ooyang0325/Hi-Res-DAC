@@ -1,0 +1,50 @@
+{
+  "balanced_4p4_model_sensitivity_20khz": {
+    "left": {
+      "margin_to_0p5_mohm_if_same_limit": 7.2,
+      "worst_contact_path_ohm": 0.4928
+    },
+    "right": {
+      "margin_to_0p5_mohm_if_same_limit": 19.7,
+      "worst_contact_path_ohm": 0.4803
+    }
+  },
+  "balanced_4p4_planning_estimate_1khz": {
+    "left": {
+      "best_contact_path_ohm": 0.4729,
+      "worst_contact_path_ohm": 0.48,
+      "worst_planning_margin_to_0p5_mohm": 20.0
+    },
+    "right": {
+      "best_contact_path_ohm": 0.4519,
+      "worst_contact_path_ohm": 0.4676,
+      "worst_planning_margin_to_0p5_mohm": 32.4
+    }
+  },
+  "bbox_overlaps": 0,
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "drc_reported_unconnected_items": 499,
+  "drc_violations": 0,
+  "feedback_centreline_loop_area_mm2": {
+    "LN": 4.833,
+    "LP": 4.833,
+    "RN": 4.833,
+    "RP": 4.833
+  },
+  "footprints": 544,
+  "jlc_spacing_and_edge_proxy_findings": 0,
+  "l2_gnd_filled_polygons": 1,
+  "local_tvs_routes_mm": {
+    "LN J701": 4.03,
+    "LP J701": 3.83,
+    "LP J702": 3.255,
+    "RN J701": 4.03,
+    "RP J701": 4.03,
+    "RP J702": 3.864
+  },
+  "manual_added_copper_items": 107,
+  "manual_moves": 38,
+  "named_nets": 250,
+  "ratsnest_unconnected_items": 1101,
+  "routing_release": "HOLD: input/T networks, VPOS/VNEG/EP bypass, L3/L4 return, R-15 measurement, F01\u2013F04 and G-3/G-4"
+}

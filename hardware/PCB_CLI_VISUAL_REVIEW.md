@@ -37,7 +37,17 @@ KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
   hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
 ```
 
-The default current file is `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb`. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison.
+For the latest amplifier-to-jack route candidate, use the integrated board.
+It keeps all four output signal paths visible while leaving the rest of the
+PCB unrouted:
+
+```sh
+KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
+  bash hardware/make_review_views.sh /tmp/dac-hpa-integrated-review \
+  hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+```
+
+The default file is the `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb` capture baseline. The integrated board is the newest audio-routing study. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison. Counts in the table below describe the default baseline; the [integrated summary](INTEGRATED_AUDIO_SUMMARY.json) has its separate counts and electrical holds.
 
 | File | What to inspect |
 | --- | --- |

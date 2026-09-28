@@ -1,6 +1,6 @@
 # Four-channel output macro route study — 28 September 2026
 
-**Status: review study, not the primary board or PCBA order data.** Open
+**Status: intermediate review study, not the primary board or PCBA order data.** The newer [integrated-audio study](INTEGRATED_AUDIO_ROUTE_STUDY.md) carries these amplifier paths through J701/J702 and is the current audio-routing comparison. Open
 [the separate KiCad board](DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb)
 alongside the [current functional-ECO board](DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb).
 Both have 544 footprints and the same 250 named nets. This study moves 22

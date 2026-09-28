@@ -173,6 +173,36 @@ validate_output_macro_study:
       - hardware/OUTPUT_MACRO_STUDY_SUMMARY.json
       - hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
 
+validate_integrated_audio_study:
+  stage: validate
+  needs:
+    - validate_output_macro_study
+  script:
+    # Replay frozen engineer-selected coordinates/copper and validate the
+    # committed study. No placement or routing search runs.
+    - python3 hardware/manual_integrated_audio_study.py --output /tmp/dac-integrated-audio-regenerated.kicad_pcb
+    - test -s /tmp/dac-integrated-audio-regenerated.kicad_pcb
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --height 100 > hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb > hardware/INTEGRATED_AUDIO_DFA_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb > hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/INTEGRATED_AUDIO_DRC.json hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/audit_local_tvs_paths.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json
+    - python3 hardware/audit_audio_output_traces.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json
+    - python3 hardware/check_integrated_audio_study.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json hardware/INTEGRATED_AUDIO_DFA_AUDIT.json hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json hardware/INTEGRATED_AUDIO_DRC.json hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json --output hardware/INTEGRATED_AUDIO_SUMMARY.json
+    - git diff --exit-code -- hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json hardware/INTEGRATED_AUDIO_SUMMARY.json
+    - echo "Integrated audio copper checked; bypass, L3 return, output-impedance measurements and full routing HOLD."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_DFA_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_DRC.json
+      - hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json
+      - hardware/INTEGRATED_AUDIO_SUMMARY.json
+
 deliver_review_package:
   stage: deliver
   needs:
@@ -182,6 +212,7 @@ deliver_review_package:
     - validate_macro_study
     - validate_functional_eco
     - validate_output_macro_study
+    - validate_integrated_audio_study
   script:
     - python3 hardware/export_assembly_review.py
     - kicad-cli sch export pdf -o hardware/DAC_HPA_review_only.pdf hardware/DAC_HPA.kicad_sch
@@ -194,6 +225,8 @@ deliver_review_package:
     - test -s hardware/DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb
     - kicad-cli pcb export glb --force -o hardware/DAC_HPA_OUTPUT_MACRO_STUDY_REVIEW.glb hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
     - test -s hardware/DAC_HPA_OUTPUT_MACRO_STUDY_REVIEW.glb
+    - kicad-cli pcb export glb --force -o hardware/DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb
     - kicad-cli pcb export svg --mode-single --layers F.Fab,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_MACRO_STUDY_PLACEMENT_REVIEW.svg hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb
     - test -s hardware/DAC_HPA_MACRO_STUDY_PLACEMENT_REVIEW.svg
     - kicad-cli pcb export svg --mode-single --layers F.Cu,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_FUNCTIONAL_ECO_PLACEMENT_REVIEW.svg hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
@@ -202,6 +235,10 @@ deliver_review_package:
     - test -s hardware/DAC_HPA_OUTPUT_MACRO_TOP_REVIEW.svg
     - kicad-cli pcb export svg --mode-single --layers B.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet --mirror -o hardware/DAC_HPA_OUTPUT_MACRO_BOTTOM_REVIEW.svg hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
     - test -s hardware/DAC_HPA_OUTPUT_MACRO_BOTTOM_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers F.Cu,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers B.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet --mirror -o hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg
     - python3 hardware/j702_esd_option.py
     - kicad-cli pcb export svg --mode-single --layers F.Cu,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_J702_ESD_OPTION_REVIEW.svg hardware/DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb
     - test -s hardware/DAC_HPA_J702_ESD_OPTION_REVIEW.svg
@@ -224,6 +261,12 @@ deliver_review_package:
       - hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
       - hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pro
       - hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_dru
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg
+      - hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+      - hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pro
+      - hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_dru
       - hardware/DAC_HPA_FUNCTIONAL_ECO_PLACEMENT_REVIEW.png
       - hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
       - hardware/DAC_HPA_J702_ESD_OPTION_REVIEW.svg
@@ -252,6 +295,15 @@ deliver_review_package:
       - hardware/OUTPUT_MACRO_STUDY_PLACEMENT_AUDIT.json
       - hardware/OUTPUT_MACRO_STUDY_DFA_AUDIT.json
       - hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_ROUTE_STUDY.md
+      - hardware/INTEGRATED_AUDIO_MANUAL_DELTA.json
+      - hardware/INTEGRATED_AUDIO_SUMMARY.json
+      - hardware/INTEGRATED_AUDIO_DRC.json
+      - hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json
+      - hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_DFA_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json
       - hardware/CONSTRAINT_DISPOSITION_V2.md
       - hardware/J702_LOCAL_TVS_OPTION.md
       - hardware/REVIEW_FINDINGS_TEMPLATE.md
