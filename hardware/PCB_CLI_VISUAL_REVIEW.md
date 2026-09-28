@@ -48,17 +48,19 @@ KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
   hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
 ```
 
-The default file is the `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb` capture baseline. The integrated board is the current audio-routing study. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison. Counts in the table below describe the default baseline; the [integrated summary](INTEGRATED_AUDIO_SUMMARY.json) has its separate counts and electrical holds. On the integrated plot, zoom to U301/U403/U404 at PCB x = 91–104 mm, y = 70–88 mm, then follow the right I/V feeds across L3/L4 toward the T cells and check the L3 VPOS crossing near x = 115–121 mm, y = 74–76 mm. Zoom to U501 at x = 68–77 mm, y = 128–137 mm to inspect its three short VIN escapes and capacitor returns. The copper audit rejects free-track bends within 80–100°; joins at component pads and straight-through T/cross branches are classified separately.
+The default file is the `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb` capture baseline. The integrated board is the current audio-routing study. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison. Counts in the table below describe the default baseline; the [integrated summary](INTEGRATED_AUDIO_SUMMARY.json) has its separate counts and electrical holds.
+
+On the integrated plots, zoom to U301/U403/U404 at PCB x = 91–104 mm, y = 70–88 mm. Compare all four F.Cu DAC inputs with filled L2: the checker found direct L2 beneath the routes at 0.01 mm samples and offsets 0, ±0.05, ±0.10 mm, while U403→C417 feedback still has a **1.9426 mm** centreline gap near an I/V-output via. Follow the right I/V feeds across L3/L4 toward the T cells, including R411/R413 at **27.289/41.648 mm**, and check the L3 VPOS crossing near x = 115–121 mm, y = 74–76 mm. Zoom to U501 at x = 68–77 mm, y = 128–137 mm: its B.Cu `5V_ANA_F` feeder now detours around F.Cu `N5_FBP`, but the original via antipad remains. Inspect the three VIN escapes and capacitor returns. The copper audit rejects free-track bends within 80–100°; joins at component pads and straight-through T/cross branches are classified separately. Plots do not extract return impedance or coupling.
 
 | File | What to inspect |
 | --- | --- |
 | `01_body_courtyard.svg` | F.Fab bodies, F.CrtYd and board outline. Zoom in on J101/J702 edges, J701 top-side solder access, K601–K604 iron access, dense U301/U403/U404 and timer groups. Check that courtyard clearances leave routing channels. |
 | `02_top_copper.svg` | F.Cu pads and 28 existing tracks. Follow D701–D704 to J701, D707/D708 to J702, and X201→R203→TP711→U301 with the R227 ground via and R665→U607 branch. The LP main trunk and most other connections remain unrouted. Inspect J101 fine-pitch escape and the four output-leg crossovers. |
-| `03_l2_ground.svg` | Saved filled In1.Cu/L2 GND zone and outline. Look for continuous copper under future USB, clocks, I²S, DAC and analog paths. Refill the zone in KiCad and recheck after routes, holes and stitching vias are added. |
+| `03_l2_ground.svg` | Saved filled In1.Cu/L2 GND zone and outline. Look for continuous copper under future USB, clocks, I²S and analog paths; on the integrated board, inspect sampled DAC-input support and the DACL feedback gap near the I/V-output via. Refill the zone in KiCad and recheck after routes, holes and stitching vias are added. |
 | `04_top_mask.svg` | Top mask openings around fine-pitch parts and the plated jack/USB slots. Compare to copper to spot potential slivers or unexpected exposed metal. |
 | `05_top_paste.svg` | Top paste apertures. J101 shell stakes S1–S4 and J702 slots 1/2 currently have **no paste aperture**; this is a JLCPCB process hold, not an accidental omission to fix from the plot alone. |
 | `06_top_silkscreen.svg` | Top legend and polarity/pin-1 marks. Inspect D102, D705/D706, U202, X201–X203, jacks and dense assembly regions. |
-| `07_bottom_copper.svg` | Mirrored B.Cu view, useful for checking underside hand-solder access and later return routes. |
+| `07_bottom_copper.svg` | Mirrored B.Cu view, useful for checking underside hand-solder access, the U501 feeder detour and later return routes. |
 | `08_board_3d.glb` | Portable 3D assembly for an external GLB viewer; inspect connector projection and component bodies/heights. The four C631–C634 VRML body envelopes do not appear in the GLB; they do appear in KiCad's 3D Viewer. |
 | `09_drc.json` | KiCad error/warning DRC report. Zero findings on this partial board do not mean all nets are routed. This JSON lists 499 missing links; the full `pcbnew` ratsnest counts 1,144. |
 
@@ -111,7 +113,7 @@ KiCad net `length` check can count extra branches and report a false excess.
 ## What to measure after looking
 
 1. Mark suspicious locations by reference and **PCB x/y in mm**, side and layer in [Review findings template](REVIEW_FINDINGS_TEMPLATE.md). Use KiCad's PCB Editor for exact coordinates/pad numbers; plots are a fast visual screen.
-2. Compare the SVGs with the actual board and [placement review guide](PLACEMENT_REVIEW_GUIDE.md). A 2D plot cannot prove simultaneous headphone routes with local 0.25 mm VSON escapes, 90 Ω USB impedance, <5 mm² I/V feedback loops or the jack return.
+2. Compare the SVGs with the actual board and [placement review guide](PLACEMENT_REVIEW_GUIDE.md). A 2D plot cannot prove simultaneous headphone routes with 0.25 mm VSON escapes, 90 Ω USB impedance, the true 3D I/V feedback loop, jack return quality or U501 switching-noise isolation; the <5 mm² I/V result is a projected centreline screen.
 3. For physical fit, print [G-3 overlay sheets](G3_OVERLAY_INDEX.md) at 100% and verify the 10 mm bars, then check real samples or calibrated CAD. The CLI SVGs and GLB do not close G-3 or G-4.
 
 Run the script again after any PCB edit and compare the same view names between revisions. Keep the exported files with the reviewed commit SHA; they are inspection aids, not Gerbers, stencil files or PCBA order data.

@@ -35,20 +35,53 @@
   "iv_dac_to_summing_routes_mm": {
     "DACL": 4.294,
     "DACLB": 6.03,
-    "DACR": 6.513,
+    "DACR": 6.925,
     "DACRB": 4.786
   },
+  "iv_dacl_feedback_l2_centreline_missing_mm": 1.9426,
+  "iv_direct_dac_l2_missing_mm_at_offsets": {
+    "DACL": {
+      "+0.00": 0.0,
+      "+0.05": 0.0,
+      "+0.10": 0.0,
+      "-0.05": 0.0,
+      "-0.10": 0.0
+    },
+    "DACLB": {
+      "+0.00": 0.0,
+      "+0.05": 0.0,
+      "+0.10": 0.0,
+      "-0.05": 0.0,
+      "-0.10": 0.0
+    },
+    "DACR": {
+      "+0.00": 0.0,
+      "+0.05": 0.0,
+      "+0.10": 0.0,
+      "-0.05": 0.0,
+      "-0.10": 0.0
+    },
+    "DACRB": {
+      "+0.00": 0.0,
+      "+0.05": 0.0,
+      "+0.10": 0.0,
+      "-0.05": 0.0,
+      "-0.10": 0.0
+    }
+  },
+  "iv_direct_dac_l2_sample_pitch_mm": 0.01,
   "iv_feedback_area_model": "Plan-view copper centrelines with straight part/opamp pad closures; excludes vertical and return-current area",
   "iv_feedback_projected_2d_centreline_loop_area_mm2": {
     "C417": 4.358,
     "C418": 4.875,
     "C419": 4.7,
-    "C420": 4.604,
+    "C420": 4.593,
     "R423": 4.757,
     "R424": 2.379,
     "R425": 1.66,
-    "R426": 4.607
+    "R426": 4.308
   },
+  "iv_l2_support_model": "Saved filled L2 GND sampled at 0.01 mm along F.Cu track centreline and +/-0.05/0.10 mm normal offsets; return impedance not extracted",
   "iv_output_signal_vias_by_net": {
     "N4_IVL_N": 4,
     "N4_IVL_P": 4,
@@ -65,8 +98,8 @@
       "R407": 15.487
     },
     "N4_IVR_N": {
-      "R411": 27.604,
-      "R413": 41.963
+      "R411": 27.289,
+      "R413": 41.648
     },
     "N4_IVR_P": {
       "R409": 47.752,
@@ -146,7 +179,9 @@
     }
   },
   "routed_t_cell_count": 8,
-  "routing_release": "HOLD: I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, F01\u2013F04 and G-3/G-4",
+  "routing_release": "HOLD: DACL feedback L2 detour, I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, F01\u2013F04 and G-3/G-4",
+  "u501_fbp_feeder_projected_track_overlap_mm2": 0.0,
+  "u501_fbp_projection_model": "KiCad B.Cu 5V_ANA_F track polygons projected onto F.Cu N5_FBP tracks; pads, dielectric and noise excluded",
   "u501_ground_fcu_pad_to_l2_via_mm": {
     "C507.2": 1.0,
     "C509.2": 0.75,
@@ -175,7 +210,7 @@
     "r501_to_r502": 1.866,
     "r504_to_r503": 1.65,
     "vin12_to_c507": 2.249,
-    "vin3_to_c507": 5.859,
+    "vin3_to_c507": 6.014,
     "vin8_to_c507": 5.945,
     "vneg_to_c511": 3.43,
     "vpos_to_c510": 3.981

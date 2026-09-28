@@ -12,16 +12,18 @@ routing search was run. Component values did not change.
 
 - U301 DACL/DACLB/DACR/DACRB reach U403 pin 6/pin 2 and U404 pin 6/pin 2,
   respectively, on F.Cu without vias. Their routed pad-centre lengths are
-  **4.294/6.030/6.513/4.786 mm**, all under the owner-approved provisional
-  7 mm target. R423–R426 and C417–C420 have local feedback copper. The
-  largest **projected 2D centreline** feedback area is **4.875 mm²**, using
+  **4.294/6.030/6.925/4.786 mm**, all under the owner-approved provisional
+  7 mm target; DACR has only **0.075 mm** margin. R423–R426 and C417–C420
+  have local feedback copper. The largest **projected 2D centreline**
+  feedback area is **4.875 mm²**, using
   straight closures across part and op-amp pads; it excludes vertical and
   return-current area and does not establish stability. Courtyard gaps near
   C423/C426 are only **0.150–0.194 mm** and need assembly review.
 - The four I/V output copper groups reach all **eight first T resistors** and
   their respective clamp and common-mode tap pads. The longest routed feed
-  is **47.752 mm** (`N4_IVR_P` to R409). The long right-side feeds change
-  layers and need parasitic, coupling and return-path extraction. The central
+  is **47.752 mm** (`N4_IVR_P` to R409); the right `N4_IVR_N` feeds to
+  R411/R413 are **27.289/41.648 mm**. These feeds change layers and need
+  parasitic, coupling and return-path extraction. The central
   VREF branches are drawn, with a longest route of **14.422 mm**; low-noise
   VREF distribution and its return remain unverified.
   The local L3 VPOS bridge crosses the two right I/V L4 feeds near
@@ -31,14 +33,14 @@ routing search was run. Component values did not change.
   3.5–4.5 gives roughly **0.054–0.139/0.026–0.066 pF**, excluding fringing
   and nearby vias. The actual stack-up and rail noise have not been
   extracted; this is a coupling review item, not an audio-noise prediction.
-  A centreline plane-sampling audit found direct L2 GND missing beneath
-  **1.85 mm of DACL's U403→C417 feedback branch** near an I/V-output via;
-  the direct U301→U403 DACL input stays over L2. At 0.01 mm sample pitch,
-  nearby via antipads interrupt direct L2 beneath **0.688/1.209/0.557 mm**
-  of the direct DACLB/DACR/DACRB input paths. L2 remains one connected
-  polygon, but
-  these local return detours require via relocation or extraction before
-  analog sign-off.
+  The saved filled L2 GND is directly beneath all four DAC→I/V input traces
+  at **0.01 mm** route samples and normal offsets **0, ±0.05, ±0.10 mm**.
+  This sampled support does not establish return impedance. DACL's
+  U403→C417 feedback branch still lacks direct L2 beneath **1.9426 mm** of
+  its centreline near an I/V-output via, **0.0597 mm more** than the
+  **1.8829 mm** prior committed baseline measured like for like. The L2
+  polygon remains connected, but this feedback return detour stays on HOLD
+  for relocation or extraction and stability validation.
 - U401/U402 face the I/V stage. Their four 10 pF Rf/Cf paths are routed with
   **4.833 mm² centreline loop area each**, below the provisional 5 mm² screen.
   The headphone-current branches leave 0.932 mm, 0.25 mm-wide VSON escapes;
@@ -90,11 +92,13 @@ routing search was run. Component values did not change.
   spacing. These are not extracted return-current lengths or a switching-noise
   acceptance result; upstream supply and amplifier-rail distribution remain
   open.
-  Its B.Cu 5V_ANA_F feeder also crosses the F.Cu feedback node `N5_FBP`
-  near **(71.24, 133.29) mm** with about **0.147 mm²** projected overlap.
-  A nearby power-via antipad removes direct L2 copper at that crossing;
-  check switching-node injection into regulation feedback after the local
-  via/return geometry is revised.
+  A hand detour moves the B.Cu `5V_ANA_F` feeder away from F.Cu `N5_FBP`:
+  projected track overlap fell from **0.1663 to 0 mm²**, and the
+  unshielded pad-inclusive projection fell from **0.0861 to 0 mm²**.
+  The original power-via antipad remains, but the feeder no longer crosses
+  FBP there. The U501 pin-3 VIN→C507 route grew from **5.859 to 6.014 mm**,
+  within its **6.1 mm** checker bound. Switching-return impedance, noise
+  and regulation stability still need extraction and measurement.
 
 After close visual review, 33 explicit 45° mitres replace sharp turns on
 the amplifier inputs, clock monitor, power rail and headphone trunks. Two
@@ -169,9 +173,10 @@ exposed-pad thermal/electrical connection.
 
 1. **Extract the I/V path and finish amplifier supplies.** The four DAC→I/V
    routes, eight I/V→first-T feeds, I/V Rf/Cf and central VREF have copper.
-   Check summing-node capacitance, the true 3D feedback/return loop, VREF
-   noise and the long right-side cross-layer feeds; test I/V stability over
-   load and process corners. Route VPOS and VNEG from their sources through
+   Check summing-node capacitance, the true 3D feedback/return loop, the
+   **1.9426 mm DACL feedback L2 gap**, VREF noise and the long right-side
+   cross-layer feeds; test I/V stability over load and process corners.
+   Route VPOS and VNEG from their sources through
    bulk and local bypass to the amplifier groups, establish the exposed-pad
    thermal path, then extract supply-and-return impedance and test amplifier
    stability and THD+N under cable/load corners. A clean partial DRC does

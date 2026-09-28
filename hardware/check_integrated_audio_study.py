@@ -214,7 +214,44 @@ def check_iv_macro(board: pcbnew.BOARD, footprints: dict,
                 points.append(at)
         return points
 
+    l2 = next((zone.GetFilledPolysList(pcbnew.In1_Cu)
+               for zone in board.Zones()
+               if zone.GetNetname() == "GND" and zone.IsOnLayer(pcbnew.In1_Cu)
+               and zone.HasFilledPolysForLayer(pcbnew.In1_Cu)), None)
+    if l2 is None:
+        raise AssertionError("I/V plane screen needs the saved filled L2 GND")
+
+    def l2_missing_mm(nodes, offsets: tuple[float, ...]) -> dict[str, float]:
+        """Sample direct plane under F.Cu trace centrelines and width edges.
+
+        This is a plan-view via-antipad screen; it does not model return
+        current, field spreading, dielectric or full-width copper polygons.
+        """
+        missing = {offset: 0.0 for offset in offsets}
+        for (layer_a, ax, ay), (layer_b, bx, by) in zip(nodes, nodes[1:]):
+            if layer_a != pcbnew.F_Cu or layer_b != pcbnew.F_Cu:
+                raise AssertionError("DAC summing/feedback plane screen left F.Cu")
+            x, y = pcbnew.ToMM(ax), pcbnew.ToMM(ay)
+            dx, dy = pcbnew.ToMM(bx - ax), pcbnew.ToMM(by - ay)
+            length = math.hypot(dx, dy)
+            if length == 0:
+                continue
+            count = math.ceil(length / 0.01)
+            nx, ny = -dy / length, dx / length
+            for index in range(count):
+                fraction = (index + 0.5) / count
+                sx, sy = x + dx * fraction, y + dy * fraction
+                for offset in offsets:
+                    probe = pcbnew.VECTOR2I(
+                        pcbnew.FromMM(sx + nx * offset),
+                        pcbnew.FromMM(sy + ny * offset))
+                    if not l2.Contains(probe):
+                        missing[offset] += length / count
+        return {f"{offset:+.2f}": round(amount, 4)
+                for offset, amount in missing.items()}
+
     dac_lengths = {}
+    dac_l2_missing = {}
     first_t_lengths = {}
     feedback_areas = {}
     output_vias = {}
@@ -237,11 +274,15 @@ def check_iv_macro(board: pcbnew.BOARD, footprints: dict,
                (isinstance(item, pcbnew.PCB_VIA) or item.GetLayer() != pcbnew.F_Cu)
                for item in board.GetTracks()):
             raise AssertionError(f"{path.dac_net} left F.Cu or used a via")
-        _, length = route(path.dac_net, ("U301", path.dac_pin),
-                          (path.opamp, path.input_pin))
+        dac_nodes, length = route(path.dac_net, ("U301", path.dac_pin),
+                                  (path.opamp, path.input_pin))
         if length > 7.0 + 1e-6:
             raise AssertionError(f"{path.dac_net} DAC-to-summing copper exceeds 7 mm: {length:.3f}")
         dac_lengths[path.dac_net] = round(length, 3)
+        l2_gaps = l2_missing_mm(dac_nodes, (-0.10, -0.05, 0.0, 0.05, 0.10))
+        if any(l2_gaps.values()):
+            raise AssertionError(f"{path.dac_net} has no direct L2 under part of its 0.20 mm input copper: {l2_gaps}")
+        dac_l2_missing[path.dac_net] = l2_gaps
         first_t_lengths[path.output_net] = {}
         for ref in path.first_t:
             _, length = route(path.output_net, (path.opamp, path.output_pin), (ref, "1"))
@@ -257,8 +298,14 @@ def check_iv_macro(board: pcbnew.BOARD, footprints: dict,
             if not 0 < area < 5.0:
                 raise AssertionError(f"{ref} projected 2D I/V feedback loop exceeds 5 mm²: {area:.3f}")
             feedback_areas[ref] = round(area, 3)
+    dacl_feedback_nodes, _ = route("DACL", ("U403", "6"), ("C417", "1"))
+    dacl_feedback_gap = l2_missing_mm(dacl_feedback_nodes, (0.0,))["+0.00"]
     return {
         "iv_dac_to_summing_routes_mm": dac_lengths,
+        "iv_direct_dac_l2_missing_mm_at_offsets": dac_l2_missing,
+        "iv_direct_dac_l2_sample_pitch_mm": 0.01,
+        "iv_dacl_feedback_l2_centreline_missing_mm": dacl_feedback_gap,
+        "iv_l2_support_model": "Saved filled L2 GND sampled at 0.01 mm along F.Cu track centreline and +/-0.05/0.10 mm normal offsets; return impedance not extracted",
         "iv_output_to_t_first_resistor_feeds_mm": first_t_lengths,
         "iv_output_signal_vias_by_net": output_vias,
         "iv_feedback_projected_2d_centreline_loop_area_mm2": feedback_areas,
@@ -502,6 +549,26 @@ def check_u501_local(board: pcbnew.BOARD, footprints: dict,
     u_ground = ground_vias["U501.4"]
     l2_spacing = {name: round(math.dist(at, u_ground), 3)
                   for name, at in ground_vias.items() if name.startswith("C")}
+    # Project the feeder and sensitive feedback trace copper to the same
+    # plane. This geometry screen removes their former crossing near an L2
+    # via antipad; it is not a noise or coupling extraction.
+    vin_bottom = pcbnew.SHAPE_POLY_SET()
+    fbp_top = pcbnew.SHAPE_POLY_SET()
+    for track in board.GetTracks():
+        if isinstance(track, pcbnew.PCB_VIA):
+            continue
+        if track.GetNetname() == "5V_ANA_F" and track.GetLayer() == pcbnew.B_Cu:
+            track.TransformShapeToPolygon(vin_bottom, pcbnew.B_Cu, 0,
+                                          pcbnew.FromMM(0.0001), pcbnew.ERROR_OUTSIDE)
+        elif track.GetNetname() == "N5_FBP" and track.GetLayer() == pcbnew.F_Cu:
+            track.TransformShapeToPolygon(fbp_top, pcbnew.F_Cu, 0,
+                                          pcbnew.FromMM(0.0001), pcbnew.ERROR_OUTSIDE)
+    vin_bottom.BooleanAdd(vin_bottom)
+    fbp_top.BooleanAdd(fbp_top)
+    vin_bottom.BooleanIntersection(fbp_top)
+    fbp_projection_mm2 = vin_bottom.Area() / 1e12
+    if fbp_projection_mm2 > 1e-6:
+        raise AssertionError(f"U501 feeder projects across FBP copper: {fbp_projection_mm2:.6f} mm²")
     return {
         "u501_local_pad_centre_routes_mm": route_lengths,
         "u501_vin_narrow_escape_branches_mm": branches,
@@ -512,6 +579,8 @@ def check_u501_local(board: pcbnew.BOARD, footprints: dict,
         "u501_ground_fcu_pad_to_l2_via_mm": ground_lengths,
         "u501_ground_l2_via_spacing_to_ic_mm": l2_spacing,
         "u501_ground_l2_spacing_model": "Straight via-to-via spacing in one connected filled L2 zone; not an extracted return-current path",
+        "u501_fbp_feeder_projected_track_overlap_mm2": round(fbp_projection_mm2, 6),
+        "u501_fbp_projection_model": "KiCad B.Cu 5V_ANA_F track polygons projected onto F.Cu N5_FBP tracks; pads, dielectric and noise excluded",
     }
 
 
@@ -829,7 +898,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "balanced_4p4_model_sensitivity_20khz": trace["balanced_4p4_model_sensitivity_20khz"],
         "drc_reported_unconnected_items": len(drc["unconnected_items"]),
         "ratsnest_unconnected_items": connectivity.GetUnconnectedCount(False),
-        "routing_release": "HOLD: I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, F01–F04 and G-3/G-4",
+        "routing_release": "HOLD: DACL feedback L2 detour, I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, F01–F04 and G-3/G-4",
     }
 
 
