@@ -127,6 +127,30 @@ def read_source() -> tuple[dict[str, Part], dict[str, list[Pin]], dict[str, Part
                 "and I/V step-response bring-up. JLC extended part C2876414; "
                 "quantity and sourcing must be confirmed before order."
             )
+        if set(refs) == {"R417", "R418", "R419", "R420"}:
+            if (part.value, part.mpn, part.package, part.lcsc,
+                    part.rating_tolerance, part.fit) != (
+                "0 Ω", "UNI-ROYAL 0402WGF0000TCE", "0402", "C17168",
+                "jumper, ≤ 50 mΩ", "Yes"
+            ):
+                raise ValueError("Output-link source changed; review the low-DCR jumper ECO")
+            # This is a same-value, same-size review candidate. The v0.9
+            # workbook remains the immutable source baseline; R107 stays on
+            # its own original BOM row. Yageo specifies <=1 mOhm for the
+            # PA0402 07 jumper, but stock and assembly need an order check.
+            part.mpn = "YAGEO PA0402-R-070RL"
+            part.lcsc = "C4044221"
+            part.rating_tolerance = "jumper, ≤ 1 mΩ (manufacturer maximum)"
+            part.source = "JLCPCB Extended SMT; stock must be rechecked at order"
+            part.datasheet = "https://www.yageogroup.com/content/Resource%20Library/Datasheet/PYU-PA_JUMPER_L_51_ROHS.pdf"
+            part.notes = (
+                "Review-only output-link BOM ECO, 28 Sep 2026: same nominal "
+                "0 Ω and 0402 land; Yageo PA0402 07 maximum resistance "
+                "1 mΩ versus the source workbook's 50 mΩ link assumption. "
+                "Retain removable design-for-test links R417–R420. "
+                "JLC C4044221 availability, footprint, assembly and R-15 "
+                "measurement require order-stage confirmation."
+            )
         libparts[part.symbol_id] = part
         for ref in refs:
             if ref in parts:

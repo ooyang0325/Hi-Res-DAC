@@ -132,6 +132,11 @@ def main() -> None:
         value(ref, "0 Ω")
         pin(ref, "1", amp_output)
         pin(ref, "2", leg)
+        assert parts[ref].mpn == "YAGEO PA0402-R-070RL"
+        assert parts[ref].lcsc == "C4044221"
+        assert parts[ref].rating_tolerance == "jumper, ≤ 1 mΩ (manufacturer maximum)"
+    assert parts["R107"].mpn == "UNI-ROYAL 0402WGF0000TCE"
+    assert parts["R107"].lcsc == "C17168"
 
     # Rules 13, 17–19 and 21: MCU/CPLD isolation, two clock families and test access.
     for number, net in {"1": "N2_LINK_SCK_BUF", "2": "LINK_FRAME", "3": "N2_LINK_MOSI_BUF", "4": "GND", "5": "LINK_MOSI", "6": "N2_LINK_FRAME_MCU", "7": "LINK_SCK", "8": "3V3D"}.items():

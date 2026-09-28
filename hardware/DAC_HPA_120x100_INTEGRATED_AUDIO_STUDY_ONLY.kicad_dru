@@ -149,3 +149,8 @@
 
 # The named-pad audit also measures D707/D708 near J702. Routed ESD return,
 # nonlinear TVS loading and system IEC testing remain separate release gates.
+
+(rule "Output amp pre-link left-right clearance study"
+  (layer F.Cu)
+  (condition "((A.NetName == 'N4_LP_OUT' || A.NetName == 'N4_LN_OUT') && (B.NetName == 'N4_RP_OUT' || B.NetName == 'N4_RN_OUT' || B.NetName == 'LEG_RP' || B.NetName == 'LEG_RN' || B.NetName == 'JACK_RP' || B.NetName == 'JACK_RN')) || ((B.NetName == 'N4_LP_OUT' || B.NetName == 'N4_LN_OUT') && (A.NetName == 'N4_RP_OUT' || A.NetName == 'N4_RN_OUT' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN')) || ((A.NetName == 'N4_RP_OUT' || A.NetName == 'N4_RN_OUT') && (B.NetName == 'LEG_LP' || B.NetName == 'LEG_LN' || B.NetName == 'JACK_LP' || B.NetName == 'JACK_LN')) || ((B.NetName == 'N4_RP_OUT' || B.NetName == 'N4_RN_OUT') && (A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN'))")
+  (constraint clearance (min 2mm)))

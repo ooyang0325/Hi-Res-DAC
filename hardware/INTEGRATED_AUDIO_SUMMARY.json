@@ -1,24 +1,24 @@
 {
   "balanced_4p4_model_sensitivity_20khz": {
     "left": {
-      "margin_to_0p5_mohm_if_same_limit": 7.2,
-      "worst_contact_path_ohm": 0.4928
+      "margin_to_0p5_mohm_if_same_limit": 100.8,
+      "worst_contact_path_ohm": 0.3992
     },
     "right": {
-      "margin_to_0p5_mohm_if_same_limit": 19.7,
-      "worst_contact_path_ohm": 0.4803
+      "margin_to_0p5_mohm_if_same_limit": 112.4,
+      "worst_contact_path_ohm": 0.3876
     }
   },
   "balanced_4p4_planning_estimate_1khz": {
     "left": {
-      "best_contact_path_ohm": 0.4729,
-      "worst_contact_path_ohm": 0.48,
-      "worst_planning_margin_to_0p5_mohm": 20.0
+      "best_contact_path_ohm": 0.375,
+      "worst_contact_path_ohm": 0.3864,
+      "worst_planning_margin_to_0p5_mohm": 113.6
     },
     "right": {
-      "best_contact_path_ohm": 0.4519,
-      "worst_contact_path_ohm": 0.4676,
-      "worst_planning_margin_to_0p5_mohm": 32.4
+      "best_contact_path_ohm": 0.3591,
+      "worst_contact_path_ohm": 0.3748,
+      "worst_planning_margin_to_0p5_mohm": 125.2
     }
   },
   "bbox_overlaps": 0,
@@ -42,9 +42,20 @@
     "RP J701": 4.03,
     "RP J702": 3.864
   },
-  "manual_added_copper_items": 107,
-  "manual_moves": 38,
+  "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
+  "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
+  "manual_added_copper_items": 151,
+  "manual_moves": 41,
   "named_nets": 250,
-  "ratsnest_unconnected_items": 1101,
-  "routing_release": "HOLD: input/T networks, VPOS/VNEG/EP bypass, L3/L4 return, R-15 measurement, F01\u2013F04 and G-3/G-4"
+  "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
+  "output_amp_hf_bypass_pad_lower_bound_mm": {
+    "U401.2 VPOS": 2.72,
+    "U401.4 VNEG": 2.91,
+    "U401.PAD VNEG": 3.0,
+    "U402.2 VPOS": 3.08,
+    "U402.4 VNEG": 2.91,
+    "U402.PAD VNEG": 3.0
+  },
+  "ratsnest_unconnected_items": 1089,
+  "routing_release": "HOLD: main rail feeds, input/T networks, EP thermal, L3/L4 return, R-15 measurement, F01\u2013F04 and G-3/G-4"
 }

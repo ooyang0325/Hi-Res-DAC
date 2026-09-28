@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import csv
 import heapq
 import json
 import math
@@ -21,6 +22,8 @@ from audit_local_tvs_paths import crossings, point
 
 LAYER = {pcbnew.F_Cu, pcbnew.B_Cu}
 SHEET_MOHM_PER_SQUARE = 0.551  # v1.1 package, 35 µm copper at 50 °C.
+SOURCE_LINK_OHM = 0.050  # R-15 v1.1 calculation-package assumption per leg.
+PA0402_MAX_LINK_OHM = 0.001  # Yageo PA0402-R-070RL, code 07 maximum.
 
 
 def graph(board: pcbnew.BOARD, net: str):
@@ -109,6 +112,17 @@ def via_mohm_20um_plating() -> float:
 def audit(board_path: Path) -> dict:
     board = pcbnew.LoadBoard(str(board_path))
     footprints = {f.GetReference(): f for f in board.GetFootprints()}
+    with (Path(__file__).resolve().parent / 'JLCPCB_BOM_REVIEW_ONLY.csv').open(
+            newline='', encoding='utf-8-sig') as source:
+        links = [row for row in csv.DictReader(source)
+                 if 'R417' in row['Designator'].split(',')]
+    if len(links) != 1 or (
+            links[0]['Comment'], links[0]['Designator'], links[0]['Footprint'],
+            links[0]['LCSC Part #'], links[0]['MPN']) != (
+            '0 Ω', 'R417,R418,R419,R420',
+            'Resistor_SMD:R_0402_1005Metric', 'C4044221',
+            'YAGEO PA0402-R-070RL'):
+        raise AssertionError('Output-link review BOM differs from the trace model')
     result = {}
     via_count = {}
     for leg, (op, pin, link, relay, contacts) in CHANNELS.items():
@@ -138,9 +152,10 @@ def audit(board_path: Path) -> dict:
         negative = [v['trace_mohm_50c_excluding_vias'] for k, v in result[neg].items()
                     if k.startswith('J701.')]
         via_total = (via_count[pos] + via_count[neg]) * via_mohm
-        # R-15 v1.1: 0.383 ohm at 1 kHz includes an assumed 0.020 ohm
-        # pairwise trace term. Replace only that term with routed copper.
-        nontrace = 0.383 - 0.020
+        # R-15 v1.1: 0.383 ohm includes 0.020 ohm of pairwise trace and
+        # two 50 mOhm source jumpers. Replace both with actual study copper
+        # and the PA0402 manufacturer's 1 mOhm maximum per jumper.
+        nontrace = 0.383 - 0.020 - 2 * SOURCE_LINK_OHM + 2 * PA0402_MAX_LINK_OHM
         best = nontrace + (min(positive) + min(negative) + via_total) / 1000
         worst = nontrace + (max(positive) + max(negative) + via_total) / 1000
         balanced[channel] = {
@@ -161,7 +176,8 @@ def audit(board_path: Path) -> dict:
         trace = result[leg][f'J702.{4 if leg == "LP" else 3}'][
             'trace_mohm_50c_excluding_vias']
         # The sleeve return is unrouted; this is only a signal-side bound.
-        se[leg] = round(0.251 - 0.020 + (trace + via_count[leg] * via_mohm) / 1000, 4)
+        se[leg] = round(0.251 - 0.020 - SOURCE_LINK_OHM + PA0402_MAX_LINK_OHM
+                        + (trace + via_count[leg] * via_mohm) / 1000, 4)
     return {
         'board': board_path.name,
         'method': 'least-resistance connected copper path; pads and vias have zero cost in the trace term',
@@ -169,6 +185,9 @@ def audit(board_path: Path) -> dict:
         'trace_paths': result,
         'signal_vias_per_leg': via_count,
         'illustrative_via_mohm_each_20um_wall_1p6mm_50c': round(via_mohm, 2),
+        'output_link_candidate': 'R417-R420 YAGEO PA0402-R-070RL / JLC C4044221; review only',
+        'source_package_link_assumption_ohm_per_leg': SOURCE_LINK_OHM,
+        'candidate_manufacturer_max_link_ohm_per_leg': PA0402_MAX_LINK_OHM,
         'balanced_4p4_planning_estimate_1khz': balanced,
         'balanced_4p4_model_sensitivity_20khz': high_frequency_sensitivity,
         'trs_3p5_signal_only_lower_bound_ohm': se,

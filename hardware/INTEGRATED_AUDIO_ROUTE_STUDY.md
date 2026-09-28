@@ -17,7 +17,11 @@ and the electrical schematic did not change.
   R417/R418/R419 are below their lower relays; R420 serves K604. The four
   amplifier outputs reach their relay input contacts through 1.0–1.5 mm
   L4 trunks and 1.0 mm L1 `LEG_*` branches, with two Ø0.60/0.20 mm signal
-  vias per leg. `LEG_*` and `JACK_*` remain on L1 with no vias.
+  vias per leg. `LEG_*` and `JACK_*` remain on L1 with no vias. The custom
+  DRC now requires **2 mm left/right clearance on F.Cu pre-link
+  `N4_*_OUT` copper** against the opposite channel's pre- and post-link
+  output copper, alongside the existing post-link rule. L4 coupling still
+  needs extraction and measurement.
 - All four relay outputs physically reach the intended J701 audio contacts.
   LP and RP also reach J702 through their local TVS branches. J701 LP pads
   7/8 are joined around switch pads 9/10; RP pads 4/5 avoid the mounting peg;
@@ -28,17 +32,28 @@ and the electrical schematic did not change.
   input shunt also reaches its corresponding amplifier input pin. The six
   [named-pad TVS paths](INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json) remain
   **3.255–4.03 mm**, under the owner-approved provisional 4.2 mm screen.
+- U401 pin 4/exposed pad/C410 and U402 pin 4/exposed pad/C412 now form short
+  local V− copper groups; each 100 nF capacitor returns to L2 through a
+  nearby GND via. U401 pin 2/C409 and U402 pin 2/C411 have local 100 nF V+
+  loops: two short L3 bridges bypass the crowded input-pin corridor, and a
+  PWR-layer trunk joins the two local groups. Their GND pads return to L2.
+  Both pin-8 **EN inputs** now have F.Cu copper to this local VPOS network;
+  EN is an input, not a second supply pin. **Neither the VPOS nor VNEG
+  source feed is routed to these local groups**, and the exposed-pad thermal
+  path is still open. [TI's OPA1622 guidance](https://www.ti.com/lit/ds/symlink/opa1622.pdf)
+  requires a valid EN and close rail bypassing; the local copper alone does
+  not establish powered operation.
 
 The exact board reports **zero KiCad custom-rule DRC violations**, zero
 footprint bounding-box overlaps, zero classified JLC package/edge proxy
 findings and no via-ring failure. All populated pad nets match the schematic.
 The exported KiCad DRC still lists 499 missing links; the full `pcbnew`
-ratsnest counts **1,101**. These are partial-copper checks, not functional or
+ratsnest counts **1,089**. These are partial-copper checks, not functional or
 PCBA acceptance. [Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
 [trace/impedance sensitivity](INTEGRATED_AUDIO_TRACE_BUDGET.json) and the
 [review guide](PLACEMENT_REVIEW_GUIDE.md) give the reproducible details.
 
-## Audio margin remains thin
+## Output impedance remains a measured gate
 
 The trace audit follows the least-resistance connected copper from each
 amplifier output through its 0 Ω link and relay to each jack pad. It uses
@@ -46,18 +61,22 @@ the v1.1 calculation package's **0.551 mΩ per square at 50 °C for 35 µm
 copper**. Its illustrative via term uses a 1.6 mm board, 0.20 mm drill and
 20 µm hole-wall plating; [JLCPCB describes roughly 20–25 µm plating](https://jlcpcb.com/blog/pcb-plating-thickness),
 not an order-specific guaranteed resistance. R-15's existing 0.383 Ω
-balanced figure includes 20 mΩ assumed trace resistance; the audit replaces
-that term with the study copper and adds the illustrative vias.
+balanced figure includes 20 mΩ assumed trace resistance and two 50 mΩ
+0 Ω links. The audit replaces the trace term with study copper/vias and
+uses the [review-only Yageo output-link ECO](OUTPUT_LINK_BOM_ECO.md),
+whose manufacturer maximum is 1 mΩ per link.
 
 | 4.4 mm channel | Worst pad path, 1 kHz planning estimate | 20 kHz model sensitivity if the same 0.5 Ω limit applies |
 | --- | ---: | ---: |
-| Left | **0.4800 Ω** | **0.4928 Ω** |
-| Right | **0.4676 Ω** | **0.4803 Ω** |
+| Left | **0.3864 Ω** | **0.3992 Ω** |
+| Right | **0.3748 Ω** | **0.3876 Ω** |
 
 The 20 kHz sensitivity substitutes the calculation package's modelled
 OPA1622 closed-loop output impedance of 6.7 mΩ/leg for its 1 kHz value of
-0.33 mΩ/leg. The left 20 kHz estimate leaves only **7.2 mΩ**. The 3.5 mm
-signal-only lower bounds are 0.2755 Ω (L) and 0.2671 Ω (R); the sleeve return
+0.33 mΩ/leg. The left 20 kHz candidate estimate leaves **100.8 mΩ** in
+the same conditional model. With the source 50 mΩ link allowance, the
+same copper would instead give 0.4972 Ω, leaving only 2.8 mΩ. The 3.5 mm
+candidate signal-only lower bounds are 0.2272 Ω (L) and 0.2194 Ω (R); the sleeve return
 has not been extracted. All these figures inherit the owner's **50 mΩ per
 jack contact engineering estimate**, which has no maker maximum. They omit
 contact variation, plated-via variation, connector solder joints, AC
@@ -65,12 +84,29 @@ parasitics and loaded measurements. **R-15 is not signed off.** Measure output
 impedance at both jacks over the intended audio band and recalculate the
 fully routed return before accepting the ≤0.5 Ω requirement.
 
+The nearest 100 nF **pad-distance lower bounds** are now **2.72/3.08 mm**
+from U401/U402 V+ pin 2, **2.91 mm** from either V− pin 4 and **3.00 mm**
+from either exposed pad. [The checker records all six distances](INTEGRATED_AUDIO_SUMMARY.json).
+These are pad distances, not extracted supply-and-return loop lengths. The
+L3 V+ bridges use tented Ø0.60/0.20 mm vias close to small input-shunt
+footprints; nominal via-to-input copper clearance is only about 0.23 mm
+against the 0.20 mm project floor. Obtain JLC DFM/mask acceptance before
+freezing this arrangement. Main V+/V− source feeds, EP thermal routing and
+measured bypass impedance remain on hold.
+[TI's OPA1622 layout guidance](https://www.ti.com/lit/ds/symlink/opa1622.pdf)
+calls for 0.1 µF low-ESR capacitors close to the positive and negative
+supply pins and connects the exposed pad to the **most negative supply**.
+The present local GND pin vias do not complete either supply loop or the
+exposed-pad thermal/electrical connection.
+
 ## Required before this placement can replace the primary
 
-1. **Finish each amplifier's input/T and supply subcircuit.** Rf/Cf and input
-   shunts are local, but several T-network, 100 nF bypass and bulk rail nets
-   remain open or remote. Route VPOS/VNEG, the exposed VNEG pads, local bypass
-   supply-and-return loops and thermal copper; then extract and test
+1. **Finish each amplifier's input/T and supply subcircuit.** Rf/Cf, the four
+   input shunts, local 100 nF V+/V− capacitor links and both EN ties now have
+   copper, but the T-network and main rail source feeds remain open or remote.
+   Route VPOS and VNEG from their sources to the local amplifier groups,
+   establish the EP thermal path, then extract supply-and-return loop
+   impedance and test
    amplifier stability and THD+N under cable/load corners. A clean partial
    DRC cannot establish that the amplifiers will power or remain stable.
 2. **Design the L3/L4 audio return.** Reserve quiet reference copper under
@@ -83,7 +119,7 @@ fully routed return before accepting the ≤0.5 Ω requirement.
    overlay, all G-4 polarities, JLC order DFM, final BOM rotations and system
    IEC ESD. Via-to-small-capacitor mask/tenting needs the order preview.
 4. **Complete the other circuit routes and functional holds.** USB, I²S,
-   rails, protection timers/control and most of the 1,101 ratsnest gaps remain.
+   rails, protection timers/control and most of the 1,089 ratsnest gaps remain.
    F01 all-rate post-CPLD capture and DAC-side WS fault coverage are unproven;
    F02 readback corners, F03 attach current and F04 ESD need validation.
 

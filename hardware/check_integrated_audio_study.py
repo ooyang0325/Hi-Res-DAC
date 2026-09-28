@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import collections
 import json
+import math
 from pathlib import Path
 
 import pcbnew
@@ -169,6 +170,45 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
                      ("J702", "5"), ("J702", "6")):
         if pad(ref, pin).GetNetname() or connectivity.GetConnectedItems(pad(ref, pin)):
             raise AssertionError(f"{ref}.{pin} must remain a physical no-connect")
+    bypass_pad_distances = {}
+    for opamp, rail, pins, caps in (
+        ("U401", "VPOS", ("2",), ("C409", "C411")),
+        ("U401", "VNEG", ("4", "PAD"), ("C410", "C412")),
+        ("U402", "VPOS", ("2",), ("C409", "C411")),
+        ("U402", "VNEG", ("4", "PAD"), ("C410", "C412")),
+    ):
+        for pin in pins:
+            at = pad(opamp, pin).GetPosition()
+            here = pcbnew.ToMM(at.x), pcbnew.ToMM(at.y)
+            nearest = min(
+                math.dist(here, (pcbnew.ToMM(v.GetPosition().x),
+                                 pcbnew.ToMM(v.GetPosition().y)))
+                for cap in caps for v in footprints[cap].Pads()
+                if v.GetNumber() == "1"
+            )
+            bypass_pad_distances[f"{opamp}.{pin} {rail}"] = round(nearest, 2)
+    local_vpos = {
+        ("U401", "2"), ("U401", "8"), ("C409", "1"),
+        ("U402", "2"), ("U402", "8"), ("C411", "1"),
+    }
+    for opamp in ("U401", "U402"):
+        if pad(opamp, "8").GetNetname() != "VPOS":
+            raise AssertionError(f"{opamp}.8 EN must be tied to the positive rail")
+        if group(opamp, "8") != local_vpos:
+            raise AssertionError(f"{opamp}.8 EN lacks the local VPOS copper group")
+    for opamp, cap in (("U401", "C409"), ("U402", "C411")):
+        if (cap, "1") not in group(opamp, "2"):
+            raise AssertionError(f"{opamp}.2 V+ does not reach local {cap} over L3")
+        if not any(item.GetClass() == "ZONE"
+                   for item in connectivity.GetConnectedItems(pad(cap, "2"))):
+            raise AssertionError(f"{cap} 100 nF ground return is not on L2")
+    for opamp, cap in (("U401", "C410"), ("U402", "C412")):
+        local_vneg = group(opamp, "4")
+        if not {(opamp, "4"), (opamp, "PAD"), (cap, "1")} <= local_vneg:
+            raise AssertionError(f"{opamp} exposed VNEG pad and {cap} are not locally connected")
+        if not any(item.GetClass() == "ZONE"
+                   for item in connectivity.GetConnectedItems(pad(cap, "2"))):
+            raise AssertionError(f"{cap} 100 nF ground return is not on L2")
     return {
         "board": board_path.name,
         "footprints": 544,
@@ -181,11 +221,15 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "l2_gnd_filled_polygons": 1,
         "feedback_centreline_loop_area_mm2": feedback_areas,
         "local_tvs_routes_mm": tvs["local_routes_mm"],
+        "output_amp_hf_bypass_pad_lower_bound_mm": bypass_pad_distances,
+        "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
+        "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
+        "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
         "balanced_4p4_planning_estimate_1khz": trace["balanced_4p4_planning_estimate_1khz"],
         "balanced_4p4_model_sensitivity_20khz": trace["balanced_4p4_model_sensitivity_20khz"],
         "drc_reported_unconnected_items": len(drc["unconnected_items"]),
         "ratsnest_unconnected_items": connectivity.GetUnconnectedCount(False),
-        "routing_release": "HOLD: input/T networks, VPOS/VNEG/EP bypass, L3/L4 return, R-15 measurement, F01–F04 and G-3/G-4",
+        "routing_release": "HOLD: main rail feeds, input/T networks, EP thermal, L3/L4 return, R-15 measurement, F01–F04 and G-3/G-4",
     }
 
 
