@@ -1,6 +1,17 @@
-# Functional schematic ECO: U605 readbacks and J702 ESD
+# Functional schematic ECO: readbacks, J702 ESD and I/V channel assignment
 
-**Status:** captured in the KiCad schematic and review BOM on 28 September 2026. The unchanged Parts List v0.9 and Calculation Package v1.1 remain the baseline. `generate_schematic.py` asserts the baseline pin maps before applying this ECO; `verify_schematic.py` checks the exact 26 source-to-schematic pin/net differences. This is a review capture, not a schematic or fabrication release. The full-rate capture guard, measured 3V3M attach current and physical gates remain open.
+**Status:** captured in the KiCad schematic and review BOM, with the I/V channel assignment updated on 29 September 2026. The unchanged Parts List v0.9 and Calculation Package v1.1 remain the baseline. `generate_schematic.py` asserts the baseline pin maps before applying this ECO; `verify_schematic.py` checks the exact 34 source-to-schematic pin/net differences. This is a review capture, not a schematic or fabrication release. The full-rate capture guard, measured 3V3M attach current and physical gates remain open.
+
+## I/V macro: equivalent amplifier channels reassigned
+
+The two channels of each OPA2210IDGKR are functionally equivalent. The manually selected VSSOP placement assigns each positive DAC current leg to physical amplifier B and each negative leg to amplifier A. The feedback R/C, clamps, common-mode taps, DAC pads and downstream T inputs remain on their original named nets; only four U403 pins and four U404 pins change net assignment. This is an explicit schematic ECO so the PCB pad map can be checked against the captured circuit.
+
+| Op amp | Physical A: pins 2 input / 1 output | Physical B: pins 6 input / 7 output |
+| --- | --- | --- |
+| U403 | `DACLB` / `N4_IVL_N` | `DACL` / `N4_IVL_P` |
+| U404 | `DACRB` / `N4_IVR_N` | `DACR` / `N4_IVR_P` |
+
+The [integrated route study](INTEGRATED_AUDIO_ROUTE_STUDY.md) checks the corresponding copper and the provisional ≤7 mm DAC-to-I/V routes. Its plan-view feedback-area screen is a placement check, not extracted stability or a fabrication approval.
 
 ## F02: supervisor readback isolation
 

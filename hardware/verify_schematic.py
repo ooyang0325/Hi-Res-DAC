@@ -154,6 +154,14 @@ def run() -> None:
             ("D706", "1"): ("GND", "N7_LEDR_A"), ("D706", "2"): ("N7_LEDR_A", "GND"),
             ("R688", "2"): ("N6_V3AG_A_MCU", "N6_V3AG_A_BUF_IN"),
             ("R689", "2"): ("N6_V3AG_B_MCU", "N6_V3AG_B_BUF_IN"),
+            ("U403", "1"): ("N4_IVL_P", "N4_IVL_N"),
+            ("U403", "2"): ("DACL", "DACLB"),
+            ("U403", "6"): ("DACLB", "DACL"),
+            ("U403", "7"): ("N4_IVL_N", "N4_IVL_P"),
+            ("U404", "1"): ("N4_IVR_P", "N4_IVR_N"),
+            ("U404", "2"): ("DACR", "DACRB"),
+            ("U404", "6"): ("DACRB", "DACR"),
+            ("U404", "7"): ("N4_IVR_N", "N4_IVR_P"),
         }
         approved_added = {
             ("U621", "1"): "N6_V3AG_A_BUF_IN", ("U621", "2"): "GND",

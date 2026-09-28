@@ -101,8 +101,8 @@ def build(output_path: Path) -> None:
             drawing.SetText("INTEGRATED AUDIO / MANUAL ROUTE STUDY — NO PCBA RELEASE")
     title = board.GetTitleBlock()
     title.SetTitle("DAC-HPA — 120 × 100 mm integrated audio study")
-    title.SetComment(0, "Eight T/filter inputs and amp-to-jack routed; I/V output feeds open")
-    title.SetComment(1, "I/V feedback, main rails, returns, R-15 and physical/JLC HOLD")
+    title.SetComment(0, "DAC/I-V, I/V-to-T, amp-to-jack and U501 local loops routed")
+    title.SetComment(1, "Main rail feeds, returns, I/V stability, R-15 and physical/JLC HOLD")
     if not pcbnew.ZONE_FILLER(board).Fill(board.Zones()):
         raise RuntimeError("Could not refill continuous L2 GND around the signal vias")
     pcbnew.SaveBoard(str(output_path), board)

@@ -10,10 +10,10 @@
     "X201.3_to_R203.1": 1.83
   },
   "dac_iv_pad_distance_mm": {
-    "DACL": 3.83,
-    "DACLB": 6.65,
-    "DACR": 6.23,
-    "DACRB": 3.81
+    "DACL": 6.12,
+    "DACLB": 2.98,
+    "DACR": 3.69,
+    "DACRB": 6.19
   },
   "esd_to_nearest_jack_pad_mm": {
     "D701": {
@@ -67,14 +67,14 @@
     }
   },
   "iv_feedback_max_pad_distance_mm": {
-    "C417": 5.41,
-    "C418": 5.09,
-    "C419": 6.22,
-    "C420": 5.94,
-    "R423": 2.66,
-    "R424": 3.53,
-    "R425": 2.98,
-    "R426": 5.4
+    "C417": 5.36,
+    "C418": 7.95,
+    "C419": 8.4,
+    "C420": 5.98,
+    "R423": 6.28,
+    "R424": 6.48,
+    "R425": 6.53,
+    "R426": 7.15
   },
   "lpw_group_center_mm": {
     "U613": {
@@ -200,8 +200,8 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7363.34,
-  "track_count": 281,
+  "total_nonpower_hpwl_mm": 7336.35,
+  "track_count": 551,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 5.97,
     "D102_VBUS_to_J101_B4": 4.89,

@@ -37,9 +37,10 @@ KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
   hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
 ```
 
-For the latest amplifier-to-jack route candidate, use the integrated board.
-It keeps all four output signal paths visible while leaving the rest of the
-PCB unrouted:
+For the current DAC-through-jack and U501 local route candidate, use the
+integrated board. It shows all four DAC→I/V inputs, eight I/V→first-T feeds,
+four amplifier-to-jack paths, VREF and local U501 copper. Most other nets
+remain unrouted:
 
 ```sh
 KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
@@ -47,7 +48,7 @@ KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
   hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
 ```
 
-The default file is the `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb` capture baseline. The integrated board is the newest audio-routing study. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison. Counts in the table below describe the default baseline; the [integrated summary](INTEGRATED_AUDIO_SUMMARY.json) has its separate counts and electrical holds.
+The default file is the `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb` capture baseline. The integrated board is the current audio-routing study. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison. Counts in the table below describe the default baseline; the [integrated summary](INTEGRATED_AUDIO_SUMMARY.json) has its separate counts and electrical holds. On the integrated plot, zoom to U301/U403/U404 at PCB x = 91–104 mm, y = 70–88 mm, then follow the right I/V feeds across L3/L4 toward the T cells and check the L3 VPOS crossing near x = 115–121 mm, y = 74–76 mm. Zoom to U501 at x = 68–77 mm, y = 128–137 mm to inspect its three short VIN escapes and capacitor returns. The copper audit rejects free-track bends within 80–100°; joins at component pads and straight-through T/cross branches are classified separately.
 
 | File | What to inspect |
 | --- | --- |

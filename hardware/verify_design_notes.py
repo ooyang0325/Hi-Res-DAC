@@ -552,6 +552,42 @@ def main() -> None:
         actual = {p.number: p.net for p in eco_pins[ref]}
         assert actual == expected, (ref, actual, expected)
         checks += len(expected)
+    expected_iv_eco = {
+        "U403": (
+            ("1", "OUT A", "N4_IVL_N"), ("2", "-IN A", "DACLB"),
+            ("3", "+IN A", "VREF"), ("4", "V-", "N4_VNEG_IV"),
+            ("5", "+IN B", "VREF"), ("6", "-IN B", "DACL"),
+            ("7", "OUT B", "N4_IVL_P"), ("8", "V+", "N4_VPOS_IV"),
+        ),
+        "U404": (
+            ("1", "OUT A", "N4_IVR_N"), ("2", "-IN A", "DACRB"),
+            ("3", "+IN A", "VREF"), ("4", "V-", "N4_VNEG_IV"),
+            ("5", "+IN B", "VREF"), ("6", "-IN B", "DACR"),
+            ("7", "OUT B", "N4_IVR_P"), ("8", "V+", "N4_VPOS_IV"),
+        ),
+    }
+    for ref, expected in expected_iv_eco.items():
+        actual = tuple((p.number, p.name, p.net) for p in eco_pins[ref])
+        assert actual == expected, (ref, actual, expected)
+        checks += len(expected)
+    # The source-document membership checks above stay on the workbook map.
+    # Every DAC and I/V output net below must change only its amplifier pin;
+    # the DAC pad, feedback R/C and downstream members remain identical.
+    for net, ref, source_pin, eco_pin in (
+        ("DACL", "U403", "2", "6"), ("DACLB", "U403", "6", "2"),
+        ("DACR", "U404", "2", "6"), ("DACRB", "U404", "6", "2"),
+        ("N4_IVL_P", "U403", "1", "7"), ("N4_IVL_N", "U403", "7", "1"),
+        ("N4_IVR_P", "U404", "1", "7"), ("N4_IVR_N", "U404", "7", "1"),
+    ):
+        source_members = {(r, p.number) for r, group in pins.items()
+                          for p in group if p.net == net}
+        eco_members = {(r, p.number) for r, group in eco_pins.items()
+                       for p in group if p.net == net}
+        expected_members = (source_members - {(ref, source_pin)}) | {(ref, eco_pin)}
+        assert (ref, source_pin) in source_members and eco_members == expected_members, (
+            net, source_members, eco_members,
+        )
+        checks += 1
     assert eco_parts["R952"].value == eco_parts["R953"].value == "10 kΩ"
     assert eco_parts["R954"].value == eco_parts["R955"].value == "100 kΩ"
     assert eco_parts["C667"].value == "100 nF"
@@ -559,7 +595,7 @@ def main() -> None:
     checks += 4
     print(f"PASS: {checks} selected design-note pin, value, membership, and fit checks")
     print("CORRECTED: D705/D706 physical pad maps differ from the source checklist")
-    print("ECO: U605 readbacks buffered, with local bypass and J702 TVS pair")
+    print("ECO: U605 readbacks buffered, J702 TVS pair, and U403/U404 A/B channels swapped")
     print("DOCUMENTED: J701/J702 maker-drawing contact maps; G-1–G-4 physical gates remain open")
 
 

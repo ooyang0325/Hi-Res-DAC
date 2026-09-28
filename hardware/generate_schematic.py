@@ -4,7 +4,8 @@
 Parts List v0.9 and Calculation Package v1.1 remain immutable baselines. The
 explicit overlay below corrects the LED pads, buffers U605's MCU readbacks,
 and adds local J702 ESD devices. U403/U404 retain the owner-approved DGK
-package substitution. Physical and firmware qualification gates remain open.
+package substitution and swap their equivalent A/B I/V channels for the
+reviewed physical macro. Physical and firmware qualification gates remain open.
 """
 
 from __future__ import annotations
@@ -215,7 +216,7 @@ def apply_functional_eco(
     base_parts: dict[str, Part], approved_pins: dict[str, list[Pin]],
     base_libparts: dict[str, Part],
 ) -> tuple[dict[str, Part], dict[str, list[Pin]], dict[str, Part]]:
-    """Add reviewed F02/F04 circuitry without silently changing the workbook.
+    """Add reviewed F02/F04 and I/V channel ECOs without changing the workbook.
 
     Every affected source part, pin and net is asserted before it is overlaid.
     Synthetic symbol rows 9001–9005 never appear in Parts List v0.9.
@@ -257,6 +258,31 @@ def apply_functional_eco(
     for number, net in (("3", "JACK_RP"), ("4", "JACK_LP"), ("5", "NC"), ("6", "NC")):
         if {pin.number: pin.net for pin in pins["J702"]}.get(number) != net:
             raise ValueError(f"J702 pin {number} source net changed; re-review functional ECO")
+
+    # The DGK dual amplifiers have identical A and B channels. The rotated
+    # I/V macro assigns the P legs to B and the N legs to A. Assert every
+    # workbook pin, including TI's physical pin names, before changing only
+    # the four input/output nets on each package.
+    iv_source_and_eco = {
+        "U403": (
+            (("1", "OUT A", "N4_IVL_P"), ("2", "-IN A", "DACL"),
+             ("3", "+IN A", "VREF"), ("4", "V-", "N4_VNEG_IV"),
+             ("5", "+IN B", "VREF"), ("6", "-IN B", "DACLB"),
+             ("7", "OUT B", "N4_IVL_N"), ("8", "V+", "N4_VPOS_IV")),
+            {"1": "N4_IVL_N", "2": "DACLB", "6": "DACL", "7": "N4_IVL_P"},
+        ),
+        "U404": (
+            (("1", "OUT A", "N4_IVR_P"), ("2", "-IN A", "DACR"),
+             ("3", "+IN A", "VREF"), ("4", "V-", "N4_VNEG_IV"),
+             ("5", "+IN B", "VREF"), ("6", "-IN B", "DACRB"),
+             ("7", "OUT B", "N4_IVR_N"), ("8", "V+", "N4_VPOS_IV")),
+            {"1": "N4_IVR_N", "2": "DACRB", "6": "DACR", "7": "N4_IVR_P"},
+        ),
+    }
+    for ref, (source, swapped_nets) in iv_source_and_eco.items():
+        require(ref, source, "OPA2210IDGKR")
+        pins[ref] = [Pin(pin.number, pin.name, swapped_nets.get(pin.number, pin.net))
+                     for pin in pins[ref]]
 
     def add(part: Part, pin_maps: dict[str, list[Pin]]) -> None:
         if part.symbol_id in libparts or set(part.refs) != set(pin_maps):

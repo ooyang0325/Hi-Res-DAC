@@ -40,8 +40,8 @@ NEW_POSITIONS: dict[str, tuple[float, float, int]] = {
 }
 
 # Two existing input isolators are moved beside the corresponding supervisor
-# output/gate region. Their changed pad-2 nets are the only old-pad changes in
-# this ECO; every other old footprint keeps its approved pin-to-net mapping.
+# output/gate region. Their pad-2 nets and U403/U404's four A/B channel nets
+# per package are the only old-pad changes in this ECO.
 EXISTING_MOVES: dict[str, tuple[float, float, int]] = {
     "R688": (67.0, 90.5, 90),
     "R689": (69.5, 90.5, 90),
@@ -66,7 +66,11 @@ EXISTING_MOVES: dict[str, tuple[float, float, int]] = {
     "D411": (138.0, 116.0, 0),
     "D412": (140.0, 125.0, 180),
 }
-EXPECTED_RENET = {("R688", "2"), ("R689", "2")}
+EXPECTED_RENET = {
+    ("R688", "2"), ("R689", "2"),
+    ("U403", "1"), ("U403", "2"), ("U403", "6"), ("U403", "7"),
+    ("U404", "1"), ("U404", "2"), ("U404", "6"), ("U404", "7"),
+}
 
 # Explicit L1 local TVS copper. This is the previously reviewed J702 option's
 # short jack branches, plus one RP relay-to-jack probe. The LP relay route,

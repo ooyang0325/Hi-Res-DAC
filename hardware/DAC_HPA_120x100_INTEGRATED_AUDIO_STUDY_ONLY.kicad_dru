@@ -135,6 +135,14 @@
     (condition "A.NetName == '5V_ANA' || A.NetName == '5V_ANA_F'")
     (constraint track_width (min 0.8mm)))
 
+# U501's 0.28 mm-wide VIN lands at 0.50 mm pitch need short 0.20 mm
+# top-side escapes. The integrated-board checker bounds their lengths and
+# rejects any 5V_ANA_F fine track outside this one WSON courtyard.
+(rule "U501 VIN WSON local escape"
+    (layer F.Cu)
+    (condition "A.NetName == '5V_ANA_F' && A.intersectsCourtyard('U501')")
+    (constraint track_width (min 0.20mm)))
+
 (rule "Jack hand-solder access"
     (constraint courtyard_clearance (min 1.5mm))
     (condition "A.Reference == 'J701' || B.Reference == 'J701' || A.Reference == 'J702' || B.Reference == 'J702'"))

@@ -1,14 +1,44 @@
-# Integrated amplifier-to-jack route study — 29 September 2026
+# Integrated DAC/I/V-to-jack and U501 route study — 29 September 2026
 
-**Use this as the newest audio-routing review candidate, not as order data.**
+**Use this as the current integrated routing review candidate, not as order data.**
 The editable [KiCad board](DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb)
 keeps the 120 × 100 mm four-layer outline, 544 footprints, 250 named nets and
-the v1.1-ECO1 schematic pad map. Every placement and waypoint in this trial
-was chosen manually; no placement or routing search was run. Component values
-and the electrical schematic did not change.
+the v1.1-ECO1 schematic pad map, including the explicit U403/U404 A/B-channel
+reassignment in the [functional ECO](FUNCTIONAL_ECO_2026-09-28.md). Every
+placement and waypoint in this trial was chosen manually; no placement or
+routing search was run. Component values did not change.
 
 ## What this trial closes geometrically
 
+- U301 DACL/DACLB/DACR/DACRB reach U403 pin 6/pin 2 and U404 pin 6/pin 2,
+  respectively, on F.Cu without vias. Their routed pad-centre lengths are
+  **4.294/6.030/6.513/4.786 mm**, all under the owner-approved provisional
+  7 mm target. R423–R426 and C417–C420 have local feedback copper. The
+  largest **projected 2D centreline** feedback area is **4.875 mm²**, using
+  straight closures across part and op-amp pads; it excludes vertical and
+  return-current area and does not establish stability. Courtyard gaps near
+  C423/C426 are only **0.150–0.194 mm** and need assembly review.
+- The four I/V output copper groups reach all **eight first T resistors** and
+  their respective clamp and common-mode tap pads. The longest routed feed
+  is **47.752 mm** (`N4_IVR_P` to R409). The long right-side feeds change
+  layers and need parasitic, coupling and return-path extraction. The central
+  VREF branches are drawn, with a longest route of **14.422 mm**; low-noise
+  VREF distribution and its return remain unverified.
+  The local L3 VPOS bridge crosses the two right I/V L4 feeds near
+  x = 115–121 mm, y = 74–76 mm. Their projected overlap areas are about
+  **0.52/0.25 mm²** (`N4_IVR_N`/`N4_IVR_P`). A simple plate estimate using
+  an **assumed** 0.15–0.30 mm L3/L4 dielectric and relative permittivity
+  3.5–4.5 gives roughly **0.054–0.139/0.026–0.066 pF**, excluding fringing
+  and nearby vias. The actual stack-up and rail noise have not been
+  extracted; this is a coupling review item, not an audio-noise prediction.
+  A centreline plane-sampling audit found direct L2 GND missing beneath
+  **1.85 mm of DACL's U403→C417 feedback branch** near an I/V-output via;
+  the direct U301→U403 DACL input stays over L2. At 0.01 mm sample pitch,
+  nearby via antipads interrupt direct L2 beneath **0.688/1.209/0.557 mm**
+  of the direct DACLB/DACR/DACRB input paths. L2 remains one connected
+  polygon, but
+  these local return detours require via relocation or extraction before
+  analog sign-off.
 - U401/U402 face the I/V stage. Their four 10 pF Rf/Cf paths are routed with
   **4.833 mm² centreline loop area each**, below the provisional 5 mm² screen.
   The headphone-current branches leave 0.932 mm, 0.25 mm-wide VSON escapes;
@@ -28,9 +58,9 @@ and the electrical schematic did not change.
   shunt-capacitor branches connected and each capacitor returning to L2.
   The routed branch maxima are
   **6.53 mm Rin→Rout, 7.25 mm capacitor→Rout and 8.29 mm Rout→amplifier**.
-  R444 and C433 were rotated 180° to avoid T/ground crossings. These are
-  local connections: **U403/U404 I/V outputs do not yet feed the first T
-  resistors**, so the DAC-to-amplifier signal path is still open.
+  R444 and C433 were rotated 180° to avoid T/ground crossings. Signal copper
+  now connects the DAC current pads through I/V and T cells to U401/U402
+  inputs; extracted behavior and powered operation remain unverified.
 - All four relay outputs physically reach the intended J701 audio contacts.
   LP and RP also reach J702 through their local TVS branches. J701 LP pads
   7/8 are joined around switch pads 9/10; RP pads 4/5 avoid the mounting peg;
@@ -52,22 +82,36 @@ and the electrical schematic did not change.
   path is still open. [TI's OPA1622 guidance](https://www.ti.com/lit/ds/symlink/opa1622.pdf)
   requires a valid EN and close rail bypassing; the local copper alone does
   not establish powered operation.
+- U501's local switching, VIN, VPOS/VNEG capacitor and feedback groups are
+  routed, and its capacitor/divider/exposed-pad grounds reach the filled L2
+  zone. Three bounded **0.20 mm** WSON VIN escapes at pins 12/3/8 measure
+  **1.050/0.860/1.146 mm** before the ≥0.8 mm feeder. C510/C511 ground vias
+  are **8.160/6.767 mm** from the U501 GND via across L2 by straight via
+  spacing. These are not extracted return-current lengths or a switching-noise
+  acceptance result; upstream supply and amplifier-rail distribution remain
+  open.
+  Its B.Cu 5V_ANA_F feeder also crosses the F.Cu feedback node `N5_FBP`
+  near **(71.24, 133.29) mm** with about **0.147 mm²** projected overlap.
+  A nearby power-via antipad removes direct L2 copper at that crossing;
+  check switching-node injection into regulation feedback after the local
+  via/return geometry is revised.
 
-After close visual review, 33 explicit 45° mitres replace the sharp
-two-segment turns on the amplifier inputs, clock monitor, power rail and
-headphone trunks. Two short 0.4/0.3 mm doglegs were redrawn directly as
-diagonals. The [integrated checker](check_integrated_audio_study.py) now
-rejects any remaining two-segment 90° track bend; this board has **zero**.
-Its geometry audit treats T junctions and pad entries separately from bends.
+After close visual review, 33 explicit 45° mitres replace sharp turns on
+the amplifier inputs, clock monitor, power rail and headphone trunks. Two
+short 0.4/0.3 mm doglegs were redrawn as diagonals, and two later I/V/VREF
+corners were chamfered. The [integrated checker](check_integrated_audio_study.py)
+rejects exact 90° bends and 80–100° free-copper elbows; both counts are
+**zero**. It treats pad-centred exits and electrical T/cross junctions
+separately from free-track bends.
 
-The manual record now contains **54 explicit footprint moves, four replaced
-source tracks and 250 added copper items** relative to the functional-ECO
+The manual record now contains **81 explicit footprint moves, four replaced
+source copper items and 520 added copper items** relative to the functional-ECO
 board. The exact board keeps
 544 footprints and 250 named nets and reports **zero KiCad custom-rule DRC
 violations**, zero footprint bounding-box overlaps, zero classified JLC package/edge proxy
 findings and no via-ring failure. All populated pad nets match the schematic.
 The exported KiCad DRC still lists 499 missing links; the full `pcbnew`
-ratsnest counts **1,049**, down 40 from the prior integrated checkpoint. These
+ratsnest counts **973**. These
 are partial-copper checks, not functional or
 PCBA acceptance. [Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
 [trace/impedance sensitivity](INTEGRATED_AUDIO_TRACE_BUDGET.json) and the
@@ -121,17 +165,17 @@ supply pins and connects the exposed pad to the **most negative supply**.
 The present local GND pin vias do not complete either supply loop or the
 exposed-pad thermal/electrical connection.
 
-## Required before this placement can replace the primary
+## Required before routing or fabrication release
 
-1. **Finish the upstream I/V signal path and amplifier supplies.** The eight
-   local T triplets, four amplifier input shunts, Rf/Cf, local 100 nF V+/V−
-   links and both EN ties have copper. Route U403/U404 outputs into the first
-   T resistors, then finish the DAC→I/V inputs, I/V feedback and bypass
-   loops. Route VPOS and VNEG from their sources through bulk and local
-   bypass to the amplifier groups, establish the EP thermal path, then
-   extract supply-and-return loop impedance and test amplifier stability
-   and THD+N under cable/load corners. A clean partial DRC cannot establish
-   a complete audio path or powered operation.
+1. **Extract the I/V path and finish amplifier supplies.** The four DAC→I/V
+   routes, eight I/V→first-T feeds, I/V Rf/Cf and central VREF have copper.
+   Check summing-node capacitance, the true 3D feedback/return loop, VREF
+   noise and the long right-side cross-layer feeds; test I/V stability over
+   load and process corners. Route VPOS and VNEG from their sources through
+   bulk and local bypass to the amplifier groups, establish the exposed-pad
+   thermal path, then extract supply-and-return impedance and test amplifier
+   stability and THD+N under cable/load corners. A clean partial DRC does
+   not establish powered operation.
 2. **Design the L3/L4 audio return.** Reserve quiet reference copper under
    the four L4 outputs, keep L2 continuous, keep switching and digital power
    away from their return currents, and add/check local stitching. Extract
@@ -140,10 +184,11 @@ exposed-pad thermal/electrical connection.
 3. **Close connector and manufacturing gates.** Verify relay/jack solder-iron
    access, J101/J702 slot soldering and board-edge process, J701 1:1 G-3
    overlay, all G-4 polarities, JLC order DFM, final BOM rotations and system
-   IEC ESD. Inspect the tight C437/J701/K602 region and via-to-small-capacitor
-   mask/tenting in the JLC order preview.
+   IEC ESD. Inspect C423/C426's 0.150–0.194 mm courtyard gaps, the tight
+   C437/J701/K602 region and via-to-small-capacitor mask/tenting in the JLC
+   order preview.
 4. **Complete the other circuit routes and functional holds.** USB, I²S,
-   rails, protection timers/control and most of the 1,049 ratsnest gaps remain.
+   rails, protection timers/control and most of the 973 ratsnest gaps remain.
    F01 all-rate post-CPLD capture and DAC-side WS fault coverage are unproven;
    F02 readback corners, F03 attach current and F04 ESD need validation.
 

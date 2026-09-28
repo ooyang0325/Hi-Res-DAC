@@ -32,7 +32,47 @@
     "RP": 4.833
   },
   "footprints": 544,
-  "iv_output_to_t_first_resistor_feeds": "OPEN: four low-impedance I/V output nets have no complete route to their first T resistors",
+  "iv_dac_to_summing_routes_mm": {
+    "DACL": 4.294,
+    "DACLB": 6.03,
+    "DACR": 6.513,
+    "DACRB": 4.786
+  },
+  "iv_feedback_area_model": "Plan-view copper centrelines with straight part/opamp pad closures; excludes vertical and return-current area",
+  "iv_feedback_projected_2d_centreline_loop_area_mm2": {
+    "C417": 4.358,
+    "C418": 4.875,
+    "C419": 4.7,
+    "C420": 4.604,
+    "R423": 4.757,
+    "R424": 2.379,
+    "R425": 1.66,
+    "R426": 4.607
+  },
+  "iv_output_signal_vias_by_net": {
+    "N4_IVL_N": 4,
+    "N4_IVL_P": 4,
+    "N4_IVR_N": 5,
+    "N4_IVR_P": 3
+  },
+  "iv_output_to_t_first_resistor_feeds_mm": {
+    "N4_IVL_N": {
+      "R403": 19.065,
+      "R405": 32.554
+    },
+    "N4_IVL_P": {
+      "R401": 21.601,
+      "R407": 15.487
+    },
+    "N4_IVR_N": {
+      "R411": 27.604,
+      "R413": 41.963
+    },
+    "N4_IVR_P": {
+      "R409": 47.752,
+      "R415": 39.348
+    }
+  },
   "jlc_spacing_and_edge_proxy_findings": 0,
   "l2_gnd_filled_polygons": 1,
   "local_tvs_routes_mm": {
@@ -45,10 +85,12 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
-  "manual_added_copper_items": 250,
-  "manual_moves": 54,
+  "manual_added_copper_items": 520,
+  "manual_moves": 81,
   "manual_replaced_source_copper_items": 4,
   "named_nets": 250,
+  "near_right_angle_free_track_bends": 0,
+  "orthogonal_branches_without_through": 0,
   "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
   "output_amp_hf_bypass_pad_lower_bound_mm": {
     "U401.2 VPOS": 2.72,
@@ -58,7 +100,8 @@
     "U402.4 VNEG": 2.91,
     "U402.PAD VNEG": 3.0
   },
-  "ratsnest_unconnected_items": 1049,
+  "pad_centre_near_orthogonal_joins": 8,
+  "ratsnest_unconnected_items": 973,
   "right_angle_track_bends": 0,
   "routed_t_cell_branch_lengths_mm": {
     "LN+": {
@@ -103,5 +146,45 @@
     }
   },
   "routed_t_cell_count": 8,
-  "routing_release": "HOLD: I/V feedback and output feeds, DAC inputs, main rails/bulk, EP thermal, return extraction, R-15 measurement, F01\u2013F04 and G-3/G-4"
+  "routing_release": "HOLD: I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, F01\u2013F04 and G-3/G-4",
+  "u501_ground_fcu_pad_to_l2_via_mm": {
+    "C507.2": 1.0,
+    "C509.2": 0.75,
+    "C510.2": 1.2,
+    "C511.2": 0.95,
+    "R502.2": 0.975,
+    "R504.2": 0.875,
+    "U501.4": 2.511
+  },
+  "u501_ground_l2_spacing_model": "Straight via-to-via spacing in one connected filled L2 zone; not an extracted return-current path",
+  "u501_ground_l2_via_spacing_to_ic_mm": {
+    "C507.2": 3.139,
+    "C509.2": 2.094,
+    "C510.2": 8.16,
+    "C511.2": 6.767
+  },
+  "u501_local_pad_centre_routes_mm": {
+    "c1n_to_c508": 2.427,
+    "c1p_to_c508": 2.427,
+    "c510_to_r501": 12.094,
+    "c511_to_r503": 10.318,
+    "cp_to_c509": 2.138,
+    "fb501_to_c507": 16.937,
+    "fbn_to_r504": 2.128,
+    "fbp_to_r501": 2.353,
+    "r501_to_r502": 1.866,
+    "r504_to_r503": 1.65,
+    "vin12_to_c507": 2.249,
+    "vin3_to_c507": 5.859,
+    "vin8_to_c507": 5.945,
+    "vneg_to_c511": 3.43,
+    "vpos_to_c510": 3.981
+  },
+  "u501_other_5v_ana_f_track_min_width_mm": 0.8,
+  "u501_vin_narrow_escape_branches_mm": {
+    "12": 1.05,
+    "3": 0.86,
+    "8": 1.146
+  },
+  "u501_vin_narrow_min_width_mm": 0.2
 }

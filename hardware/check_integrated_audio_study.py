@@ -5,14 +5,17 @@ from __future__ import annotations
 
 import argparse
 import collections
+import heapq
 import json
 import math
+from dataclasses import dataclass
 from pathlib import Path
 
 import pcbnew
 
 from audit_placement import check_board_netlist
-from audit_audio_output_traces import route as copper_route
+from audit_audio_output_traces import graph as copper_graph, route as copper_route
+from audit_local_tvs_paths import point as copper_point
 from check_output_macro_study import CHANNELS, loop_area
 from manual_output_macro_study import FEEDBACK
 
@@ -38,6 +41,478 @@ T_CELLS = (
 )
 NEGATIVE_T_SECOND = {"LP": "R438", "LN": "R440",
                      "RP": "R442", "RN": "R444"}
+
+
+@dataclass(frozen=True)
+class IVLeg:
+    dac_net: str
+    dac_pin: str
+    opamp: str
+    input_pin: str
+    output_pin: str
+    output_net: str
+    feedback_resistor: str
+    feedback_capacitor: str
+    clamp: str
+    cm: str
+    first_t: tuple[str, str]
+
+
+IV_LEGS = {
+    "LP": IVLeg("DACL", "13", "U403", "6", "7", "N4_IVL_P",
+                "R423", "C417", "D405", "R653", ("R401", "R407")),
+    "LN": IVLeg("DACLB", "14", "U403", "2", "1", "N4_IVL_N",
+                "R424", "C418", "D406", "R654", ("R403", "R405")),
+    "RP": IVLeg("DACR", "9", "U404", "6", "7", "N4_IVR_P",
+                "R425", "C419", "D407", "R655", ("R409", "R415")),
+    "RN": IVLeg("DACRB", "10", "U404", "2", "1", "N4_IVR_N",
+                "R426", "C420", "D408", "R656", ("R411", "R413")),
+}
+IV_SWAPPED_PIN_NETS = {
+    "U403": {"1": "N4_IVL_N", "2": "DACLB", "6": "DACL", "7": "N4_IVL_P"},
+    "U404": {"1": "N4_IVR_N", "2": "DACRB", "6": "DACR", "7": "N4_IVR_P"},
+}
+
+
+def _projected_bounded_area(points: list[tuple[float, float]]) -> float:
+    """Sum bounded faces of a self-intersecting plan-view centreline loop."""
+    segments = list(zip(points, points[1:] + points[:1]))
+    splits = [[(0.0, a), (1.0, b)] for a, b in segments]
+    for i, (a, b) in enumerate(segments):
+        ux, uy = b[0] - a[0], b[1] - a[1]
+        for j, (c, d) in enumerate(segments[i + 1:], i + 1):
+            vx, vy = d[0] - c[0], d[1] - c[1]
+            cross = ux * vy - uy * vx
+            if abs(cross) < 1e-9:
+                continue
+            wx, wy = c[0] - a[0], c[1] - a[1]
+            t = (wx * vy - wy * vx) / cross
+            s = (wx * uy - wy * ux) / cross
+            if -1e-9 <= t <= 1 + 1e-9 and -1e-9 <= s <= 1 + 1e-9:
+                intersection = (round(a[0] + t * ux, 9), round(a[1] + t * uy, 9))
+                splits[i].append((t, intersection))
+                splits[j].append((s, intersection))
+    adjacent: dict[tuple[float, float], set[tuple[float, float]]] = {}
+    for split in splits:
+        ordered = sorted(split)
+        for (_, a), (_, b) in zip(ordered, ordered[1:]):
+            a = (round(a[0], 9), round(a[1], 9))
+            b = (round(b[0], 9), round(b[1], 9))
+            if a != b:
+                adjacent.setdefault(a, set()).add(b)
+                adjacent.setdefault(b, set()).add(a)
+    order = {a: sorted(neighbors, key=lambda b: math.atan2(b[1] - a[1], b[0] - a[0]))
+             for a, neighbors in adjacent.items()}
+    seen: set[tuple[tuple[float, float], tuple[float, float]]] = set()
+    faces = []
+    for a, neighbors in adjacent.items():
+        for b in neighbors:
+            if (a, b) in seen:
+                continue
+            start = a, b
+            u, v = start
+            face = []
+            while (u, v) not in seen:
+                seen.add((u, v))
+                face.append(u)
+                around = order[v]
+                w = around[(around.index(u) - 1) % len(around)]
+                u, v = v, w
+            if (u, v) != start:
+                raise AssertionError("I/V projected feedback loop has an invalid face")
+            area = sum(x * q - y * p for (x, y), (p, q)
+                       in zip(face, face[1:] + face[:1])) / 2
+            if abs(area) > 1e-8:
+                faces.append(area)
+    if not faces or abs(sum(faces)) > 1e-5:
+        raise AssertionError("I/V projected feedback faces do not close")
+    return sum(area for area in faces if area > 0)
+
+
+def check_iv_macro(board: pcbnew.BOARD, footprints: dict,
+                   group) -> dict:
+    """Check the manually frozen I/V copper and its plan-view loop model."""
+    def pad(ref: str, number: str) -> pcbnew.PAD:
+        return next(item for item in footprints[ref].Pads() if item.GetNumber() == number)
+
+    for ref, expected in IV_SWAPPED_PIN_NETS.items():
+        actual = {number: pad(ref, number).GetNetname() for number in expected}
+        if actual != expected:
+            raise AssertionError(f"{ref} swapped I/V pad nets differ: {actual}")
+
+    graphs = {}
+
+    def graph(net: str):
+        if net in graphs:
+            return graphs[net]
+        edges = collections.defaultdict(list)
+        layers = set()
+        vias = []
+        for item in board.GetTracks():
+            if item.GetNetname() != net:
+                continue
+            if isinstance(item, pcbnew.PCB_VIA):
+                vias.append(item)
+                continue
+            if item.GetClass() == "PCB_ARC":
+                raise AssertionError(f"{net} arc is not in the manual I/V route model")
+            a, b = item.GetStart(), item.GetEnd()
+            layer = item.GetLayer()
+            layers.add(layer)
+            u, v = (layer, a.x, a.y), (layer, b.x, b.y)
+            length = math.hypot(pcbnew.ToMM(a.x - b.x), pcbnew.ToMM(a.y - b.y))
+            edges[u].append((v, length))
+            edges[v].append((u, length))
+        for via in vias:
+            at = via.GetPosition()
+            nodes = [(layer, at.x, at.y) for layer in layers
+                     if via.IsOnLayer(layer) and (layer, at.x, at.y) in edges]
+            for index, u in enumerate(nodes):
+                for v in nodes[index + 1:]:
+                    edges[u].append((v, 0.0))
+                    edges[v].append((u, 0.0))
+        graphs[net] = edges
+        return edges
+
+    def route(net: str, first: tuple[str, str], last: tuple[str, str]):
+        for ref, number in (first, last):
+            if pad(ref, number).GetNetname() != net:
+                raise AssertionError(f"{ref}.{number} is not on {net}")
+        a, b = pad(*first).GetPosition(), pad(*last).GetPosition()
+        start, end = (pcbnew.F_Cu, a.x, a.y), (pcbnew.F_Cu, b.x, b.y)
+        edges = graph(net)
+        if start not in edges or end not in edges:
+            raise AssertionError(f"{net} pad-centre copper escape is missing: {first}->{last}")
+        heap = [(0.0, start)]
+        distances = {start: 0.0}
+        previous = {}
+        while heap:
+            length, here = heapq.heappop(heap)
+            if here == end:
+                break
+            if length > distances[here] + 1e-9:
+                continue
+            for there, segment_length in edges[here]:
+                candidate = length + segment_length
+                if candidate < distances.get(there, math.inf) - 1e-9:
+                    distances[there] = candidate
+                    previous[there] = here
+                    heapq.heappush(heap, (candidate, there))
+        if end not in distances:
+            raise AssertionError(f"{net} copper route is open: {first}->{last}")
+        nodes = [end]
+        while nodes[-1] != start:
+            nodes.append(previous[nodes[-1]])
+        nodes.reverse()
+        return nodes, distances[end]
+
+    def projected(nodes):
+        points = []
+        for _, x, y in nodes:
+            at = (round(pcbnew.ToMM(x), 9), round(pcbnew.ToMM(y), 9))
+            if not points or points[-1] != at:
+                points.append(at)
+        return points
+
+    dac_lengths = {}
+    first_t_lengths = {}
+    feedback_areas = {}
+    output_vias = {}
+    for leg, path in IV_LEGS.items():
+        input_group = {("U301", path.dac_pin), (path.opamp, path.input_pin),
+                       (path.feedback_resistor, "1"), (path.feedback_capacitor, "1")}
+        output_group = {(path.opamp, path.output_pin),
+                        (path.feedback_resistor, "2"), (path.feedback_capacitor, "2"),
+                        (path.clamp, "3"), (path.cm, "1"),
+                        *((ref, "1") for ref in path.first_t)}
+        if group("U301", path.dac_pin) != input_group:
+            raise AssertionError(f"{leg} DAC/summing/feedback input group differs")
+        if group(path.opamp, path.output_pin) != output_group:
+            raise AssertionError(f"{leg} I/V output/feedback/clamp/CM/first-T group differs")
+        output_vias[path.output_net] = sum(
+            isinstance(item, pcbnew.PCB_VIA) and item.GetNetname() == path.output_net
+            for item in board.GetTracks()
+        )
+        if any(item.GetNetname() == path.dac_net and
+               (isinstance(item, pcbnew.PCB_VIA) or item.GetLayer() != pcbnew.F_Cu)
+               for item in board.GetTracks()):
+            raise AssertionError(f"{path.dac_net} left F.Cu or used a via")
+        _, length = route(path.dac_net, ("U301", path.dac_pin),
+                          (path.opamp, path.input_pin))
+        if length > 7.0 + 1e-6:
+            raise AssertionError(f"{path.dac_net} DAC-to-summing copper exceeds 7 mm: {length:.3f}")
+        dac_lengths[path.dac_net] = round(length, 3)
+        first_t_lengths[path.output_net] = {}
+        for ref in path.first_t:
+            _, length = route(path.output_net, (path.opamp, path.output_pin), (ref, "1"))
+            first_t_lengths[path.output_net][ref] = round(length, 3)
+        for ref in (path.feedback_resistor, path.feedback_capacitor):
+            input_nodes, _ = route(path.dac_net, (path.opamp, path.input_pin), (ref, "1"))
+            output_nodes, _ = route(path.output_net, (ref, "2"),
+                                    (path.opamp, path.output_pin))
+            # The manifest freezes exact copper waypoints. Straight closures
+            # across the part and opamp pads define a reproducible 2D review
+            # polygon; this is not an extracted 3D return-current loop area.
+            area = _projected_bounded_area(projected(input_nodes) + projected(output_nodes))
+            if not 0 < area < 5.0:
+                raise AssertionError(f"{ref} projected 2D I/V feedback loop exceeds 5 mm²: {area:.3f}")
+            feedback_areas[ref] = round(area, 3)
+    return {
+        "iv_dac_to_summing_routes_mm": dac_lengths,
+        "iv_output_to_t_first_resistor_feeds_mm": first_t_lengths,
+        "iv_output_signal_vias_by_net": output_vias,
+        "iv_feedback_projected_2d_centreline_loop_area_mm2": feedback_areas,
+        "iv_feedback_area_model": "Plan-view copper centrelines with straight part/opamp pad closures; excludes vertical and return-current area",
+    }
+
+
+def _track_intersects_courtyard(track: pcbnew.PCB_TRACK,
+                                courtyard: pcbnew.BOX2I) -> bool:
+    """Check the track's copper-width envelope against the rectangular U501 courtyard."""
+    a, b = track.GetStart(), track.GetEnd()
+    x, y = pcbnew.ToMM(a.x), pcbnew.ToMM(a.y)
+    dx, dy = pcbnew.ToMM(b.x - a.x), pcbnew.ToMM(b.y - a.y)
+    radius = pcbnew.ToMM(track.GetWidth()) / 2
+    left = pcbnew.ToMM(courtyard.GetLeft()) - radius
+    right = pcbnew.ToMM(courtyard.GetRight()) + radius
+    top = pcbnew.ToMM(courtyard.GetTop()) - radius
+    bottom = pcbnew.ToMM(courtyard.GetBottom()) + radius
+    low, high = 0.0, 1.0
+    for p, q in ((-dx, x - left), (dx, right - x),
+                 (-dy, y - top), (dy, bottom - y)):
+        if abs(p) < 1e-12:
+            if q < -1e-9:
+                return False
+        elif p < 0:
+            low = max(low, q / p)
+        else:
+            high = min(high, q / p)
+    return low <= high + 1e-9
+
+
+def check_u501_local(board: pcbnew.BOARD, footprints: dict,
+                     connectivity, group) -> dict:
+    """Gate the routed LM27762 switching, supply and feedback macro."""
+    def pad(ref: str, number: str) -> pcbnew.PAD:
+        return next(item for item in footprints[ref].Pads()
+                    if item.GetNumber() == number)
+
+    topology = (
+        ("N5_C1P", ("U501", "10"), {("U501", "10"), ("C508", "1")}),
+        ("N5_C1N", ("U501", "9"), {("U501", "9"), ("C508", "2")}),
+        ("N5_CP", ("U501", "5"), {("U501", "5"), ("C509", "1")}),
+        ("5V_ANA_F", ("U501", "12"),
+         {("U501", "12"), ("U501", "8"), ("U501", "3"),
+          ("C507", "1"), ("FB501", "2")}),
+        ("VPOS", ("U501", "11"),
+         {("U501", "11"), ("C510", "1"), ("R501", "1")}),
+        ("VNEG", ("U501", "6"),
+         {("U501", "6"), ("C511", "1"), ("R503", "1")}),
+        ("N5_FBP", ("U501", "2"),
+         {("U501", "2"), ("R501", "2"), ("R502", "1")}),
+        ("N5_FBN", ("U501", "7"),
+         {("U501", "7"), ("R504", "1"), ("R503", "2")}),
+    )
+    for net, source, members in topology:
+        wrong = {f"{ref}.{number}": pad(ref, number).GetNetname()
+                 for ref, number in members if pad(ref, number).GetNetname() != net}
+        if wrong:
+            raise AssertionError(f"U501 {net} pad net differs: {wrong}")
+        missing = members - group(*source)
+        if missing:
+            raise AssertionError(f"U501 {net} local copper is open: {sorted(missing)}")
+
+    ground_pads = {("U501", "4"), ("U501", "PAD"),
+                   ("C507", "2"), ("C509", "2"),
+                   ("C510", "2"), ("C511", "2"),
+                   ("R502", "2"), ("R504", "2")}
+    if any(pad(ref, number).GetNetname() != "GND"
+           for ref, number in ground_pads):
+        raise AssertionError("U501 local ground pad nets differ")
+    if not ground_pads <= group("U501", "4"):
+        raise AssertionError("U501 cap/divider/EP grounds lack connected copper")
+    zones = [item for item in board.Zones()
+             if item.GetNetname() == "GND" and item.IsOnLayer(pcbnew.In1_Cu)
+             and item.HasFilledPolysForLayer(pcbnew.In1_Cu)]
+    if (len(zones) != 1 or
+            zones[0].GetFilledPolysList(pcbnew.In1_Cu).OutlineCount() != 1):
+        raise AssertionError("U501 has no continuous filled L2 GND zone")
+
+    def on_l2(item: pcbnew.BOARD_CONNECTED_ITEM) -> bool:
+        return any(other.GetClass() == "ZONE" and other.GetNetname() == "GND"
+                   and other.IsOnLayer(pcbnew.In1_Cu)
+                   for other in connectivity.GetConnectedItems(item))
+
+    for ref, number in ground_pads:
+        if not on_l2(pad(ref, number)):
+            raise AssertionError(f"{ref}.{number} has no filled L2 GND return")
+
+    local_nets = {net for net, _, _ in topology} | {"GND"}
+    if any(item.GetClass() == "PCB_ARC" and item.GetNetname() in local_nets
+           for item in board.GetTracks()):
+        raise AssertionError("U501 local arc is outside the centreline route model")
+    graphs = {}
+
+    def route_length(net: str, first: tuple[str, str],
+                     last: tuple[str, str]) -> float:
+        if net not in graphs:
+            graphs[net] = copper_graph(board, net)
+        edges = graphs[net]
+        start = pcbnew.F_Cu, copper_point(pad(*first).GetPosition())
+        end = pcbnew.F_Cu, copper_point(pad(*last).GetPosition())
+        if start not in edges or end not in edges:
+            raise AssertionError(f"{net} pad-centre copper is absent: {first}->{last}")
+        heap = [(0.0, start)]
+        distances = {start: 0.0}
+        while heap:
+            length, here = heapq.heappop(heap)
+            if here == end:
+                return length
+            if length > distances[here] + 1e-9:
+                continue
+            for there, _, segment_length in edges[here]:
+                candidate = length + segment_length
+                if candidate < distances.get(there, math.inf) - 1e-9:
+                    distances[there] = candidate
+                    heapq.heappush(heap, (candidate, there))
+        raise AssertionError(f"{net} pad-centre route is open: {first}->{last}")
+
+    route_specs = (
+        ("c1p_to_c508", "N5_C1P", ("U501", "10"), ("C508", "1"), 2.6),
+        ("c1n_to_c508", "N5_C1N", ("U501", "9"), ("C508", "2"), 2.6),
+        ("cp_to_c509", "N5_CP", ("U501", "5"), ("C509", "1"), 2.3),
+        ("vin12_to_c507", "5V_ANA_F", ("U501", "12"), ("C507", "1"), 2.4),
+        ("vin8_to_c507", "5V_ANA_F", ("U501", "8"), ("C507", "1"), 6.2),
+        ("vin3_to_c507", "5V_ANA_F", ("U501", "3"), ("C507", "1"), 6.1),
+        ("fb501_to_c507", "5V_ANA_F", ("FB501", "2"), ("C507", "1"), 17.5),
+        ("vpos_to_c510", "VPOS", ("U501", "11"), ("C510", "1"), 4.2),
+        ("c510_to_r501", "VPOS", ("C510", "1"), ("R501", "1"), 12.5),
+        ("vneg_to_c511", "VNEG", ("U501", "6"), ("C511", "1"), 3.7),
+        ("c511_to_r503", "VNEG", ("C511", "1"), ("R503", "1"), 10.7),
+        ("fbp_to_r501", "N5_FBP", ("U501", "2"), ("R501", "2"), 2.5),
+        ("r501_to_r502", "N5_FBP", ("R501", "2"), ("R502", "1"), 2.0),
+        ("fbn_to_r504", "N5_FBN", ("U501", "7"), ("R504", "1"), 2.3),
+        ("r504_to_r503", "N5_FBN", ("R504", "1"), ("R503", "2"), 1.8),
+    )
+    route_lengths = {}
+    for name, net, first, last, limit in route_specs:
+        length = route_length(net, first, last)
+        if length > limit + 1e-6:
+            raise AssertionError(f"U501 {name} exceeds {limit} mm: {length:.3f}")
+        route_lengths[name] = round(length, 3)
+
+    supply_tracks = [item for item in board.GetTracks()
+                     if item.GetNetname() == "5V_ANA_F"
+                     and not isinstance(item, pcbnew.PCB_VIA)]
+    narrow = [item for item in supply_tracks
+              if pcbnew.ToMM(item.GetWidth()) < 0.8 - 1e-6]
+    other = [item for item in supply_tracks if item not in narrow]
+    if not narrow or not other:
+        raise AssertionError("U501 VIN escapes or 0.8 mm feeder are missing")
+    courtyard = footprints["U501"].GetCourtyard(pcbnew.F_CrtYd).BBox()
+    for item in narrow:
+        width = pcbnew.ToMM(item.GetWidth())
+        if (item.GetLayer() != pcbnew.F_Cu or width < 0.2 - 1e-6
+                or not _track_intersects_courtyard(item, courtyard)):
+            raise AssertionError("Narrow 5V_ANA_F track leaves the U501 escape corridor")
+    # All sub-0.8 mm supply segments are in `narrow`; the component check
+    # below requires every one to belong to a bounded WSON pin escape.
+    incident = collections.defaultdict(set)
+    for index, item in enumerate(narrow):
+        for at in (item.GetStart(), item.GetEnd()):
+            incident[at.x, at.y].add(index)
+    visited = set()
+    branches = {}
+    limits = {"12": 1.10, "8": 1.20, "3": 0.90}
+    for index in range(len(narrow)):
+        if index in visited:
+            continue
+        stack = [index]
+        component = set()
+        endpoints = set()
+        while stack:
+            current = stack.pop()
+            if current in component:
+                continue
+            component.add(current)
+            for at in (narrow[current].GetStart(), narrow[current].GetEnd()):
+                key = at.x, at.y
+                endpoints.add(key)
+                stack.extend(incident[key] - component)
+        visited.update(component)
+        pins = [number for number in limits
+                if (pad("U501", number).GetPosition().x,
+                    pad("U501", number).GetPosition().y) in endpoints]
+        if len(pins) != 1 or pins[0] in branches:
+            raise AssertionError("5V_ANA_F narrow copper is not three VIN pin escapes")
+        number = pins[0]
+        length = sum(math.hypot(
+            pcbnew.ToMM(narrow[i].GetEnd().x - narrow[i].GetStart().x),
+            pcbnew.ToMM(narrow[i].GetEnd().y - narrow[i].GetStart().y))
+            for i in component)
+        if length > limits[number] + 1e-6:
+            raise AssertionError(f"U501.{number} narrow VIN escape exceeds {limits[number]} mm")
+        branches[number] = round(length, 3)
+    if set(branches) != set(limits):
+        raise AssertionError(f"U501 VIN escape branches differ: {branches}")
+
+    ground_graph = copper_graph(board, "GND")
+    zone_vias = {
+        (pcbnew.F_Cu, copper_point(item.GetPosition())): item
+        for item in board.GetTracks()
+        if isinstance(item, pcbnew.PCB_VIA) and item.GetNetname() == "GND"
+        and item.IsOnLayer(pcbnew.F_Cu) and item.IsOnLayer(pcbnew.In1_Cu)
+        and on_l2(item)
+    }
+
+    def ground_to_via(ref: str, number: str) -> tuple[float, pcbnew.PCB_VIA]:
+        start = pcbnew.F_Cu, copper_point(pad(ref, number).GetPosition())
+        if start not in ground_graph:
+            raise AssertionError(f"{ref}.{number} has no F.Cu ground escape")
+        heap = [(0.0, start)]
+        distances = {start: 0.0}
+        while heap:
+            length, here = heapq.heappop(heap)
+            if here in zone_vias:
+                return length, zone_vias[here]
+            if length > distances[here] + 1e-9:
+                continue
+            for there, _, segment_length in ground_graph[here]:
+                if there[0] != pcbnew.F_Cu:
+                    continue
+                candidate = length + segment_length
+                if candidate < distances.get(there, math.inf) - 1e-9:
+                    distances[there] = candidate
+                    heapq.heappush(heap, (candidate, there))
+        raise AssertionError(f"{ref}.{number} has no local F.Cu-to-L2 ground via")
+
+    ground_lengths = {}
+    ground_vias = {}
+    for ref, number, limit in (("U501", "4", 2.7),
+                               ("C507", "2", 1.5), ("C509", "2", 1.5),
+                               ("C510", "2", 1.5), ("C511", "2", 1.5),
+                               ("R502", "2", 1.5), ("R504", "2", 1.5)):
+        length, via = ground_to_via(ref, number)
+        if length > limit + 1e-6:
+            raise AssertionError(f"{ref}.{number} GND via route exceeds {limit} mm")
+        name = f"{ref}.{number}"
+        ground_lengths[name] = round(length, 3)
+        at = via.GetPosition()
+        ground_vias[name] = (pcbnew.ToMM(at.x), pcbnew.ToMM(at.y))
+    u_ground = ground_vias["U501.4"]
+    l2_spacing = {name: round(math.dist(at, u_ground), 3)
+                  for name, at in ground_vias.items() if name.startswith("C")}
+    return {
+        "u501_local_pad_centre_routes_mm": route_lengths,
+        "u501_vin_narrow_escape_branches_mm": branches,
+        "u501_vin_narrow_min_width_mm": round(min(
+            pcbnew.ToMM(item.GetWidth()) for item in narrow), 3),
+        "u501_other_5v_ana_f_track_min_width_mm": round(min(
+            pcbnew.ToMM(item.GetWidth()) for item in other), 3),
+        "u501_ground_fcu_pad_to_l2_via_mm": ground_lengths,
+        "u501_ground_l2_via_spacing_to_ic_mm": l2_spacing,
+        "u501_ground_l2_spacing_model": "Straight via-to-via spacing in one connected filled L2 zone; not an extracted return-current path",
+    }
 
 
 def check(board_path: Path, placement_path: Path, dfa_path: Path,
@@ -120,10 +595,17 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
     if candidate_copper != base_copper - removed_copper + added_copper:
         raise AssertionError("Manual copper record differs from the PCB")
 
-    # A two-segment orthogonal corner concentrates the visual and physical
-    # route at one sharp bend. Pad fanouts and three-way joins are checked by
-    # the copper/DRC gates above; this catches actual track-to-track bends.
+    # Screen both exact and almost-orthogonal free-copper elbows. A component
+    # pad centre is a copper landing, while a branch with straight-through
+    # copper is a T/cross junction rather than a turn in the main trace.
     incident = collections.defaultdict(list)
+    track_layers = {item.GetLayer() for item in board.GetTracks()
+                    if not isinstance(item, pcbnew.PCB_VIA)}
+    pad_centres = {
+        (pad.GetNetname(), layer, pad.GetPosition().x, pad.GetPosition().y)
+        for footprint in board.GetFootprints() for pad in footprint.Pads()
+        for layer in track_layers if pad.IsOnLayer(layer)
+    }
     for item in board.GetTracks():
         if isinstance(item, pcbnew.PCB_VIA):
             continue
@@ -134,16 +616,41 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
             incident[(item.GetNetname(), item.GetLayer(), here.x, here.y)].append(
                 (other.x - here.x, other.y - here.y))
     right_angle_bends = []
-    for (net, layer, x, y), vectors in incident.items():
-        if len(vectors) != 2:
-            continue
-        (ax, ay), (bx, by) = vectors
-        if abs(ax * bx + ay * by) < 1e-5 * math.hypot(ax, ay) * math.hypot(bx, by):
-            right_angle_bends.append((net, board.GetLayerName(layer),
-                                      round(pcbnew.ToMM(x), 3),
-                                      round(pcbnew.ToMM(y), 3)))
+    near_right_angle_free_bends = []
+    pad_centre_near_orthogonal_joins = []
+    orthogonal_branches_without_through = []
+    near_cosine = math.sin(math.radians(10.0))
+    through_cosine = -math.cos(math.radians(5.0))
+    for key, vectors in incident.items():
+        net, layer, x, y = key
+        angles = []
+        for index, (ax, ay) in enumerate(vectors):
+            for bx, by in vectors[index + 1:]:
+                angles.append((ax * bx + ay * by) /
+                              (math.hypot(ax, ay) * math.hypot(bx, by)))
+        location = (net, board.GetLayerName(layer),
+                    round(pcbnew.ToMM(x), 3), round(pcbnew.ToMM(y), 3))
+        if len(vectors) == 2:
+            cosine = angles[0]
+            if abs(cosine) < 1e-5:
+                right_angle_bends.append(location)
+            if abs(cosine) <= near_cosine:
+                if key in pad_centres:
+                    pad_centre_near_orthogonal_joins.append(location)
+                else:
+                    near_right_angle_free_bends.append(location)
+        elif (len(vectors) > 2 and any(abs(cosine) <= near_cosine
+                                        for cosine in angles)
+              and not any(cosine <= through_cosine for cosine in angles)
+              and key not in pad_centres):
+            orthogonal_branches_without_through.append(location)
     if right_angle_bends:
         raise AssertionError(f"Right-angle track bends remain: {right_angle_bends[:8]}")
+    if near_right_angle_free_bends or orthogonal_branches_without_through:
+        raise AssertionError(
+            "Near-orthogonal free-copper bends or branches remain: "
+            f"{near_right_angle_free_bends[:8]}, "
+            f"{orthogonal_branches_without_through[:8]}")
 
     zone = board.Zones()[0]
     if (len(board.Zones()) != 1 or zone.GetNetname() != "GND"
@@ -184,6 +691,9 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         return {pad_ids[item.m_Uuid.AsString()]
                 for item in connectivity.GetConnectedItems(pad(ref, pin))
                 if isinstance(item, pcbnew.PAD)}
+
+    iv_result = check_iv_macro(board, footprints, group)
+    u501_result = check_u501_local(board, footprints, connectivity, group)
 
     for leg, (opamp, out_pin, inn_pin, rf, cf, link, relay) in CHANNELS.items():
         if group(opamp, out_pin) != {
@@ -298,16 +808,20 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "manual_replaced_source_copper_items": len(manual.get("removed_source_copper", [])),
         "manual_added_copper_items": len(manual["added_copper"]),
         "right_angle_track_bends": 0,
+        "near_right_angle_free_track_bends": 0,
+        "orthogonal_branches_without_through": 0,
+        "pad_centre_near_orthogonal_joins": len(pad_centre_near_orthogonal_joins),
         "drc_violations": 0,
         "bbox_overlaps": 0,
         "jlc_spacing_and_edge_proxy_findings": 0,
         "l2_gnd_filled_polygons": 1,
         "feedback_centreline_loop_area_mm2": feedback_areas,
+        **iv_result,
+        **u501_result,
         "local_tvs_routes_mm": tvs["local_routes_mm"],
         "output_amp_hf_bypass_pad_lower_bound_mm": bypass_pad_distances,
         "routed_t_cell_count": len(t_lengths),
         "routed_t_cell_branch_lengths_mm": t_lengths,
-        "iv_output_to_t_first_resistor_feeds": "OPEN: four low-impedance I/V output nets have no complete route to their first T resistors",
         "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
         "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
         "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
@@ -315,7 +829,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "balanced_4p4_model_sensitivity_20khz": trace["balanced_4p4_model_sensitivity_20khz"],
         "drc_reported_unconnected_items": len(drc["unconnected_items"]),
         "ratsnest_unconnected_items": connectivity.GetUnconnectedCount(False),
-        "routing_release": "HOLD: I/V feedback and output feeds, DAC inputs, main rails/bulk, EP thermal, return extraction, R-15 measurement, F01–F04 and G-3/G-4",
+        "routing_release": "HOLD: I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, F01–F04 and G-3/G-4",
     }
 
 
