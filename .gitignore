@@ -18,3 +18,6 @@ __pycache__/
 /hardware/DAC_HPA_MACRO_STUDY_REVIEW.glb
 /hardware/DAC_HPA_MACRO_STUDY_PLACEMENT_REVIEW.svg
 /hardware/DAC_HPA_J702_ESD_OPTION_REVIEW.svg
+/hardware/FUNCTIONAL_ECO_DRC.json
+/hardware/FUNCTIONAL_ECO_3D_AUDIT.json
+/hardware/DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb

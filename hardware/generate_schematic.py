@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Capture the DAC-HPA workbook's pin netlist as an editable KiCad schematic.
+"""Capture the DAC-HPA workbook plus an asserted functional ECO in KiCad.
 
-This preserves the pin numbers and net names in Parts List v0.9, except for
-the owner-approved D705/D706 physical LED pad correction. U403/U404 use the
-owner-approved OPA2210 DGK package substitution; the source workbook still
-describes the earlier SOIC MPN. Physical-sample gates remain open.
+Parts List v0.9 and Calculation Package v1.1 remain immutable baselines. The
+explicit overlay below corrects the LED pads, buffers U605's MCU readbacks,
+and adds local J702 ESD devices. U403/U404 retain the owner-approved DGK
+package substitution. Physical and firmware qualification gates remain open.
 """
 
 from __future__ import annotations
@@ -14,7 +14,7 @@ import math
 import re
 import uuid
 from collections import defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import lru_cache
 from pathlib import Path
 
@@ -187,6 +187,112 @@ def apply_approved_overrides(workbook_pins: dict[str, list[Pin]]) -> dict[str, l
     return corrected
 
 
+def apply_functional_eco(
+    base_parts: dict[str, Part], approved_pins: dict[str, list[Pin]],
+    base_libparts: dict[str, Part],
+) -> tuple[dict[str, Part], dict[str, list[Pin]], dict[str, Part]]:
+    """Add reviewed F02/F04 circuitry without silently changing the workbook.
+
+    Every affected source part, pin and net is asserted before it is overlaid.
+    Synthetic symbol rows 9001–9005 never appear in Parts List v0.9.
+    """
+    parts = dict(base_parts)
+    pins = {ref: list(items) for ref, items in approved_pins.items()}
+    libparts = dict(base_libparts)
+    if len(base_parts) != 526 or sum(map(len, approved_pins.values())) != 1445:
+        raise ValueError("Parts List v0.9 inventory changed; re-review the functional ECO")
+    new_nets = {
+        "N6_V3AG_A_BUF_IN", "N6_V3AG_B_BUF_IN",
+        "N6_V3AG_A_BUF_OUT", "N6_V3AG_B_BUF_OUT",
+    }
+    if new_nets & {pin.net for group in pins.values() for pin in group}:
+        raise ValueError("Functional-ECO buffer net name already exists in the source")
+
+    def require(ref: str, expected: tuple[tuple[str, str, str], ...], value: str = "") -> None:
+        actual = tuple((pin.number, pin.name, pin.net) for pin in pins[ref])
+        if actual != expected or (value and parts[ref].value != value):
+            raise ValueError(f"{ref} v0.9 source changed; re-review functional ECO: {actual}")
+
+    require("R688", (("1", "1", "N6_V3AG_A"), ("2", "2", "N6_V3AG_A_MCU")), "470 kΩ")
+    require("R689", (("1", "1", "N6_V3AG_B"), ("2", "2", "N6_V3AG_B_MCU")), "470 kΩ")
+    for ref, source, target in (
+        ("R688", "N6_V3AG_A_MCU", "N6_V3AG_A_BUF_IN"),
+        ("R689", "N6_V3AG_B_MCU", "N6_V3AG_B_BUF_IN"),
+    ):
+        pins[ref] = [Pin(pin.number, pin.name, target if pin.net == source else pin.net)
+                     for pin in pins[ref]]
+    for number, net in (("45", "N6_V3AG_A_MCU"), ("62", "N6_V3AG_B_MCU")):
+        if {pin.number: pin.net for pin in pins["U201"]}.get(number) != net:
+            raise ValueError(f"U201 pin {number} source net changed; re-review functional ECO")
+    for ref, net in (("D701", "JACK_LP"), ("D702", "JACK_RP")):
+        require(ref, (("1", "1", net), ("2", "2", "GND")), "5 V")
+        if (parts[ref].mpn, parts[ref].lcsc, parts[ref].package) != (
+            "GOODWORK LESD5D5.0CT1G", "C41399463", "SOD-523"
+        ):
+            raise ValueError(f"{ref} source TVS identity changed; re-review functional ECO")
+    for number, net in (("3", "JACK_RP"), ("4", "JACK_LP"), ("5", "NC"), ("6", "NC")):
+        if {pin.number: pin.net for pin in pins["J702"]}.get(number) != net:
+            raise ValueError(f"J702 pin {number} source net changed; re-review functional ECO")
+
+    def add(part: Part, pin_maps: dict[str, list[Pin]]) -> None:
+        if part.symbol_id in libparts or set(part.refs) != set(pin_maps):
+            raise ValueError(f"Functional-ECO symbol row/reference collision: {part.symbol_id}")
+        signatures = {tuple((pin.number, pin.name) for pin in pin_maps[ref])
+                      for ref in part.refs}
+        if len(signatures) != 1:
+            raise ValueError(f"Functional-ECO symbol {part.symbol_id} has inconsistent pin names")
+        libparts[part.symbol_id] = part
+        for ref in part.refs:
+            if ref in parts or ref in pins:
+                raise ValueError(f"Functional-ECO designator {ref} already exists")
+            parts[ref] = part
+            pins[ref] = pin_maps[ref]
+
+    add(Part(
+        row=9001, block=6, refs=["U621"], value="SN74AUP2G17DCKR",
+        mpn="TI SN74AUP2G17DCKR", package="SC70-6 (DCK)",
+        rating_tolerance="0.8–3.6 V; dual noninverting Schmitt buffer",
+        lcsc="C507231", fit="Yes", source="JLCPCB C507231; order availability recheck",
+        datasheet="https://www.ti.com/lit/ds/symlink/sn74aup2g17.pdf",
+        description="Dual Schmitt buffer for 3V3A-good MCU readback isolation",
+        notes="Functional ECO F02; exact JLC C507231 footprint/model imported; TI DCK G-3 overlay remains open",
+    ), {"U621": [
+        Pin("1", "1A", "N6_V3AG_A_BUF_IN"), Pin("2", "GND", "GND"),
+        Pin("3", "2A", "N6_V3AG_B_BUF_IN"),
+        Pin("4", "2Y", "N6_V3AG_B_BUF_OUT"),
+        Pin("5", "VCC", "3V3M"), Pin("6", "1Y", "N6_V3AG_A_BUF_OUT"),
+    ]})
+    add(replace(base_parts["R951"], row=9002, block=6,
+                refs=["R952", "R953"],
+                notes="Functional ECO F02: 10 kΩ MCU-side output series resistor"), {
+        "R952": [Pin("1", "1", "N6_V3AG_A_BUF_OUT"), Pin("2", "2", "N6_V3AG_A_MCU")],
+        "R953": [Pin("1", "1", "N6_V3AG_B_BUF_OUT"), Pin("2", "2", "N6_V3AG_B_MCU")],
+    })
+    add(replace(base_parts["R680"], row=9003, block=6,
+                refs=["R954", "R955"],
+                notes="Functional ECO F02: MCU-side pull-up makes an open buffer output fault-high"), {
+        "R954": [Pin("1", "1", "3V3M"), Pin("2", "2", "N6_V3AG_A_MCU")],
+        "R955": [Pin("1", "1", "3V3M"), Pin("2", "2", "N6_V3AG_B_MCU")],
+    })
+    add(replace(base_parts["C628"], row=9004, block=6, refs=["C667"],
+                notes="Functional ECO F02: 100 nF local bypass at U621 pin 5"), {
+        "C667": [Pin("1", "1", "3V3M"), Pin("2", "2", "GND")],
+    })
+    add(replace(base_parts["D701"], row=9005, block=7,
+                refs=["D707", "D708"],
+                notes="Functional ECO F04: local J702 LP/RP TVS; verify nonlinear load, grounding and system ESD"), {
+        "D707": [Pin("1", "1", "JACK_RP"), Pin("2", "2", "GND")],
+        "D708": [Pin("1", "1", "JACK_LP"), Pin("2", "2", "GND")],
+    })
+    return parts, pins, libparts
+
+
+def read_design() -> tuple[dict[str, Part], dict[str, list[Pin]], dict[str, Part]]:
+    """Return the immutable source plus owner-approved, explicitly checked ECOs."""
+    parts, workbook_pins, libparts = read_source()
+    return apply_functional_eco(parts, apply_approved_overrides(workbook_pins), libparts)
+
+
 def footprint(part: Part, ref: str) -> str:
     package = part.package.strip()
     prefix = re.match(r"[A-Za-z]+", ref).group(0)
@@ -214,6 +320,12 @@ def footprint(part: Part, ref: str) -> str:
         # The existing JLC library land is for TI's same DGK0008A VSSOP-8
         # package (C140314). TI's OPA2210 D/DGK pin table is identical.
         return "JLC_Imported:VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL"
+    if ref == "U621":
+        if part.lcsc != "C507231":
+            raise ValueError("U621 JLC C507231 identity changed; re-review ECO footprint")
+        # Imported from the exact C507231 EasyEDA Pro device. The TI DCK0006A
+        # example land is larger, so physical G-3 overlay/DFM is still open.
+        return "JLC_Imported:SC-70-6_L2.2-W1.3-P0.65-LS2.1-BL"
     if ref in {"X202", "X203"}:
         return "DAC_HPA:X202_X203_NDK_NZ2520SDA"
     if package in {"0402", "0603", "0805", "1206"}:
@@ -266,6 +378,8 @@ def symbol_value(part: Part) -> str:
 
 def workbook_value(part: Part, ref: str) -> str:
     """Keep the original v0.9 value visible when an owner override is applied."""
+    if part.row >= 9000:
+        return "— (functional ECO; absent from Parts List v0.9)"
     return "OPA2210IDR" if ref in {"U403", "U404"} else part.value
 
 
@@ -324,6 +438,7 @@ PUSH_PULL_OUTPUT_PINS = {
     "U403": {"1", "7"}, "U404": {"1", "7"},
     "U604": {"1", "7"}, "U607": {"4"}, "U608": {"3", "5"},
     "X201": {"3"}, "X202": {"3"}, "X203": {"3"},
+    "U621": {"4", "6"},
 }
 
 OPEN_COLLECTOR_OUTPUT_PINS = {
@@ -346,6 +461,7 @@ INPUT_PINS = {
     "U605": {"2", "3", "5", "6"}, "U607": {"2"},
     "U608": {"1", "2", "6", "7"},
     "X201": {"1"}, "X202": {"1"}, "X203": {"1"},
+    "U621": {"1", "3"},
 }
 for _comparator in ("U603", "U606", "U609", "U610", "U611", "U612"):
     INPUT_PINS[_comparator] = {"4", "5", "6", "7", "8", "9", "10", "11"}
@@ -602,9 +718,18 @@ def text_note(value: str, x: int, y: int, size: float) -> str:
 
 
 def make() -> None:
-    parts, workbook_pins, libparts = read_source()
+    base_parts, workbook_pins, base_libparts = read_source()
     pins = apply_approved_overrides(workbook_pins)
-    positions = layout(parts, pins)
+    parts, pins, libparts = apply_functional_eco(base_parts, pins, base_libparts)
+    # Preserve every pre-ECO sheet position. Put the new buffer group in the
+    # open lower area of sheet 6 and the two TVS symbols in sheet 7's last row.
+    positions = layout(base_parts, workbook_pins)
+    positions.update({
+        "R688": (40, 278), "R689": (76, 278), "U621": (130, 278),
+        "R952": (220, 278), "R953": (256, 278),
+        "R954": (292, 278), "R955": (328, 278), "C667": (364, 278),
+        "D707": (112, 105), "D708": (148, 105),
+    })
     project_file = HERE / f"{PROJECT}.kicad_pro"
     if not project_file.exists():
         project_file.write_text("{}\n", encoding="utf-8")
@@ -628,10 +753,10 @@ def make() -> None:
         "(kicad_sch", "(version 20260306)", '(generator "eeschema")',
         '(generator_version "10.0")', f"(uuid {q(ROOT_UUID)})", '(paper "A3")',
         '(title_block (title "USB DAC + Balanced Headphone Amplifier") '
-        '(date "2026-09-27") (rev "v1.1") '
-        '(comment 1 "Design Spec v1.1 / Notes v1.0 / Parts List v0.9") '
-        '(comment 2 "J701/J702 maps from maker drawings; G-1 to G-4 remain open"))',
-        text_note("SCHEMATIC CAPTURE v1.1 — eight circuit sheets; G-1 through G-4 remain open.", 20, 20, 1.524),
+        '(date "2026-09-28") (rev "v1.1-ECO1") '
+        '(comment 1 "Spec v1.1 / Notes v1.0 / Parts List v0.9 + ECO F02/F04") '
+        '(comment 2 "REVIEW ONLY: capture F01, attach F03 and G-1 to G-4 open"))',
+        text_note("SCHEMATIC CAPTURE v1.1-ECO1 — F02/F04 captured; F01/F03 and G-1 to G-4 open.", 20, 20, 1.524),
     ]
     for block, title in TITLES.items():
         sheet_uuid = uid("sheet", block)
@@ -660,10 +785,10 @@ def make() -> None:
             "(kicad_sch", "(version 20260306)", '(generator "eeschema")',
             '(generator_version "10.0")', f"(uuid {q(document_uuid)})",
             f'(paper {q(PAPER_BY_BLOCK.get(block, "A2"))})',
-            f"(title_block (title {q(title)}) (date \"2026-09-27\") "
-            f"(rev \"v1.1\") "
-            f"(comment 1 \"Design Spec v1.1 / Notes v1.0 / Parts List v0.9\") "
-            f"(comment 2 \"REVIEW ONLY: G-1 to G-4 remain open; J701/J702 maps from maker drawings\"))",
+            f"(title_block (title {q(title)}) (date \"2026-09-28\") "
+            f"(rev \"v1.1-ECO1\") "
+            f"(comment 1 \"Spec v1.1 / Notes v1.0 / Parts List v0.9 + ECO F02/F04\") "
+            f"(comment 2 \"REVIEW ONLY: capture F01, attach F03 and G-1 to G-4 open\"))",
             "(lib_symbols", *embedded, ")",
             text_note(title, 16, 12, 1.524),
         ]

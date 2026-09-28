@@ -1,6 +1,6 @@
 # Connector soldering process hold
 
-The schematic and library files are not a PCBA release. A footprint scan of all 455 parts marked JLCPCB-placed found two connectors with plated through-hole pads and **no F.Paste apertures**:
+The schematic and library files are not a PCBA release. The functional ECO raises the review BOM to 463 JLCPCB-placed parts; the original 455-part footprint scan found two connectors with plated through-hole pads and **no F.Paste apertures**. Their land patterns and process questions are unchanged:
 
 | Ref | JLCPCB-placed land pattern | Current paste status | Required confirmation |
 | --- | --- | --- | --- |

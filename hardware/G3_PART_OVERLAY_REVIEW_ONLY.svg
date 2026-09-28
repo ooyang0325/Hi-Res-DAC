@@ -839,6 +839,58 @@
 </g>
 </g>
 </g>
+<g>
+<title>U621: JLC_Imported:SC-70-6_L2.2-W1.3-P0.65-LS2.1-BL</title>
+<text x="25" y="248" class="ref">29 · U621</text>
+<g transform="translate(25 261)">
+<line x1="-1" y1="-0.625" x2="1" y2="-0.625" class="body"/>
+<line x1="-1" y1="0.625" x2="-1" y2="-0.625" class="body"/>
+<line x1="1" y1="-0.625" x2="1" y2="0.625" class="body"/>
+<line x1="1" y1="0.625" x2="-1" y2="0.625" class="body"/>
+<g transform="translate(-0.65 0.84) rotate(0)">
+<rect x="-0.175" y="-0.39" width="0.35" height="0.78" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">1</text>
+</g>
+<g transform="translate(0 0.84) rotate(0)">
+<rect x="-0.175" y="-0.39" width="0.35" height="0.78" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">2</text>
+</g>
+<g transform="translate(0.65 0.84) rotate(0)">
+<rect x="-0.175" y="-0.39" width="0.35" height="0.78" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">3</text>
+</g>
+<g transform="translate(0.65 -0.84) rotate(0)">
+<rect x="-0.175" y="-0.39" width="0.35" height="0.78" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">4</text>
+</g>
+<g transform="translate(0 -0.84) rotate(0)">
+<rect x="-0.175" y="-0.39" width="0.35" height="0.78" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">5</text>
+</g>
+<g transform="translate(-0.65 -0.84) rotate(0)">
+<rect x="-0.175" y="-0.39" width="0.35" height="0.78" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">6</text>
+</g>
+</g>
+</g>
+<g>
+<title>D701, D707, D708: JLC_Imported:SOD-523_L1.2-W0.8-LS1.6-BI</title>
+<text x="64" y="248" class="ref">30 · D701 +2</text>
+<g transform="translate(64 261)">
+<line x1="-0.6" y1="-0.4" x2="0.6" y2="-0.4" class="body"/>
+<line x1="-0.6" y1="0.4" x2="-0.6" y2="-0.4" class="body"/>
+<line x1="0.6" y1="-0.4" x2="0.6" y2="0.4" class="body"/>
+<line x1="0.6" y1="0.4" x2="-0.6" y2="0.4" class="body"/>
+<g transform="translate(-0.75 0) rotate(0)">
+<rect x="-0.3" y="-0.2" width="0.6" height="0.4" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">1</text>
+</g>
+<g transform="translate(0.75 0) rotate(180)">
+<rect x="-0.3" y="-0.2" width="0.6" height="0.4" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">2</text>
+</g>
+</g>
+</g>
 <text x="15" y="267" class="note">Match each cell number to the checklist. Check pad overlap, pin 1, holes and body clearance.</text>
 <text x="15" y="275" class="note">Sample IDs / date / reviewer: __________________________________________________________</text>
 </svg>

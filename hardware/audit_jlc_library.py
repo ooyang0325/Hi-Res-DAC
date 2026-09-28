@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit the JLCPCB loader's CAD data against the workbook pin numbers."""
+"""Audit the JLCPCB loader's CAD data against the approved schematic pins."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from collections import defaultdict
 from pathlib import Path
 from zipfile import ZipFile
 
-from generate_schematic import HERE, read_source
+from generate_schematic import HERE, read_design
 
 
 SOURCE = HERE / "JLC_Source" / "JLC_DAC_HPA.elibz"
@@ -38,7 +38,7 @@ def footprint_numbers(archive: ZipFile, footprint_uuid: str) -> set[str]:
 
 
 def audit() -> None:
-    _, pins, parts = read_source()
+    _, pins, parts = read_design()
     by_code = defaultdict(list)
     for part in parts.values():
         if part.lcsc.startswith("C"):
@@ -57,18 +57,18 @@ def audit() -> None:
             footprint_uuid = attributes.get("Footprint")
             candidate_symbol_pins = symbol_numbers(archive, symbol_uuid) if symbol_uuid else set()
             candidate_pad_numbers = footprint_numbers(archive, footprint_uuid) if footprint_uuid else set()
-            workbook_numbers = {
+            design_numbers = {
                 pin.number for part in source_parts for ref in part.refs for pin in pins[ref]
             }
-            symbol_match = candidate_symbol_pins == workbook_numbers
-            footprint_match = candidate_pad_numbers == workbook_numbers
+            symbol_match = candidate_symbol_pins == design_numbers
+            footprint_match = candidate_pad_numbers == design_numbers
             output[code] = {
                 "manufacturer_part": attributes.get("Manufacturer Part", ""),
                 "refs": sorted({ref for part in source_parts for ref in part.refs}),
                 "footprint": device.get("footprint", {}).get("display_title", ""),
                 "symbol_pin_numbers": sorted(candidate_symbol_pins),
                 "footprint_pad_numbers": sorted(candidate_pad_numbers),
-                "workbook_pin_numbers": sorted(workbook_numbers),
+                "approved_design_pin_numbers": sorted(design_numbers),
                 "symbol_numbers_match": symbol_match,
                 "footprint_numbers_match": footprint_match,
                 "status": "candidate_exact_numbers" if symbol_match and footprint_match else "review_required",
@@ -92,7 +92,7 @@ def audit() -> None:
                 "footprint": footprint_name,
                 "symbol_pin_numbers": sorted(expected_numbers),
                 "footprint_pad_numbers": sorted(donor_numbers),
-                "workbook_pin_numbers": sorted(expected_numbers),
+                "approved_design_pin_numbers": sorted(expected_numbers),
                 "symbol_numbers_match": True,
                 "footprint_numbers_match": True,
                 "symbol_source": "TI OPA2210 datasheet Figure 5-3/Table 5-2",
@@ -104,7 +104,7 @@ def audit() -> None:
     print(f"Audited {len(output)} JLCPCB codes: {exact} exact pin/pad sets, {len(output)-exact} requiring review")
     for code, item in output.items():
         if item["status"] != "candidate_exact_numbers":
-            print(code, ",".join(item["refs"]), "workbook", item["workbook_pin_numbers"],
+            print(code, ",".join(item["refs"]), "design", item["approved_design_pin_numbers"],
                   "library", item["footprint_pad_numbers"])
 
 

@@ -12,11 +12,11 @@ from __future__ import annotations
 import re
 from collections import Counter
 
-from generate_schematic import apply_approved_overrides, read_source
+from generate_schematic import apply_approved_overrides, apply_functional_eco, read_source
 
 
 def main() -> None:
-    parts, pins, _ = read_source()
+    parts, pins, libparts = read_source()
     checks = 0
 
     def pin(ref: str, number: str, net: str) -> None:
@@ -521,8 +521,40 @@ def main() -> None:
     }
     assert j702 == expected_j702, j702
     checks += len(expected_j702)
+    # Functional ECO F02/F04 is an explicit overlay on the checked v0.9
+    # workbook, not a silent edit to the Notes or calculation package.
+    eco_parts, eco_pins, _ = apply_functional_eco(parts, corrected_pins, libparts)
+    assert len(eco_parts) == 534 and sum(map(len, eco_pins.values())) == 1465
+    assert len({p.net for group in eco_pins.values() for p in group if p.net != "NC"}) == 250
+    assert Counter(part.fit for part in eco_parts.values()) == {
+        "Yes": 463, "Owner": 7, "No": 9, "Pads": 3, "No part": 52,
+    }
+    checks += 3
+    expected_eco = {
+        "R688": {"1": "N6_V3AG_A", "2": "N6_V3AG_A_BUF_IN"},
+        "R689": {"1": "N6_V3AG_B", "2": "N6_V3AG_B_BUF_IN"},
+        "U621": {"1": "N6_V3AG_A_BUF_IN", "2": "GND", "3": "N6_V3AG_B_BUF_IN",
+                 "4": "N6_V3AG_B_BUF_OUT", "5": "3V3M", "6": "N6_V3AG_A_BUF_OUT"},
+        "R952": {"1": "N6_V3AG_A_BUF_OUT", "2": "N6_V3AG_A_MCU"},
+        "R953": {"1": "N6_V3AG_B_BUF_OUT", "2": "N6_V3AG_B_MCU"},
+        "R954": {"1": "3V3M", "2": "N6_V3AG_A_MCU"},
+        "R955": {"1": "3V3M", "2": "N6_V3AG_B_MCU"},
+        "C667": {"1": "3V3M", "2": "GND"},
+        "D707": {"1": "JACK_RP", "2": "GND"},
+        "D708": {"1": "JACK_LP", "2": "GND"},
+    }
+    for ref, expected in expected_eco.items():
+        actual = {p.number: p.net for p in eco_pins[ref]}
+        assert actual == expected, (ref, actual, expected)
+        checks += len(expected)
+    assert eco_parts["R952"].value == eco_parts["R953"].value == "10 kΩ"
+    assert eco_parts["R954"].value == eco_parts["R955"].value == "100 kΩ"
+    assert eco_parts["C667"].value == "100 nF"
+    assert eco_parts["D707"].lcsc == eco_parts["D708"].lcsc == "C41399463"
+    checks += 4
     print(f"PASS: {checks} selected design-note pin, value, membership, and fit checks")
     print("CORRECTED: D705/D706 physical pad maps differ from the source checklist")
+    print("ECO: U605 readbacks buffered, with local bypass and J702 TVS pair")
     print("DOCUMENTED: J701/J702 maker-drawing contact maps; G-1–G-4 physical gates remain open")
 
 

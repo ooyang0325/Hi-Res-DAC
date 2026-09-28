@@ -261,6 +261,32 @@
   },
   {
     "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/df84906d417c4d929ec2e4259b3eb740",
+    "converted_bbox_mm": [
+      2.1,
+      2.0011,
+      1.0
+    ],
+    "converted_bytes": 1587146,
+    "converted_file": "SC-70-6_L2.0-W1.3-H1.0-P0.65.step",
+    "converted_sha256": "372c0f74e468831a98346ad4aa900dcba0ce3c868b385da2da616f34fadb5e7b",
+    "direct_uuid": "e8c049de0bbc469ba32d5592f1765e02",
+    "lcsc_code": "C507231",
+    "model_uuid": "df84906d417c4d929ec2e4259b3eb740",
+    "raw_bbox_mm": [
+      2.1,
+      2.0011,
+      1.0
+    ],
+    "raw_bytes": 2317247,
+    "raw_sha256": "955b48fdbbd184231fb0b0d72ac68852b1db3a517febad9b72d3f304e8b9371f",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/e8c049de0bbc469ba32d5592f1765e02",
+    "title": "SC-70-6_L2.0-W1.3-H1.0-P0.65",
+    "transform": "82.677,78.74,0,90,0,0,0,0.0005,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
     "component_url": "https://pro.easyeda.com/api/v2/components/75a5a4c4377b43aba6974acbc16228db",
     "converted_bbox_mm": [
       2.0004,

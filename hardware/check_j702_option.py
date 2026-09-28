@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the separate, unapproved J702 two-TVS physical route option."""
+"""Check the historical J702 two-TVS fit/route trial."""
 
 from __future__ import annotations
 
@@ -31,6 +31,8 @@ def check(board_path: Path, dfa_path: Path, drc_path: Path) -> dict:
     if (dfa["package_pair_spacing_violation_count"]
             or dfa["board_edge_body_spacing_violation_count"]):
         raise SystemExit("J702 option package/edge proxy failed")
+    if {"D707", "D708"} & set(dfa["jlc_unclassified_refs"]):
+        raise SystemExit("J702 TVS packages were omitted from the JLC spacing proxy")
     if dfa["l1_output_corridor_blockers"]["J702_to_lower_relays"] != ["D707"]:
         raise SystemExit("Unexpected J702 output corridor contents")
     segments = set()
@@ -67,11 +69,11 @@ def check(board_path: Path, dfa_path: Path, drc_path: Path) -> dict:
         "k603_to_j702_rp_trial_route_mm": round(route_length(RP_WAYPOINTS), 3),
         "new_local_ground_vias": 2,
         "drc_violations": 0,
-        "existing_jlc_package_spacing_proxy_findings": 0,
-        "new_diodes_in_assembly_bom": False,
-        "new_diodes_in_classified_package_proxy": False,
+        "jlc_package_spacing_proxy_findings": 0,
+        "new_diodes_in_assembly_bom": True,
+        "new_diodes_in_classified_package_proxy": True,
         "intentional_corridor_occupant": "D707 on JACK_RP route",
-        "eco_status": "NOT in schematic or BOM; system ESD and LP main route open",
+        "eco_status": "Captured in schematic/BOM; this earlier 538-footprint trial is historical; system ESD and LP main route open",
     }
 
 

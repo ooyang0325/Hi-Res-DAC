@@ -1,18 +1,20 @@
 # PCB 3D model review
 
-The editable **120 × 100 mm** primary board is `DAC_HPA.kicad_pcb`. Open it in
-KiCad 10 and choose **View → 3D Viewer**. The 100 × 80 mm comparison board and
-the other saved placement studies have the same model links. GitLab CI also
-exports a `DAC_HPA_3D_REVIEW_ONLY.glb` assembly in the review artifact. The
+The current **120 × 100 mm** schematic-aligned board is
+`DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb`. Open it in KiCad 10 and
+choose **View → 3D Viewer**. GitLab CI exports
+`DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb` for this candidate. The prior
 [full-board preview](DAC_HPA_3D_review.png) and [J101 closeup](DAC_HPA_J101_3D_detail.png)
-come from KiCad's 3D Viewer after the USB-C model alignment correction.
+show the historical primary after the USB-C model alignment correction.
 
-The later [manual macro-placement candidate](MACRO_PLACEMENT_REVIEW.md) retains the same footprint/model population and gets its own `DAC_HPA_MACRO_STUDY_REVIEW.glb` in CI. The separate [J702 TVS option](J702_LOCAL_TVS_OPTION.md) reuses the existing SOD-523 package model for D707/D708; those two bodies are still subject to the local solder-access and JLC order checks.
+The [manual macro-placement study](MACRO_PLACEMENT_REVIEW.md) has the older 536-footprint population. The current candidate adds D707/D708 with the existing SOD-523 model and U621 with a new exact-JLC C507231 SC70-6 body. These models remain subject to G-3 fit and JLC order checks.
 
 ## Coverage and sources
 
-`audit_3d_models.py` checks model paths, file headers, and the JLC file hashes
-on the five original review boards. Each has 536 footprints: **470 component bodies resolve**
+`audit_3d_models.py` checks model paths, file headers, and the JLC file hashes.
+On the current ECO candidate, **478 component bodies resolve**
+(474 STEP and four VRML), while 66 copper-only items intentionally have no
+model. The five historical review boards each have 536 footprints: **470 component bodies resolve**
 (466 STEP and four VRML), while 66 copper-only items intentionally have no
 model (53 test pads, seven fiducials, four mounting holes, and J201/J202 debug
 pads). Of the 470, 380 use KiCad 10 stock models and 90 use files kept in this
@@ -23,7 +25,8 @@ in `KICAD_STOCK_MODELS` for headless CI, with KiCad's license and hashes.
 
 | Parts | 3D source and alignment | Confidence for 3D inspection |
 | --- | --- | --- |
-| J701, J702 and 80 other JLC footprints | STEP from the component's EasyEDA/JLC CAD entry. The 30 files, source URLs, LCSC codes, conversions, and SHA-256 hashes are in `EASYEDA_MODELS/MODEL_SOURCES.json`. | Source package bodies; the modified jack copper and slots still require G-3 sample overlay and JLC DFM. |
+| J701, J702 and the imported JLC footprints | STEP from the component's EasyEDA/JLC CAD entry. The 31 files, source URLs, LCSC codes, conversions, and SHA-256 hashes are in `EASYEDA_MODELS/MODEL_SOURCES.json`. | Source package bodies; the modified jack copper and slots still require G-3 sample overlay and JLC DFM. |
+| U621 | Exact C507231 JLC SC70-6 body and native pad geometry, normalized to STEP. | Model and pads match the JLC CAD entry, but TI's DCK example land has a wider pad-row span. Resolve the physical G-3/JLC DFM discrepancy before order. |
 | J101 | KiCad 10 `USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.step`, with −1.295 mm local Y offset for the custom footprint origin. A J101-only STEP probe puts the shell front at x = 40.03 mm beside the x = 40.00 mm board edge. | Exact connector family body; visually aligned in KiCad 3D Viewer. The footprint and solder lands remain at the GCT PCB-edge datum. G-3 physical overlay still open. |
 | K601–K604 | User-supplied Ultra Librarian `TLP3545A_LF1__TOS.step`, stored as `DAC_HPA_3D/TLP3545A_LF1_UltraLibrarian.step`. Local Z rotation is −90° to align the model's pad-1 side to the custom LF1 footprint. | Exact Toshiba LF1 body; visually aligned in KiCad 3D Viewer. Source STEP SHA-256: `3534740be81c87bf067b67926e57872bb9693455f3bbc5ab0c75e69f7ab00c74`. |
 | X201–X203 | KiCad stock `Crystal_SMD_2520-4Pin_2.5x2.0mm.step`. | 2520 four-pad package approximation; maker-exact oscillator bodies remain desirable. |
@@ -33,7 +36,7 @@ in `KICAD_STOCK_MODELS` for headless CI, with KiCad's license and hashes.
 The original user-downloaded Ultra Librarian ZIP is not required by KiCad after
 extracting its STEP. Its source ZIP SHA-256 is
 `9c409738e9fb11241a2306db80b8167d6a3af8ac0be0cab408640a1d2ce81f1d`.
-`fetch_jlc_3d_models.py` can restore the 30 JLC STEP files from the saved
+`fetch_jlc_3d_models.py` can restore the original 30 JLC STEP files from the saved
 `JLC_Source/JLC_DAC_HPA.elibz` identifiers when network access is available;
 it does not move footprints. `attach_3d_models.py` adds the twelve custom
 model links to the five board snapshots if absent. GitLab CI sets
@@ -46,7 +49,7 @@ The 3D view verifies that model files load and permits visual package and
 clearance review. It does **not** prove pad numbering, solder-joint geometry,
 height tolerance, connector mating, or routability. G-3 overlays, the JLCPCB
 DFM review, and routing/ESD gates in `PRELAYOUT_GATES.md` remain open. The
-primary board is a placement review with partial ESD routing, not a PCBA
+current ECO board is a placement review with partial ESD routing, not a PCBA
 release package.
 
 KiCad's GLB exporter currently skips the four VRML film-capacitor envelopes;

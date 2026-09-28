@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Export visual PCB review views from the committed primary board.
+# Export visual PCB review views from the committed functional-ECO candidate.
 set -euo pipefail
 
 if [[ $# -lt 1 || $# -gt 2 ]]; then
@@ -8,7 +8,7 @@ if [[ $# -lt 1 || $# -gt 2 ]]; then
 fi
 
 hardware_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-board="${2:-$hardware_dir/DAC_HPA.kicad_pcb}"
+board="${2:-$hardware_dir/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb}"
 output_dir="$1"
 kicad_cli="${KICAD_CLI:-kicad-cli}"
 if [[ ! -f "$board" ]]; then

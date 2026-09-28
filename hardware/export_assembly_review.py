@@ -65,7 +65,7 @@ def main() -> None:
             (owner if kind == "Owner" else dnf).append(item)
         elif kind not in {"Pads", "No part"}:
             raise AssertionError(f"Unexpected assembly category {kind!r} on {ref}")
-    expected = {"Yes": 455, "Owner": 7, "No": 9, "Pads": 3, "No part": 63}  # 52 test pads + 11 mechanical items
+    expected = {"Yes": 463, "Owner": 7, "No": 9, "Pads": 3, "No part": 63}  # v0.9 + 8 ECO, 52 test pads + 11 mechanical items
     if dict(kinds) != expected:
         raise AssertionError(f"Schematic assembly count changed: {dict(kinds)} != {expected}")
 

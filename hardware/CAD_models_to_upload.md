@@ -1,6 +1,6 @@
 # Exact CAD models still useful
 
-The command-line JLCPCB KiCad loader supplied 41 LCSC CAD entries, including the new TI TLV3402IDGKR and onsemi MMBT3904LT1G. Manufacturer drawings supplied the 2D land dimensions for D102, X201–X203, C631–C634, K601–K604 and the connector slot corrections. All assigned footprints pass the symbol-pin/pad-number check. **No CAD upload is needed to continue schematic capture.**
+The command-line JLCPCB KiCad loader supplied 42 LCSC CAD entries, including TI TLV3402IDGKR, TI SN74AUP2G17DCKR and onsemi MMBT3904LT1G. Manufacturer drawings supplied the 2D land dimensions for D102, X201–X203, C631–C634, K601–K604 and the connector slot corrections. All assigned footprints pass the symbol-pin/pad-number check. **No CAD upload is needed to continue schematic capture.**
 
 The boards now resolve 3D bodies for every component footprint; see
 `3D_MODEL_REVIEW.md`. The user-supplied exact Toshiba LF1 STEP is integrated.

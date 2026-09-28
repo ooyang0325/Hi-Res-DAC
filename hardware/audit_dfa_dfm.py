@@ -68,7 +68,10 @@ def component_class(fp: pcbnew.FOOTPRINT) -> str | None:
         return "QFP"
     if any(token in name for token in ("SOP", "SOIC", "TSSOP", "VSSOP", "ESOP")):
         return "SOP"
-    if any(token in name for token in ("SOT", "SC-88")):
+    # JLC's published package-pair table does not name SOD-523 or SC-70-6.
+    # Screen these small molded packages with the conservative SOT row, and
+    # keep the exact package pairing for JLC's order-specific DFM review.
+    if any(token in name for token in ("SOT", "SC-88", "SC-70", "SOD-523")):
         return "SOT"
     if "BGA" in name:
         return "BGA"

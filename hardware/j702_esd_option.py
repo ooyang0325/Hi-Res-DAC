@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Make a board-only, unapproved two-TVS J702 fit and access study.
+"""Reproduce the historical board-only two-TVS J702 fit and access study.
 
-The schematic, BOM and primary PCB are not changed. The two added pads test
-physical room for local RP/LP protection before an electrical ECO is accepted.
+The current schematic/BOM already contain D707/D708. This earlier 538-part
+trial still provides the initial local path and access comparison; the 544-part
+functional-ECO board is the current schematic-aligned placement candidate.
 """
 
 from pathlib import Path
@@ -41,7 +42,7 @@ def main() -> None:
         if fp is None:
             raise SystemExit(f"Missing {FOOTPRINT_NAME}")
         fp.SetReference(ref)
-        fp.SetValue("LESD5D5.0CT1G — OPTION ONLY")
+        fp.SetValue("LESD5D5.0CT1G — HISTORICAL TRIAL")
         fp.SetOrientationDegrees(angle)
         fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(x_mm), pcbnew.FromMM(y_mm)))
         for pad in fp.Pads():
@@ -71,9 +72,9 @@ def main() -> None:
     for drawing in board.GetDrawings():
         if (isinstance(drawing, pcbnew.PCB_TEXT)
                 and drawing.GetText().startswith("MACRO PLACEMENT V2")):
-            drawing.SetText("J702 TWO-TVS OPTION — NO SCHEMATIC/BOM ECO")
+            drawing.SetText("HISTORICAL J702 TVS FIT TRIAL — SEE FUNCTIONAL ECO BOARD")
     pcbnew.SaveBoard(str(OUTPUT), board)
-    print(f"Saved {OUTPUT.name} with two unapproved J702 TVS fit/route options")
+    print(f"Saved historical {OUTPUT.name} TVS fit/route trial")
 
 
 if __name__ == "__main__":

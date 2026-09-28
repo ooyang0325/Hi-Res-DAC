@@ -4,7 +4,7 @@
 (generator_version "10.0")
 (uuid "e3d8d637-b6b9-5896-b135-5e22fbd7275d")
 (paper "A3")
-(title_block (title "3  ES9018K2M DAC") (date "2026-09-27") (rev "v1.1") (comment 1 "Design Spec v1.1 / Notes v1.0 / Parts List v0.9") (comment 2 "REVIEW ONLY: G-1 to G-4 remain open; J701/J702 maps from maker drawings"))
+(title_block (title "3  ES9018K2M DAC") (date "2026-09-28") (rev "v1.1-ECO1") (comment 1 "Spec v1.1 / Notes v1.0 / Parts List v0.9 + ECO F02/F04") (comment 2 "REVIEW ONLY: capture F01, attach F03 and G-1 to G-4 open"))
 (lib_symbols
 (symbol "DAC_HPA:P044"
 (pin_numbers (hide yes))

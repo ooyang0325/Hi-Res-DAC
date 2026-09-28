@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the KiCad capture against Parts List v0.9 and run KiCad ERC."""
+"""Check the KiCad capture against v0.9 plus its asserted ECO and run ERC."""
 
 from __future__ import annotations
 
@@ -15,7 +15,10 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from generate_schematic import HERE, PROJECT, apply_approved_overrides, datasheet_url, read_source, symbol_value, workbook_value
+from generate_schematic import (
+    HERE, PROJECT, apply_approved_overrides, apply_functional_eco,
+    datasheet_url, read_source, symbol_value, workbook_value,
+)
 
 
 def cli() -> str:
@@ -54,8 +57,10 @@ def footprint_root() -> Path:
 
 
 def run() -> None:
-    parts, workbook_pins, _ = read_source()
-    design_pins = apply_approved_overrides(workbook_pins)
+    base_parts, workbook_pins, base_libparts = read_source()
+    parts, design_pins, _ = apply_functional_eco(
+        base_parts, apply_approved_overrides(workbook_pins), base_libparts,
+    )
     schematic = HERE / f"{PROJECT}.kicad_sch"
     environment = os.environ.copy()
     environment.setdefault("XDG_CACHE_HOME", str(Path(tempfile.gettempdir()) / "hires-dac-fontcache"))
@@ -136,9 +141,9 @@ def run() -> None:
             raise AssertionError(f"Unexpected KiCad pin nodes: {list(extras.items())[:20]}")
         connected = sum(pin.net != "NC" for pins in design_pins.values() for pin in pins)
         nc_count = len(expected_nodes) - connected
-        named_nets = {pin.net for group in workbook_pins.values() for pin in group if pin.net != "NC"}
-        if (len(parts), len(expected_nodes), connected, nc_count, len(named_nets)) != (526, 1445, 1402, 43, 246):
-            raise AssertionError("Unexpected v0.9 designator, pin or net counts")
+        named_nets = {pin.net for group in design_pins.values() for pin in group if pin.net != "NC"}
+        if (len(parts), len(expected_nodes), connected, nc_count, len(named_nets)) != (534, 1465, 1422, 43, 250):
+            raise AssertionError("Unexpected post-ECO designator, pin or net counts")
 
         source_nodes = {(ref, pin.number): pin.net for ref, group in workbook_pins.items() for pin in group}
         actual_delta = {key: (source_nodes.get(key), expected_nodes.get(key))
@@ -147,9 +152,24 @@ def run() -> None:
         approved_delta = {
             ("D705", "1"): ("GND", "N7_LEDG_A"), ("D705", "2"): ("N7_LEDG_A", "GND"),
             ("D706", "1"): ("GND", "N7_LEDR_A"), ("D706", "2"): ("N7_LEDR_A", "GND"),
+            ("R688", "2"): ("N6_V3AG_A_MCU", "N6_V3AG_A_BUF_IN"),
+            ("R689", "2"): ("N6_V3AG_B_MCU", "N6_V3AG_B_BUF_IN"),
         }
+        approved_added = {
+            ("U621", "1"): "N6_V3AG_A_BUF_IN", ("U621", "2"): "GND",
+            ("U621", "3"): "N6_V3AG_B_BUF_IN", ("U621", "4"): "N6_V3AG_B_BUF_OUT",
+            ("U621", "5"): "3V3M", ("U621", "6"): "N6_V3AG_A_BUF_OUT",
+            ("R952", "1"): "N6_V3AG_A_BUF_OUT", ("R952", "2"): "N6_V3AG_A_MCU",
+            ("R953", "1"): "N6_V3AG_B_BUF_OUT", ("R953", "2"): "N6_V3AG_B_MCU",
+            ("R954", "1"): "3V3M", ("R954", "2"): "N6_V3AG_A_MCU",
+            ("R955", "1"): "3V3M", ("R955", "2"): "N6_V3AG_B_MCU",
+            ("C667", "1"): "3V3M", ("C667", "2"): "GND",
+            ("D707", "1"): "JACK_RP", ("D707", "2"): "GND",
+            ("D708", "1"): "JACK_LP", ("D708", "2"): "GND",
+        }
+        approved_delta.update({key: (None, net) for key, net in approved_added.items()})
         if actual_delta != approved_delta:
-            raise AssertionError(f"Unapproved workbook-to-schematic net overrides: {actual_delta}")
+            raise AssertionError(f"Unapproved workbook-to-schematic ECO delta: {actual_delta}")
 
         package = HERE.parent / "doc" / "DAC_HPA_Calculation_Package_v1.1.zip"
         with zipfile.ZipFile(package) as archive:
@@ -193,6 +213,12 @@ def run() -> None:
                 if actual != expected:
                     raise AssertionError(f"{ref} footprint {identifier}: pads {sorted(actual)} != symbol pins {sorted(expected)}")
                 matched_footprints += 1
+            eco_assets = subprocess.run(
+                [str(kicad_python), str(HERE / "verify_eco_assets.py")],
+                capture_output=True, text=True,
+            )
+            if eco_assets.returncode:
+                raise RuntimeError(f"Functional-ECO CAD asset check failed: {eco_assets.stdout}\n{eco_assets.stderr[-1000:]}")
         else:
             raise RuntimeError(f"KiCad Python interpreter disappeared: {kicad_python}")
 
@@ -205,13 +231,15 @@ def run() -> None:
         if "Found 0 violations" not in erc.stdout:
             raise AssertionError(f"KiCad ERC was not clean: {erc.stdout}")
 
-        print(f"PASS: {len(parts)} workbook components, 11 PCB items, {len(expected_nodes)} approved schematic pins")
+        print(f"PASS: 526 workbook components + 8 ECO components, 11 PCB items, {len(expected_nodes)} schematic pins")
         print(f"PASS: {connected} connected pins match the approved KiCad pin/net map exactly")
         print(f"PASS: {len(package_nodes)} workbook pins match the calculation package's merged netlist")
-        print(f"PASS: 247 workbook nets (including NC); only {len(approved_delta)} owner-approved D705/D706 pin/net entries differ")
+        print(f"PASS: 247 source net labels including NC, {len(named_nets)} post-ECO named nets")
+        print(f"PASS: exactly {len(approved_delta)} documented workbook-to-schematic pin/net deltas")
         print(f"PASS: {fields_checked} MPN/LCSC/fit/package/source/value fields match")
         if matched_footprints is not None:
             print(f"PASS: {matched_footprints} assigned footprints have matching symbol pin/pad number sets")
+            print(eco_assets.stdout.strip())
         print("PASS: KiCad ERC 0 violations (selected outputs are typed; remaining pins are mostly passive)")
         print("CORRECTED: D705/D706 physical pad polarity follows the manufacturer and JLC symbols")
         print("PCB OPTION: J703 remains in the schematic but is excluded from the PCB")

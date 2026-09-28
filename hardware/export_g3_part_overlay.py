@@ -24,6 +24,7 @@ D609 D610 Q207 Q619 Q620 U502 U608 U609 U610 Q507 Q621 Q622
 Q623 Q624 Q625 Q626 C631 C632 C633 C634 U611 U612 Q627
 C647 C648 C649 C650 C651 C652 C653 C654
 U613 U614 U615 U616 U617 U618 U619 U620 U202 D405 D406 D407 D408
+U621 D701 D707 D708
 """.split()
 CONNECTORS = {"J101", "J701", "J702"}
 CSV_SOURCES = (
@@ -74,7 +75,7 @@ def group_footprints(ref_to_fp: dict[str, str]) -> list[tuple[str, list[str]]]:
     groups: dict[str, list[str]] = {}
     for ref in FOOTPRINT_REFS:
         groups.setdefault(ref_to_fp[ref], []).append(ref)
-    assert len(groups) == 28, f"G-3 footprint count changed: {len(groups)}"
+    assert len(groups) == 30, f"G-3 footprint count changed: {len(groups)}"
     return list(groups.items())
 
 
@@ -102,7 +103,7 @@ def main() -> None:
     grouped = group_footprints(assembly_footprints())
     connectors = [(fp, refs) for fp, refs in grouped if refs[0] in CONNECTORS]
     others = [(fp, refs) for fp, refs in grouped if refs[0] not in CONNECTORS]
-    assert len(connectors) == 3 and len(others) == 25
+    assert len(connectors) == 3 and len(others) == 27
     drawings = []
     for offset, (fp, refs) in enumerate(others):
         row, column = divmod(offset, 5)
@@ -131,7 +132,7 @@ def main() -> None:
         encoding="utf-8",
     )
     lines = [
-        "# G-3 overlay index — design set v1.1",
+        "# G-3 overlay index — design set v1.1-ECO1",
         "",
         "Print both review-only SVGs at 100% / Actual Size. First measure each 10 mm bar. "
         "Place a real part on each 1:1 footprint and check that every terminal overlaps "
@@ -151,11 +152,13 @@ def main() -> None:
         lines.append(f"| {index:02d} | {', '.join(refs)} | `{fp}` |")
     lines += [
         "",
-        "Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–28 "
+        "Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–30 "
         "are on `G3_PART_OVERLAY_REVIEW_ONLY.svg`. For X201, also overlay the "
         "specified NDK second source. For U613–U620, the TI DGK drawing and JLCPCB "
         "3D preview can replace physical samples per Notes §9.6. Record the U202 "
-        "exposed-pad size and net; X-ray is an assembly review, not a paper-overlay result.",
+        "exposed-pad size and net. For U621, compare the TI DCK example land "
+        "to the exact JLC C507231 land before order. X-ray is an assembly review, "
+        "not a paper-overlay result.",
         "",
     ]
     INDEX.write_text("\n".join(lines), encoding="utf-8")
