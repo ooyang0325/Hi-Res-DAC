@@ -2,6 +2,8 @@
 
 Review the editable [120 × 100 mm primary board](DAC_HPA.kicad_pcb), [2D placement](DAC_HPA_120x100_manual_preview.png), [J701/output zoom](DAC_HPA_120x100_output_zoom.png), [clock/analog zoom](DAC_HPA_120x100_clock_zoom.png), [timer zoom](DAC_HPA_120x100_timer_zoom.png), and [3D board](DAC_HPA_3D_review.png). Record board coordinates, layer and references for findings. The 100 × 80 mm and 100 × 100 mm boards are historical comparisons; do not use them as the current routing baseline.
 
+**New placement study:** [Macro-placement review](MACRO_PLACEMENT_REVIEW.md) and [candidate PCB](DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb) address the scattered local subcircuits described below. The distance table in this guide describes the previous primary; use the candidate's measured table and [new constraint disposition](CONSTRAINT_DISPOSITION_V2.md) when reviewing the replacement. The candidate is still unrouted apart from the original J701 TVS stubs.
+
 For scalable per-layer views, run the one-command [CLI visual inspection workflow](PCB_CLI_VISUAL_REVIEW.md). It exports the same committed primary board without modifying it.
 
 **Current state:** 536 footprints, 246 named PCB nets, eight F.Cu tracks, four vias, one filled L2 GND zone, and 499 unconnected items. The eight tracks are only four J701 TVS signal escapes and four GND stubs. KiCad DRC reports zero error/warning violations on this *partial* copper. All 470 component footprints resolve 3D bodies; [3D model review](3D_MODEL_REVIEW.md) labels the package approximations. Placement and distance proxies cannot certify simultaneous routes, audio performance, EMI or JLCPCB assembly.

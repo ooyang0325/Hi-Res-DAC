@@ -7,10 +7,12 @@ exports a `DAC_HPA_3D_REVIEW_ONLY.glb` assembly in the review artifact. The
 [full-board preview](DAC_HPA_3D_review.png) and [J101 closeup](DAC_HPA_J101_3D_detail.png)
 come from KiCad's 3D Viewer after the USB-C model alignment correction.
 
+The later [manual macro-placement candidate](MACRO_PLACEMENT_REVIEW.md) retains the same footprint/model population and gets its own `DAC_HPA_MACRO_STUDY_REVIEW.glb` in CI. The separate [J702 TVS option](J702_LOCAL_TVS_OPTION.md) reuses the existing SOD-523 package model for D707/D708; those two bodies are still subject to the local solder-access and JLC order checks.
+
 ## Coverage and sources
 
 `audit_3d_models.py` checks model paths, file headers, and the JLC file hashes
-on all five boards. Each has 536 footprints: **470 component bodies resolve**
+on the five original review boards. Each has 536 footprints: **470 component bodies resolve**
 (466 STEP and four VRML), while 66 copper-only items intentionally have no
 model (53 test pads, seven fiducials, four mounting holes, and J201/J202 debug
 pads). Of the 470, 380 use KiCad 10 stock models and 90 use files kept in this

@@ -2,15 +2,19 @@
 # Export visual PCB review views from the committed primary board.
 set -euo pipefail
 
-if [[ $# -ne 1 ]]; then
-  printf 'Usage: KICAD_CLI=/path/to/kicad-cli bash hardware/make_review_views.sh OUTPUT_DIR\n' >&2
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+  printf 'Usage: KICAD_CLI=/path/to/kicad-cli bash hardware/make_review_views.sh OUTPUT_DIR [BOARD_FILE]\n' >&2
   exit 2
 fi
 
 hardware_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-board="$hardware_dir/DAC_HPA.kicad_pcb"
+board="${2:-$hardware_dir/DAC_HPA.kicad_pcb}"
 output_dir="$1"
 kicad_cli="${KICAD_CLI:-kicad-cli}"
+if [[ ! -f "$board" ]]; then
+  printf 'PCB file not found: %s\n' "$board" >&2
+  exit 2
+fi
 export KICAD10_3DMODEL_DIR="${KICAD10_3DMODEL_DIR:-$hardware_dir/KICAD_STOCK_MODELS}"
 mkdir -p "$output_dir"
 

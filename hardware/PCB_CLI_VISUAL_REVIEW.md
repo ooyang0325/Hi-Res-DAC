@@ -19,6 +19,16 @@ KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
 
 The script sets `KICAD10_3DMODEL_DIR` to the bundled stock models unless you already set it. Each SVG is plotted at board-area scale without a drawing-sheet border. The directory contains:
 
+To inspect the separate manually rebuilt placement candidate, pass its PCB as the second argument:
+
+```sh
+KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
+  bash hardware/make_review_views.sh /tmp/dac-hpa-macro-review \
+  hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb
+```
+
+Run `python3 hardware/j702_esd_option.py` and substitute `hardware/DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb` to inspect the generated two-TVS fit/route option. Both files are review studies; `hardware/DAC_HPA.kicad_pcb` remains the primary board.
+
 | File | What to inspect |
 | --- | --- |
 | `01_body_courtyard.svg` | F.Fab bodies, F.CrtYd and board outline. Zoom in on J101/J702 edges, J701 top-side solder access, K601–K604 iron access, dense U301/U403/U404 and timer groups. Check that courtyard clearances leave routing channels. |

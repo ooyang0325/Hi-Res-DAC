@@ -1,0 +1,32 @@
+{
+  "cable_cap_pf": 1000,
+  "loads_ohm": [
+    16,
+    32,
+    300
+  ],
+  "results": [
+    {
+      "gain_margin_db": 7.861,
+      "jack_tvs_cap_pf": 15,
+      "peak_sensitivity_db": 6.145,
+      "phase_margin_deg": 49.712
+    },
+    {
+      "gain_margin_db": 7.843,
+      "jack_tvs_cap_pf": 30,
+      "peak_sensitivity_db": 6.158,
+      "phase_margin_deg": 49.612
+    },
+    {
+      "gain_margin_db": 7.835,
+      "jack_tvs_cap_pf": 36,
+      "peak_sensitivity_db": 6.162,
+      "phase_margin_deg": 49.572
+    }
+  ],
+  "scope": "Selected closed-switch calibrated-model corners; linear TVS capacitance only",
+  "source_zip": "DAC_HPA_Calculation_Package_v1.1.zip",
+  "stress_32ohm_cap_pf": 2000,
+  "switch_model_sha256": "f1a371e91fc82faea06ecaa023c0f33d93a29718a3aebb2d5dfad85d55f11c95"
+}

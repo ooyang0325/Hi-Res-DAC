@@ -11,6 +11,7 @@ For a repository checkout, run `git rev-parse HEAD` and record the result in the
 | Read the circuit without KiCad | [Nine-page schematic PDF](DAC_HPA_review_only.pdf), or the PDF regenerated in the GitLab `deliver_review_package` artifact for the reviewed commit. |
 | Edit or inspect the schematic | [KiCad project](DAC_HPA.kicad_pro) → [root schematic](DAC_HPA.kicad_sch), with eight linked sheets. |
 | Inspect the current placement and partial copper | [Primary PCB](DAC_HPA.kicad_pcb), [2D whole-board preview](DAC_HPA_120x100_manual_preview.png), [3D whole-board preview](DAC_HPA_3D_review.png). |
+| Inspect the new regrouped placement | [Manual macro-placement candidate](MACRO_PLACEMENT_REVIEW.md) → [candidate PCB](DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb), plus the [constraint disposition](CONSTRAINT_DISPOSITION_V2.md). It is a separate review study. |
 | Export zoomable PCB layer views from a terminal | Follow [CLI visual inspection](PCB_CLI_VISUAL_REVIEW.md) to generate courtyard, copper, mask, paste, legend, 3D and DRC views from the reviewed commit. |
 | Inspect J101 at the mating edge | [USB-C 3D closeup](DAC_HPA_J101_3D_detail.png). Its model offset was corrected; the copper footprint stayed at the maker's PCB-edge datum. |
 | Obtain a portable snapshot | Use the `deliver_review_package` artifact for the reviewed GitLab pipeline. It contains a current PDF, GLB 3D view, key audits and a ZIP of the committed source. The editable KiCad project is also in the Git repository. |
@@ -21,6 +22,7 @@ The signal chain is USB-C input → USB audio bridge/CPLD and clocks → ES9018K
 
 1. **Circuit and pin mapping:** follow [Schematic review guide](SCHEMATIC_REVIEW_GUIDE.md). Check datasheet pin functions, signal paths, power sequencing, protection fail states, and the explicit source-document corrections. ERC and workbook agreement are already checked, but do not establish electrical correctness.
 2. **Placement, routing feasibility, audio/EMI and PCBA:** follow [Placement review guide](PLACEMENT_REVIEW_GUIDE.md). Check physical access and realistic simultaneous routes, especially clocks, DAC/I/V, headphone outputs, return paths and JLCPCB assembly exceptions.
+   Compare the primary with the [macro-placement candidate](MACRO_PLACEMENT_REVIEW.md); the [J702 two-TVS option](J702_LOCAL_TVS_OPTION.md) is a board-only electrical ECO study, not the captured schematic.
 3. **Physical samples:** use the [G-3 overlay checklist](G3_OVERLAY_CHECKLIST.md) and [G-4 polarity checklist](G4_POLARITY_CHECKLIST.md). The two-sample connector results for G-1/G-2 were reported by the owner and accepted for layout planning with the raw log waived; G-3/G-4 are still open.
 
 Put each actionable issue in [Review findings template](REVIEW_FINDINGS_TEMPLATE.md). State the reference/net or board coordinate and layer, the expected condition, what you found, the evidence, and whether it blocks routing, fabrication or assembly. A review can conclude “conditional” when a physical measurement or JLCPCB answer is still required.

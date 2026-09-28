@@ -2,6 +2,8 @@
 
 **Sending this design for peer review?** Begin with [REVIEWER_START_HERE.md](REVIEWER_START_HERE.md), then use the [schematic](SCHEMATIC_REVIEW_GUIDE.md), [placement](PLACEMENT_REVIEW_GUIDE.md), and [command-line visual inspection](PCB_CLI_VISUAL_REVIEW.md) guides. The [findings template](REVIEW_FINDINGS_TEMPLATE.md) records actionable review results against one Git commit.
 
+The [manual macro-placement candidate](MACRO_PLACEMENT_REVIEW.md) is a separate 120 × 100 mm review board generated from explicit coordinates. It reorganizes 226 footprints and retains the current schematic and connector datums. The [constraint disposition](CONSTRAINT_DISPOSITION_V2.md) and [J702 two-TVS option](J702_LOCAL_TVS_OPTION.md) describe the next route trial; the primary `DAC_HPA.kicad_pcb` remains the comparison baseline.
+
 Open `DAC_HPA.kicad_pro` or `DAC_HPA.kicad_sch` in KiCad 10. The root page links eight circuit sheets following Design Spec v1.1, Schematic Design Notes v1.0, Parts List v0.9, and Capture Update Note v1.0.
 
 `DAC_HPA_review_only.pdf` is a nine-page visual export of the current provisional capture. The expanded protection sheet uses A1; smaller blocks use A2/A3/A4. Each sheet title block names the v1.1 design set and marks the open G-1–G-4 hold. The KiCad project is the editable source.
