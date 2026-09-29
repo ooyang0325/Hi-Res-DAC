@@ -22,3 +22,5 @@ __pycache__/
 /hardware/INTEGRATED_AUDIO_DRC.json
 /hardware/FUNCTIONAL_ECO_3D_AUDIT.json
 /hardware/DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb
+/hardware/sim/*.raw
+/hardware/sim/*.db

@@ -1,0 +1,159 @@
+{
+  "DAC_CPLD_LDO_local_GND_pads_to_L2": 35,
+  "FAM_CLK_R215_to_U202_mm": 3.039,
+  "I2S_central_3W_edge_gap": {
+    "y=74.0": {
+      "centres_mm": {
+        "BCLK": 83.65,
+        "LRCLK": 84.25,
+        "SDATA": 84.85
+      },
+      "edge_gaps_mm": [
+        0.45,
+        0.45
+      ]
+    },
+    "y=76.0": {
+      "centres_mm": {
+        "BCLK": 83.65,
+        "LRCLK": 84.25,
+        "SDATA": 84.85
+      },
+      "edge_gaps_mm": [
+        0.45,
+        0.45
+      ]
+    },
+    "y=78.0": {
+      "centres_mm": {
+        "BCLK": 83.65,
+        "LRCLK": 84.25,
+        "SDATA": 84.85
+      },
+      "edge_gaps_mm": [
+        0.45,
+        0.45
+      ]
+    },
+    "y=80.0": {
+      "centres_mm": {
+        "BCLK": 83.65,
+        "LRCLK": 84.25,
+        "SDATA": 84.85
+      },
+      "edge_gaps_mm": [
+        0.45,
+        0.45
+      ]
+    }
+  },
+  "I2S_complete_length_spread_mm": 0.666,
+  "MCLK_R203_to_U301_mm": 6.549,
+  "MCLK_X201_to_R203_mm": 1.832,
+  "MCLK_pad_to_DAC_input_track_outside_U301_mm": {
+    "DACL": 4.8719,
+    "DACLB": 6.2986,
+    "DACR": 2.1329,
+    "DACRB": 3.6267
+  },
+  "MCLK_to_DAC_input_tracks_mm": {
+    "DACL": {
+      "full_track_gap_mm": 3.4653,
+      "outside_U301_courtyard_mm": 4.5286
+    },
+    "DACLB": {
+      "full_track_gap_mm": 3.9488,
+      "outside_U301_courtyard_mm": 5.8319
+    },
+    "DACR": {
+      "full_track_gap_mm": 1.6264,
+      "outside_U301_courtyard_mm": 2.1468
+    },
+    "DACRB": {
+      "full_track_gap_mm": 2.0602,
+      "outside_U301_courtyard_mm": 3.2586
+    }
+  },
+  "MCLK_total_mm": 8.381,
+  "U202_EP_filled_capped_vias": 2,
+  "U301_EP_filled_capped_vias": 5,
+  "U303_to_DAC_1V3_PWR_copper_mm": 25.393,
+  "U303_to_DAC_1V3_connected": true,
+  "U303_to_DAC_1V3_vias": 2,
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "clock_L2_direct_support_missing_mm": {
+    "BCLK": {
+      "+0.000": 0.0,
+      "+0.075": 0.0,
+      "-0.075": 0.0
+    },
+    "FAM_CLK": {
+      "+0.000": 0.0,
+      "+0.075": 0.0,
+      "-0.075": 0.0
+    },
+    "LRCLK": {
+      "+0.000": 0.0,
+      "+0.075": 0.0,
+      "-0.075": 0.0
+    },
+    "MCLK": {
+      "+0.000": 0.0,
+      "+0.075": 0.0,
+      "-0.075": 0.0
+    },
+    "N2_BCLK_SRC": {
+      "+0.000": 0.0,
+      "+0.075": 0.0,
+      "-0.075": 0.0
+    },
+    "N2_LRCLK_SRC": {
+      "+0.000": 0.0,
+      "+0.075": 0.0,
+      "-0.075": 0.0
+    },
+    "N2_SDATA_SRC": {
+      "+0.000": 0.0,
+      "+0.075": 0.0,
+      "-0.075": 0.0
+    },
+    "SDATA": {
+      "+0.000": 0.0,
+      "+0.075": 0.0,
+      "-0.075": 0.0
+    }
+  },
+  "complete_I2S_paths_mm": {
+    "BCLK": {
+      "U202_to_series_pad_mm": 4.553,
+      "complete_pad_centre_mm": 22.213,
+      "series_pad_span_mm": 1.02,
+      "series_to_U301_mm": 16.64
+    },
+    "LRCLK": {
+      "U202_to_series_pad_mm": 5.401,
+      "complete_pad_centre_mm": 22.324,
+      "series_pad_span_mm": 1.02,
+      "series_to_U301_mm": 15.904
+    },
+    "SDATA": {
+      "U202_to_series_pad_mm": 6.663,
+      "complete_pad_centre_mm": 22.879,
+      "series_pad_span_mm": 1.02,
+      "series_to_U301_mm": 15.196
+    }
+  },
+  "local_pad_contact_routes_mm": {
+    "CPLD_C213_to_U202_32": 1.103,
+    "CPLD_C214_to_U202_16": 2.056,
+    "CPLD_C215_to_U202_6": 3.057,
+    "CPLD_FB202_to_C213": 4.608,
+    "CPLD_FB202_to_C220": 2.44,
+    "LP5907_U302_input_to_C301": 0.875,
+    "LP5907_U302_output_to_C302": 2.131,
+    "LP5907_U302_output_to_FB302": 5.025
+  },
+  "model_limits": "2D copper-edge and saved L2 samples only; no return impedance, extracted parasitics, stackup/EMI/ESD or operational test",
+  "ratsnest_unconnected_items": 896,
+  "release": "HOLD: full routing, upstream source rails, I/V feedback return, DVDD capacitor ECO, JLC via-pad process and measured audio/EMI"
+}

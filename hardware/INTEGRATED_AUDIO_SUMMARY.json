@@ -35,7 +35,7 @@
   "iv_dac_to_summing_routes_mm": {
     "DACL": 4.294,
     "DACLB": 6.03,
-    "DACR": 6.925,
+    "DACR": 6.837,
     "DACRB": 4.786
   },
   "iv_dacl_feedback_l2_centreline_missing_mm": 1.9426,
@@ -118,9 +118,9 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
-  "manual_added_copper_items": 520,
-  "manual_moves": 81,
-  "manual_replaced_source_copper_items": 4,
+  "manual_added_copper_items": 729,
+  "manual_moves": 121,
+  "manual_replaced_source_copper_items": 8,
   "named_nets": 250,
   "near_right_angle_free_track_bends": 0,
   "orthogonal_branches_without_through": 0,
@@ -134,7 +134,7 @@
     "U402.PAD VNEG": 3.0
   },
   "pad_centre_near_orthogonal_joins": 8,
-  "ratsnest_unconnected_items": 973,
+  "ratsnest_unconnected_items": 896,
   "right_angle_track_bends": 0,
   "routed_t_cell_branch_lengths_mm": {
     "LN+": {

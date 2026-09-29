@@ -8,12 +8,21 @@ reassignment in the [functional ECO](FUNCTIONAL_ECO_2026-09-28.md). Every
 placement and waypoint in this trial was chosen manually; no placement or
 routing search was run. Component values did not change.
 
+The later [DAC/core route checkpoint](DAC_CORE_ROUTE_STUDY.md) extends this
+study's DAC/CPLD routing measurements: MCLK is 8.381 mm, and BCLK/LRCLK/SDATA
+are 22.213/22.324/22.879 mm with 0.666 mm spread. It adds routed local
+U202/U302 paths and a connected 25.393 mm U303→DAC 1V3 trunk with two vias.
+Two vias in U202's EP and five in U301's DAC EP are flagged filled/capped;
+U401/U402 output-amplifier EP thermal routes remain open. The current board
+has 756 track/via items and 896 full ratsnest links; full routing, ESD, EMI
+and audio tests remain open.
+
 ## What this trial closes geometrically
 
 - U301 DACL/DACLB/DACR/DACRB reach U403 pin 6/pin 2 and U404 pin 6/pin 2,
   respectively, on F.Cu without vias. Their routed pad-centre lengths are
-  **4.294/6.030/6.925/4.786 mm**, all under the owner-approved provisional
-  7 mm target; DACR has only **0.075 mm** margin. R423–R426 and C417–C420
+  **4.294/6.030/6.837/4.786 mm**, all under the owner-approved provisional
+  7 mm target; DACR has only **0.163 mm** margin. R423–R426 and C417–C420
   have local feedback copper. The largest **projected 2D centreline**
   feedback area is **4.875 mm²**, using
   straight closures across part and op-amp pads; it excludes vertical and
@@ -108,16 +117,16 @@ rejects exact 90° bends and 80–100° free-copper elbows; both counts are
 **zero**. It treats pad-centred exits and electrical T/cross junctions
 separately from free-track bends.
 
-The manual record now contains **81 explicit footprint moves, four replaced
-source copper items and 520 added copper items** relative to the functional-ECO
+The manual record now contains **121 explicit footprint moves, eight removed
+source copper items and 729 added copper items** relative to the functional-ECO
 board. The exact board keeps
-544 footprints and 250 named nets and reports **zero KiCad custom-rule DRC
-violations**, zero footprint bounding-box overlaps, zero classified JLC package/edge proxy
-findings and no via-ring failure. All populated pad nets match the schematic.
-The exported KiCad DRC still lists 499 missing links; the full `pcbnew`
-ratsnest counts **973**. These
-are partial-copper checks, not functional or
-PCBA acceptance. [Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
+544 footprints, 250 named nets and 756 track/via items and reports **zero
+KiCad custom-rule DRC violations**, zero footprint bounding-box overlaps,
+zero classified JLC package/edge proxy findings and no via-ring failure. All
+populated pad nets match the schematic. DRC reports zero violations and 499
+unconnected items; the full `pcbnew` ratsnest counts **896**. These are
+partial-copper checks, not functional or PCBA acceptance.
+[Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
 [trace/impedance sensitivity](INTEGRATED_AUDIO_TRACE_BUDGET.json) and the
 [review guide](PLACEMENT_REVIEW_GUIDE.md) give the reproducible details.
 
@@ -192,8 +201,9 @@ exposed-pad thermal/electrical connection.
    IEC ESD. Inspect C423/C426's 0.150–0.194 mm courtyard gaps, the tight
    C437/J701/K602 region and via-to-small-capacitor mask/tenting in the JLC
    order preview.
-4. **Complete the other circuit routes and functional holds.** USB, I²S,
-   rails, protection timers/control and most of the 973 ratsnest gaps remain.
+4. **Complete the other circuit routes and functional holds.** USB, remaining
+   I²S branches and controls, rails, protection timers/control and most of the
+   896 ratsnest gaps remain. System ESD, EMI and audio tests are also open.
    F01 all-rate post-CPLD capture and DAC-side WS fault coverage are unproven;
    F02 readback corners, F03 attach current and F04 ESD need validation.
 

@@ -31,7 +31,9 @@ def copper_item(item: pcbnew.BOARD_CONNECTED_ITEM) -> tuple:
         return ("via", item.GetNetname(), round(pcbnew.ToMM(at.x), 4),
                 round(pcbnew.ToMM(at.y), 4),
                 round(pcbnew.ToMM(item.GetWidth(pcbnew.F_Cu)), 4),
-                round(pcbnew.ToMM(item.GetDrillValue()), 4))
+                round(pcbnew.ToMM(item.GetDrillValue()), 4),
+                bool(item.GetPrimaryDrillFilledFlag()),
+                bool(item.GetPrimaryDrillCappedFlag()))
     a, b = item.GetStart(), item.GetEnd()
     return ("track", item.GetNetname(), item.GetLayerName(),
             round(pcbnew.ToMM(a.x), 4), round(pcbnew.ToMM(a.y), 4),
@@ -42,7 +44,8 @@ def copper_item(item: pcbnew.BOARD_CONNECTED_ITEM) -> tuple:
 def manifest_item(item: dict) -> tuple:
     if item["kind"] == "via":
         return ("via", item["net"], *item["at_mm"],
-                item["diameter_mm"], item["drill_mm"])
+                item["diameter_mm"], item["drill_mm"],
+                bool(item.get("filled", False)), bool(item.get("capped", False)))
     return ("track", item["net"], item["layer"],
             *item["start_mm"], *item["end_mm"], item["width_mm"])
 
@@ -92,17 +95,19 @@ def build(output_path: Path) -> None:
             via.SetViaType(pcbnew.VIATYPE_THROUGH)
             via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
             via.SetNet(net)
+            via.SetPrimaryDrillFilledFlag(bool(item.get("filled", False)))
+            via.SetPrimaryDrillCappedFlag(bool(item.get("capped", False)))
             board.Add(via)
         else:
             raise AssertionError(f"Unsupported manual item: {item['kind']}")
     for drawing in board.GetDrawings():
         if (isinstance(drawing, pcbnew.PCB_TEXT)
                 and drawing.GetText().startswith("FUNCTIONAL ECO / MANUAL PLACEMENT")):
-            drawing.SetText("INTEGRATED AUDIO / MANUAL ROUTE STUDY — NO PCBA RELEASE")
+            drawing.SetText("INTEGRATED AUDIO + DAC CORE / MANUAL ROUTE STUDY — NO PCBA RELEASE")
     title = board.GetTitleBlock()
     title.SetTitle("DAC-HPA — 120 × 100 mm integrated audio study")
-    title.SetComment(0, "DAC/I-V, I/V-to-T, amp-to-jack and U501 local loops routed")
-    title.SetComment(1, "Main rail feeds, returns, I/V stability, R-15 and physical/JLC HOLD")
+    title.SetComment(0, "DAC/CPLD clocks, LDO loops, I/V, amplifiers and jacks under study")
+    title.SetComment(1, "Main feeds, via process, returns, stability and R-15 HOLD")
     if not pcbnew.ZONE_FILLER(board).Fill(board.Zones()):
         raise RuntimeError("Could not refill continuous L2 GND around the signal vias")
     pcbnew.SaveBoard(str(output_path), board)

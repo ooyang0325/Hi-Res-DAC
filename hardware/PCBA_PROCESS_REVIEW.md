@@ -11,4 +11,20 @@ The schematic and library files are not a PCBA release. The functional ECO raise
 
 The owner chose copper-only enlargement around the unchanged maker slot drills and pad centres. The current J701/J702 footprints reach ≥0.31 mm worst copper ring at JLC's +0.13 mm slot tolerance; the closest J701 pad gap is 0.25 mm. G-3 overlay and JLCPCB DFM acceptance remain open. No paste apertures have been added to the slots.
 
+The current board marks two U202 and five U301 exposed-pad vias filled and
+capped. The [via-pad process audit](INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json)
+counts 125 total vias, including 20 filled/capped vias near SMT pads. It finds
+zero unfilled SMT-pad copper overlaps and zero unfilled via gaps below
+0.10 mm, but identifies **45 unfilled via-to-SMT-pad sites within 0.35 mm**
+for JLC mask/process review. These are geometry screens, not order approval.
+JLC's [via-covering guidance](https://jlcpcb.com/help/article/pcb-via-covering)
+does not support ink plugging in or within 0.35 mm of a pad; tenting and
+filled/capped processing need separate review. Identify every selected
+filled/capped via by coordinate in the order remark or an annotated image;
+KiCad flags alone do not specify a Gerber fabrication order. Confirm process,
+price, mask web and stencil treatment in JLC's order preview.
+U401/U402 output-amplifier exposed-pad thermal routes remain open and need
+copper and thermal review before release; the filled/capped vias are at U202
+and U301. See the [route checkpoint](DAC_CORE_ROUTE_STUDY.md).
+
 Suggested question for JLCPCB: “For a top-side Standard PCBA order, can you solder the four plated shell slots S1–S4 of GCT USB4105-GF-A (J101) and the two plated slots 1/2 of HRO PJ-332A-6A, C2848643 (J702)? Do you require F.Paste apertures or an order remark, and what aperture geometry/hand-solder step do you recommend?”

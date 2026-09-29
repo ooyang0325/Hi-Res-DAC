@@ -639,7 +639,9 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
             return ("via", item.GetNetname(), round(pcbnew.ToMM(at.x), 4),
                     round(pcbnew.ToMM(at.y), 4),
                     round(pcbnew.ToMM(item.GetWidth(pcbnew.F_Cu)), 4),
-                    round(pcbnew.ToMM(item.GetDrillValue()), 4))
+                    round(pcbnew.ToMM(item.GetDrillValue()), 4),
+                    bool(item.GetPrimaryDrillFilledFlag()),
+                    bool(item.GetPrimaryDrillCappedFlag()))
         a, b = item.GetStart(), item.GetEnd()
         return ("track", item.GetNetname(), item.GetLayerName(),
                 round(pcbnew.ToMM(a.x), 4), round(pcbnew.ToMM(a.y), 4),
@@ -649,7 +651,8 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
     def manifest_item(item: dict) -> tuple:
         if item["kind"] == "via":
             return ("via", item["net"], *item["at_mm"],
-                    item["diameter_mm"], item["drill_mm"])
+                    item["diameter_mm"], item["drill_mm"],
+                    bool(item.get("filled", False)), bool(item.get("capped", False)))
         return ("track", item["net"], item["layer"],
                 *item["start_mm"], *item["end_mm"], item["width_mm"])
 

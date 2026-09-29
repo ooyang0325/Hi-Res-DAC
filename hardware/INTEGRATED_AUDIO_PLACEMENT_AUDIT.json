@@ -2,11 +2,11 @@
   "bbox_overlaps": [],
   "board": "hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
   "clock_mm": {
-    "MCLK_core_euclidean_lower_bound": 8.05,
-    "MCLK_via_TP711_euclidean_lower_bound": 8.06,
+    "MCLK_core_euclidean_lower_bound": 8.07,
+    "MCLK_via_TP711_euclidean_lower_bound": 8.1,
     "R203.2_to_U301.7": 6.21,
-    "R665.1_to_U301.7": 1.6,
-    "R665.2_to_U607.2": 1.75,
+    "R665.1_to_U301.7": 1.61,
+    "R665.2_to_U607.2": 1.62,
     "X201.3_to_R203.1": 1.83
   },
   "dac_iv_pad_distance_mm": {
@@ -37,32 +37,32 @@
       "net": "JACK_RN"
     }
   },
-  "fam_clk_hpwl_mm": 15.41,
+  "fam_clk_hpwl_mm": 3.39,
   "footprints": 544,
   "high_z_clock_pad_gap_violations": [],
   "i2s_mm": {
     "BCLK": {
-      "core_R_to_DAC": 14.59,
-      "core_euclidean_lower_bound": 22.11,
+      "core_R_to_DAC": 13.18,
+      "core_euclidean_lower_bound": 16.67,
       "header_to_DAC": null,
-      "net_hpwl": 19.01,
-      "source_to_R": 7.53,
-      "test_pad_to_DAC": 3.48
+      "net_hpwl": 16.99,
+      "source_to_R": 3.5,
+      "test_pad_to_DAC": 11.89
     },
     "LRCLK": {
-      "core_R_to_DAC": 13.35,
-      "core_euclidean_lower_bound": 21.24,
+      "core_R_to_DAC": 12.28,
+      "core_euclidean_lower_bound": 16.4,
       "header_to_DAC": null,
-      "net_hpwl": 28.01,
-      "source_to_R": 7.88,
-      "test_pad_to_DAC": 16.35
+      "net_hpwl": 14.64,
+      "source_to_R": 4.12,
+      "test_pad_to_DAC": 10.83
     },
     "SDATA": {
-      "core_R_to_DAC": 12.0,
-      "core_euclidean_lower_bound": 20.48,
+      "core_R_to_DAC": 11.54,
+      "core_euclidean_lower_bound": 16.72,
       "header_to_DAC": null,
-      "net_hpwl": 20.01,
-      "source_to_R": 8.48,
+      "net_hpwl": 20.0,
+      "source_to_R": 5.18,
       "test_pad_to_DAC": 18.11
     }
   },
@@ -200,8 +200,8 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7336.35,
-  "track_count": 551,
+  "total_nonpower_hpwl_mm": 7235.31,
+  "track_count": 756,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 5.97,
     "D102_VBUS_to_J101_B4": 4.89,
