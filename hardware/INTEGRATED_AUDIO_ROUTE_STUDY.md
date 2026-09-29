@@ -14,8 +14,9 @@ are 22.213/22.324/22.879 mm with 0.666 mm spread. It adds routed local
 U202/U302 paths and a connected 25.393 mm U303→DAC 1V3 trunk with two vias.
 Two vias in U202's EP and five in U301's DAC EP are flagged filled/capped;
 U401/U402 output-amplifier EP thermal routes remain open. The current board
-has 756 track/via items and 896 full ratsnest links; full routing, ESD, EMI
-and audio tests remain open.
+has 786 track/via items (131 vias), 884 full ratsnest links, 499 DRC-
+unconnected items and zero DRC violations. Full routing, system ESD, EMI and
+audio tests remain open; zero DRC violations applies to partial copper only.
 
 ## What this trial closes geometrically
 
@@ -108,24 +109,36 @@ and audio tests remain open.
   FBP there. The U501 pin-3 VIN→C507 route grew from **5.859 to 6.014 mm**,
   within its **6.1 mm** checker bound. Switching-return impedance, noise
   and regulation stability still need extraction and measurement.
+- U610's six timer signal branches pass the named-pad **≤8 mm** screen with
+  no timer vias. LP_R C633/Q625/R922 measures **6.442/7.607/1.789 mm**;
+  LN_R C634/Q626/R923 measures **7.177/7.712/7.787 mm**. C633/C634 film
+  GND returns each reach L2 in **2.65 mm**, and C637/C638 bypass pads connect.
+  U609's six timer branches and C631/C632 GND returns remain open. U605 and
+  R675/R676/R679/R677 shifted left **1.2 mm**, while C625 moved beside R666;
+  this clears six measured 5 mm I²S/protection gaps. C638 uses a two-via L3
+  VNEG bridge to keep the timer corridors clear. The pair-specific **0.60 mm**
+  film-cap side-courtyard exception preserves at least **1.5 mm** north/south
+  solder approach, as checked by the [film solder-access audit](INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json).
 
 After close visual review, 33 explicit 45° mitres replace sharp turns on
 the amplifier inputs, clock monitor, power rail and headphone trunks. Two
 short 0.4/0.3 mm doglegs were redrawn as diagonals, and two later I/V/VREF
 corners were chamfered. The [integrated checker](check_integrated_audio_study.py)
-rejects exact 90° bends and 80–100° free-copper elbows; both counts are
+rejects exact/near-90° bends and 80–100° free-copper elbows; both counts are
 **zero**. It treats pad-centred exits and electrical T/cross junctions
 separately from free-track bends.
 
-The manual record now contains **121 explicit footprint moves, eight removed
-source copper items and 729 added copper items** relative to the functional-ECO
-board. The exact board keeps
-544 footprints, 250 named nets and 756 track/via items and reports **zero
-KiCad custom-rule DRC violations**, zero footprint bounding-box overlaps,
-zero classified JLC package/edge proxy findings and no via-ring failure. All
-populated pad nets match the schematic. DRC reports zero violations and 499
-unconnected items; the full `pcbnew` ratsnest counts **896**. These are
-partial-copper checks, not functional or PCBA acceptance.
+The manual record now contains **133 explicit footprint moves, eight removed
+source copper items and 759 added copper items** relative to the functional-ECO
+board. The exact board keeps 544 footprints, 250 named nets and 786 track/via
+items (131 vias) and reports **zero KiCad custom-rule DRC violations**, zero
+footprint bounding-box overlaps and zero classified JLC spacing findings.
+The board also has zero exact/near-90° bends. The local U610 timer and
+film-cap geometry gates pass; JLC review for 45 unfilled near-pad sites
+remains open. All populated pad nets match the schematic. DRC reports zero
+violations and 499 unconnected items; the full
+`pcbnew` ratsnest counts **884**. These are partial-copper checks, not
+functional or PCBA acceptance.
 [Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
 [trace/impedance sensitivity](INTEGRATED_AUDIO_TRACE_BUDGET.json) and the
 [review guide](PLACEMENT_REVIEW_GUIDE.md) give the reproducible details.
@@ -202,8 +215,9 @@ exposed-pad thermal/electrical connection.
    C437/J701/K602 region and via-to-small-capacitor mask/tenting in the JLC
    order preview.
 4. **Complete the other circuit routes and functional holds.** USB, remaining
-   I²S branches and controls, rails, protection timers/control and most of the
-   896 ratsnest gaps remain. System ESD, EMI and audio tests are also open.
+   I²S branches and controls, U609 timer branches, C631/C632 GND returns,
+   rails, other protection routes and most of the 884 ratsnest gaps remain.
+   System ESD, EMI and audio tests are also open.
    F01 all-rate post-CPLD capture and DAC-side WS fault coverage are unproven;
    F02 readback corners, F03 attach current and F04 ESD need validation.
 

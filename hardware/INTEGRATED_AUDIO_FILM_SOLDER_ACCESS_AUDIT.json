@@ -1,0 +1,61 @@
+{
+  "approaches": [
+    {
+      "approach_width_mm": 4.3,
+      "clearance_mm": 3.085,
+      "direction": "north",
+      "nearest_other_footprint": "R922",
+      "pad_bbox_mm": [
+        112.7,
+        116.5,
+        122.3,
+        123.8
+      ],
+      "terminal": "C633.1"
+    },
+    {
+      "approach_width_mm": 4.3,
+      "clearance_mm": 3.225,
+      "direction": "south",
+      "nearest_other_footprint": "R914",
+      "pad_bbox_mm": [
+        112.7,
+        116.5,
+        127.8,
+        129.3
+      ],
+      "terminal": "C633.2"
+    },
+    {
+      "approach_width_mm": 4.3,
+      "clearance_mm": 3.085,
+      "direction": "north",
+      "nearest_other_footprint": "R923",
+      "pad_bbox_mm": [
+        119.4,
+        123.2,
+        122.3,
+        123.8
+      ],
+      "terminal": "C634.1"
+    },
+    {
+      "approach_width_mm": 4.3,
+      "clearance_mm": 3.225,
+      "direction": "south",
+      "nearest_other_footprint": "R914",
+      "pad_bbox_mm": [
+        119.4,
+        123.2,
+        127.8,
+        129.3
+      ],
+      "terminal": "C634.2"
+    }
+  ],
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "method": "pad copper bbox projected 1.5 mm north/south with 0.25 mm lateral tool margin; other F.CrtYd bboxes or footprint body bounds conservatively obstruct the corridor",
+  "minimum_approach_mm": 1.5,
+  "tool_side_margin_mm": 0.25,
+  "violations": []
+}

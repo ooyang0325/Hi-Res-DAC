@@ -11,7 +11,6 @@ import argparse
 import collections
 import json
 import math
-import re
 from pathlib import Path
 
 import pcbnew
@@ -24,6 +23,14 @@ ORIGIN_Y = 40.0
 POWER = {
     "GND", "3V3D", "3V3M", "3V3A", "5V_SYS", "5V_ANA", "VPOS",
     "VNEG", "1V3", "AVCC", "DVCC", "VBUS", "N2_V33_CPLD",
+}
+BUFFERED_SUPERVISOR_READBACKS = {
+    "N6_V3AG_A_BUF_OUT", "N6_V3AG_B_BUF_OUT",
+    "N6_V3AG_A_MCU", "N6_V3AG_B_MCU",
+}
+OVER_RANGE_ANALOG_NODES = {
+    "N6_ORLN", "N6_ORLP", "N6_ORQC",
+    "N6_ORRN", "N6_ORRP", "N6_ORTB",
 }
 
 
@@ -151,9 +158,11 @@ def audit(path: Path, height: float) -> dict:
     )
     high_z_to_clock = []
     for net, nodes in net_pads.items():
-        if re.match(r"N6_VLL|N6_VOR", net):
+        if net.startswith(("N6_VLL", "N6_VOR")):
             minimum = 10.0
-        elif re.match(r"N6_(?:V3|TW|LW|OR)", net) and net != "N6_ORTEST":
+        elif ((net.startswith(("N6_V3", "N6_TW", "N6_LW"))
+               and net not in BUFFERED_SUPERVISOR_READBACKS)
+              or net in OVER_RANGE_ANALOG_NODES):
             minimum = 5.0
         else:
             continue

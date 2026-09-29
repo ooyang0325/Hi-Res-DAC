@@ -609,6 +609,66 @@
       78.2,
       80.0,
       0.0
+    ],
+    "R644": [
+      119.5,
+      107.35,
+      0.0
+    ],
+    "C637": [
+      119.45,
+      109.4,
+      90.0
+    ],
+    "C638": [
+      117.95,
+      120.6,
+      270.0
+    ],
+    "C634": [
+      121.3,
+      125.8,
+      270.0
+    ],
+    "U605": [
+      74.8,
+      85.0,
+      0.0
+    ],
+    "R675": [
+      78.3,
+      84.5,
+      90.0
+    ],
+    "R676": [
+      78.3,
+      82.0,
+      90.0
+    ],
+    "R679": [
+      78.3,
+      87.0,
+      90.0
+    ],
+    "R677": [
+      70.3,
+      82.5,
+      0.0
+    ],
+    "C625": [
+      72.5,
+      90.0,
+      90.0
+    ],
+    "Q626": [
+      125.8,
+      115.8,
+      0.0
+    ],
+    "R923": [
+      123.1,
+      118.7,
+      0.0
     ]
   },
   "added_copper": [
@@ -10385,6 +10445,402 @@
         57.5
       ],
       "width_mm": 0.25
+    },
+    {
+      "kind": "track",
+      "net": "VPOS",
+      "layer": "F.Cu",
+      "start_mm": [
+        119.45,
+        112.2
+      ],
+      "end_mm": [
+        119.45,
+        109.88
+      ],
+      "width_mm": 0.2
+    },
+    {
+      "kind": "track",
+      "net": "GND",
+      "layer": "F.Cu",
+      "start_mm": [
+        119.45,
+        108.92
+      ],
+      "end_mm": [
+        120.5,
+        108.92
+      ],
+      "width_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        120.5,
+        108.92
+      ],
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3
+    },
+    {
+      "kind": "track",
+      "net": "GND",
+      "layer": "F.Cu",
+      "start_mm": [
+        117.95,
+        121.08
+      ],
+      "end_mm": [
+        117.95,
+        122.1
+      ],
+      "width_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        117.95,
+        122.1
+      ],
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3
+    },
+    {
+      "kind": "track",
+      "net": "GND",
+      "layer": "F.Cu",
+      "start_mm": [
+        114.6,
+        128.55
+      ],
+      "end_mm": [
+        114.6,
+        131.2
+      ],
+      "width_mm": 0.3
+    },
+    {
+      "kind": "track",
+      "net": "GND",
+      "layer": "F.Cu",
+      "start_mm": [
+        121.3,
+        128.55
+      ],
+      "end_mm": [
+        121.3,
+        131.2
+      ],
+      "width_mm": 0.3
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        121.3,
+        131.2
+      ],
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        114.6,
+        131.2
+      ],
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3
+    },
+    {
+      "kind": "track",
+      "net": "VNEG",
+      "layer": "F.Cu",
+      "start_mm": [
+        119.45,
+        117.8
+      ],
+      "end_mm": [
+        119.45,
+        119.4
+      ],
+      "width_mm": 0.2
+    },
+    {
+      "kind": "track",
+      "net": "VNEG",
+      "layer": "F.Cu",
+      "start_mm": [
+        116.9,
+        119.9
+      ],
+      "end_mm": [
+        117.95,
+        120.12
+      ],
+      "width_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "VNEG",
+      "at_mm": [
+        116.9,
+        119.9
+      ],
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3
+    },
+    {
+      "kind": "via",
+      "net": "VNEG",
+      "at_mm": [
+        119.45,
+        119.4
+      ],
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3
+    },
+    {
+      "kind": "track",
+      "net": "VNEG",
+      "layer": "PWR",
+      "start_mm": [
+        118.95,
+        119.9
+      ],
+      "end_mm": [
+        116.9,
+        119.9
+      ],
+      "width_mm": 0.2
+    },
+    {
+      "kind": "track",
+      "net": "VNEG",
+      "layer": "PWR",
+      "start_mm": [
+        119.45,
+        119.4
+      ],
+      "end_mm": [
+        118.95,
+        119.9
+      ],
+      "width_mm": 0.2
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLP_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        116.85,
+        117.8
+      ],
+      "end_mm": [
+        116.55,
+        117.5
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLP_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        115.35,
+        118.7
+      ],
+      "end_mm": [
+        115.35,
+        122.4
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLP_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        116.55,
+        117.5
+      ],
+      "end_mm": [
+        111.135,
+        117.5
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLP_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        111.135,
+        117.5
+      ],
+      "end_mm": [
+        109.885,
+        118.75
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLP_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        116.85,
+        117.8
+      ],
+      "end_mm": [
+        115.35,
+        118.7
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        118.15,
+        117.0
+      ],
+      "end_mm": [
+        118.54,
+        116.61
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        118.15,
+        119.35
+      ],
+      "end_mm": [
+        118.95,
+        120.15
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        122.3,
+        119.84
+      ],
+      "end_mm": [
+        123.5,
+        118.85
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        121.81,
+        115.8
+      ],
+      "end_mm": [
+        124.2,
+        115.8
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        118.15,
+        117.8
+      ],
+      "end_mm": [
+        118.15,
+        119.35
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        121.0,
+        116.61
+      ],
+      "end_mm": [
+        121.81,
+        115.8
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        119.5,
+        120.7
+      ],
+      "end_mm": [
+        119.5,
+        122.55
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        118.95,
+        120.15
+      ],
+      "end_mm": [
+        119.5,
+        120.7
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        118.54,
+        116.61
+      ],
+      "end_mm": [
+        121.0,
+        116.61
+      ],
+      "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "N6_TLN_R",
+      "layer": "F.Cu",
+      "start_mm": [
+        118.95,
+        120.15
+      ],
+      "end_mm": [
+        122.3,
+        119.84
+      ],
+      "width_mm": 0.15
     }
   ],
   "removed_source_copper": [

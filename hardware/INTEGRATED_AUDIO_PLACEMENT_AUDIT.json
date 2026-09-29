@@ -136,16 +136,16 @@
     },
     "LN_R": {
       "bleed": {
-        "euclidean_pad_mm": 7.52,
-        "manhattan_pad_lower_bound_mm": 7.81
+        "euclidean_pad_mm": 6.72,
+        "manhattan_pad_lower_bound_mm": 8.41
       },
       "cap": {
-        "euclidean_pad_mm": 5.88,
-        "manhattan_pad_lower_bound_mm": 7.9
+        "euclidean_pad_mm": 6.12,
+        "manhattan_pad_lower_bound_mm": 8.4
       },
       "charge_resistor": {
-        "euclidean_pad_mm": 5.63,
-        "manhattan_pad_lower_bound_mm": 6.46
+        "euclidean_pad_mm": 5.53,
+        "manhattan_pad_lower_bound_mm": 6.36
       }
     },
     "LP_L": {
@@ -200,8 +200,8 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7235.31,
-  "track_count": 756,
+  "total_nonpower_hpwl_mm": 7230.84,
+  "track_count": 786,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 5.97,
     "D102_VBUS_to_J101_B4": 4.89,

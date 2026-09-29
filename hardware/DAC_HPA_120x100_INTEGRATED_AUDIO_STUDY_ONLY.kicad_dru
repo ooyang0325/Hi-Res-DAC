@@ -92,14 +92,22 @@
 
 # Track-to-track and track-to-pad checks activate when copper is drawn.
 # The read-only placement audit separately reports pad-to-pad proximity.
+# Protect only analog/high-impedance nodes. The four U621 buffered logic
+# readbacks are excluded from the 5 mm analog keepout; BUF_IN stays in.
+# The placement audit uses the same susceptibility list.
 (rule "High-impedance low-level nets versus clocks 10 mm"
     (layer F.Cu)
-    (condition "(A.Type == 'Track' || B.Type == 'Track') && ((A.NetName == 'N6_VLL*' && (B.NetName == 'MCLK' || B.NetName == 'N2_X201_OUT' || B.NetName == 'N6_MCK_IN' || B.NetName == 'N6_MCK_BUF' || B.NetName == 'N6_PMP' || B.NetName == 'FAM_CLK' || B.NetName == 'BCLK' || B.NetName == 'LRCLK' || B.NetName == 'SDATA' || B.NetName == 'LINK_SCK')) || (B.NetName == 'N6_VLL*' && (A.NetName == 'MCLK' || A.NetName == 'N2_X201_OUT' || A.NetName == 'N6_MCK_IN' || A.NetName == 'N6_MCK_BUF' || A.NetName == 'N6_PMP' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA' || A.NetName == 'LINK_SCK')))")
+    (condition "(A.Type == 'Track' || B.Type == 'Track') && (((A.NetName == 'N6_VLL*' || A.NetName == 'N6_VOR*') && (B.NetName == 'MCLK' || B.NetName == 'N2_X201_OUT' || B.NetName == 'N6_MCK_IN' || B.NetName == 'N6_MCK_BUF' || B.NetName == 'N6_PMP' || B.NetName == 'FAM_CLK' || B.NetName == 'BCLK' || B.NetName == 'LRCLK' || B.NetName == 'SDATA' || B.NetName == 'LINK_SCK')) || ((B.NetName == 'N6_VLL*' || B.NetName == 'N6_VOR*') && (A.NetName == 'MCLK' || A.NetName == 'N2_X201_OUT' || A.NetName == 'N6_MCK_IN' || A.NetName == 'N6_MCK_BUF' || A.NetName == 'N6_PMP' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA' || A.NetName == 'LINK_SCK')))")
     (constraint clearance (min 10mm)))
 
-(rule "Protection high-impedance nets versus clocks 5 mm"
+(rule "Protection V3 analog nodes versus clocks 5 mm"
     (layer F.Cu)
-    (condition "(A.Type == 'Track' || B.Type == 'Track') && ((A.NetName == 'N6_V3*' || A.NetName == 'N6_TW*' || A.NetName == 'N6_LW*' || A.NetName == 'N6_ORLN' || A.NetName == 'N6_ORLP' || A.NetName == 'N6_ORRN' || A.NetName == 'N6_ORRP') && (B.NetName == 'MCLK' || B.NetName == 'N2_X201_OUT' || B.NetName == 'N6_MCK_IN' || B.NetName == 'N6_MCK_BUF' || B.NetName == 'N6_PMP' || B.NetName == 'FAM_CLK' || B.NetName == 'BCLK' || B.NetName == 'LRCLK' || B.NetName == 'SDATA' || B.NetName == 'LINK_SCK') || (B.NetName == 'N6_V3*' || B.NetName == 'N6_TW*' || B.NetName == 'N6_LW*' || B.NetName == 'N6_ORLN' || B.NetName == 'N6_ORLP' || B.NetName == 'N6_ORRN' || B.NetName == 'N6_ORRP') && (A.NetName == 'MCLK' || A.NetName == 'N2_X201_OUT' || A.NetName == 'N6_MCK_IN' || A.NetName == 'N6_MCK_BUF' || A.NetName == 'N6_PMP' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA' || A.NetName == 'LINK_SCK'))")
+    (condition "(A.Type == 'Track' || B.Type == 'Track') && (((A.NetName == 'N6_V3*' && A.NetName != 'N6_V3AG_A_BUF_OUT' && A.NetName != 'N6_V3AG_B_BUF_OUT' && A.NetName != 'N6_V3AG_A_MCU' && A.NetName != 'N6_V3AG_B_MCU') && (B.NetName == 'MCLK' || B.NetName == 'N2_X201_OUT' || B.NetName == 'N6_MCK_IN' || B.NetName == 'N6_MCK_BUF' || B.NetName == 'N6_PMP' || B.NetName == 'FAM_CLK' || B.NetName == 'BCLK' || B.NetName == 'LRCLK' || B.NetName == 'SDATA' || B.NetName == 'LINK_SCK')) || ((B.NetName == 'N6_V3*' && B.NetName != 'N6_V3AG_A_BUF_OUT' && B.NetName != 'N6_V3AG_B_BUF_OUT' && B.NetName != 'N6_V3AG_A_MCU' && B.NetName != 'N6_V3AG_B_MCU') && (A.NetName == 'MCLK' || A.NetName == 'N2_X201_OUT' || A.NetName == 'N6_MCK_IN' || A.NetName == 'N6_MCK_BUF' || A.NetName == 'N6_PMP' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA' || A.NetName == 'LINK_SCK')))")
+    (constraint clearance (min 5mm)))
+
+(rule "Protection timer and OR analog nodes versus clocks 5 mm"
+    (layer F.Cu)
+    (condition "(A.Type == 'Track' || B.Type == 'Track') && (((A.NetName == 'N6_TW*' || A.NetName == 'N6_LW*' || (A.NetName == 'N6_OR*' && A.NetName != 'N6_ORTEST')) && (B.NetName == 'MCLK' || B.NetName == 'N2_X201_OUT' || B.NetName == 'N6_MCK_IN' || B.NetName == 'N6_MCK_BUF' || B.NetName == 'N6_PMP' || B.NetName == 'FAM_CLK' || B.NetName == 'BCLK' || B.NetName == 'LRCLK' || B.NetName == 'SDATA' || B.NetName == 'LINK_SCK')) || ((B.NetName == 'N6_TW*' || B.NetName == 'N6_LW*' || (B.NetName == 'N6_OR*' && B.NetName != 'N6_ORTEST')) && (A.NetName == 'MCLK' || A.NetName == 'N2_X201_OUT' || A.NetName == 'N6_MCK_IN' || A.NetName == 'N6_MCK_BUF' || A.NetName == 'N6_PMP' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA' || A.NetName == 'LINK_SCK')))")
     (constraint clearance (min 5mm)))
 
 # The four protection RC/bleed branches have an 8 mm pad-to-pad routed limit.
@@ -143,6 +151,19 @@
     (condition "A.NetName == '5V_ANA_F' && A.intersectsCourtyard('U501')")
     (constraint track_width (min 0.20mm)))
 
+# These three small power lands cannot launch a centred 1 mm trunk. Only one
+# short escape per land is permitted; audit_power_pad_escapes.py enforces the
+# exact pad endpoint and length before the trace widens to the 1 mm trunk.
+(rule "J101 VBUS local pad escape"
+    (layer F.Cu)
+    (condition "A.NetName == 'VBUS' && A.intersectsCourtyard('J101')")
+    (constraint track_width (min 0.50mm)))
+
+(rule "U102 and U504 WSON local power pad escape"
+    (layer F.Cu)
+    (condition "(A.NetName == 'VBUS' || A.NetName == '5V_SYS') && (A.intersectsCourtyard('U102') || A.intersectsCourtyard('U504'))")
+    (constraint track_width (min 0.30mm)))
+
 (rule "Jack hand-solder access"
     (constraint courtyard_clearance (min 1.5mm))
     (condition "A.Reference == 'J701' || B.Reference == 'J701' || A.Reference == 'J702' || B.Reference == 'J702'"))
@@ -154,6 +175,13 @@
 (rule "Film capacitor owner-fit fallback access"
     (constraint courtyard_clearance (min 1.5mm))
     (condition "A.Reference == 'C631' || A.Reference == 'C632' || A.Reference == 'C633' || A.Reference == 'C634' || B.Reference == 'C631' || B.Reference == 'C632' || B.Reference == 'C633' || B.Reference == 'C634'"))
+
+# C638 is the local VNEG bypass between the two right timer film capacitors.
+# The side gap is 0.60 mm; audit_film_solder_access.py checks ≥1.5 mm clear
+# north/south approaches to both exposed solder terminals before owner fit.
+(rule "Right film capacitor side gap to C638"
+    (condition "((A.Reference == 'C633' || A.Reference == 'C634') && B.Reference == 'C638') || ((B.Reference == 'C633' || B.Reference == 'C634') && A.Reference == 'C638')")
+    (constraint courtyard_clearance (min 0.60mm)))
 
 # The named-pad audit also measures D707/D708 near J702. Routed ESD return,
 # nonlinear TVS loading and system IEC testing remain separate release gates.

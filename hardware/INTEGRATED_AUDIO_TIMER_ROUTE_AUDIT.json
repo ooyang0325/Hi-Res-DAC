@@ -1,0 +1,37 @@
+{
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "connected_routes_mm": {
+    "LN_R U610.10\u2192C634.1": 7.177,
+    "LN_R U610.10\u2192Q626.3": 7.712,
+    "LN_R U610.10\u2192R923.2": 7.787,
+    "LP_R U610.8\u2192C633.1": 6.442,
+    "LP_R U610.8\u2192Q625.3": 7.607,
+    "LP_R U610.8\u2192R922.2": 1.789
+  },
+  "film_cap_ground_returns_mm": {
+    "C633": 2.65,
+    "C634": 2.65
+  },
+  "limit_mm": 8.0,
+  "method": "shortest F.Cu centreline path between named pad centres, splitting same-net junctions; unconnected branches are reported separately",
+  "open_film_cap_ground_returns": [
+    "C631.2\u2192L2 GND",
+    "C632.2\u2192L2 GND"
+  ],
+  "open_routes": [
+    "LP_L U609.8\u2192C631.1",
+    "LP_L U609.8\u2192Q623.3",
+    "LP_L U609.8\u2192R920.2",
+    "LN_L U609.10\u2192C632.1",
+    "LN_L U609.10\u2192Q624.3",
+    "LN_L U609.10\u2192R921.2"
+  ],
+  "release_status": "HOLD",
+  "timer_vias_by_net": {
+    "N6_TLN_L": 0,
+    "N6_TLN_R": 0,
+    "N6_TLP_L": 0,
+    "N6_TLP_R": 0
+  },
+  "violations": []
+}

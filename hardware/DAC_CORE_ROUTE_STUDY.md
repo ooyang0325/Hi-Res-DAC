@@ -5,9 +5,9 @@
 the current editable partial routing candidate. Every new component position
 and copper waypoint was chosen manually and recorded in the
 [replay manifest](INTEGRATED_AUDIO_MANUAL_DELTA.json). It has **544
-footprints, 250 named nets, 756 track/via items, zero KiCad DRC violations,
-499 DRC-reported unconnected items and 896 full ratsnest links**. The current
-manual delta records 121 moves, eight removed source-copper items and 729
+footprints, 250 named nets, 786 track/via items (131 vias), zero KiCad DRC
+violations, 499 DRC-reported unconnected items and 884 full ratsnest links**.
+The current manual delta records 133 moves, eight removed source-copper items and 759
 added copper items. The
 [critical-route audit](DAC_CORE_ROUTE_AUDIT.json) is the numeric evidence;
 these partial-board results do not authorize a PCBA order.
@@ -96,12 +96,12 @@ unqualified.
    inductances; it is not a measured supply impedance or audio result.
 2. **Via and EP assembly:** [JLCPCB's via-covering guidance](https://jlcpcb.com/help/article/pcb-via-covering)
    treats filled/capped vias as suitable for via-in-pad, and asks the
-   customer to identify them in the order. Two U202 and five U301 EP vias
-   are flagged filled/capped in the PCB. The [via-pad process audit](INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json)
-   counts 125 vias total, 20 filled/capped vias near SMT pads, and 45
-   unfilled via-to-SMT-pad sites closer than 0.35 mm. It finds zero unfilled
-   SMT-pad copper overlaps and zero unfilled gaps below 0.10 mm; the 45
-   sites still need JLC mask/process review. Confirm via-in-pad process,
+   customer to identify them in the order. The current board has 131 vias;
+   two U202 and five U301 EP vias are flagged filled/capped in the PCB. The
+   [via-pad process audit](INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json)
+   identifies 45 unfilled via-to-SMT-pad sites closer than 0.35 mm. It finds
+   zero unfilled SMT-pad copper overlaps and zero unfilled gaps below 0.10 mm;
+   those 45 sites still need JLC mask/process review. Confirm via-in-pad process,
    price, stencil aperture and QFN solder result in the order preview; DRC
    does not establish acceptance.
 3. **Incomplete power and return:** the listed U202 bypass and U302 local
@@ -119,7 +119,7 @@ unqualified.
 5. **Release:** USB routing/90 Ω stackup, protection timer/reset branches,
    DACL feedback return, I/V and output-stage stability, G-3/G-4 physical
    gates, system ESD, EMI, measured jack impedance and audio/RF/hum tests
-   remain open. There are 896 full ratsnest links; zero DRC violations and
+   remain open. There are 884 full ratsnest links; zero DRC violations and
    499 DRC-reported unconnected items describe partial-board status only and
    do not authorize Gerber/CPL/PCBA release.
 
@@ -127,7 +127,7 @@ The separate [Freerouting probe](FREEROUTING_PROBE.md) is off-board diagnostic
 only. Its input copy had 753 track/via items; the imported session had 2,460,
 but also 53 reported violations and lost named KiCad custom rules. It does
 not replace or contribute copper to this board. Its 962→499 unrouted count
-uses a different connectivity definition from the current 896 ratsnest links
+uses a different connectivity definition from the current 884 ratsnest links
 and 499 DRC unconnected items.
 
 ## Review visually from the command line
