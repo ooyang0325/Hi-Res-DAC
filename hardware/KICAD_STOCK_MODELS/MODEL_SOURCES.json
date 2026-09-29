@@ -57,6 +57,11 @@
       "path": "Resistor_SMD.3dshapes/R_0805_2012Metric.step",
       "bytes": 40592,
       "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2"
+    },
+    {
+      "path": "Resistor_SMD.3dshapes/R_2512_6332Metric.step",
+      "bytes": 40272,
+      "sha256": "76b2052a3c120193de7cdc0af99157b6f375e9a4af7721e3e3d012968c877f27"
     }
   ]
 }

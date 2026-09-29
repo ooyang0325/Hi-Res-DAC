@@ -8,6 +8,7 @@ their original KiCad library paths under KICAD_STOCK_MODELS.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import os
@@ -20,6 +21,11 @@ import pcbnew
 HERE = Path(__file__).resolve().parent
 PREFIX = "${KICAD10_3DMODEL_DIR}/"
 UPSTREAM = "https://gitlab.com/kicad/libraries/kicad-packages3D"
+DEFAULT_BOARDS = (
+    "DAC_HPA.kicad_pcb",
+    "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+    "DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb",
+)
 
 
 def source_dir() -> Path:
@@ -36,10 +42,17 @@ def source_dir() -> Path:
 
 
 def main() -> None:
-    board = pcbnew.LoadBoard(str(HERE / "DAC_HPA.kicad_pcb"))
-    names = sorted({model.m_Filename[len(PREFIX):]
-                    for fp in board.GetFootprints() for model in fp.Models()
-                    if model.m_Filename.startswith(PREFIX)})
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("boards", nargs="*", type=Path,
+                        default=[HERE / name for name in DEFAULT_BOARDS])
+    args = parser.parse_args()
+    required = set()
+    for path in args.boards:
+        board = pcbnew.LoadBoard(str(path))
+        required.update(model.m_Filename[len(PREFIX):]
+                        for fp in board.GetFootprints() for model in fp.Models()
+                        if model.m_Filename.startswith(PREFIX))
+    names = sorted(required)
     source = source_dir()
     output = HERE / "KICAD_STOCK_MODELS"
     records = []

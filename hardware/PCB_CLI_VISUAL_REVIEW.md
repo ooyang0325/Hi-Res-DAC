@@ -55,6 +55,14 @@ On the integrated plots, zoom to U202/U301 at x = 78–95 mm, y = 62–85 mm to 
 
 For the latest local changes, zoom to **x = 93–102, y = 103–117 mm** for the hand-routed U609/R921 timer cluster and narrow R921 courtyard gaps. Inspect the two selectively adopted low-speed paths at **x = 55–60, y = 59–61 mm** (`N2_AUD_EN_MCU`) and **x = 103–108, y = 132–137 mm** (`N7_LEDR_A`); compare F.Cu with filled L2.
 
+To inspect the **separate discharge footprint option**, rerun the same script
+with `hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb` as its
+second argument and another output directory. Zoom to **x = 40–65,
+y = 109–140 mm** in `01_body_courtyard.svg` and `02_top_copper.svg`; compare
+R527/R529/R530 bodies, Q503/Q506 escapes and the bottom board edge. Open
+`08_board_3d.glb` for the three bundled 2512 bodies. This option has
+provisional package lands and is not schematic/BOM aligned.
+
 | File | What to inspect |
 | --- | --- |
 | `01_body_courtyard.svg` | F.Fab bodies, F.CrtYd and board outline. Zoom in on J101/J702 edges, J701 top-side solder access, K601–K604 iron access, dense U301/U403/U404 and the completed U609/U610 timer groups. Check that courtyard clearances leave routing channels. |

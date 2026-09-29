@@ -261,6 +261,36 @@
   },
   {
     "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/c704f12ea0da45b6b9e7d0ddac98e7f7",
+    "converted_bbox_mm": [
+      6.3,
+      3.2,
+      0.611
+    ],
+    "converted_bytes": 658382,
+    "converted_file": "R2512_L6.3-W3.2-H0.6.step",
+    "converted_sha256": "cf3262a1e76a0ee7c7842f2874e8a3b096ca5132844dc2815c13b1b5833d906f",
+    "direct_uuid": "311a5ea298274ff3b9740151e78a7465",
+    "lcsc_code": "C2907584",
+    "model_uuid": "c704f12ea0da45b6b9e7d0ddac98e7f7",
+    "raw_bbox_mm": [
+      6.3,
+      3.2,
+      0.611
+    ],
+    "raw_bytes": 1063279,
+    "raw_sha256": "d34780eb5085295fb4a1eb5b1f5acc10fb14adc5438cd630e13497305530862e",
+    "shared_lcsc_codes": [
+      "C2907584",
+      "C5123624"
+    ],
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/311a5ea298274ff3b9740151e78a7465",
+    "title": "R2512_L6.3-W3.2-H0.6",
+    "transform": "248.031,125.984,0,0,0,0,-0.0005,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
     "component_url": "https://pro.easyeda.com/api/v2/components/df84906d417c4d929ec2e4259b3eb740",
     "converted_bbox_mm": [
       2.1,

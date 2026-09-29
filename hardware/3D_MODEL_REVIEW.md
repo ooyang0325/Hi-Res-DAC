@@ -4,7 +4,13 @@ The current **120 × 100 mm** schematic-aligned board is
 `DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb`. Open it in KiCad 10 and
 choose **View → 3D Viewer**. GitLab CI exports
 `DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb` for this candidate; the functional-ECO,
-output-macro, macro-study and primary GLBs are earlier comparisons. The prior
+output-macro, macro-study and primary GLBs are earlier comparisons. A separate
+[discharge fit option](DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb)
+exports `DAC_HPA_DISCHARGE_FIT_OPTION_REVIEW.glb` with three provisional 2512
+resistor bodies; it is not schematic/BOM aligned. Its GLB uses the bundled
+KiCad stock 2512 STEP, while the separately retained [exact JLC R2512 STEP](EASYEDA_MODELS/R2512_L6.3-W3.2-H0.6.step)
+and [CAD audit](DISCHARGE_JLC_CAD_AUDIT.json) support a later land/model
+comparison. The prior
 [full-board preview](DAC_HPA_3D_review.png) and [J101 closeup](DAC_HPA_J101_3D_detail.png)
 show the historical primary after the USB-C model alignment correction.
 
@@ -23,7 +29,9 @@ pads). Of the 470, 380 use KiCad 10 stock models and 90 use files kept in this
 project. The 90 project-file instances are 82 instances of 30 JLC package
 models, four Toshiba relays, and four Panasonic body envelopes. The 380 stock
 instances use only 11 distinct KiCad STEP files; unchanged copies are bundled
-in `KICAD_STOCK_MODELS` for headless CI, with KiCad's license and hashes.
+in `KICAD_STOCK_MODELS` for headless CI, with KiCad's license and hashes. The
+fit option adds a twelfth distinct stock STEP shape for 2512 resistors; its
+CI artifact includes the 3D audit, which resolves 478 populated bodies.
 
 | Parts | 3D source and alignment | Confidence for 3D inspection |
 | --- | --- | --- |
@@ -43,7 +51,8 @@ extracting its STEP. Its source ZIP SHA-256 is
 it does not move footprints. `attach_3d_models.py` adds the twelve custom
 model links to the five board snapshots if absent. GitLab CI sets
 `KICAD10_3DMODEL_DIR` to the bundled stock library so its GLB includes the
-same 11 package shapes as the KiCad desktop installation.
+same package shapes as the KiCad desktop installation, including the option's
+new 2512 model.
 
 ## Limits
 
