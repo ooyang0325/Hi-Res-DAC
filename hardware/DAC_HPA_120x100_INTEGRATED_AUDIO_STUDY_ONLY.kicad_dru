@@ -183,6 +183,12 @@
     (condition "((A.Reference == 'C633' || A.Reference == 'C634') && B.Reference == 'C638') || ((B.Reference == 'C633' || B.Reference == 'C634') && A.Reference == 'C638')")
     (constraint courtyard_clearance (min 0.60mm)))
 
+# The matching U609 bypass has the same owner-fit side access tradeoff.
+# audit_film_solder_access.py checks both exposed terminal approaches.
+(rule "Left film capacitor side gap to C636"
+    (condition "((A.Reference == 'C631' || A.Reference == 'C632') && B.Reference == 'C636') || ((B.Reference == 'C631' || B.Reference == 'C632') && A.Reference == 'C636')")
+    (constraint courtyard_clearance (min 0.60mm)))
+
 # The named-pad audit also measures D707/D708 near J702. Routed ESD return,
 # nonlinear TVS loading and system IEC testing remain separate release gates.
 

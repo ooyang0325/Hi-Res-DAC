@@ -1,0 +1,76 @@
+{
+  "calculation_package": "DAC_HPA_Calculation_Package_v1.1.zip",
+  "calculation_package_assumes_u303_en_aud_en": {
+    "c06": true,
+    "c12": true
+  },
+  "capacitors_by_net_uf": {
+    "1V3": {
+      "C309": 0.1,
+      "C310": 2.2,
+      "C312": 1.0
+    },
+    "3V3D": {
+      "C217": 0.01,
+      "C218": 0.1,
+      "C219": 0.1,
+      "C222": 0.1,
+      "C223": 0.1,
+      "C224": 0.1,
+      "C311": 1.0,
+      "C512": 10.0,
+      "C622": 0.1,
+      "C623": 0.1,
+      "C630": 0.1
+    },
+    "DVCC": {
+      "C308": 0.1,
+      "C439": 2.2
+    },
+    "N2_V33_CPLD": {
+      "C213": 0.1,
+      "C214": 0.1,
+      "C215": 0.1,
+      "C220": 1.0
+    }
+  },
+  "captured_u303_pin3_en_net": "3V3D",
+  "captured_u504_pin4_en_net": "AUD_EN",
+  "enable_model_mismatch": true,
+  "illustrative_3v3d_no_load_rc_to_0p1v_ms": 0.693,
+  "illustrative_rc_scope": "Assumes U504 already off, 89 us gate delay, 10% high capacitors, linear 10 ohm plus FET resistance; excludes U303 drive/backfeed, bead dynamics and regulator turn-off delay. Not a guaranteed bound.",
+  "nominal_capacitance_uf": {
+    "1V3": 3.3,
+    "3V3D": 11.81,
+    "DVCC": 2.3,
+    "N2_V33_CPLD": 1.3
+  },
+  "qualification_holds": [
+    "Rebuild C06/C12 with U303 EN tied to 3V3D and the captured capacitance.",
+    "Reconcile Spec 1V3 <=0.134 ms with Notes ~0.76 ms and verify DVDD/DVCC during fault and shutdown.",
+    "Qualify R527/R529/R530 pulse and steady power, LDO overlap and JLC assembly footprints."
+  ],
+  "r527_initial_power_w_at_high_3v3a_and_minus_1pct_r": 1.144,
+  "r527_part": {
+    "mpn": "UNI-ROYAL 0603WAF100JT5E",
+    "package": "0603",
+    "rating": "1 %, 0.1 W (pulse \u2264 0.1 mJ)"
+  },
+  "r529_initial_power_w_at_high_3v3d_and_minus_1pct_r": 1.122,
+  "r529_part": {
+    "mpn": "UNI-ROYAL 0603WAF100JT5E",
+    "package": "0603",
+    "rating": "1 %, 0.1 W (pulse \u2264 0.1 mJ)"
+  },
+  "r529_stored_capacitor_energy_only_uj": 94.153,
+  "r530_initial_power_w_at_1v3_1p365v_and_minus_1pct_r": 0.4,
+  "r530_part": {
+    "mpn": "UNI-ROYAL 0603WAF470KT5E",
+    "package": "0603",
+    "rating": "1 %, 0.1 W"
+  },
+  "release_status": "HOLD",
+  "source_workbook": "DAC_HPA_Parts_List_v0.9.xlsx",
+  "three_digital_domains_nominal_uf": 15.41,
+  "three_digital_domains_plus_10pct_uf": 16.951
+}

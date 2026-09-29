@@ -126,12 +126,12 @@
         "manhattan_pad_lower_bound_mm": 6.17
       },
       "cap": {
-        "euclidean_pad_mm": 5.52,
-        "manhattan_pad_lower_bound_mm": 7.4
+        "euclidean_pad_mm": 5.71,
+        "manhattan_pad_lower_bound_mm": 7.8
       },
       "charge_resistor": {
-        "euclidean_pad_mm": 5.17,
-        "manhattan_pad_lower_bound_mm": 5.69
+        "euclidean_pad_mm": 4.04,
+        "manhattan_pad_lower_bound_mm": 4.63
       }
     },
     "LN_R": {
@@ -200,8 +200,8 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7230.84,
-  "track_count": 790,
+  "total_nonpower_hpwl_mm": 7230.12,
+  "track_count": 848,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 5.97,
     "D102_VBUS_to_J101_B4": 4.89,

@@ -901,7 +901,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "balanced_4p4_model_sensitivity_20khz": trace["balanced_4p4_model_sensitivity_20khz"],
         "drc_reported_unconnected_items": len(drc["unconnected_items"]),
         "ratsnest_unconnected_items": connectivity.GetUnconnectedCount(False),
-        "routing_release": "HOLD: DACL feedback L2 detour, I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, F01–F04 and G-3/G-4",
+        "routing_release": "HOLD: DACL feedback L2 detour, I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, discharge model, F01–F04 and G-3/G-4",
     }
 
 

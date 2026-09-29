@@ -118,8 +118,8 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
-  "manual_added_copper_items": 763,
-  "manual_moves": 134,
+  "manual_added_copper_items": 821,
+  "manual_moves": 138,
   "manual_replaced_source_copper_items": 8,
   "named_nets": 250,
   "near_right_angle_free_track_bends": 0,
@@ -134,7 +134,7 @@
     "U402.PAD VNEG": 3.0
   },
   "pad_centre_near_orthogonal_joins": 8,
-  "ratsnest_unconnected_items": 882,
+  "ratsnest_unconnected_items": 866,
   "right_angle_track_bends": 0,
   "routed_t_cell_branch_lengths_mm": {
     "LN+": {
@@ -179,7 +179,7 @@
     }
   },
   "routed_t_cell_count": 8,
-  "routing_release": "HOLD: DACL feedback L2 detour, I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, F01\u2013F04 and G-3/G-4",
+  "routing_release": "HOLD: DACL feedback L2 detour, I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, discharge model, F01\u2013F04 and G-3/G-4",
   "u501_fbp_feeder_projected_track_overlap_mm2": 0.0,
   "u501_fbp_projection_model": "KiCad B.Cu 5V_ANA_F track polygons projected onto F.Cu N5_FBP tracks; pads, dielectric and noise excluded",
   "u501_ground_fcu_pad_to_l2_via_mm": {

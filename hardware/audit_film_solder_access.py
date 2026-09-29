@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Screen top-side iron approaches to the right pair of timer film capacitors.
+"""Screen top-side iron approaches to both timer film-capacitor pairs.
 
-The C633/C634 courtyard side gap to C638 is a deliberate local exception.
+The C631/C632 side gap to C636 and C633/C634 gap to C638 are local exceptions.
 Each exposed terminal must still have a 1.5 mm north/south approach corridor
 free of other component courtyards. Rectangular bounds make this conservative
 for irregular packages. The screen does not replace a physical fit check.
@@ -16,10 +16,12 @@ from pathlib import Path
 import pcbnew
 
 
-CAPACITORS = {"C633", "C634"}
+CAPACITORS = {"C631", "C632", "C633", "C634"}
 APPROACH_MM = 1.5
 TOOL_SIDE_MARGIN_MM = 0.25
 EXPECTED_NETS = {
+    "C631": {"N6_TLP_L", "GND"},
+    "C632": {"N6_TLN_L", "GND"},
     "C633": {"N6_TLP_R", "GND"},
     "C634": {"N6_TLN_R", "GND"},
 }
@@ -107,7 +109,7 @@ def main() -> None:
     else:
         print(encoded, end="")
     if args.gate and result["violations"]:
-        raise SystemExit(f"{len(result['violations'])} right film-capacitor"
+        raise SystemExit(f"{len(result['violations'])} film-capacitor"
                          " terminal approaches are obstructed")
 
 

@@ -14,7 +14,7 @@ are 22.213/22.324/22.879 mm with 0.666 mm spread. It adds routed local
 U202/U302 paths and a connected 25.393 mm U303→DAC 1V3 trunk with two vias.
 Two vias in U202's EP and five in U301's DAC EP are flagged filled/capped;
 U401/U402 output-amplifier EP thermal routes remain open. The current board
-has 790 track/via items (132 vias), 882 full ratsnest links, 499 DRC-
+has 848 track/via items (143 vias), 866 full ratsnest links, 499 DRC-
 unconnected items and zero DRC violations. Full routing, system ESD, EMI and
 audio tests remain open; zero DRC violations applies to partial copper only.
 
@@ -109,16 +109,26 @@ audio tests remain open; zero DRC violations applies to partial copper only.
   FBP there. The U501 pin-3 VIN→C507 route grew from **5.859 to 6.014 mm**,
   within its **6.1 mm** checker bound. Switching-return impedance, noise
   and regulation stability still need extraction and measurement.
-- U610's six timer signal branches pass the named-pad **≤8 mm** screen with
-  no timer vias. LP_R C633/Q625/R922 measures **6.442/7.607/1.789 mm**;
-  LN_R C634/Q626/R923 measures **7.177/7.712/7.787 mm**. C633/C634 film
-  GND returns each reach L2 in **2.65 mm**, and C637/C638 bypass pads connect.
-  U609's six timer branches and C631/C632 GND returns remain open. U605 and
-  R675/R676/R679/R677 shifted left **1.2 mm**, while C625 moved beside R666;
+- All 12 U609/U610 timer signal branches pass the named-pad **≤8 mm** screen
+  without timer-net vias. U609 LP C/Q/R measures **6.089/5.340/4.943 mm**;
+  LN measures **6.038/5.814/6.685 mm**. U610 LP C/Q/R measures
+  **6.442/7.607/1.789 mm**; LN measures **7.177/7.712/7.787 mm**.
+  C631/C632/C633/C634 GND returns reach L2 in **3.580/3.656/2.650/2.650 mm**.
+  C635/C636 U609 VPOS/VNEG bypasses connect through 11 new vias (six GND,
+  three VPOS, two VNEG); upstream rail feeds and U609 VT/control escapes
+  remain open. R921 was hand-moved to **(95.15, 112.61)** and its LN_L and
+  VPOS escapes redrawn. KiCad's native `fromTo` length for U609.10→R921.2 is
+  **7.885 mm**; the named-pad shortest-copper audit reports **6.685 mm** because
+  KiCad's rule includes **1.20 mm** of the sibling C632 branch. Both pass 8 mm.
+  R921 body gaps are **1.167 mm** to U609 and **0.582 mm** to Q624; its
+  courtyard gaps are only **0.055/0.092 mm**, so actual body fit stays on the
+  G-3 overlay list. U605 and R675/R676/R679/R677 shifted left **1.2 mm**,
+  while C625 moved beside R666;
   this clears six measured 5 mm I²S/protection gaps. C638 uses a two-via L3
-  VNEG bridge to keep the timer corridors clear. The pair-specific **0.60 mm**
-  film-cap side-courtyard exception preserves at least **1.5 mm** north/south
-  solder approach, as checked by the [film solder-access audit](INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json).
+  VNEG bridge to keep the timer corridors clear. C636 has a pair-specific
+  **0.60 mm** side-courtyard gap to C631/C632. All
+  four film-cap north/south solder approaches pass at ≥**1.5 mm** (minimum
+  **3.045 mm**) per the [film solder-access audit](INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json).
 
 After close visual review, 33 explicit 45° mitres replace sharp turns on
 the amplifier inputs, clock monitor, power rail and headphone trunks. Two
@@ -128,16 +138,16 @@ rejects exact/near-90° bends and 80–100° free-copper elbows; both counts are
 **zero**. It treats pad-centred exits and electrical T/cross junctions
 separately from free-track bends.
 
-The manual record now contains **134 explicit footprint moves, eight removed
-source copper items and 763 added copper items** relative to the functional-ECO
-board. The exact board keeps 544 footprints, 250 named nets and 790 track/via
-items (132 vias) and reports **zero KiCad custom-rule DRC violations**, zero
+The manual record now contains **138 explicit footprint moves, eight removed
+source copper items and 821 added copper items** relative to the functional-ECO
+board. The current board keeps 544 footprints, 250 named nets and 848 track/via
+items (143 vias) and reports **zero KiCad custom-rule DRC violations**, zero
 footprint bounding-box overlaps and zero classified JLC spacing findings.
-The board also has zero exact/near-90° bends. The local U610 timer and
+The board also has zero exact/near-90° bends. The U609/U610 timer and
 film-cap geometry gates pass; JLC review for 45 unfilled near-pad sites
 remains open. All populated pad nets match the schematic. DRC reports zero
 violations and 499 unconnected items; the full
-`pcbnew` ratsnest counts **882**. These are partial-copper checks, not
+`pcbnew` ratsnest counts **866**. These are partial-copper checks, not
 functional or PCBA acceptance.
 The manual C622 update places the capacitor at **(108.65, 105.50, 0°)** and routes U604.8→C622.1 on 0.30 mm F.Cu for **4.615 mm**, then C622.2 to a Ø0.7/0.3 mm GND via at **(110.15, 105.50)** for **1.020 mm**. Continuous saved L2 GND supports both paths; the global 3V3D feed remains open.
 [Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
@@ -216,8 +226,8 @@ exposed-pad thermal/electrical connection.
    C437/J701/K602 region and via-to-small-capacitor mask/tenting in the JLC
    order preview.
 4. **Complete the other circuit routes and functional holds.** USB, remaining
-   I²S branches and controls, U609 timer branches, C631/C632 GND returns,
-   rails, other protection routes and most of the 882 ratsnest gaps remain.
+   I²S branches and controls, U609 VT/control escapes, upstream rail feeds,
+   other protection routes and most of the 866 ratsnest gaps remain.
    System ESD, EMI and audio tests are also open.
    F01 all-rate post-CPLD capture and DAC-side WS fault coverage are unproven;
    F02 readback corners, F03 attach current and F04 ESD need validation.

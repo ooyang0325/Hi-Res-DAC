@@ -2,6 +2,58 @@
   "approaches": [
     {
       "approach_width_mm": 4.3,
+      "clearance_mm": 3.0496,
+      "direction": "north",
+      "nearest_other_footprint": "D413",
+      "pad_bbox_mm": [
+        101.8,
+        105.6,
+        102.05,
+        103.55
+      ],
+      "terminal": "C631.2"
+    },
+    {
+      "approach_width_mm": 4.3,
+      "clearance_mm": 3.055,
+      "direction": "south",
+      "nearest_other_footprint": "U609",
+      "pad_bbox_mm": [
+        101.8,
+        105.6,
+        107.55,
+        109.05
+      ],
+      "terminal": "C631.1"
+    },
+    {
+      "approach_width_mm": 4.3,
+      "clearance_mm": 3.29,
+      "direction": "north",
+      "nearest_other_footprint": "TP735",
+      "pad_bbox_mm": [
+        94.9,
+        98.7,
+        102.05,
+        103.55
+      ],
+      "terminal": "C632.2"
+    },
+    {
+      "approach_width_mm": 4.3,
+      "clearance_mm": 3.045,
+      "direction": "south",
+      "nearest_other_footprint": "R921",
+      "pad_bbox_mm": [
+        94.9,
+        98.7,
+        107.55,
+        109.05
+      ],
+      "terminal": "C632.1"
+    },
+    {
+      "approach_width_mm": 4.3,
       "clearance_mm": 3.085,
       "direction": "north",
       "nearest_other_footprint": "R922",
