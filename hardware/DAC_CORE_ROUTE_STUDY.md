@@ -5,9 +5,9 @@
 the current editable partial routing candidate. Every new component position
 and copper waypoint was chosen manually and recorded in the
 [replay manifest](INTEGRATED_AUDIO_MANUAL_DELTA.json). It has **544
-footprints, 250 named nets, 848 track/via items (143 vias), zero KiCad DRC
-violations, 499 DRC-reported unconnected items and 866 full ratsnest links**.
-The current manual delta records 138 moves, eight removed source-copper items and 821
+footprints, 250 named nets, 855 track/via items (143 vias), zero KiCad DRC
+violations, 499 DRC-reported unconnected items and 864 full ratsnest links**.
+The current manual delta records 138 moves, eight removed source-copper items and 828
 added copper items. The
 [critical-route audit](DAC_CORE_ROUTE_AUDIT.json) is the numeric evidence;
 these partial-board results do not authorize a PCBA order.
@@ -132,15 +132,16 @@ unqualified.
 5. **Release:** USB routing/90 Ω stackup, protection timer/reset branches,
    DACL feedback return, I/V and output-stage stability, G-3/G-4 physical
    gates, system ESD, EMI, measured jack impedance and audio/RF/hum tests
-   remain open. There are 866 full ratsnest links; zero DRC violations and
+   remain open. There are 864 full ratsnest links; zero DRC violations and
    499 DRC-reported unconnected items describe partial-board status only and
    do not authorize Gerber/CPL/PCBA release.
 
-The separate [Freerouting probe](FREEROUTING_PROBE.md) is off-board diagnostic
-only. Its input copy had 753 track/via items; the imported session had 2,460,
-but also 53 reported violations and lost named KiCad custom rules. It does
-not replace or contribute copper to this board. Its historical 962→499 unrouted count
-uses a different connectivity definition from the current 866 ratsnest links
+The separate [Freerouting probe](FREEROUTING_PROBE.md) rejected the bulk
+session. Its input copy had 753 track/via items; the imported session had
+2,460, but also 53 reported violations and lost named KiCad custom rules.
+Only two reviewed low-speed local paths were adopted afterward; the bulk
+session did not replace the board. Its historical 962→499 unrouted count
+uses a different connectivity definition from the current 864 ratsnest links
 and 499 DRC unconnected items.
 
 ## Review visually from the command line

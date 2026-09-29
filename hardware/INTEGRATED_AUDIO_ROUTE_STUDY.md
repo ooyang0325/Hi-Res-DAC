@@ -14,7 +14,7 @@ are 22.213/22.324/22.879 mm with 0.666 mm spread. It adds routed local
 U202/U302 paths and a connected 25.393 mm U303→DAC 1V3 trunk with two vias.
 Two vias in U202's EP and five in U301's DAC EP are flagged filled/capped;
 U401/U402 output-amplifier EP thermal routes remain open. The current board
-has 848 track/via items (143 vias), 866 full ratsnest links, 499 DRC-
+has 855 track/via items (143 vias), 864 full ratsnest links, 499 DRC-
 unconnected items and zero DRC violations. Full routing, system ESD, EMI and
 audio tests remain open; zero DRC violations applies to partial copper only.
 
@@ -129,6 +129,13 @@ audio tests remain open; zero DRC violations applies to partial copper only.
   **0.60 mm** side-courtyard gap to C631/C632. All
   four film-cap north/south solder approaches pass at ≥**1.5 mm** (minimum
   **3.045 mm**) per the [film solder-access audit](INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json).
+- Two low-speed paths were selectively taken from the rejected whole-board
+  [Freerouting probe](FREEROUTING_PROBE.md) and checked on this board:
+  `N2_AUD_EN_MCU` R237.1→U201.51 is **4.285 mm** in five 0.20 mm F.Cu
+  segments, and `N7_LEDR_A` R702.2→D706.1 is **4.649 mm** in two segments.
+  Neither uses a via or a right-angle bend. Saved filled L2 GND lies directly
+  under both routes at 0.01 mm samples and ±0.075/0.10 mm offsets. No
+  Freerouting placement or critical audio/clock/USB/power copper was imported.
 
 After close visual review, 33 explicit 45° mitres replace sharp turns on
 the amplifier inputs, clock monitor, power rail and headphone trunks. Two
@@ -139,15 +146,15 @@ rejects exact/near-90° bends and 80–100° free-copper elbows; both counts are
 separately from free-track bends.
 
 The manual record now contains **138 explicit footprint moves, eight removed
-source copper items and 821 added copper items** relative to the functional-ECO
-board. The current board keeps 544 footprints, 250 named nets and 848 track/via
+source copper items and 828 added copper items** relative to the functional-ECO
+board. The current board keeps 544 footprints, 250 named nets and 855 track/via
 items (143 vias) and reports **zero KiCad custom-rule DRC violations**, zero
 footprint bounding-box overlaps and zero classified JLC spacing findings.
 The board also has zero exact/near-90° bends. The U609/U610 timer and
 film-cap geometry gates pass; JLC review for 45 unfilled near-pad sites
 remains open. All populated pad nets match the schematic. DRC reports zero
 violations and 499 unconnected items; the full
-`pcbnew` ratsnest counts **866**. These are partial-copper checks, not
+`pcbnew` ratsnest counts **864**. These are partial-copper checks, not
 functional or PCBA acceptance.
 The manual C622 update places the capacitor at **(108.65, 105.50, 0°)** and routes U604.8→C622.1 on 0.30 mm F.Cu for **4.615 mm**, then C622.2 to a Ø0.7/0.3 mm GND via at **(110.15, 105.50)** for **1.020 mm**. Continuous saved L2 GND supports both paths; the global 3V3D feed remains open.
 [Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
@@ -227,7 +234,7 @@ exposed-pad thermal/electrical connection.
    order preview.
 4. **Complete the other circuit routes and functional holds.** USB, remaining
    I²S branches and controls, U609 VT/control escapes, upstream rail feeds,
-   other protection routes and most of the 866 ratsnest gaps remain.
+   other protection routes and most of the 864 ratsnest gaps remain.
    System ESD, EMI and audio tests are also open.
    F01 all-rate post-CPLD capture and DAC-side WS fault coverage are unproven;
    F02 readback corners, F03 attach current and F04 ESD need validation.

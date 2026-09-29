@@ -1,6 +1,6 @@
 # Routing and fabrication constraints for the integrated-audio study
 
-**Status:** engineering review policy for the 120 × 100 mm candidate. The [DAC/core checkpoint](DAC_CORE_ROUTE_STUDY.md) and [audit](DAC_CORE_ROUTE_AUDIT.json) supersede this document's earlier DAC/CPLD route measurements. The current board has 848 track/via items (143 vias), 866 full ratsnest links, 499 DRC-unconnected items and zero DRC violations; current geometry checks find zero exact/near-90° bends, zero bbox overlaps and zero classified JLC spacing findings. It remains partial copper and is not a manufacturing release. The four-layer stack keeps one continuous L2 GND plane; analog/digital separation is by placement and controlled current paths, with no ground-plane split.
+**Status:** engineering review policy for the 120 × 100 mm candidate. The [DAC/core checkpoint](DAC_CORE_ROUTE_STUDY.md) and [audit](DAC_CORE_ROUTE_AUDIT.json) supersede this document's earlier DAC/CPLD route measurements. The current board has 855 track/via items (143 vias), 864 full ratsnest links, 499 DRC-unconnected items and zero DRC violations; current geometry checks find zero exact/near-90° bends, zero bbox overlaps and zero classified JLC spacing findings. It remains partial copper and is not a manufacturing release. The four-layer stack keeps one continuous L2 GND plane; analog/digital separation is by placement and controlled current paths, with no ground-plane split.
 
 | Topic | Disposition for the next route trial | Evidence still needed |
 | --- | --- | --- |

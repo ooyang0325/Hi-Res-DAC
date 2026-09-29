@@ -1,10 +1,10 @@
 # Freerouting routeability probe
 
-**29 September 2026 · Off-board diagnostic only.** A copy of the 120 × 100 mm
+**29 September 2026 · Whole-board session rejected.** A copy of the 120 × 100 mm
 integrated study was exported through KiCad 10's Specctra DSN API and routed
 with locally installed Freerouting 2.4.1. The `.ses` result was imported into
-another temporary PCB for inspection. No Freerouting copper was promoted to
-the [review board](DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb).
+another temporary PCB for inspection. The bulk result was not promoted to the
+[review board](DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb).
 
 | Probe measure | Input copy | Imported session |
 | --- | ---: | ---: |
@@ -31,9 +31,29 @@ successful KiCad DRC: the temporary headless DRC crashed in macOS AppKit.
 
 The probe is useful as a **congestion signal**: even with custom rules lost,
 137 of 249 multi-pad nets remained incomplete. The next placement pass should
-inspect the failed corridors and move complete subcircuits manually. A later
-automatic-routing trial can exclude critical audio, clock, USB and power
-classes and validate every imported route under KiCad rules before use.
+inspect the failed corridors and move complete subcircuits manually.
+
+## Selective low-speed adoption after review
+
+Only two local, low-speed paths from a disposable imported copy were selected
+for the current study. Their unchanged pad locations and nets were checked
+against the captured schematic, then their exact 0.20 mm F.Cu segments were
+recorded in the [frozen route manifest](INTEGRATED_AUDIO_MANUAL_DELTA.json):
+
+| Path | Selected segments | Named-pad copper length | Vias |
+| --- | ---: | ---: | ---: |
+| `N2_AUD_EN_MCU`, R237.1→U201.51 | 5 | 4.285 mm | 0 |
+| `N7_LEDR_A`, R702.2→D706.1 | 2 | 4.649 mm | 0 |
+
+The selected paths keep saved filled L2 GND under their centreline and
+±0.075/0.10 mm offsets at 0.01 mm samples. KiCad DRC reports zero geometry
+violations, the integrated track-bend screen finds no exact or near-90°
+corners, and the full `pcbnew` ratsnest fell **866→864**. KiCad's separate
+DRC-unconnected count remains 499; these metrics have different definitions.
+No placement was automated. USB, clock, audio, protection, and high-current
+power paths from the bulk Freerouting result remain rejected. `CC2` had sharp
+corners in the selective probe; `N5_DIS_D_R` is deferred because the R529
+discharge-resistor footprint is under review.
 
 ## Reproduce on a disposable copy
 
@@ -59,4 +79,5 @@ PY
 
 Keep the output outside the repository and import it into a disposable KiCad
 board only. Refill L2 and apply the project DRC, placement, via-process and
-critical-route audits before interpreting any proposed copper.
+critical-route audits before interpreting any proposed copper. Transfer only
+individually accepted segments to the explicit route manifest.

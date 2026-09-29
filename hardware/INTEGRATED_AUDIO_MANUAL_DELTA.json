@@ -1,5 +1,5 @@
 {
-  "purpose": "Frozen hand-selected integrated audio, DAC/CPLD and regulator route study; no placement or routing search",
+  "purpose": "Frozen hand-selected placement and critical routes, plus two individually reviewed Freerouting-assisted low-speed local routes; no algorithmic placement",
   "source_board": "DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb",
   "output_board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
   "source_footprints": 544,
@@ -11707,6 +11707,104 @@
       "end_mm": [
         94.64,
         112.61
+      ]
+    },
+    {
+      "kind": "track",
+      "net": "N7_LEDR_A",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_mm": [
+        106.75,
+        135.24
+      ],
+      "end_mm": [
+        106.75,
+        136.0
+      ]
+    },
+    {
+      "kind": "track",
+      "net": "N7_LEDR_A",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_mm": [
+        104.0,
+        132.49
+      ],
+      "end_mm": [
+        106.75,
+        135.24
+      ]
+    },
+    {
+      "kind": "track",
+      "net": "N2_AUD_EN_MCU",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_mm": [
+        56.0,
+        59.5693
+      ],
+      "end_mm": [
+        56.0,
+        59.01
+      ]
+    },
+    {
+      "kind": "track",
+      "net": "N2_AUD_EN_MCU",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_mm": [
+        57.6658,
+        60.4239
+      ],
+      "end_mm": [
+        56.8546,
+        60.4239
+      ]
+    },
+    {
+      "kind": "track",
+      "net": "N2_AUD_EN_MCU",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_mm": [
+        57.8397,
+        60.25
+      ],
+      "end_mm": [
+        57.6658,
+        60.4239
+      ]
+    },
+    {
+      "kind": "track",
+      "net": "N2_AUD_EN_MCU",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_mm": [
+        56.8546,
+        60.4239
+      ],
+      "end_mm": [
+        56.0,
+        59.5693
+      ]
+    },
+    {
+      "kind": "track",
+      "net": "N2_AUD_EN_MCU",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "start_mm": [
+        59.3,
+        60.25
+      ],
+      "end_mm": [
+        57.8397,
+        60.25
       ]
     }
   ],
