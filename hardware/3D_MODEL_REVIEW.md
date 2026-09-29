@@ -1,20 +1,22 @@
 # PCB 3D model review
 
 The current **120 × 100 mm** schematic-aligned board is
-`DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb`. Open it in KiCad 10 and
+`DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb`. Open it in KiCad 10 and
 choose **View → 3D Viewer**. GitLab CI exports
-`DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb` for this candidate. The prior
+`DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb` for this candidate; the functional-ECO,
+output-macro, macro-study and primary GLBs are earlier comparisons. The prior
 [full-board preview](DAC_HPA_3D_review.png) and [J101 closeup](DAC_HPA_J101_3D_detail.png)
 show the historical primary after the USB-C model alignment correction.
 
-The [manual macro-placement study](MACRO_PLACEMENT_REVIEW.md) has the older 536-footprint population. The current candidate adds D707/D708 with the existing SOD-523 model and U621 with a new exact-JLC C507231 SC70-6 body. These models remain subject to G-3 fit and JLC order checks.
+The [manual macro-placement study](MACRO_PLACEMENT_REVIEW.md) has the older 536-footprint population. The [functional-ECO placement baseline](DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb) added D707/D708 with the existing SOD-523 model and U621 with a new exact-JLC C507231 SC70-6 body; the integrated board retains that 544-footprint population. These models remain subject to G-3 fit and JLC order checks.
 
 ## Coverage and sources
 
 `audit_3d_models.py` checks model paths, file headers, and the JLC file hashes.
-On the current ECO candidate, **478 component bodies resolve**
+On the current integrated-audio board, **478 component bodies resolve**
 (474 STEP and four VRML), while 66 copper-only items intentionally have no
-model. The five historical review boards each have 536 footprints: **470 component bodies resolve**
+model. Of the 478, 385 use KiCad stock models and 93 use project-local files.
+The five historical review boards each have 536 footprints: **470 component bodies resolve**
 (466 STEP and four VRML), while 66 copper-only items intentionally have no
 model (53 test pads, seven fiducials, four mounting holes, and J201/J202 debug
 pads). Of the 470, 380 use KiCad 10 stock models and 90 use files kept in this
@@ -49,9 +51,10 @@ The 3D view verifies that model files load and permits visual package and
 clearance review. It does **not** prove pad numbering, solder-joint geometry,
 height tolerance, connector mating, or routability. G-3 overlays, the JLCPCB
 DFM review, and routing/ESD gates in `PRELAYOUT_GATES.md` remain open. The
-current ECO board is a placement review with partial ESD routing, not a PCBA
+current integrated-audio board is a partial-route review, not a PCBA
 release package.
 
 KiCad's GLB exporter currently skips the four VRML film-capacitor envelopes;
-use the KiCad 3D Viewer to see those bodies. The exported GLB was checked with
-Assimp as a valid 480-node, 6,042-mesh model after correcting J101's offset.
+use the KiCad 3D Viewer to see those bodies. An earlier primary-board GLB was
+checked with Assimp as a valid 480-node, 6,042-mesh model after correcting
+J101's offset.

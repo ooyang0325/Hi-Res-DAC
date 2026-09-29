@@ -237,6 +237,10 @@ deliver_review_package:
     - test -s hardware/DAC_HPA_OUTPUT_MACRO_BOTTOM_REVIEW.svg
     - kicad-cli pcb export svg --mode-single --layers F.Cu,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
     - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers In1.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_INTEGRATED_AUDIO_L2_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_L2_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers In2.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_INTEGRATED_AUDIO_L3_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_L3_REVIEW.svg
     - kicad-cli pcb export svg --mode-single --layers B.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet --mirror -o hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
     - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg
     - python3 hardware/j702_esd_option.py
@@ -263,6 +267,8 @@ deliver_review_package:
       - hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_dru
       - hardware/DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb
       - hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_L2_REVIEW.svg
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_L3_REVIEW.svg
       - hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg
       - hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
       - hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pro
@@ -276,6 +282,7 @@ deliver_review_package:
       - hardware/REVIEW_COMMIT.txt
       - README.md
       - hardware/REVIEWER_START_HERE.md
+      - hardware/LAYOUT_HANDOVER_REPORT.md
       - hardware/PCB_CLI_VISUAL_REVIEW.md
       - hardware/make_review_views.sh
       - hardware/SCHEMATIC_REVIEW_GUIDE.md

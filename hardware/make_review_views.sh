@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Export visual PCB review views from the committed functional-ECO candidate.
+# Export review views from the selected PCB; default is the ECO baseline.
 set -euo pipefail
 
 if [[ $# -lt 1 || $# -gt 2 ]]; then
@@ -31,6 +31,7 @@ plot 01_body_courtyard F.Fab,F.CrtYd,Edge.Cuts
 plot 02_top_copper F.Cu,Edge.Cuts
 # Plot the saved zone fill. Reviewers should separately refill zones after edits.
 plot 03_l2_ground In1.Cu,Edge.Cuts
+plot 10_l3_power In2.Cu,Edge.Cuts
 plot 04_top_mask F.Mask,Edge.Cuts
 plot 05_top_paste F.Paste,Edge.Cuts
 plot 06_top_silkscreen F.Silkscreen,Edge.Cuts

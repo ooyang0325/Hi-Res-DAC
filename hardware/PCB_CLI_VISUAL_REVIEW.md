@@ -1,6 +1,6 @@
 # Visually inspect the PCB from the command line
 
-Use these commands on the Git commit under review. They **export views from the current 120 × 100 mm functional-ECO PCB candidate** and write only to your chosen output directory. No footprint is moved and no board file is regenerated. KiCad 10 and its `kicad-cli` are required. The project includes the bundled stock, JLC, Toshiba and custom model files needed for 3D viewing.
+Use these commands on the Git commit under review. The script defaults to the earlier 120 × 100 mm functional-ECO baseline; **pass the integrated board as its second argument** to inspect the current routing study. It writes views to your chosen output directory without moving footprints or regenerating the board. KiCad 10 and its `kicad-cli` are required. The project includes the bundled stock, JLC, Toshiba and custom model files needed for 3D viewing.
 
 ## One-command export
 
@@ -48,25 +48,26 @@ KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli \
   hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
 ```
 
-The default file is the `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb` capture baseline. The integrated board is the current audio-routing study. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison. Counts in the table below describe the default baseline; the [integrated summary](INTEGRATED_AUDIO_SUMMARY.json) has its separate counts and electrical holds.
+The default file is the `hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb` capture baseline. The integrated board is the current audio-routing study. The older primary and generated J702 two-TVS fit trial predate the captured functional ECO; use them only for geometry comparison. The table distinguishes baseline and integrated counts where they differ; [integrated summary](INTEGRATED_AUDIO_SUMMARY.json) records the current board's detailed checks and holds.
 
 On the integrated plots, zoom to U301/U403/U404 at PCB x = 91–104 mm, y = 70–88 mm. Compare all four F.Cu DAC inputs with filled L2: the checker found direct L2 beneath the routes at 0.01 mm samples and offsets 0, ±0.05, ±0.10 mm, while U403→C417 feedback still has a **1.9426 mm** centreline gap near an I/V-output via. Follow the right I/V feeds across L3/L4 toward the T cells, including R411/R413 at **27.289/41.648 mm**, and check the L3 VPOS crossing near x = 115–121 mm, y = 74–76 mm. Zoom to U501 at x = 68–77 mm, y = 128–137 mm: its B.Cu `5V_ANA_F` feeder now detours around F.Cu `N5_FBP`, but the original via antipad remains. Inspect the three VIN escapes and capacitor returns. The copper audit rejects free-track bends within 80–100°; joins at component pads and straight-through T/cross branches are classified separately. Plots do not extract return impedance or coupling.
 
 | File | What to inspect |
 | --- | --- |
 | `01_body_courtyard.svg` | F.Fab bodies, F.CrtYd and board outline. Zoom in on J101/J702 edges, J701 top-side solder access, K601–K604 iron access, dense U301/U403/U404 and timer groups. Check that courtyard clearances leave routing channels. |
-| `02_top_copper.svg` | F.Cu pads and 28 existing tracks. Follow D701–D704 to J701, D707/D708 to J702, and X201→R203→TP711→U301 with the R227 ground via and R665→U607 branch. The LP main trunk and most other connections remain unrouted. Inspect J101 fine-pitch escape and the four output-leg crossovers. |
+| `02_top_copper.svg` | F.Cu pads and traces: 28 segments on the default baseline, **381** on the integrated study. Follow D701–D704 to J701, D707/D708 to J702, and X201→R203→TP711→U301. On the integrated board also inspect all DAC/I/V inputs, local T cells, jack branches and J101's still-unrouted fine-pitch escape. |
 | `03_l2_ground.svg` | Saved filled In1.Cu/L2 GND zone and outline. Look for continuous copper under future USB, clocks, I²S and analog paths; on the integrated board, inspect sampled DAC-input support and the DACL feedback gap near the I/V-output via. Refill the zone in KiCad and recheck after routes, holes and stitching vias are added. |
+| `10_l3_power.svg` | In2.Cu/L3 power copper and outline. On the integrated board, inspect the local VPOS bridge crossing the two right I/V L4 feeds around PCB x = 115–121 mm, y = 74–76 mm. Compare it with `07_bottom_copper.svg`; this projected overlap is not extracted coupling. |
 | `04_top_mask.svg` | Top mask openings around fine-pitch parts and the plated jack/USB slots. Compare to copper to spot potential slivers or unexpected exposed metal. |
 | `05_top_paste.svg` | Top paste apertures. J101 shell stakes S1–S4 and J702 slots 1/2 currently have **no paste aperture**; this is a JLCPCB process hold, not an accidental omission to fix from the plot alone. |
 | `06_top_silkscreen.svg` | Top legend and polarity/pin-1 marks. Inspect D102, D705/D706, U202, X201–X203, jacks and dense assembly regions. |
 | `07_bottom_copper.svg` | Mirrored B.Cu view, useful for checking underside hand-solder access, the U501 feeder detour and later return routes. |
 | `08_board_3d.glb` | Portable 3D assembly for an external GLB viewer; inspect connector projection and component bodies/heights. The four C631–C634 VRML body envelopes do not appear in the GLB; they do appear in KiCad's 3D Viewer. |
-| `09_drc.json` | KiCad error/warning DRC report. Zero findings on this partial board do not mean all nets are routed. This JSON lists 499 missing links; the full `pcbnew` ratsnest counts 1,144. |
+| `09_drc.json` | KiCad error/warning DRC report. Zero violations on partial copper do not mean all nets are routed. Both boards currently list 499 DRC unconnected items; the full `pcbnew` ratsnest is **1,144** on the default baseline and **973** on the integrated board. |
 
 ## Open or rasterize the output
 
-SVG is vector artwork, so zoom in without losing pad/courtyard detail. From a terminal, open the output directory or one plot with `open /tmp/dac-hpa-review/01_body_courtyard.svg` on macOS or `xdg-open /tmp/dac-hpa-review/01_body_courtyard.svg` on Linux. Open `08_board_3d.glb` in a GLB-capable 3D viewer. The checked-in [current 2D placement PNG](DAC_HPA_FUNCTIONAL_ECO_PLACEMENT_REVIEW.png) is a quick reference; the [older 3D whole-board image](DAC_HPA_3D_review.png) and [J101 closeup](DAC_HPA_J101_3D_detail.png) predate the ECO but still show the connector model alignment.
+SVG is vector artwork, so zoom in without losing pad/courtyard detail. From a terminal, open the output directory or one plot with `open /tmp/dac-hpa-review/01_body_courtyard.svg` on macOS or `xdg-open /tmp/dac-hpa-review/01_body_courtyard.svg` on Linux. Open `08_board_3d.glb` in a GLB-capable 3D viewer. The checked-in [functional-ECO baseline PNG](DAC_HPA_FUNCTIONAL_ECO_PLACEMENT_REVIEW.png) is a quick comparison; the [older 3D whole-board image](DAC_HPA_3D_review.png) and [J101 closeup](DAC_HPA_J101_3D_detail.png) predate the ECO but still show the connector model alignment. Export the integrated board for the current view.
 
 For a PNG that can be attached to a review finding, if `rsvg-convert` is installed:
 
