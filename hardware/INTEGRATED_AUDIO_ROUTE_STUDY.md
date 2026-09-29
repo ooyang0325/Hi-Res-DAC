@@ -14,7 +14,7 @@ are 22.213/22.324/22.879 mm with 0.666 mm spread. It adds routed local
 U202/U302 paths and a connected 25.393 mm U303→DAC 1V3 trunk with two vias.
 Two vias in U202's EP and five in U301's DAC EP are flagged filled/capped;
 U401/U402 output-amplifier EP thermal routes remain open. The current board
-has 786 track/via items (131 vias), 884 full ratsnest links, 499 DRC-
+has 790 track/via items (132 vias), 882 full ratsnest links, 499 DRC-
 unconnected items and zero DRC violations. Full routing, system ESD, EMI and
 audio tests remain open; zero DRC violations applies to partial copper only.
 
@@ -128,17 +128,18 @@ rejects exact/near-90° bends and 80–100° free-copper elbows; both counts are
 **zero**. It treats pad-centred exits and electrical T/cross junctions
 separately from free-track bends.
 
-The manual record now contains **133 explicit footprint moves, eight removed
-source copper items and 759 added copper items** relative to the functional-ECO
-board. The exact board keeps 544 footprints, 250 named nets and 786 track/via
-items (131 vias) and reports **zero KiCad custom-rule DRC violations**, zero
+The manual record now contains **134 explicit footprint moves, eight removed
+source copper items and 763 added copper items** relative to the functional-ECO
+board. The exact board keeps 544 footprints, 250 named nets and 790 track/via
+items (132 vias) and reports **zero KiCad custom-rule DRC violations**, zero
 footprint bounding-box overlaps and zero classified JLC spacing findings.
 The board also has zero exact/near-90° bends. The local U610 timer and
 film-cap geometry gates pass; JLC review for 45 unfilled near-pad sites
 remains open. All populated pad nets match the schematic. DRC reports zero
 violations and 499 unconnected items; the full
-`pcbnew` ratsnest counts **884**. These are partial-copper checks, not
+`pcbnew` ratsnest counts **882**. These are partial-copper checks, not
 functional or PCBA acceptance.
+The manual C622 update places the capacitor at **(108.65, 105.50, 0°)** and routes U604.8→C622.1 on 0.30 mm F.Cu for **4.615 mm**, then C622.2 to a Ø0.7/0.3 mm GND via at **(110.15, 105.50)** for **1.020 mm**. Continuous saved L2 GND supports both paths; the global 3V3D feed remains open.
 [Machine-readable summary](INTEGRATED_AUDIO_SUMMARY.json),
 [trace/impedance sensitivity](INTEGRATED_AUDIO_TRACE_BUDGET.json) and the
 [review guide](PLACEMENT_REVIEW_GUIDE.md) give the reproducible details.
@@ -216,7 +217,7 @@ exposed-pad thermal/electrical connection.
    order preview.
 4. **Complete the other circuit routes and functional holds.** USB, remaining
    I²S branches and controls, U609 timer branches, C631/C632 GND returns,
-   rails, other protection routes and most of the 884 ratsnest gaps remain.
+   rails, other protection routes and most of the 882 ratsnest gaps remain.
    System ESD, EMI and audio tests are also open.
    F01 all-rate post-CPLD capture and DAC-side WS fault coverage are unproven;
    F02 readback corners, F03 attach current and F04 ESD need validation.

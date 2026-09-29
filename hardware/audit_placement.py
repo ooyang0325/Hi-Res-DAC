@@ -28,10 +28,6 @@ BUFFERED_SUPERVISOR_READBACKS = {
     "N6_V3AG_A_BUF_OUT", "N6_V3AG_B_BUF_OUT",
     "N6_V3AG_A_MCU", "N6_V3AG_B_MCU",
 }
-OVER_RANGE_ANALOG_NODES = {
-    "N6_ORLN", "N6_ORLP", "N6_ORQC",
-    "N6_ORRN", "N6_ORRP", "N6_ORTB",
-}
 
 
 def mm(value: int) -> float:
@@ -162,7 +158,7 @@ def audit(path: Path, height: float) -> dict:
             minimum = 10.0
         elif ((net.startswith(("N6_V3", "N6_TW", "N6_LW"))
                and net not in BUFFERED_SUPERVISOR_READBACKS)
-              or net in OVER_RANGE_ANALOG_NODES):
+              or (net.startswith("N6_OR") and net != "N6_ORTEST")):
             minimum = 5.0
         else:
             continue

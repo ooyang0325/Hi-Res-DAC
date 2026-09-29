@@ -118,8 +118,8 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
-  "manual_added_copper_items": 759,
-  "manual_moves": 133,
+  "manual_added_copper_items": 763,
+  "manual_moves": 134,
   "manual_replaced_source_copper_items": 8,
   "named_nets": 250,
   "near_right_angle_free_track_bends": 0,
@@ -134,7 +134,7 @@
     "U402.PAD VNEG": 3.0
   },
   "pad_centre_near_orthogonal_joins": 8,
-  "ratsnest_unconnected_items": 884,
+  "ratsnest_unconnected_items": 882,
   "right_angle_track_bends": 0,
   "routed_t_cell_branch_lengths_mm": {
     "LN+": {

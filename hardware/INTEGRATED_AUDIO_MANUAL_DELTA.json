@@ -669,6 +669,11 @@
       123.1,
       118.7,
       0.0
+    ],
+    "C622": [
+      108.65,
+      105.5,
+      0.0
     ]
   },
   "added_copper": [
@@ -10841,6 +10846,58 @@
         119.84
       ],
       "width_mm": 0.15
+    },
+    {
+      "kind": "track",
+      "net": "3V3D",
+      "layer": "F.Cu",
+      "start_mm": [
+        110.095,
+        109.3175
+      ],
+      "end_mm": [
+        108.17,
+        107.3925
+      ],
+      "width_mm": 0.3
+    },
+    {
+      "kind": "track",
+      "net": "3V3D",
+      "layer": "F.Cu",
+      "start_mm": [
+        108.17,
+        107.3925
+      ],
+      "end_mm": [
+        108.17,
+        105.5
+      ],
+      "width_mm": 0.3
+    },
+    {
+      "kind": "track",
+      "net": "GND",
+      "layer": "F.Cu",
+      "start_mm": [
+        109.13,
+        105.5
+      ],
+      "end_mm": [
+        110.15,
+        105.5
+      ],
+      "width_mm": 0.3
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        110.15,
+        105.5
+      ],
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3
     }
   ],
   "removed_source_copper": [

@@ -154,6 +154,6 @@
     "LP5907_U302_output_to_FB302": 5.025
   },
   "model_limits": "2D copper-edge and saved L2 samples only; no return impedance, extracted parasitics, stackup/EMI/ESD or operational test",
-  "ratsnest_unconnected_items": 884,
+  "ratsnest_unconnected_items": 882,
   "release": "HOLD: full routing, upstream source rails, I/V feedback return, DVDD capacitor ECO, JLC via-pad process and measured audio/EMI"
 }
