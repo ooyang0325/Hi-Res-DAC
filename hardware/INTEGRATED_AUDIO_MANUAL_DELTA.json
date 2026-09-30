@@ -76921,6 +76921,18 @@
       }
     }
   },
+  "renamed_pads": {
+    "U202": {
+      "26": "LINK_FRAME",
+      "27": "LINK_MOSI",
+      "5": "LINK_MISO",
+      "7": "CPLD_IRQ",
+      "10": "",
+      "11": "",
+      "12": "",
+      "14": ""
+    }
+  },
   "l2_clearance_mm": 0.3,
   "added_zones": [
     {

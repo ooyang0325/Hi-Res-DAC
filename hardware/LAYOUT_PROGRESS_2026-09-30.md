@@ -100,6 +100,26 @@ are not in the repository; the frozen delta is the record.
    29 September handoff (discharge ECO, 2512 lands, all-rate capture guard,
    G-3/G-4, JLC DFM, measurements) still apply.
 
+## CPLD pin reassignment (functional ECO F06, 1 October)
+
+Owner-approved, layout-driven AGRV2K (U202, QFN-32) I/O swap. Only
+general-purpose `IO/PIN_n` pins move; FAM_CLK (IO_GB pin 1), JTAG, NRST,
+power and the already-routed I²S/LINK_SCK/LRCLK_FB pins are unchanged.
+**The CPLD RTL pin constraints must follow this table.**
+
+| Net | Old pin | New pin | Side | Why |
+| --- | ---: | ---: | --- | --- |
+| LINK_FRAME | 11 | 26 | north | faces U208 (isolator) |
+| LINK_MOSI | 10 | 27 | north | faces U208 |
+| LINK_MISO | 12 | 5 | west | faces U201 (MCU) |
+| CPLD_IRQ | 14 | 7 | west | faces U201 |
+
+Pins 10, 11, 12 and 14 become NC. The schematic overlay is in
+`generate_schematic.py`, and the approved delta is in `verify_schematic.py`.
+The board replay applies the same map through the manifest's `renamed_pads`.
+MCU GPIO swaps were reviewed and not taken: U201's south side is all ADC,
+oscillator and reset pins, so no swap shortens the south-bound control nets.
+
 ## Programming headers (functional ECO F05, 1 October)
 
 J201 and J202 were bare 2.54 mm debug pad rows. They now carry JLC-assembled

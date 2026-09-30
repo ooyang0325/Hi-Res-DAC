@@ -113,6 +113,17 @@ def build(output_path: Path) -> None:
         board.Remove(old)
         board.Add(new)
         footprints[ref] = new
+    for ref, pad_nets in record.get("renamed_pads", {}).items():
+        # Layout-driven pin swaps captured in the schematic ECO overlay.
+        pads = {pad.GetNumber(): pad for pad in footprints[ref].Pads()}
+        for number, net_name in pad_nets.items():
+            if net_name:
+                net = board.FindNet(net_name)
+                if net is None:
+                    raise AssertionError(f"Missing pin-swap net {net_name}")
+                pads[number].SetNet(net)
+            else:
+                pads[number].SetNetCode(0)
     for ref, (x_mm, y_mm, angle) in record["moved_footprints"].items():
         footprint = footprints[ref]
         footprint.SetPosition(xy(x_mm, y_mm))

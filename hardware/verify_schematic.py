@@ -162,6 +162,11 @@ def run() -> None:
             ("U404", "2"): ("DACR", "DACRB"),
             ("U404", "6"): ("DACRB", "DACR"),
             ("U404", "7"): ("N4_IVR_N", "N4_IVR_P"),
+            # ECO F06: layout-driven AGRV2K I/O reassignment (RTL constraints follow)
+            ("U202", "10"): ("LINK_MOSI", "NC"), ("U202", "27"): ("NC", "LINK_MOSI"),
+            ("U202", "11"): ("LINK_FRAME", "NC"), ("U202", "26"): ("NC", "LINK_FRAME"),
+            ("U202", "12"): ("LINK_MISO", "NC"), ("U202", "5"): ("NC", "LINK_MISO"),
+            ("U202", "14"): ("CPLD_IRQ", "NC"), ("U202", "7"): ("NC", "CPLD_IRQ"),
         }
         approved_added = {
             ("U621", "1"): "N6_V3AG_A_BUF_IN", ("U621", "2"): "GND",
