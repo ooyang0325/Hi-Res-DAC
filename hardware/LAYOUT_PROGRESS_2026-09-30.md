@@ -11,8 +11,8 @@ order PCBA from this copper.
 | Measure | 29 Sep | 30 Sep |
 | --- | ---: | ---: |
 | Manual footprint moves | 138 | 178 |
-| Added copper items | 828 | 4957 |
-| Vias (manifest) | 143 | 915 |
+| Added copper items | 828 | 5354 |
+| Vias (manifest) | 143 | 1297 |
 | Full `pcbnew` ratsnest links | 864 | **87** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
@@ -124,6 +124,9 @@ are not in the repository; the frozen delta is the record.
   from LINK_SCK and ~1.1 mm from MCLK).
 - **U201 escape ring.** Seventeen series/pull resistors around the MCU moved ~3.5 mm outward to
   make room for fan-out vias; decoupling caps, crystal group and Q207 stay.
+- **GND stitching and jack returns.** 375 stitching vias (4 mm grid + 2.5 mm edge fence) and
+  five strapped GND vias per jack sleeve pin. The MCU/CPLD core and the protection-comparator
+  block are stitched after their routing closes. See [EMS_VERIFICATION_2026-09-30.md](EMS_VERIFICATION_2026-09-30.md).
 - **DAC input via keep-away.** Router vias stay ≥0.8 mm from DACL/DACLB/DACR/DACRB
   copper, and from the critical I²S/MCLK/FAM_CLK copper, so L2 stays solid under them (`check_iv_macro`, `check_dac_core_routes`).
 - **EMS simulations.** LTspice/MATLAB review models in [sim/](sim/README.md) and the

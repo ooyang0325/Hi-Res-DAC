@@ -118,7 +118,7 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; L3 VNEG trunk from U501/C511 and filled EP thermal vias (U401 x2, U402 x3) connected",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; L3 VPOS trunk from U501/C510 connected",
-  "manual_added_copper_items": 4957,
+  "manual_added_copper_items": 5354,
   "manual_moves": 178,
   "manual_replaced_source_copper_items": 8,
   "named_nets": 250,
