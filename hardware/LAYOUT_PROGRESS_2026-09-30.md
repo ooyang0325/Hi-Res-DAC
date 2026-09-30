@@ -10,9 +10,9 @@ order PCBA from this copper.
 
 | Measure | 29 Sep | 30 Sep |
 | --- | ---: | ---: |
-| Manual footprint moves | 138 | 158 |
-| Added copper items | 828 | 4942 |
-| Vias (manifest) | 143 | 910 |
+| Manual footprint moves | 138 | 178 |
+| Added copper items | 828 | 4957 |
+| Vias (manifest) | 143 | 915 |
 | Full `pcbnew` ratsnest links | 864 | **87** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
@@ -119,8 +119,13 @@ are not in the repository; the frozen delta is the record.
   0.7/0.3 mm U303→U301 bridge vias as the 1V3 bridge; the 0.6 mm TP706/R530/R670
   branch vias are reported separately. Earlier: U401/U402 VPOS/EN subset check,
   GND pours allowed, LEG_* sense taps allowed off L1 (Spec R07).
+- **Short VREF.** DNF trims R446/R447 and TP709 moved from 25–30 mm away to the R431/R432/C421
+  divider, so the ~4.9 kΩ I/V reference no longer runs through the digital area (it was 0.45 mm
+  from LINK_SCK and ~1.1 mm from MCLK).
+- **U201 escape ring.** Seventeen series/pull resistors around the MCU moved ~3.5 mm outward to
+  make room for fan-out vias; decoupling caps, crystal group and Q207 stay.
 - **DAC input via keep-away.** Router vias stay ≥0.8 mm from DACL/DACLB/DACR/DACRB
-  copper so L2 remains solid under the I/V inputs (`check_iv_macro`).
+  copper, and from the critical I²S/MCLK/FAM_CLK copper, so L2 stays solid under them (`check_iv_macro`, `check_dac_core_routes`).
 - **EMS simulations.** LTspice/MATLAB review models in [sim/](sim/README.md) and the
   calibrated-model stability sweep `review_output_rf_filter.py` (output RF filter ECO proposal).
 - **Tooling.** Signal links are drawn by a scratch octilinear three-layer grid
