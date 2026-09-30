@@ -3,7 +3,7 @@
   "board_edge_body_spacing_violation_count": 0,
   "board_edge_body_spacing_violations": [],
   "jlc_classified_refs": 447,
-  "jlc_placed_refs": 463,
+  "jlc_placed_refs": 465,
   "jlc_source": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
   "jlc_unclassified_refs": [
     "C442",
@@ -17,6 +17,8 @@
     "D705",
     "D706",
     "J101",
+    "J201",
+    "J202",
     "J702",
     "X201",
     "X202",
@@ -53,6 +55,18 @@
       "class": null,
       "jlc_body_min_mm": 2.5,
       "ref": "J702"
+    },
+    {
+      "body_to_edge_mm": 2.2,
+      "class": null,
+      "jlc_body_min_mm": 2.5,
+      "ref": "J201"
+    },
+    {
+      "body_to_edge_mm": 2.2,
+      "class": null,
+      "jlc_body_min_mm": 2.5,
+      "ref": "J202"
     }
   ]
 }

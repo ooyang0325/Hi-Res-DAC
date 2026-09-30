@@ -532,7 +532,7 @@ def main() -> None:
     assert len(eco_parts) == 534 and sum(map(len, eco_pins.values())) == 1465
     assert len({p.net for group in eco_pins.values() for p in group if p.net != "NC"}) == 250
     assert Counter(part.fit for part in eco_parts.values()) == {
-        "Yes": 463, "Owner": 7, "No": 9, "Pads": 3, "No part": 52,
+        "Yes": 465, "Owner": 7, "No": 9, "Pads": 1, "No part": 52,  # F05: J201/J202 headers fitted
     }
     checks += 3
     expected_eco = {

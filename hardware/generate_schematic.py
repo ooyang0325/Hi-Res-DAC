@@ -334,6 +334,22 @@ def apply_functional_eco(
         "D707": [Pin("1", "1", "JACK_RP"), Pin("2", "2", "GND")],
         "D708": [Pin("1", "1", "JACK_LP"), Pin("2", "2", "GND")],
     })
+    # Functional ECO F05: fit SMD programming headers on the J201 (MCU WCH-Link)
+    # and J202 (CPLD) debug pad blocks. Pin order and nets are unchanged.
+    for ref, lcsc, count in (("J201", "C2883805", 8), ("J202", "C2883802", 5)):
+        source = parts[ref]
+        if source.fit != "Pads" or len(pins[ref]) != count:
+            raise ValueError(f"{ref} source pads changed; re-review header ECO F05")
+        fitted = replace(
+            source, value=f"X6511WVS-{count:02d}H-C60D48R1",
+            mpn=f"XKB X6511WVS-{count:02d}H-C60D48R1",
+            package=f"SMD 1x{count} P2.54 mm vertical, staggered legs",
+            rating_tolerance="3 A, 250 V; 2.5 mm body, 6.0 mm mating pin",
+            lcsc=lcsc, fit="Yes", source=f"JLCPCB {lcsc}; order availability recheck",
+            datasheet=f"https://www.lcsc.com/datasheet/{lcsc}.pdf",
+            notes=f"Functional ECO F05: fitted programming header on the {ref} debug pads")
+        parts[ref] = fitted
+        libparts[fitted.symbol_id] = fitted
     return parts, pins, libparts
 
 
@@ -355,9 +371,9 @@ def footprint(part: Part, ref: str) -> str:
     if ref in {"K601", "K602", "K603", "K604"}:
         return "DAC_HPA:K601_TLP3545A_LF1_HandSolder"
     if ref == "J201":
-        return "DAC_HPA:J201_8_DebugPads_P2.54mm"
+        return "DAC_HPA:PinHeader_1x08_P2.54mm_SMD_XKB_X6511WVS-08H-C60D48R1"
     if ref == "J202":
-        return "DAC_HPA:J202_5_JTAGPads_P2.54mm"
+        return "DAC_HPA:PinHeader_1x05_P2.54mm_SMD_XKB_X6511WVS-05H-C60D48R1"
     if ref == "J701":
         return "DAC_HPA:J701_GT-3321667P-01_maker_slots"
     if ref == "J702":

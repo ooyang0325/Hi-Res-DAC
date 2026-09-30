@@ -100,6 +100,27 @@ are not in the repository; the frozen delta is the record.
    29 September handoff (discharge ECO, 2512 lands, all-rate capture guard,
    G-3/G-4, JLC DFM, measurements) still apply.
 
+## Programming headers (functional ECO F05, 1 October)
+
+J201 and J202 were bare 2.54 mm debug pad rows. They now carry JLC-assembled
+SMD vertical pin headers, so a WCH-LinkE (MCU) and the AGM programmer (CPLD)
+plug straight in:
+
+| Ref | Part | LCSC | Pins |
+| --- | --- | --- | --- |
+| J201 | XKB X6511WVS-08H-C60D48R1, 1×8 SMD, staggered legs | [C2883805](https://www.lcsc.com/product-detail/C2883805.html) | 3V3 (via DNF R241), SWDIO, SWCLK, NRST, GND, BOOT0, USART_TX, USART_RX |
+| J202 | XKB X6511WVS-05H-C60D48R1, 1×5 SMD, staggered legs | [C2883802](https://www.lcsc.com/product-detail/C2883802.html) | 3V3D, CPLD_JTCK, CPLD_JTMS, CPLD_NRST, GND |
+
+- SMD rather than through-hole: the headers drill nothing, so L2 stays whole
+  and the L3/B.Cu routes under the north edge (DC_SENSE_LP, BOOT0,
+  N2_CAP_SD) are untouched. The land pattern is from the XKB drawing: 1.27 ×
+  2.2 mm pads, rows ±1.8 mm, R1 type (pin 1 on the board-edge row).
+- The pin line moved 0.5 mm south (y 43.0 → 43.5) for 0.6 mm pad-to-edge.
+  R241 moved to (49.5, 44.0) beside J201.1; FID5 moved 1 mm south.
+- Captured in `generate_schematic.py` as ECO F05 (the Parts List workbook is
+  unchanged; add the two rows there when it is next revised). The replay swaps
+  the footprints through the manifest's new `swapped_footprints` entry.
+
 ## Freerouting gap fill (late 30 September)
 
 The remaining open links were exported to Freerouting 2.4.1 with **every

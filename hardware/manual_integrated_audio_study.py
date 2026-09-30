@@ -55,6 +55,22 @@ def manifest_item(item: dict) -> tuple:
             *item["start_mm"], *item["end_mm"], item["width_mm"])
 
 
+def load_footprint(path: Path) -> pcbnew.FOOTPRINT:
+    """Library footprint via a one-footprint wrapper board (FootprintLoad is unusable in KiCad 10 SWIG)."""
+    wrapper = ('(kicad_pcb (version 20260206) (generator "pcbnew") (generator_version "10.0") '
+               '(general (thickness 1.6)) (paper "A4") (layers (0 "F.Cu" signal) (2 "B.Cu" signal) '
+               '(13 "F.Paste" user) (1 "F.Mask" user) (5 "F.SilkS" user) (31 "F.CrtYd" user) '
+               '(35 "F.Fab" user) (25 "Edge.Cuts" user)) (setup) (net 0 "")\n'
+               + path.read_text() + ')\n')
+    with tempfile.TemporaryDirectory() as tmp:
+        board_path = Path(tmp) / "fp.kicad_pcb"
+        board_path.write_text(wrapper)
+        footprints = list(pcbnew.LoadBoard(str(board_path)).GetFootprints())
+    if len(footprints) != 1:
+        raise AssertionError(f"Could not load footprint {path}")
+    return pcbnew.FOOTPRINT(footprints[0])
+
+
 def build(output_path: Path) -> None:
     record = json.loads(MANIFEST.read_text())
     source = HERE / record["source_board"]
@@ -76,6 +92,27 @@ def build(output_path: Path) -> None:
         to_remove.append(matches[0])
     for item in to_remove:
         board.Remove(item)
+    for ref, spec in record.get("swapped_footprints", {}).items():
+        # Footprint replaced by a reviewed part (same pad numbers and nets).
+        old = footprints[ref]
+        lib, name = spec["footprint"].split(":")
+        new = load_footprint(HERE / f"{lib}.pretty" / f"{name}.kicad_mod")
+        nets = {pad.GetNumber(): pad.GetNet() for pad in old.Pads()}
+        if sorted(nets) != sorted(pad.GetNumber() for pad in new.Pads()):
+            raise AssertionError(f"{ref}: pad numbers differ from {spec['footprint']}")
+        new.SetFPID(pcbnew.LIB_ID(lib, name))
+        new.SetReference(ref)
+        new.SetValue(spec["value"])
+        for field, text in spec.get("fields", {}).items():
+            new.SetField(field, text)
+        new.SetPath(old.GetPath())
+        new.SetPosition(old.GetPosition())
+        new.SetOrientation(old.GetOrientation())
+        for pad in new.Pads():
+            pad.SetNet(nets[pad.GetNumber()])
+        board.Remove(old)
+        board.Add(new)
+        footprints[ref] = new
     for ref, (x_mm, y_mm, angle) in record["moved_footprints"].items():
         footprint = footprints[ref]
         footprint.SetPosition(xy(x_mm, y_mm))
