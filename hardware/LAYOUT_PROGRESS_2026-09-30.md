@@ -11,9 +11,9 @@ order PCBA from this copper.
 | Measure | 29 Sep | 30 Sep |
 | --- | ---: | ---: |
 | Manual footprint moves | 138 | 179 |
-| Added copper items | 828 | 5726 |
-| Vias (manifest) | 143 | 1348 |
-| Full `pcbnew` ratsnest links | 864 | **67** |
+| Added copper items | 828 | 5795 |
+| Vias (manifest) | 143 | 1366 |
+| Full `pcbnew` ratsnest links | 864 | **64** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -118,6 +118,12 @@ near-90° elbows chamfered) and screened by KiCad DRC.
   stub + via to L2. C641.2, R640.2 and U608.4 still have no legal via spot.
 - With all copper fixed, Freerouting found no path for the other links: the
   remaining 67 are a placement/rip-up problem, not a router-quality one.
+- **Rip-up round.** A second run let Freerouting move the router-drawn copper
+  of 93 plain control/test nets (hand copper and every clock, I²S, audio, LEG,
+  high-Z, L1-only and power net stayed fixed; via keepouts 0.8 mm along the
+  clock/DAC tracks keep L2 continuous under them; fiducials keep 0.6 mm).
+  After import, DRC and gate screening: 67 → 64 links, high-Z deviations
+  unchanged at 29. The remaining links need component re-placement.
 
 ## Checkpoint changes (second half of 30 September)
 
