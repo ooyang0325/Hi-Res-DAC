@@ -329,9 +329,11 @@ def audit(board_path: Path) -> dict:
     dac_1v3 = pad(footprints, "U301", "21")
     if dac_1v3 not in connectivity.GetConnectedItems(regulator_output):
         raise AssertionError("U303 output does not physically reach DAC 1V3 pin")
-    supply_vias = [item for item in board.GetTracks()
-                   if isinstance(item, pcbnew.PCB_VIA)
-                   and item.GetNetname() == "1V3"]
+    # The U303 -> U301 bridge is the two 0.7/0.3 mm vias; 0.6 mm vias belong to
+    # the TP706 test and R530/R670 sense branches and are reported separately.
+    net_vias = [item for item in board.GetTracks()
+                if isinstance(item, pcbnew.PCB_VIA) and item.GetNetname() == "1V3"]
+    supply_vias = [v for v in net_vias if abs(mm(v.GetWidth(pcbnew.F_Cu)) - 0.70) < 1e-6]
     if len(supply_vias) != 2:
         raise AssertionError("Manual 1V3 bridge must use exactly two through vias")
     pwr_layer = board.GetLayerID("PWR")
@@ -354,6 +356,7 @@ def audit(board_path: Path) -> dict:
         "U303_to_DAC_1V3_connected": True,
         "U303_to_DAC_1V3_PWR_copper_mm": round(supply_pwr_length, 3),
         "U303_to_DAC_1V3_vias": len(supply_vias),
+        "1V3_branch_vias": len(net_vias) - len(supply_vias),
         "MCLK_to_DAC_input_tracks_mm": clock_gaps,
         "MCLK_pad_to_DAC_input_track_outside_U301_mm": external_pad_gaps,
         "clock_L2_direct_support_missing_mm": l2,

@@ -724,9 +724,13 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
             f"{near_right_angle_free_bends[:8]}, "
             f"{orthogonal_branches_without_through[:8]}")
 
-    zone = board.Zones()[0]
-    if (len(board.Zones()) != 1 or zone.GetNetname() != "GND"
-            or not zone.HasFilledPolysForLayer(pcbnew.In1_Cu)
+    # L2 stays one continuous GND plane. Extra zones may only be GND pours on
+    # the other copper layers (EMS shielding/return copper), never on L2.
+    l2_zones = [z for z in board.Zones() if z.IsOnLayer(pcbnew.In1_Cu)]
+    if any(z.GetNetname() != "GND" or z.GetIsRuleArea() for z in board.Zones()):
+        raise AssertionError("Only GND copper pours are allowed")
+    zone = l2_zones[0] if len(l2_zones) == 1 else None
+    if (zone is None or not zone.HasFilledPolysForLayer(pcbnew.In1_Cu)
             or zone.GetFilledPolysList(pcbnew.In1_Cu).OutlineCount() != 1):
         raise AssertionError("L2 GND is not one saved filled polygon")
     segments = {
@@ -821,7 +825,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
     for opamp in ("U401", "U402"):
         if pad(opamp, "8").GetNetname() != "VPOS":
             raise AssertionError(f"{opamp}.8 EN must be tied to the positive rail")
-        if group(opamp, "8") != local_vpos:
+        if not local_vpos <= group(opamp, "8"):
             raise AssertionError(f"{opamp}.8 EN lacks the local VPOS copper group")
     for opamp, cap in (("U401", "C409"), ("U402", "C411")):
         if (cap, "1") not in group(opamp, "2"):
@@ -894,9 +898,9 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "output_amp_hf_bypass_pad_lower_bound_mm": bypass_pad_distances,
         "routed_t_cell_count": len(t_lengths),
         "routed_t_cell_branch_lengths_mm": t_lengths,
-        "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
-        "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
-        "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
+        "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; L3 VPOS trunk from U501/C510 connected",
+        "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; L3 VPOS trunk from U501/C510 connected",
+        "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; L3 VNEG trunk from U501/C511 and filled EP thermal vias (U401 x2, U402 x3) connected",
         "balanced_4p4_planning_estimate_1khz": trace["balanced_4p4_planning_estimate_1khz"],
         "balanced_4p4_model_sensitivity_20khz": trace["balanced_4p4_model_sensitivity_20khz"],
         "drc_reported_unconnected_items": len(drc["unconnected_items"]),

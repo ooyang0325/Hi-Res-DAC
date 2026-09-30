@@ -23,7 +23,7 @@
   },
   "bbox_overlaps": 0,
   "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
-  "drc_reported_unconnected_items": 499,
+  "drc_reported_unconnected_items": 183,
   "drc_violations": 0,
   "feedback_centreline_loop_area_mm2": {
     "LN": 4.833,
@@ -38,7 +38,7 @@
     "DACR": 6.837,
     "DACRB": 4.786
   },
-  "iv_dacl_feedback_l2_centreline_missing_mm": 1.9426,
+  "iv_dacl_feedback_l2_centreline_missing_mm": 0.0,
   "iv_direct_dac_l2_missing_mm_at_offsets": {
     "DACL": {
       "+0.00": 0.0,
@@ -116,15 +116,15 @@
     "RP J701": 4.03,
     "RP J702": 3.864
   },
-  "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; rail feeds and EP thermal vias remain open",
-  "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; main rail feed remains open",
-  "manual_added_copper_items": 828,
-  "manual_moves": 138,
+  "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; L3 VNEG trunk from U501/C511 and filled EP thermal vias (U401 x2, U402 x3) connected",
+  "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; L3 VPOS trunk from U501/C510 connected",
+  "manual_added_copper_items": 3725,
+  "manual_moves": 158,
   "manual_replaced_source_copper_items": 8,
   "named_nets": 250,
   "near_right_angle_free_track_bends": 0,
   "orthogonal_branches_without_through": 0,
-  "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; main source feed remains open",
+  "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; L3 VPOS trunk from U501/C510 connected",
   "output_amp_hf_bypass_pad_lower_bound_mm": {
     "U401.2 VPOS": 2.72,
     "U401.4 VNEG": 2.91,
@@ -134,7 +134,7 @@
     "U402.PAD VNEG": 3.0
   },
   "pad_centre_near_orthogonal_joins": 8,
-  "ratsnest_unconnected_items": 864,
+  "ratsnest_unconnected_items": 183,
   "right_angle_track_bends": 0,
   "routed_t_cell_branch_lengths_mm": {
     "LN+": {

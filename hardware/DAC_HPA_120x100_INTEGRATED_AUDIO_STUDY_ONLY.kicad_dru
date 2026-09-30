@@ -63,18 +63,21 @@
     (condition "A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
     (constraint track_width (min 0.25mm)))
 
+# JACK_* stays on L1 without vias. LEG_* amp -> relay current paths are
+# routed on L1; the long LEG_* sense taps to the 330 k-1 M detector resistors
+# (spec R07: slow analog on L4 over GND) may use vias and inner layers.
 (rule "Headphone outputs L1 only, no vias"
     (layer B.Cu)
-    (condition "A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
+    (condition "A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
     (constraint disallow track via))
 
 (rule "Headphone outputs no inner-layer tracks or vias"
     (layer inner)
-    (condition "A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
+    (condition "A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
     (constraint disallow track via))
 
 (rule "Headphone outputs no vias"
-    (condition "A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
+    (condition "A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
     (constraint disallow via))
 
 (rule "Headphone left-right copper separation"
@@ -196,3 +199,14 @@
   (layer F.Cu)
   (condition "((A.NetName == 'N4_LP_OUT' || A.NetName == 'N4_LN_OUT') && (B.NetName == 'N4_RP_OUT' || B.NetName == 'N4_RN_OUT' || B.NetName == 'LEG_RP' || B.NetName == 'LEG_RN' || B.NetName == 'JACK_RP' || B.NetName == 'JACK_RN')) || ((B.NetName == 'N4_LP_OUT' || B.NetName == 'N4_LN_OUT') && (A.NetName == 'N4_RP_OUT' || A.NetName == 'N4_RN_OUT' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN')) || ((A.NetName == 'N4_RP_OUT' || A.NetName == 'N4_RN_OUT') && (B.NetName == 'LEG_LP' || B.NetName == 'LEG_LN' || B.NetName == 'JACK_LP' || B.NetName == 'JACK_LN')) || ((B.NetName == 'N4_RP_OUT' || B.NetName == 'N4_RN_OUT') && (A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN'))")
   (constraint clearance (min 2mm)))
+
+# EMS pours (L1/L3/L4 GND, stitched to L2). Design Notes v1.0 §9.3: the USB
+# pair keeps >= 0.6 mm to coplanar GND pour; the supervisor/LPW high-impedance
+# nodes keep >= 0.5 mm to all other copper, including pour, for leakage.
+(rule "USB pair to GND pour"
+    (condition "A.Type == 'Zone' && (B.NetName == 'USB_DP' || B.NetName == 'USB_DN')")
+    (constraint clearance (min 0.6mm)))
+
+(rule "High-impedance nodes to GND pour"
+    (condition "A.Type == 'Zone' && (B.NetName == 'N6_LW*' || B.NetName == 'N6_TW*' || B.NetName == 'N6_ORLP' || B.NetName == 'N6_ORLN' || B.NetName == 'N6_ORRP' || B.NetName == 'N6_ORRN' || B.NetName == 'N6_TLP_*' || B.NetName == 'N6_TLN_*' || B.NetName == 'N6_V3R_*' || B.NetName == 'N6_V3AG_A' || B.NetName == 'N6_V3AG_B' || B.NetName == 'N6_VOR*' || B.NetName == 'N6_VLL*' || B.NetName == 'N6_DA_*' || B.NetName == 'N6_DB_*' || B.NetName == 'N6_DC_*' || B.NetName == 'N6_DD_*' || B.NetName == 'N6_VT' || B.NetName == 'N6_CML' || B.NetName == 'N6_CMR' || B.NetName == 'N6_MCK_RC')")
+    (constraint clearance (min 0.5mm)))

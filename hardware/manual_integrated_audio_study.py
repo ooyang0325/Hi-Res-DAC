@@ -11,12 +11,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import shutil
+import subprocess
+import tempfile
 from pathlib import Path
 
 import pcbnew
 
 
 HERE = Path(__file__).resolve().parent
+MAC_CLI = "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli"
 MANIFEST = HERE / "INTEGRATED_AUDIO_MANUAL_DELTA.json"
 
 
@@ -100,6 +105,26 @@ def build(output_path: Path) -> None:
             board.Add(via)
         else:
             raise AssertionError(f"Unsupported manual item: {item['kind']}")
+    if "l2_clearance_mm" in record:
+        # Smaller L2 antipads keep the single GND plane less perforated.
+        board.Zones()[0].SetLocalClearance(pcbnew.FromMM(record["l2_clearance_mm"]))
+    for item in record.get("added_zones", []):
+        # GND pours on L1/L3/L4; L2 remains the single source plane.
+        zone = pcbnew.ZONE(board)
+        zone.SetLayer(board.GetLayerID(item["layer"]))
+        zone.SetNet(board.FindNet(item["net"]))
+        outline = zone.Outline()
+        outline.NewOutline()
+        for x_mm, y_mm in item["outline_mm"]:
+            outline.Append(pcbnew.FromMM(x_mm), pcbnew.FromMM(y_mm))
+        zone.SetLocalClearance(pcbnew.FromMM(item["clearance_mm"]))
+        zone.SetMinThickness(pcbnew.FromMM(item["min_width_mm"]))
+        zone.SetPadConnection(pcbnew.ZONE_CONNECTION_THT_THERMAL)
+        zone.SetThermalReliefGap(pcbnew.FromMM(item.get("thermal_gap_mm", 0.3)))
+        zone.SetThermalReliefSpokeWidth(pcbnew.FromMM(item.get("spoke_mm", 0.4)))
+        zone.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
+        zone.SetAssignedPriority(item.get("priority", 0))
+        board.Add(zone)
     for drawing in board.GetDrawings():
         if (isinstance(drawing, pcbnew.PCB_TEXT)
                 and drawing.GetText().startswith("FUNCTIONAL ECO / MANUAL PLACEMENT")):
@@ -111,8 +136,21 @@ def build(output_path: Path) -> None:
     if not pcbnew.ZONE_FILLER(board).Fill(board.Zones()):
         raise RuntimeError("Could not refill continuous L2 GND around the signal vias")
     pcbnew.SaveBoard(str(output_path), board)
+    refill_with_custom_rules(output_path)
     print(f"Saved {output_path.name}: {len(record['moved_footprints'])} explicit moves, "
           f"{len(record['added_copper'])} explicit copper items")
+
+
+def refill_with_custom_rules(path: Path) -> None:
+    """Refill every pour with kicad-cli, whose filler honours the .kicad_dru pour
+    clearances (high-impedance nodes and the USB pair to GND pour); the pcbnew
+    scripting filler used above does not load the custom rules."""
+    cli = os.environ.get("KICAD_CLI") or shutil.which("kicad-cli") or MAC_CLI
+    if not Path(cli).exists() and not shutil.which(cli):
+        raise RuntimeError("kicad-cli is required to refill the pours with the custom rules")
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run([cli, "pcb", "drc", "--refill-zones", "--save-board", "--format", "json",
+                        "-o", str(Path(tmp) / "fill.json"), str(path)], check=True, capture_output=True)
 
 
 def main() -> None:
