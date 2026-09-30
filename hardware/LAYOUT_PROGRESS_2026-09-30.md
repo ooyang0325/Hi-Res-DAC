@@ -11,9 +11,9 @@ order PCBA from this copper.
 | Measure | 29 Sep | 30 Sep |
 | --- | ---: | ---: |
 | Manual footprint moves | 138 | 158 |
-| Added copper items | 828 | 3725 |
-| Vias (manifest) | 143 | 731 |
-| Full `pcbnew` ratsnest links | 864 | **183** |
+| Added copper items | 828 | 4942 |
+| Vias (manifest) | 143 | 910 |
+| Full `pcbnew` ratsnest links | 864 | **87** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -119,6 +119,10 @@ are not in the repository; the frozen delta is the record.
   0.7/0.3 mm U303→U301 bridge vias as the 1V3 bridge; the 0.6 mm TP706/R530/R670
   branch vias are reported separately. Earlier: U401/U402 VPOS/EN subset check,
   GND pours allowed, LEG_* sense taps allowed off L1 (Spec R07).
+- **DAC input via keep-away.** Router vias stay ≥0.8 mm from DACL/DACLB/DACR/DACRB
+  copper so L2 remains solid under the I/V inputs (`check_iv_macro`).
+- **EMS simulations.** LTspice/MATLAB review models in [sim/](sim/README.md) and the
+  calibrated-model stability sweep `review_output_rf_filter.py` (output RF filter ECO proposal).
 - **Tooling.** Signal links are drawn by a scratch octilinear three-layer grid
   router with DRU pair rules (headphone L/R 2 mm, clock-to-high-Z 5/10 mm,
   high-Z 0.3–0.5 mm, I²S 0.15 mm on L1 only). DRC-flagged router connections are

@@ -1,0 +1,56 @@
+* Headphone output RF ingress: cable common-mode RF -> OPA1622 inputs (review model).
+* Source: IEC 61000-4-6 style 150 ohm common-mode source on the headphone cable.
+* Board values from the schematic: D701/D708 LESD5D5.0 12 pF typ, K601 TLP3545A ON,
+* R417 0 ohm, OPA1622 feedback 2.00 k || 10 pF (C401), input 680 ohm (R438) + 10 pF (C402) to the
+* 2.00 k/VREF leg. OPA1622 open-loop Zo: 5.5 ohm flat, ~40 ohm at 100 MHz (datasheet Fig. 40)
+* -> 5.5 ohm + 63 nH. Assumed parasitics (not extracted): TVS ESL 0.6 nH, relay 0.06 ohm + 3 nH,
+* JACK/LEG traces 0.8 nH/mm, output/input pin capacitance 2 pF, inverting-input capacitance CIN.
+.param CIN=3p LJ=16n LL=8n CX=0 LFB=1n FB=1 CL=0 LBD=190n RBD=180
+V1 src 0 AC 1
+Rs src jack 150
+* J701 contact TVS D701 and the J702-side TVS D708 behind ~25 mm of JACK trace
+Ctv1 jack t1 12p
+Ltv1 t1 0 0.6n
+Lj2 jack j2 20n
+Ctv2 j2 t2 12p
+Ltv2 t2 0 0.6n
+* optional mitigation: CX shunt at the jack after a ferrite (off by default)
+Cx jack 0 {CX+1f}
+* JACK trace -> photo-relay (ON) -> LEG trace -> R417 (0 ohm fitted, or ferrite bead option FB=1)
+* bead model ~BLM18PG121SN1D (the FB501 part): 0.05 ohm + (190 nH || 180 ohm || 0.5 pF); LEG side 0402 C0G CL
+Lj jack k1 {LJ}
+Rk k1 k2 0.06
+Lk k2 leg 3n
+Ll leg r417 {LL}
+Rbead_dc r417 b1 0.05
+Lb b1 out {FB*LBD+1p}
+Rb b1 out {FB*RBD+1u}
+Cb b1 out {FB*0.5p+1f}
+Ccl leg 0 {CL+1f}
+* OPA1622 output: open-loop Zo to an AC-grounded internal source
+Rzo out o1 5.5
+Lzo o1 0 63n
+Cpo out 0 2p
+* feedback 2k || 10p to the inverting input; 680 ohm to the I/V output (AC ground)
+Rf out inn 2k
+Cf out cfx 10p
+Lcf cfx inn {LFB}
+Rin inn 0 680
+Cin inn 0 {CIN}
+.ac dec 100 10Meg 6G
+
+.step param CL list 100p 470p 1n
+.step param LBD list 190n 1u
+.step param RBD list 180 600
+.meas ac Vinn_100M FIND mag(V(inn)) AT=100Meg
+.meas ac Vinn_433M FIND mag(V(inn)) AT=433Meg
+.meas ac Vinn_900M FIND mag(V(inn)) AT=900Meg
+.meas ac Vinn_1G8 FIND mag(V(inn)) AT=1.8G
+.meas ac Vinn_2G4 FIND mag(V(inn)) AT=2.4G
+.meas ac Vinn_5G5 FIND mag(V(inn)) AT=5.5G
+.meas ac Vjack_900M FIND mag(V(jack)) AT=900Meg
+.meas ac Vinn_max MAX mag(V(inn))
+.meas ac Vinn_300_600 MAX mag(V(inn)) FROM=300Meg TO=600Meg
+.meas ac Vinn_20k FIND mag(V(inn)) AT=20k
+.meas ac Vout_audio FIND mag(V(out)) AT=10Meg
+.end

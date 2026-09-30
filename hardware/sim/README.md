@@ -76,3 +76,31 @@ obtain ohms for its 1 A source. LTspice 26.0.2 and MATLAB R2025a completed
 on 29 September 2026. Direct simulator invocation required normal macOS app
 registration on this host; a sandboxed CLI launch had failed before either
 simulation started.
+
+# EMS review simulations (30 September 2026)
+
+These review models support [EMS_VERIFICATION_2026-09-30.md](../EMS_VERIFICATION_2026-09-30.md).
+They are assumption-based sensitivity studies, not extracted or measured
+results. LTspice 26.0.2 (Windows build under Wine) runs from macOS with:
+
+```bash
+CX_BOTTLE_PATH="$HOME/Library/Application Support/LTspice/Bottles" \
+  /Applications/LTspice.app/Contents/SharedSupport/ltspice/LTspice/wine --bottle=ltspice \
+  --wait-children 'C:\Program Files\ADI\LTspice\LTspice.exe' -b -ascii 'Z:\path\to\deck.cir'
+```
+
+| Deck | Question | Result |
+| --- | --- | --- |
+| [ems_headphone_rf.cir](ems_headphone_rf.cir) | RF on the headphone cable (150 Ω common-mode source) reaching the OPA1622 inverting input, 10 MHz–6 GHz; R417 0 Ω vs ferrite bead, with/without a LEG C0G | As built, the output network (TVS 12 pF, relay and trace inductance, OPA1622 open-loop Z<sub>O</sub> 5.5 Ω + 63 nH from datasheet Fig. 40) resonates near 350–450 MHz with about 0 dB coupling. Coupling is −30 dB at 900 MHz and −61 dB at 2.4 GHz ([log](ems_headphone_rf_ltspice.log)). |
+| [ems_rf_sweep.cir](ems_rf_sweep.cir), [ems_rf_best.cir](ems_rf_best.cir) | Bead impedance and LEG capacitor sweep | [sweep log](ems_headphone_rf_sweep_ltspice.log), [best-case log](ems_headphone_rf_best_ltspice.log) |
+| [ems_5vana_filter.cir](ems_5vana_filter.cir) | FB501 + R531/C513 damper feeding the LM27762 | With the damper and 10 µF parts derated to 40 %, the line-transfer peak falls from +5.4 dB to +1.8 dB and the U501 input impedance peak from 1.25 Ω to 0.74 Ω. The 2 MHz charge-pump ripple stays 52–60 dB down on 5V_ANA ([log](ems_5vana_filter_ltspice.log)). |
+
+[ems_budget.m](ems_budget.m) (MATLAB R2025a) turns the RF transfer into an output-referred
+217 Hz buzz with TI's EMIRR square law. It uses the OPA2210 EMIRR curve as a proxy,
+because the OPA1622 publishes none, and a −20 dB cable common-mode to tip conversion.
+It also computes the USB-ripple and VREF paths from the LM27762, LP5907 and OPA1622 PSRR
+curves ([summary](ems_budget_summary.txt), [plot](ems_rf_demod.png)). Regenerate
+`ems_headphone_rf.raw` with the command above before running it.
+[../review_output_rf_filter.py](../review_output_rf_filter.py) checks the proposed output
+filter with the unchanged calibrated OPA1622 model from Calculation Package v1.1
+([results](../OUTPUT_RF_FILTER_STABILITY_REVIEW.json)).
