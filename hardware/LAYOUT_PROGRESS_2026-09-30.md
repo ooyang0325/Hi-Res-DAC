@@ -11,9 +11,9 @@ order PCBA from this copper.
 | Measure | 29 Sep | 30 Sep |
 | --- | ---: | ---: |
 | Manual footprint moves | 138 | 178 |
-| Added copper items | 828 | 5354 |
-| Vias (manifest) | 143 | 1297 |
-| Full `pcbnew` ratsnest links | 864 | **87** |
+| Added copper items | 828 | 5406 |
+| Vias (manifest) | 143 | 1305 |
+| Full `pcbnew` ratsnest links | 864 | **82** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -127,6 +127,11 @@ are not in the repository; the frozen delta is the record.
 - **GND stitching and jack returns.** 375 stitching vias (4 mm grid + 2.5 mm edge fence) and
   five strapped GND vias per jack sleeve pin. The MCU/CPLD core and the protection-comparator
   block are stitched after their routing closes. See [EMS_VERIFICATION_2026-09-30.md](EMS_VERIFICATION_2026-09-30.md).
+- **DRU policy: slow digital control nets at 0.15 mm.** 47 MCU/CPLD control nets (enables, JTAG/SWD,
+  I²C, link, ADC sense; no clocks, USB, I²S, power, audio or protection nodes) may sit 0.15 mm from
+  each other (JLC 4-layer capability 0.1 mm); every other pair keeps ≥ 0.2 mm. **Owner review.**
+- **U201 fan-in.** Twenty MCU pins sealed on the outside drop to vias in the ring between the pin
+  rows and the GND-island core under the package body and continue on L3/L4.
 - **DAC input via keep-away.** Router vias stay ≥0.8 mm from DACL/DACLB/DACR/DACRB
   copper, and from the critical I²S/MCLK/FAM_CLK copper, so L2 stays solid under them (`check_iv_macro`, `check_dac_core_routes`).
 - **EMS simulations.** LTspice/MATLAB review models in [sim/](sim/README.md) and the
