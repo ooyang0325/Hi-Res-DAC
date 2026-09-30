@@ -15,7 +15,10 @@ import pcbnew
 
 
 HERE = Path(__file__).resolve().parent
-SOURCE = HERE / "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb"
+# The fit option was drawn against the integrated board at commit 72c24c3. That board has
+# since been routed further (its moves and copper now overlap this trial), so the option
+# keeps a frozen copy of that snapshot as its source; re-study it on the current layout.
+SOURCE = HERE / "DAC_HPA_120x100_DISCHARGE_FIT_SOURCE_72c24c3.kicad_pcb"
 DEFAULT_OUTPUT = HERE / "DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb"
 
 

@@ -35,7 +35,7 @@
     "R527.2\u2192Q503.3": 5.6
   },
   "schematic_bom_aligned": false,
-  "source_board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "source_board": "DAC_HPA_120x100_DISCHARGE_FIT_SOURCE_72c24c3.kicad_pcb",
   "status": "physical-fit-option-only",
   "three_d_model_audit_ok": true,
   "track_and_via_items": 857,

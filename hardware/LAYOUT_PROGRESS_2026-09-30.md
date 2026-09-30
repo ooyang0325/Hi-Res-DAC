@@ -131,6 +131,10 @@ are not in the repository; the frozen delta is the record.
   copper, and from the critical I²S/MCLK/FAM_CLK copper, so L2 stays solid under them (`check_iv_macro`, `check_dac_core_routes`).
 - **EMS simulations.** LTspice/MATLAB review models in [sim/](sim/README.md) and the
   calibrated-model stability sweep `review_output_rf_filter.py` (output RF filter ECO proposal).
+- **Discharge fit option.** The separate 2512 fit-option board was drawn against the
+  integrated board at 72c24c3; its check now compares against a frozen copy of that snapshot
+  (`DAC_HPA_120x100_DISCHARGE_FIT_SOURCE_72c24c3.kicad_pcb`). Its moves (e.g. R531) and routes
+  overlap this session's layout, so the fit option must be re-studied on the current board.
 - **Tooling.** Signal links are drawn by a scratch octilinear three-layer grid
   router with DRU pair rules (headphone L/R 2 mm, clock-to-high-Z 5/10 mm,
   high-Z 0.3–0.5 mm, I²S 0.15 mm on L1 only). DRC-flagged router connections are
