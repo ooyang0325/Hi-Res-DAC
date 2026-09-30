@@ -22,7 +22,7 @@
 here = fileparts(mfilename('fullpath'));
 raw = fullfile(here, 'ems_headphone_rf.raw');
 [f, H] = read_ltspice_ascii(raw, 'V(inn)');          % f: Nx1, H: N x steps (complex)
-labels = {'as built (R417 = 0 \Omega)', 'bead in R417', '100 pF at LEG', 'bead + 100 pF'};
+labels = {'as built (R417 = 0 \Omega)', 'bead in R417', '220 pF at LEG', 'bead + 220 pF (ECO)'};
 
 emirr_f  = [10e6 20e6 40e6 100e6 200e6 400e6 600e6 800e6 1.1e9 1.4e9 1.8e9 2.4e9 3.6e9 5e9 6e9];
 emirr_db = [42   38   37   36    39    42    45    47    52    47    70    77    100   95  90];

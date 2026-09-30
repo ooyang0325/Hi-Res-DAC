@@ -17,7 +17,7 @@ Ltv2 t2 0 0.6n
 * optional mitigation: CX shunt at the jack after a ferrite (off by default)
 Cx jack 0 {CX+1f}
 * JACK trace -> photo-relay (ON) -> LEG trace -> R417 (0 ohm fitted, or ferrite bead option FB=1)
-* bead model ~BLM18PG121SN1D (the FB501 part): 0.05 ohm + (190 nH || 180 ohm || 0.5 pF); LEG side 0402 C0G CL
+* bead model ~BLM18PG121SN1D (the FB501 part): 0.05 ohm + (190 nH || 180 ohm || 0.5 pF); LEG side 0402 C0G CL (recommended ECO: 120 ohm bead + 220 pF)
 Lj jack k1 {LJ}
 Rk k1 k2 0.06
 Lk k2 leg 3n
@@ -39,7 +39,7 @@ Rin inn 0 680
 Cin inn 0 {CIN}
 .ac dec 200 10Meg 6G
 .step param FB list 0 1
-.step param CL list 0 100p
+.step param CL list 0 220p
 .meas ac Vinn_100M FIND mag(V(inn)) AT=100Meg
 .meas ac Vinn_433M FIND mag(V(inn)) AT=433Meg
 .meas ac Vinn_900M FIND mag(V(inn)) AT=900Meg
