@@ -11,9 +11,9 @@ order PCBA from this copper.
 | Measure | 29 Sep | 30 Sep |
 | --- | ---: | ---: |
 | Manual footprint moves | 138 | 179 |
-| Added copper items | 828 | 5505 |
-| Vias (manifest) | 143 | 1315 |
-| Full `pcbnew` ratsnest links | 864 | **76** |
+| Added copper items | 828 | 5557 |
+| Vias (manifest) | 143 | 1323 |
+| Full `pcbnew` ratsnest links | 864 | **74** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -130,7 +130,7 @@ are not in the repository; the frozen delta is the record.
 - **DRU policy: slow digital control nets at 0.15 mm.** 47 MCU/CPLD control nets (enables, JTAG/SWD,
   I²C, link, ADC sense; no clocks, USB, I²S, power, audio or protection nodes) may sit 0.15 mm from
   each other (JLC 4-layer capability 0.1 mm); every other pair keeps ≥ 0.2 mm. **Owner review.**
-- **U201 fan-in.** Twenty MCU pins sealed on the outside drop to vias in the ring between the pin
+- **U201 fan-in.** Forty MCU pins (two rounds) sealed on the outside drop to vias in the ring between the pin
   rows and the GND-island core under the package body and continue on L3/L4.
 - **CPLD neighbours.** R231/R225/R211/R212/R213 moved outward from U202; trapped protection passives
   (R624, R657, R674, R927, R625, R662) nudged where free courtyard space existed.

@@ -1,6 +1,6 @@
 {
   "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
-  "different_net_near_smd_pad_count": 147,
+  "different_net_near_smd_pad_count": 149,
   "filled_capped_near_smd_pad_count": 25,
   "jlc_mask_bridge_source": "https://jlcpcb.com/help/article/instructions-for-ordering",
   "jlc_source": "https://jlcpcb.com/help/article/pcb-via-covering",
@@ -751,6 +751,20 @@
       "via_net": "N2_MCLK_OE"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.1374,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N2_DCS_LP_PIN",
+      "nearest_smd_pad": "R242.2",
+      "side": "top",
+      "via_at_mm": [
+        71.1,
+        49.04
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N2_DCS_LP_PIN"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.14,
       "filled_and_capped": false,
       "nearest_pad_net": "3V3A",
@@ -935,6 +949,20 @@
     {
       "conservative_copper_edge_gap_mm": 0.15,
       "filled_and_capped": false,
+      "nearest_pad_net": "N2_DCS_LP_PIN",
+      "nearest_smd_pad": "U201.8",
+      "side": "top",
+      "via_at_mm": [
+        64.75,
+        67.5
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N2_DCS_LP_PIN"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.15,
+      "filled_and_capped": false,
       "nearest_pad_net": "N2_HSE_OUT",
       "nearest_smd_pad": "Y201.2",
       "side": "top",
@@ -953,7 +981,7 @@
       "nearest_smd_pad": "U201.37",
       "side": "top",
       "via_at_mm": [
-        66.75,
+        66.79,
         56.1
       ],
       "via_diameter_mm": 0.6,
@@ -2487,20 +2515,6 @@
       "via_net": "N6_V3R_B"
     },
     {
-      "conservative_copper_edge_gap_mm": 0.215,
-      "filled_and_capped": false,
-      "nearest_pad_net": "N5_DAMP",
-      "nearest_smd_pad": "C513.1",
-      "side": "top",
-      "via_at_mm": [
-        68.99,
-        122.4
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "LED_G"
-    },
-    {
       "conservative_copper_edge_gap_mm": 0.2154,
       "filled_and_capped": false,
       "nearest_pad_net": "GND",
@@ -2905,6 +2919,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "N6_V3A_DB"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.23,
+      "filled_and_capped": false,
+      "nearest_pad_net": "3V3M",
+      "nearest_smd_pad": "C207.1",
+      "side": "top",
+      "via_at_mm": [
+        66.3,
+        51.84
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N2_DCS_LP_PIN"
     },
     {
       "conservative_copper_edge_gap_mm": 0.23,
@@ -3423,6 +3451,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "3V3D"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.2471,
+      "filled_and_capped": false,
+      "nearest_pad_net": "AVCC_EN",
+      "nearest_smd_pad": "R236.1",
+      "side": "top",
+      "via_at_mm": [
+        52.2,
+        55.49
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N2_V3A_MON_PIN"
     },
     {
       "conservative_copper_edge_gap_mm": 0.25,
@@ -5427,6 +5469,20 @@
       "via_net": "GND"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.315,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N5_DAMP",
+      "nearest_smd_pad": "C513.1",
+      "side": "top",
+      "via_at_mm": [
+        69.09,
+        122.4
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "LED_G"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.318,
       "filled_and_capped": false,
       "nearest_pad_net": "VREF",
@@ -5934,7 +5990,7 @@
   "scope": "via-to-SMT-pad process triage on both board sides; filling/capping still requires a JLC order remark/preview",
   "screen_gap_mm": 0.35,
   "unfilled_below_0p10_copper_gap_count": 0,
-  "unfilled_near_smd_pad_count": 398,
+  "unfilled_near_smd_pad_count": 402,
   "unfilled_smd_pad_overlap_count": 0,
-  "via_count": 1322
+  "via_count": 1330
 }
