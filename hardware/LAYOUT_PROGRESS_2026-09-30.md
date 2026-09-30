@@ -11,9 +11,9 @@ order PCBA from this copper.
 | Measure | 29 Sep | 30 Sep |
 | --- | ---: | ---: |
 | Manual footprint moves | 138 | 179 |
-| Added copper items | 828 | 5557 |
-| Vias (manifest) | 143 | 1323 |
-| Full `pcbnew` ratsnest links | 864 | **74** |
+| Added copper items | 828 | 5726 |
+| Vias (manifest) | 143 | 1348 |
+| Full `pcbnew` ratsnest links | 864 | **67** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -99,6 +99,25 @@ are not in the repository; the frozen delta is the record.
    local links, R657 (3V3A) and D414.1 (N4_VNEG_IV). All holds from the
    29 September handoff (discharge ECO, 2512 lands, all-rate capture guard,
    G-3/G-4, JLC DFM, measurements) still apply.
+
+## Freerouting gap fill (late 30 September)
+
+The remaining open links were exported to Freerouting 2.4.1 with **every
+existing track and via fixed**, the F.Cu/L3/B.Cu GND pours removed, L3 declared
+a signal layer and GND un-routed (pours and stitching own it). Net classes were
+rebuilt from the router rules: L1-only nets restricted to F.Cu, high-impedance
+nodes at 0.3 mm, slow digital nets 0.15 mm. Only new copper of target nets was
+imported, then cleaned for the bend gate (in-pad landing fragments removed,
+near-90° elbows chamfered) and screened by KiCad DRC.
+
+- Completed: `CPLD_JTCK`, `DC_SENSE_LP`, `N6_GMC`, `N6_IREF`.
+- `DC_SENSE_LP` (R242 → R628, DC-servo sense, RC-filtered at the MCU) runs
+  about 100 mm on L3 along the west edge. L3 is shielded by L2 GND and the
+  B.Cu GND pour; re-route shorter once the protection block is re-placed.
+- GND ties: U202.17 and R212.2 pour pieces had no via; each now has an F.Cu
+  stub + via to L2. C641.2, R640.2 and U608.4 still have no legal via spot.
+- With all copper fixed, Freerouting found no path for the other links: the
+  remaining 67 are a placement/rip-up problem, not a router-quality one.
 
 ## Checkpoint changes (second half of 30 September)
 
