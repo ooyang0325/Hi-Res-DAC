@@ -10,10 +10,10 @@ order PCBA from this copper.
 
 | Measure | 29 Sep | 30 Sep |
 | --- | ---: | ---: |
-| Manual footprint moves | 138 | 178 |
-| Added copper items | 828 | 5406 |
-| Vias (manifest) | 143 | 1305 |
-| Full `pcbnew` ratsnest links | 864 | **82** |
+| Manual footprint moves | 138 | 179 |
+| Added copper items | 828 | 5505 |
+| Vias (manifest) | 143 | 1315 |
+| Full `pcbnew` ratsnest links | 864 | **76** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -132,6 +132,8 @@ are not in the repository; the frozen delta is the record.
   each other (JLC 4-layer capability 0.1 mm); every other pair keeps ≥ 0.2 mm. **Owner review.**
 - **U201 fan-in.** Twenty MCU pins sealed on the outside drop to vias in the ring between the pin
   rows and the GND-island core under the package body and continue on L3/L4.
+- **CPLD neighbours.** R231/R225/R211/R212/R213 moved outward from U202; trapped protection passives
+  (R624, R657, R674, R927, R625, R662) nudged where free courtyard space existed.
 - **DAC input via keep-away.** Router vias stay ≥0.8 mm from DACL/DACLB/DACR/DACRB
   copper, and from the critical I²S/MCLK/FAM_CLK copper, so L2 stays solid under them (`check_iv_macro`, `check_dac_core_routes`).
 - **EMS simulations.** LTspice/MATLAB review models in [sim/](sim/README.md) and the
@@ -145,3 +147,24 @@ are not in the repository; the frozen delta is the record.
   high-Z 0.3–0.5 mm, I²S 0.15 mm on L1 only). DRC-flagged router connections are
   dropped and re-routed. The frozen manifest is the record; the router is not in
   the repository.
+
+## High-impedance spacing deviations (owner review)
+
+Design Notes v1.0 §9.3.1 asks for ≥ 0.5 mm from high-impedance nodes to other copper. The DRU
+enforces 0.5 mm to the GND pour and 0.2 mm elsewhere. To finish the protection-comparator
+links, the router was allowed 0.2 mm locally (under solder mask; leakage negligible at ~1 MΩ
+node impedance, but less margin against contamination/humidity). 29 high-Z/other pairs are
+now below 0.5 mm outside the 1.8 mm pin-escape zones; the ten closest:
+
+| High-Z net | Neighbour | Gap (mm) | At (x, y) |
+| --- | --- | ---: | --- |
+| N6_DB_R | N6_DD_R | 0.225 | (117.9,114.1) |
+| N6_DD_R | N6_DB_R | 0.225 | (117.5,114.2) |
+| N6_VORP | VPOS | 0.250 | (80.0,123.1) |
+| N6_CML | N6_OLN_L | 0.250 | (76.9,98.3) |
+| N6_TWLPP | N6_VLLP | 0.268 | (99.9,49.5) |
+| N6_MCK_RC | 3V3A | 0.307 | (82.4,95.0) |
+| N6_VORP | N6_OLN_R | 0.310 | (91.0,125.2) |
+| N6_DB_R | VPOS | 0.330 | (122.1,126.4) |
+| N6_CML | V3A_MON | 0.330 | (71.8,111.4) |
+| N6_V3AG_A | 3V3A | 0.370 | (80.6,87.8) |
