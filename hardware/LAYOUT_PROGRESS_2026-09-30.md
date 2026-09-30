@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **64** |
+| Full `pcbnew` ratsnest links | 864 | **63** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -117,6 +117,14 @@ power and the already-routed I²S/LINK_SCK/LRCLK_FB pins are unchanged.
 Pins 10, 11, 12 and 14 become NC. The schematic overlay is in
 `generate_schematic.py`, and the approved delta is in `verify_schematic.py`.
 The board replay applies the same map through the manifest's `renamed_pads`.
+A second rip-up Freerouting round after F06 routed LINK_MOSI (63 links). The
+CPLD 3V3 L3 spine was moved from beside the west pin row (x 79.5) to under the
+package body (x 80.6), clear of the EP vias; C213/C214/C215 path screens are
+unchanged. The west pins are still sealed: FAM_CLK (R215 → TP712 → pin 1)
+runs vertically beside pins 1–5, and its 0.8 mm L2-protection via keep-out,
+together with U205's 3V3D via, leaves no via site. Next step: give U202 more
+room (east shift with its decoupling) rather than squeeze its west side.
+
 MCU GPIO swaps were reviewed and not taken: U201's south side is all ADC,
 oscillator and reset pins, so no swap shortens the south-bound control nets.
 
