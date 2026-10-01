@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **51** |
+| Full `pcbnew` ratsnest links | 864 | **34** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -130,6 +130,28 @@ Open gates:
   Confirm with the JLC impedance calculator once the stack is fixed.
 - **Crosstalk.** L3 and L4 are a tightly coupled pair. Keep their long runs
   orthogonal to limit broadside crosstalk.
+
+### Inner-layer rip-up (round 9, 2 October)
+
+After two rounds L4 still carried only 505 mm of track on 13 nets. All copper of
+the 90 plain digital/control nets was ripped (1 775 copper lines, about 3.4 m,
+hand copper included) and re-routed by Freerouting with fan-out over the four
+signal layers, followed by one automated pass. Fixed throughout: audio, high-Z,
+clock/I2S, USB, power and analog nets.
+
+| Layer | Before (mm / nets) | After (mm / nets) |
+| --- | --- | --- |
+| L1 F.Cu | 4 158 / 235 | 3 686 / 235 |
+| L3 PWR | 3 377 / 100 | 3 259 / 99 |
+| L4 SIG | 505 / 13 | 1 560 / 50 |
+| L6 B.Cu | 2 744 / 97 | 2 212 / 77 |
+
+Result: 51 -> 34 links, 0 DRC, VALIDATE_OK. High-Z deviation pairs fell from
+30 to 25. Freerouting slivers and right-angle elbows were removed
+(`chamfer.py`/`sliver.py` in the routing scratchpad). Audio output legs routed
+on L3/L4 overlap adjacent-layer copper broadside for at most 6 mm per net, and
+only DC or slow control nets (N6_H, LED_G). These outputs are low-impedance, so
+the coupling is negligible.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
