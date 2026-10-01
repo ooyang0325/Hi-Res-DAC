@@ -1563,6 +1563,20 @@
       "via_net": "1V3"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.1866,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N2_V3A_MON_PIN",
+      "nearest_smd_pad": "R246.2",
+      "side": "top",
+      "via_at_mm": [
+        50.1934,
+        55.6399
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N2_V3A_MON_PIN"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.1884,
       "filled_and_capped": false,
       "nearest_pad_net": "VNEG",
@@ -6284,7 +6298,7 @@
   "scope": "via-to-SMT-pad process triage on both board sides; filling/capping still requires a JLC order remark/preview",
   "screen_gap_mm": 0.35,
   "unfilled_below_0p10_copper_gap_count": 0,
-  "unfilled_near_smd_pad_count": 422,
+  "unfilled_near_smd_pad_count": 423,
   "unfilled_smd_pad_overlap_count": 0,
-  "via_count": 1408
+  "via_count": 1410
 }

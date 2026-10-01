@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **53** |
+| Full `pcbnew` ratsnest links | 864 | **51** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -116,7 +116,7 @@ manifest.
 | L6 B.Cu | signal |
 
 Results:
-- One automated pass plus a Freerouting round took the board from 64 to 53
+- One automated pass plus two Freerouting rounds took the board from 64 to 51
   links, with 0 DRC and VALIDATE_OK.
 - B.Cu track without GND directly beneath fell from 1 150 mm (45 %) to
   301 mm (11 %), because L6 now sits over the L5 plane.
@@ -124,9 +124,10 @@ Results:
 Open gates:
 - **Stack-up.** Confirm JLC's 6-layer 1.6 mm stack. The EMS audit assumes
   L1–L2 / L5–L6 ≈ 0.10 mm, L3–L4 ≈ 0.11 mm and cores ≈ 0.55 mm.
-- **USB impedance.** The USB pair's 0.235/0.15 mm geometry was sized for
-  0.21 mm to L2. Over about 0.10 mm it falls well below 90 Ω and must be
-  re-dimensioned in the JLC impedance tool.
+- **USB impedance.** The 0.235/0.15 mm pair (sized for 0.21 mm to L2) is now
+  0.16 mm wide at the same 0.385 mm pitch (0.225 mm gap). Over 0.10 mm L1–L2
+  that estimates to about 91 Ω differential (IPC-2141 edge-coupled microstrip).
+  Confirm with the JLC impedance calculator once the stack is fixed.
 - **Crosstalk.** L3 and L4 are a tightly coupled pair. Keep their long runs
   orthogonal to limit broadside crosstalk.
 
