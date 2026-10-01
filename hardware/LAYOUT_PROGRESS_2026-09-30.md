@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **34** |
+| Full `pcbnew` ratsnest links | 864 | **30** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -152,6 +152,11 @@ Result: 51 -> 34 links, 0 DRC, VALIDATE_OK. High-Z deviation pairs fell from
 on L3/L4 overlap adjacent-layer copper broadside for at most 6 mm per net, and
 only DC or slow control nets (N6_H, LED_G). These outputs are low-impedance, so
 the coupling is negligible.
+
+Round 10 repeated the rip-up with 16 Freerouting passes plus one automated pass:
+34 -> 30 links, 0 DRC, VALIDATE_OK, high-Z deviation pairs 27. Seven router vias
+that sit within 0.10 mm of an SMD pad are filled and capped: six on their own
+test-point/pin net, plus RELAY_EN beside U604.6.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
