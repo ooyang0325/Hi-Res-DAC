@@ -1,6 +1,6 @@
 {
   "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
-  "different_net_near_smd_pad_count": 155,
+  "different_net_near_smd_pad_count": 163,
   "filled_capped_near_smd_pad_count": 26,
   "jlc_mask_bridge_source": "https://jlcpcb.com/help/article/instructions-for-ordering",
   "jlc_source": "https://jlcpcb.com/help/article/pcb-via-covering",
@@ -865,6 +865,20 @@
     {
       "conservative_copper_edge_gap_mm": 0.15,
       "filled_and_capped": false,
+      "nearest_pad_net": "ANA_FAULT_N",
+      "nearest_smd_pad": "U201.57",
+      "side": "top",
+      "via_at_mm": [
+        60.5,
+        63.35
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "ANA_FAULT_N"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.15,
+      "filled_and_capped": false,
       "nearest_pad_net": "SWDIO",
       "nearest_smd_pad": "U201.46",
       "side": "top",
@@ -1215,6 +1229,20 @@
     {
       "conservative_copper_edge_gap_mm": 0.161,
       "filled_and_capped": false,
+      "nearest_pad_net": "ANA_FAULT_N",
+      "nearest_smd_pad": "TP723.1",
+      "side": "top",
+      "via_at_mm": [
+        55.3,
+        109.65
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "ANA_FAULT_N"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.161,
+      "filled_and_capped": false,
       "nearest_pad_net": "DC_SENSE_RP",
       "nearest_smd_pad": "R244.1",
       "side": "top",
@@ -1519,6 +1547,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.185,
+      "filled_and_capped": false,
+      "nearest_pad_net": "1V3",
+      "nearest_smd_pad": "R530.1",
+      "side": "top",
+      "via_at_mm": [
+        53.79,
+        135.2
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "1V3"
     },
     {
       "conservative_copper_edge_gap_mm": 0.1884,
@@ -2009,6 +2051,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "N6_MCK_RC"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.2,
+      "filled_and_capped": false,
+      "nearest_pad_net": "I2C_SCL",
+      "nearest_smd_pad": "U301.3",
+      "side": "top",
+      "via_at_mm": [
+        90.0,
+        84.55
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "I2C_SCL"
     },
     {
       "conservative_copper_edge_gap_mm": 0.2,
@@ -3595,6 +3651,20 @@
     {
       "conservative_copper_edge_gap_mm": 0.25,
       "filled_and_capped": false,
+      "nearest_pad_net": "LED_R",
+      "nearest_smd_pad": "U201.38",
+      "side": "top",
+      "via_at_mm": [
+        66.35,
+        58.6
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "LED_G"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.25,
+      "filled_and_capped": false,
       "nearest_pad_net": "3V3M",
       "nearest_smd_pad": "R240.2",
       "side": "top",
@@ -3605,6 +3675,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "3V3M"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.25,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N2_BOOT1",
+      "nearest_smd_pad": "U201.28",
+      "side": "top",
+      "via_at_mm": [
+        69.4,
+        61.35
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "I2C_SCL"
     },
     {
       "conservative_copper_edge_gap_mm": 0.25,
@@ -3959,6 +4043,20 @@
     {
       "conservative_copper_edge_gap_mm": 0.2523,
       "filled_and_capped": false,
+      "nearest_pad_net": "3V3M",
+      "nearest_smd_pad": "U201.32",
+      "side": "top",
+      "via_at_mm": [
+        69.4,
+        59.05
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "LRCLK_FB"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.2523,
+      "filled_and_capped": false,
       "nearest_pad_net": "GND",
       "nearest_smd_pad": "Q623.2",
       "side": "top",
@@ -4081,6 +4179,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "RELAY_EN"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.2586,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N2_LINK_MOSI_MCU",
+      "nearest_smd_pad": "R225.1",
+      "side": "top",
+      "via_at_mm": [
+        72.8376,
+        73.8309
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "OSC44_EN"
     },
     {
       "conservative_copper_edge_gap_mm": 0.259,
@@ -5373,6 +5485,20 @@
     {
       "conservative_copper_edge_gap_mm": 0.3,
       "filled_and_capped": false,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U301.5",
+      "side": "top",
+      "via_at_mm": [
+        90.9,
+        84.65
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "I2C_SDA"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.3,
+      "filled_and_capped": false,
       "nearest_pad_net": "VPOS",
       "nearest_smd_pad": "R668.1",
       "side": "top",
@@ -5567,6 +5693,20 @@
       "via_net": "N6_ARM"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.3122,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N2_LRCLK_SRC",
+      "nearest_smd_pad": "R229.1",
+      "side": "top",
+      "via_at_mm": [
+        69.4088,
+        53.0972
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "I2C_SCL"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.313,
       "filled_and_capped": false,
       "nearest_pad_net": "GND",
@@ -5665,6 +5805,20 @@
       "via_net": "GND"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.3212,
+      "filled_and_capped": false,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "R234.2",
+      "side": "top",
+      "via_at_mm": [
+        53.6623,
+        61.0988
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N2_MCLK_PERMIT"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.3215,
       "filled_and_capped": false,
       "nearest_pad_net": "CPLD_JTCK",
@@ -5691,6 +5845,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "N6_VT"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.325,
+      "filled_and_capped": false,
+      "nearest_pad_net": "DVCC",
+      "nearest_smd_pad": "FB301.2",
+      "side": "top",
+      "via_at_mm": [
+        80.9,
+        70.45
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "LRCLK_FB"
     },
     {
       "conservative_copper_edge_gap_mm": 0.325,
@@ -6116,7 +6284,7 @@
   "scope": "via-to-SMT-pad process triage on both board sides; filling/capping still requires a JLC order remark/preview",
   "screen_gap_mm": 0.35,
   "unfilled_below_0p10_copper_gap_count": 0,
-  "unfilled_near_smd_pad_count": 410,
+  "unfilled_near_smd_pad_count": 422,
   "unfilled_smd_pad_overlap_count": 0,
-  "via_count": 1378
+  "via_count": 1408
 }

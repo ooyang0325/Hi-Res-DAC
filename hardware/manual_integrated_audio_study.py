@@ -80,6 +80,13 @@ def build(output_path: Path) -> None:
             or len(board.GetTracks()) != record["source_track_and_via_items"]
             or len(board.Zones()) != 1):
         raise AssertionError("ECO source geometry changed; review the manual delta before replay")
+    if record.get("copper_layers", 4) == 6:
+        # 6-layer stack: L4 signal (In3 "SIG") and L5 solid GND plane (In4 "GND5") under the
+        # unchanged L1 signal / L2 GND / L3 PWR layers; L4 and B.Cu both reference L5.
+        board.SetCopperLayerCount(6)
+        board.SetLayerName(pcbnew.In3_Cu, "SIG")
+        board.SetLayerName(pcbnew.In4_Cu, "GND5")
+        board.SetLayerType(pcbnew.In4_Cu, pcbnew.LT_POWER)
     source_tracks = board.GetTracks()
     to_remove = []
     for removed in record.get("removed_source_copper", []):

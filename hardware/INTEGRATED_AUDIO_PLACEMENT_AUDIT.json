@@ -201,7 +201,7 @@
     100
   ],
   "total_nonpower_hpwl_mm": 7192.31,
-  "track_count": 5828,
+  "track_count": 6083,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 6.61,
     "D102_VBUS_to_J101_B4": 4.89,
@@ -215,5 +215,5 @@
     "Y201_HSE_OUT_to_U201_6": 3.22
   },
   "zone_bbox_fill_pct": {},
-  "zone_count": 4
+  "zone_count": 6
 }

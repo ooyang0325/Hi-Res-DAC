@@ -23,6 +23,16 @@ Board: [DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb](DAC_HPA_120x100_I
 Screens: [audit_ems_layout.py](audit_ems_layout.py) → [INTEGRATED_AUDIO_EMS_AUDIT.json](INTEGRATED_AUDIO_EMS_AUDIT.json),
 [audit_return_path.py](audit_return_path.py). Simulations: [sim/README.md](sim/README.md).
 
+
+> **Update 1 October — 6-layer stack.** The study board is now 6 layers:
+> L1 sig / L2 GND / L3 PWR / L4 sig / L5 GND / L6 sig. L6 (B.Cu) and L4 now
+> reference the solid L5 plane, so B.Cu track lacking a GND reference fell
+> from 45 % to 11 % (`INTEGRATED_AUDIO_EMS_AUDIT.json`). Hum-loop heights
+> shrink with the thinner dielectrics. The worst audio loop, LEG_LP at
+> 108 mm², gives about 0.41 µV at 10 µT / 60 Hz, below the 1.56 µV output
+> noise floor. The stack-up is assumed and must be confirmed with JLC; the
+> USB pair must be re-dimensioned for 90 Ω on the thinner L1–L2 dielectric.
+
 ## 1. Home threat model
 
 | Threat | Level assumed | Coupling path on this board |

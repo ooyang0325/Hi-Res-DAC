@@ -32,6 +32,9 @@ import audit_return_path
 
 PREPREG_MM = 0.2104
 CORE_MM = 1.065
+# 6-layer (owner decision 1 Oct): assumed JLC standard 1.6 mm symmetric stack; confirm in the JLC
+# impedance tool before ordering. L1-L2 / L5-L6 prepreg, L3-L4 prepreg, two cores.
+PP6_OUTER_MM, PP6_INNER_MM, CORE6_MM = 0.0994, 0.1088, 0.55
 HUM_B_T = (1e-6, 10e-6)          # typical near appliances / close to a mains transformer
 HUM_F_HZ = (50.0, 60.0)
 AUDIO = ["DACL", "DACLB", "DACR", "DACRB", "N4_*", "LEG_*", "JACK_*", "VREF"]
@@ -66,6 +69,8 @@ def seg_gap(t1, t2) -> float:
 
 def hum(board) -> dict:
     height = {"F.Cu": PREPREG_MM, "B.Cu": PREPREG_MM, "PWR": PREPREG_MM}
+    if board.GetCopperLayerCount() == 6:      # loop height to the nearest solid GND plane (L2 / L5)
+        height = {"F.Cu": PP6_OUTER_MM, "B.Cu": PP6_OUTER_MM, "PWR": CORE6_MM, "SIG": CORE6_MM}
     area = collections.defaultdict(float)
     for t in board.GetTracks():
         if isinstance(t, pcbnew.PCB_VIA) or not match(t.GetNetname(), AUDIO):
@@ -122,7 +127,10 @@ def stitching(board) -> dict:
                 for q in cell.get((int(x // 5) + dx, int(y // 5) + dy), ()):
                     best = min(best, math.hypot(x - q[0], y - q[1]))
         return best
-    for layer in (pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.B_Cu):
+    pour_layers = (pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.B_Cu)
+    if board.GetCopperLayerCount() == 6:
+        pour_layers = (pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.In3_Cu, pcbnew.B_Cu)
+    for layer in pour_layers:
         polys = [z.GetFilledPolysList(layer) for z in board.Zones()
                  if z.GetNetname() == "GND" and z.IsOnLayer(layer) and z.HasFilledPolysForLayer(layer)]
         worst, pts = 0.0, 0
@@ -193,7 +201,10 @@ def audit(path: Path) -> dict:
     l2_area = sum(z.GetFilledPolysList(pcbnew.In1_Cu).Area() for z in l2) / 1e12
     return {
         "board": path.name,
-        "stackup_assumption": f"L1-L2 {PREPREG_MM} mm, L2-L3 {CORE_MM} mm, L3-L4 {PREPREG_MM} mm (JLC04161H-7628)",
+        "stackup_assumption": (f"6-layer: L1-L2 {PP6_OUTER_MM} mm, L2-L3 {CORE6_MM} mm, L3-L4 {PP6_INNER_MM} mm, "
+                               f"L4-L5 {CORE6_MM} mm, L5-L6 {PP6_OUTER_MM} mm (assumed JLC 1.6 mm standard; verify)"
+                               if board.GetCopperLayerCount() == 6 else
+                               f"L1-L2 {PREPREG_MM} mm, L2-L3 {CORE_MM} mm, L3-L4 {PREPREG_MM} mm (JLC04161H-7628)"),
         "l2_plane": {"filled_outlines": rp["l2_filled_outlines"], "fill_fraction_of_board": round(l2_area / board_area, 3)},
         "return_path": {k: rp[k] for k in ("f_cu_track_mm_without_l2", "f_cu_track_mm_total",
                                            "b_cu_track_mm_without_l3_gnd", "b_cu_track_mm_total")},

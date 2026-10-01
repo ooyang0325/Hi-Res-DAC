@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **64** |
+| Full `pcbnew` ratsnest links | 864 | **53** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -99,6 +99,36 @@ are not in the repository; the frozen delta is the record.
    local links, R657 (3V3A) and D414.1 (N4_VNEG_IV). All holds from the
    29 September handoff (discharge ECO, 2512 lands, all-rate capture guard,
    G-3/G-4, JLC DFM, measurements) still apply.
+
+## 6-layer stack (owner decision, 1 October)
+
+Routing on 4 layers plateaued at 63–64 links, so the study moved to 6
+layers. Block 72 adds L4 and L5; the replay sets `copper_layers: 6` in the
+manifest.
+
+| Layer | Role |
+| --- | --- |
+| L1 F.Cu | signal |
+| L2 | solid GND plane (unchanged) |
+| L3 PWR | signal / power with GND pour |
+| L4 SIG | signal with GND pour (new) |
+| L5 GND5 | solid GND plane (new) |
+| L6 B.Cu | signal |
+
+Results:
+- One automated pass plus a Freerouting round took the board from 64 to 53
+  links, with 0 DRC and VALIDATE_OK.
+- B.Cu track without GND directly beneath fell from 1 150 mm (45 %) to
+  301 mm (11 %), because L6 now sits over the L5 plane.
+
+Open gates:
+- **Stack-up.** Confirm JLC's 6-layer 1.6 mm stack. The EMS audit assumes
+  L1–L2 / L5–L6 ≈ 0.10 mm, L3–L4 ≈ 0.11 mm and cores ≈ 0.55 mm.
+- **USB impedance.** The USB pair's 0.235/0.15 mm geometry was sized for
+  0.21 mm to L2. Over about 0.10 mm it falls well below 90 Ω and must be
+  re-dimensioned in the JLC impedance tool.
+- **Crosstalk.** L3 and L4 are a tightly coupled pair. Keep their long runs
+  orthogonal to limit broadside crosstalk.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 

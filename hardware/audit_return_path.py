@@ -30,7 +30,12 @@ def gnd_polys(board: pcbnew.BOARD, layer: int):
 
 def audit(path: Path, step: float = 0.1) -> dict:
     board = pcbnew.LoadBoard(str(path))
-    refs = {pcbnew.F_Cu: gnd_polys(board, pcbnew.In1_Cu), pcbnew.B_Cu: gnd_polys(board, pcbnew.In2_Cu)}
+    if board.GetCopperLayerCount() == 6:
+        # 6-layer stack: L1/L3 reference the L2 plane, L4/L6 the L5 plane
+        l2, l5 = gnd_polys(board, pcbnew.In1_Cu), gnd_polys(board, pcbnew.In4_Cu)
+        refs = {pcbnew.F_Cu: l2, pcbnew.In2_Cu: l2, pcbnew.In3_Cu: l5, pcbnew.B_Cu: l5}
+    else:
+        refs = {pcbnew.F_Cu: gnd_polys(board, pcbnew.In1_Cu), pcbnew.B_Cu: gnd_polys(board, pcbnew.In2_Cu)}
     missing = collections.defaultdict(float)
     total = collections.defaultdict(float)
     for t in board.GetTracks():

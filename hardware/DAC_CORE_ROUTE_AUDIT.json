@@ -1,5 +1,5 @@
 {
-  "1V3_branch_vias": 6,
+  "1V3_branch_vias": 8,
   "DAC_CPLD_LDO_local_GND_pads_to_L2": 35,
   "FAM_CLK_R215_to_U202_mm": 1.5,
   "I2S_central_3W_edge_gap": {
@@ -155,6 +155,6 @@
     "LP5907_U302_output_to_FB302": 5.025
   },
   "model_limits": "2D copper-edge and saved L2 samples only; no return impedance, extracted parasitics, stackup/EMI/ESD or operational test",
-  "ratsnest_unconnected_items": 64,
+  "ratsnest_unconnected_items": 53,
   "release": "HOLD: full routing, upstream source rails, I/V feedback return, DVDD capacitor ECO, JLC via-pad process and measured audio/EMI"
 }
