@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **30** |
+| Full `pcbnew` ratsnest links | 864 | **29** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -157,6 +157,30 @@ Round 10 repeated the rip-up with 16 Freerouting passes plus one automated pass:
 34 -> 30 links, 0 DRC, VALIDATE_OK, high-Z deviation pairs 27. Seven router vias
 that sit within 0.10 mm of an SMD pad are filled and capped: six on their own
 test-point/pin net, plus RELAY_EN beside U604.6.
+
+### Clock-mux and ground clean-up after the rip-up (2 October)
+
+- **Oscillator clocks on F.Cu only.** The 49.152 MHz (X202) and 45.1584 MHz
+  (X203) clocks, the mux inputs and the mux output are now L1-only nets with no
+  vias, over the solid L2 plane. N2_MUX_I0 and N2_MUX_I1 had run 25–31 mm with
+  2–3 vias over L3/L4, because their pull-downs R216/R217 sat 14 mm away.
+  - **Moves:** R216 and R217 moved to within 2.5 mm of U205, R224 (LINK_SCK
+    series R) moved toward U208, and R210 was turned so the two clocks never
+    cross.
+  - **Result:** all five nets are now 1.7–4.3 mm.
+- **Stranded GND pads.** Inner-layer routing had split F.Cu pour fragments, and
+  nine GND pads lost their path to L2: four U201 VSS pins, U205.2 (the clock mux
+  ground between its two inputs), R216, R234, R640 and C641.
+  - **Fix:** each pad has a stub + via or a short tie to a stitched via (block
+    73), with digital copper moved out of the way.
+  - **Neighbouring changes:** MUX_I0 now comes into U205 from the south;
+    DC_SENSE_RN jogs west under R640; N6_VORP pin 9 drops to B.Cu inside the
+    U612 pin row, so N6_VORN crosses under U612 directly instead of a 30 mm
+    loop round C641.
+  - **Check:** a KiCad connectivity check (every GND pad reaches the L2 plane)
+    now passes.
+
+29 links, 0 DRC, VALIDATE_OK, high-Z deviation pairs 28.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
