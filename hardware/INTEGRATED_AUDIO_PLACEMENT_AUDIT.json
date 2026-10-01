@@ -37,7 +37,7 @@
       "net": "JACK_RN"
     }
   },
-  "fam_clk_hpwl_mm": 3.39,
+  "fam_clk_hpwl_mm": 2.9,
   "footprints": 544,
   "high_z_clock_pad_gap_violations": [],
   "i2s_mm": {
@@ -200,8 +200,8 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7187.86,
-  "track_count": 5853,
+  "total_nonpower_hpwl_mm": 7192.31,
+  "track_count": 5828,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 6.61,
     "D102_VBUS_to_J101_B4": 4.89,

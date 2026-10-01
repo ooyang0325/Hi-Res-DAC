@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **63** |
+| Full `pcbnew` ratsnest links | 864 | **64** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -107,14 +107,18 @@ general-purpose `IO/PIN_n` pins move; FAM_CLK (IO_GB pin 1), JTAG, NRST,
 power and the already-routed I²S/LINK_SCK/LRCLK_FB pins are unchanged.
 **The CPLD RTL pin constraints must follow this table.**
 
-| Net | Old pin | New pin | Side | Why |
+| Net | Source pin | F06 v2 pin | Side | Why |
 | --- | ---: | ---: | --- | --- |
 | LINK_FRAME | 11 | 26 | north | faces U208 (isolator) |
 | LINK_MOSI | 10 | 27 | north | faces U208 |
-| LINK_MISO | 12 | 5 | west | faces U201 (MCU) |
-| CPLD_IRQ | 14 | 7 | west | faces U201 |
+| LINK_MISO | 12 | 28 | north | escapes north toward U201 |
+| CPLD_IRQ | 14 | 29 | north | escapes north toward U201 |
+| OSC48_EN | 2 | 31 | north | X202/TP713/R212 are north and west |
+| OSC44_EN | 3 | 8 | west row, escapes south | X203/U205/R213/TP714 |
 
-Pins 10, 11, 12 and 14 become NC. The schematic overlay is in
+v2 replaces the first F06 table. The west row is walled by FAM_CLK and its
+0.8 mm L2-protection via keep-out, so it now keeps only FAM_CLK (pin 1),
+CPLD_NRST (pin 4, dedicated) and VDDA33 (pin 6). Pins 2, 3, 10, 11, 12 and 14 become NC. The schematic overlay is in
 `generate_schematic.py`, and the approved delta is in `verify_schematic.py`.
 The board replay applies the same map through the manifest's `renamed_pads`.
 A second rip-up Freerouting round after F06 routed LINK_MOSI (63 links). The
@@ -127,6 +131,23 @@ room (east shift with its decoupling) rather than squeeze its west side.
 
 MCU GPIO swaps were reviewed and not taken: U201's south side is all ADC,
 oscillator and reset pins, so no swap shortens the south-bound control nets.
+
+**FAM_CLK corridor (block 66).** R215 now stands level with U202 pin 1, so
+FAM_CLK is a straight 1.5 mm L1 run along the pin-1 row (L2 support check
+passes). The mux output N2_MUX_Y takes the vertical leg instead. TP712 sits
+on a 1.25 mm stub, and C222's GND return uses C220's existing via. This opens
+one legal via site beside CPLD_NRST (pin 4).
+
+**Routing status.** Several further rip-up rounds were tried; none got below
+63 links:
+- reserved inward/outward fan-out for U201/U202/U208;
+- Freerouting with plain-net hand copper movable.
+
+About 49 link ends are pads that cannot escape, 20 of them on U201. The next
+step agreed with the owner is to re-floorplan the MCU/CPLD digital block into
+the free NE area. VREF was briefly caught by the plain-net filter in one round
+and has been restored to its hand route; the filter now excludes VREF and the
+analog sense nets.
 
 ## Programming headers (functional ECO F05, 1 October)
 

@@ -350,13 +350,15 @@ def apply_functional_eco(
             notes=f"Functional ECO F05: fitted programming header on the {ref} debug pads")
         parts[ref] = fitted
         libparts[fitted.symbol_id] = fitted
-    # Functional ECO F06: layout-driven AGRV2K I/O reassignment (RTL pin constraint
-    # change only). LINK_MOSI/LINK_FRAME move to the north pins facing U208 and
-    # LINK_MISO/CPLD_IRQ to the west pins facing U201; the old pins become NC.
-    cpld_moves = {"10": "27", "11": "26", "12": "5", "14": "7"}
+    # Functional ECO F06 (v2): layout-driven AGRV2K I/O reassignment (RTL pin constraint
+    # change only). The west row is walled by FAM_CLK and its L2-protection via keep-out,
+    # so every reassignable signal moves to a side that can escape: the LINK bus, CPLD_IRQ
+    # and OSC48_EN to the north row facing U208/U201, OSC44_EN to pin 8 (escapes south).
+    cpld_moves = {"10": "27", "11": "26", "12": "28", "14": "29", "2": "31", "3": "8"}
     cpld = {pin.number: pin.net for pin in pins["U202"]}
     expected = {"10": "LINK_MOSI", "11": "LINK_FRAME", "12": "LINK_MISO", "14": "CPLD_IRQ",
-                "5": "NC", "7": "NC", "26": "NC", "27": "NC"}
+                "2": "OSC48_EN", "3": "OSC44_EN",
+                "26": "NC", "27": "NC", "28": "NC", "29": "NC", "31": "NC", "8": "NC"}
     if any(cpld.get(number) != net for number, net in expected.items()):
         raise ValueError("U202 source pins changed; re-review CPLD pin ECO F06")
     for old_pin, new_pin in cpld_moves.items():
