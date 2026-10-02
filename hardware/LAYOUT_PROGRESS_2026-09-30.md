@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **18** |
+| Full `pcbnew` ratsnest links | 864 | **12** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -253,6 +253,10 @@ mask bridging.
 Every fixed (analog, high-Z, audio, clock, power) net is now complete. The 18
 remaining links are all on plain digital/control nets: 18 links, 0 DRC,
 VALIDATE_OK, high-Z deviation pairs 29.
+
+Round 12 (2 October): 89-net digital rip-up (AVCC_EN now included), 16
+Freerouting passes, automated clean-up. 18 -> 12 links, 0 DRC, VALIDATE_OK, all
+GND pads on L2, high-Z deviation pairs 28.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
