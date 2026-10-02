@@ -1,7 +1,7 @@
 {
   "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
   "connected_routes_mm": {
-    "LN_L U609.10\u2192C632.1": 6.038,
+    "LN_L U609.10\u2192C632.1": 6.01,
     "LN_L U609.10\u2192Q624.3": 5.814,
     "LN_L U609.10\u2192R921.2": 6.685,
     "LN_R U610.10\u2192C634.1": 7.177,

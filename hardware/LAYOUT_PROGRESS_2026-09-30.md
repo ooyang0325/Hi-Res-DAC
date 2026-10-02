@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **20** |
+| Full `pcbnew` ratsnest links | 864 | **18** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -239,6 +239,20 @@ mask bridging.
   but they should be shortened to a direct centre-board route before release.
 
 20 links, 0 DRC, VALIDATE_OK, all GND pads on L2.
+
+- **N6_VT** (DC threshold node, vias allowed). On U609 and U610, pins 9 and 11
+  straddle the no-via N6_TLN pin, and pin 11 was boxed in.
+  - **U610.** Pin 12's VNEG via steps 0.3 mm east, and pin 11 drops to a via
+    straight below its pad.
+  - **U609.** LEG_RN jogs 0.65 mm east on B.Cu under the pin row, pin 12's VNEG
+    via steps west, and N6_TLN_L's north branch is re-shaped: shorter than
+    before, starting at the pad tip so KiCad's 8 mm U609.10→R921.2 timer path
+    still passes.
+  - Both vias join N6_VT on L4.
+
+Every fixed (analog, high-Z, audio, clock, power) net is now complete. The 18
+remaining links are all on plain digital/control nets: 18 links, 0 DRC,
+VALIDATE_OK, high-Z deviation pairs 29.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
