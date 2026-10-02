@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **23** |
+| Full `pcbnew` ratsnest links | 864 | **20** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -221,6 +221,24 @@ AVCC_EN had fallen under the `AVCC_*` 0.3 mm supply-width rule; it now has an
 explicit 0.15 mm entry, so the MCU pin can escape. Two router vias beside
 other-net SMD pads (TP751, U604.6) pass DRC and are filled and capped against
 mask bridging.
+
+### Fixed-net closures (2 October)
+
+- **N6_LWRN** (high-Z, F.Cu only, no vias). LEG_RN passes through R933 pad 1 in a
+  Λ that walled pad 2 off from C646. R933 turns 180° about pad 1, so the
+  LEG_RN copper is unchanged, and C646.2's GND via moves west.
+- **N6_ORLP** (high-Z, F.Cu only, no vias). U611 pins 4–7 now loop south of the
+  pin row, mirroring N6_ORLN on the north side. The R937→U611.6 N6_VORN link
+  that enclosed pin 7 now takes a short L4 hop at the body edge.
+- **LEG_LP → R624** (DC-sense divider tap). 24 mm, of which 20 mm is on L4; the
+  local DC_SENSE_LP copper that enclosed R624.1 was re-routed. The leg is the
+  low-impedance amplifier output.
+- **Open EMS item.** Freerouting gave DC_SENSE_LP and DC_SENSE_LN 150–165 mm
+  perimeter routes, mostly on L3, to the MCU ADC. They are RC-filtered DC
+  monitors behind high-value resistors, so they cannot couple into the audio,
+  but they should be shortened to a direct centre-board route before release.
+
+20 links, 0 DRC, VALIDATE_OK, all GND pads on L2.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
