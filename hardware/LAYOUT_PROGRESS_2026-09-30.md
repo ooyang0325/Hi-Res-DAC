@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **12** |
+| Full `pcbnew` ratsnest links | 864 | **15** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -233,10 +233,11 @@ mask bridging.
 - **LEG_LP → R624** (DC-sense divider tap). 24 mm, of which 20 mm is on L4; the
   local DC_SENSE_LP copper that enclosed R624.1 was re-routed. The leg is the
   low-impedance amplifier output.
-- **Open EMS item.** Freerouting gave DC_SENSE_LP and DC_SENSE_LN 150–165 mm
-  perimeter routes, mostly on L3, to the MCU ADC. They are RC-filtered DC
-  monitors behind high-value resistors, so they cannot couple into the audio,
-  but they should be shortened to a direct centre-board route before release.
+- **DC-sense routes (EMS, resolved round 13).** Freerouting had given
+  DC_SENSE_LP and DC_SENSE_LN 150–165 mm perimeter loops, mostly on L3, to the
+  MCU ADC. They were re-routed directly across the centre on a digital-ripped
+  board and held fixed (block 80): about 70–75 mm, mostly F.Cu over L2, against
+  a 53–57 mm pad-to-pad distance.
 
 20 links, 0 DRC, VALIDATE_OK, all GND pads on L2.
 
@@ -257,6 +258,10 @@ VALIDATE_OK, high-Z deviation pairs 29.
 Round 12 (2 October): 89-net digital rip-up (AVCC_EN now included), 16
 Freerouting passes, automated clean-up. 18 -> 12 links, 0 DRC, VALIDATE_OK, all
 GND pads on L2, high-Z deviation pairs 28.
+
+Round 13 (3 October): the DC-sense lines were shortened first, then the digital
+nets were re-routed round them: 15 links (12 before; the direct sense routes
+take board area the digital nets used), 0 DRC, VALIDATE_OK, all GND pads on L2.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
