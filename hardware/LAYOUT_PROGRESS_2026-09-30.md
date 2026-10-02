@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **28** |
+| Full `pcbnew` ratsnest links | 864 | **23** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -213,6 +213,14 @@ CPLD-driven copies:
   `renamed_pads` in the replay).
 
 28 links, 0 DRC, VALIDATE_OK, schematic checks PASS, high-Z deviation pairs 28.
+
+Round 11 (2 October) re-ripped the 88 plain digital nets (now including the F07
+copy nets) with 16 Freerouting passes: 28 -> 23 links, 0 DRC, VALIDATE_OK, all
+GND pads on the L2 plane (R213.2 re-tied), high-Z deviation pairs 29.
+AVCC_EN had fallen under the `AVCC_*` 0.3 mm supply-width rule; it now has an
+explicit 0.15 mm entry, so the MCU pin can escape. Two router vias beside
+other-net SMD pads (TP751, U604.6) pass DRC and are filled and capped against
+mask bridging.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
