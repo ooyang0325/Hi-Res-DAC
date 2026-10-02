@@ -120,6 +120,10 @@ def build(output_path: Path) -> None:
         board.Remove(old)
         board.Add(new)
         footprints[ref] = new
+    for net_name in record.get("added_nets", []):
+        # Nets introduced by a functional ECO (absent from the 72c24c3 source board).
+        if board.FindNet(net_name) is None:
+            board.Add(pcbnew.NETINFO_ITEM(board, net_name))
     for ref, pad_nets in record.get("renamed_pads", {}).items():
         # Layout-driven pin swaps captured in the schematic ECO overlay.
         pads = {pad.GetNumber(): pad for pad in footprints[ref].Pads()}

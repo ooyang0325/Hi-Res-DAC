@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **29** |
+| Full `pcbnew` ratsnest links | 864 | **28** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -181,6 +181,38 @@ test-point/pin net, plus RELAY_EN beside U604.6.
     now passes.
 
 29 links, 0 DRC, VALIDATE_OK, high-Z deviation pairs 28.
+
+## I²S capture copies (functional ECO F07, owner decision, 2 October)
+
+The design notes put the 330 Ω bit-perfect capture taps R228–R230 at the CPLD
+end of N2_BCLK_SRC / N2_LRCLK_SRC / N2_SDATA_SRC. Those three lines leave U202
+pins 18–20 side by side as F.Cu-only 0.15 mm 3W routes. With no vias allowed,
+the middle (LRCLK) line cannot branch a tap without crossing a neighbour, and
+the taps had been unrouted since the first iteration. The owner chose
+CPLD-driven copies:
+
+| U202 pin | New net | Series R | Capture net / MCU pin |
+| --- | --- | --- | --- |
+| 22 | N2_CPY_CK | R228 330 Ω (pad 1) | N2_CAP_CK → PB13 |
+| 15 | N2_CPY_WS | R229 330 Ω (pad 1) | N2_CAP_WS → PB12 |
+| 23 | N2_CPY_SD | R230 330 Ω (pad 1) | N2_CAP_SD → PB15 |
+
+- **Source series resistors.** R228–R230 now sit at the CPLD, 1.5–5 mm from
+  their pins. The DAC-bound SRC lines carry no capture stubs.
+- **RTL.** Must drive the three copy pins from the same I²S output registers,
+  on the same clock edge as pins 18–20.
+- **What the capture covers.** The bit-perfect capture now verifies the CPLD
+  output logic, not the waveform at the DAC pins.
+- **TP717 (SDATA test pad).** Moved onto the SDATA 45° run below R206: zero
+  stub, instead of a 6.5 mm test branch.
+- **R224.** Stays at the MCU (design note). It and the MUX_I0 pull-down R216
+  share the pocket between R210/U205 and X203. The X203 supply via moved to its
+  pad (filled) to make room.
+- **Code.** Captured in `generate_schematic.py` (asserted overlay),
+  `verify_schematic.py` (approved delta) and board block 76 (`added_nets` and
+  `renamed_pads` in the replay).
+
+28 links, 0 DRC, VALIDATE_OK, schematic checks PASS, high-Z deviation pairs 28.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 

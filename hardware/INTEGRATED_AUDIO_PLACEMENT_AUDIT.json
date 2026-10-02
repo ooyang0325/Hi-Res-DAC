@@ -61,9 +61,9 @@
       "core_R_to_DAC": 11.54,
       "core_euclidean_lower_bound": 16.72,
       "header_to_DAC": null,
-      "net_hpwl": 20.0,
+      "net_hpwl": 14.29,
       "source_to_R": 5.18,
-      "test_pad_to_DAC": 18.11
+      "test_pad_to_DAC": 8.76
     }
   },
   "iv_feedback_max_pad_distance_mm": {
@@ -118,7 +118,7 @@
       "res_center_mm": 6.26
     }
   },
-  "named_nets": 250,
+  "named_nets": 253,
   "protection_timer_pad_distance_mm": {
     "LN_L": {
       "bleed": {
@@ -200,8 +200,8 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7150.18,
-  "track_count": 6191,
+  "total_nonpower_hpwl_mm": 7148.28,
+  "track_count": 6240,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 6.61,
     "D102_VBUS_to_J101_B4": 4.89,

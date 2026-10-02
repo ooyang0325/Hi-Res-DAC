@@ -364,6 +364,26 @@ def apply_functional_eco(
     for old_pin, new_pin in cpld_moves.items():
         cpld[new_pin], cpld[old_pin] = cpld[old_pin], "NC"
     pins["U202"] = [Pin(pin.number, pin.name, cpld[pin.number]) for pin in pins["U202"]]
+    # Functional ECO F07 (owner decision, 2 October): I2S capture copies. The three DAC-bound
+    # N2_*_SRC lines leave pins 18-20 side by side as F.Cu-only 3W routes, so the 330 ohm
+    # bit-perfect capture taps cannot branch at the CPLD end. The CPLD now drives dedicated
+    # copies of BCLK/LRCLK/SDATA on spare pins 22/15/23 into R228/R229/R230, which become
+    # source series resistors; the DAC lines carry no capture stubs. RTL: duplicate the three
+    # I2S output registers onto the copy pins (same clock edge as pins 18-20).
+    copies = {"22": "N2_CPY_CK", "15": "N2_CPY_WS", "23": "N2_CPY_SD"}
+    taps = {"R228": ("N2_BCLK_SRC", "N2_CPY_CK"), "R229": ("N2_LRCLK_SRC", "N2_CPY_WS"),
+            "R230": ("N2_SDATA_SRC", "N2_CPY_SD")}
+    if set(copies.values()) & {pin.net for group in pins.values() for pin in group}:
+        raise ValueError("ECO F07 copy net name already exists in the source")
+    if (any(cpld.get(number) != "NC" for number in copies)
+            or any({pin.number: pin.net for pin in pins[ref]}.get("1") != source
+                   for ref, (source, _) in taps.items())):
+        raise ValueError("U202/R228-R230 source changed; re-review I2S capture ECO F07")
+    cpld.update(copies)
+    pins["U202"] = [Pin(pin.number, pin.name, cpld[pin.number]) for pin in pins["U202"]]
+    for ref, (_, copy) in taps.items():
+        pins[ref] = [Pin(pin.number, pin.name, copy if pin.number == "1" else pin.net)
+                     for pin in pins[ref]]
     return parts, pins, libparts
 
 
