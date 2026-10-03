@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **15** |
+| Full `pcbnew` ratsnest links | 864 | **9** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -262,6 +262,26 @@ GND pads on L2, high-Z deviation pairs 28.
 Round 13 (3 October): the DC-sense lines were shortened first, then the digital
 nets were re-routed round them: 15 links (12 before; the direct sense routes
 take board area the digital nets used), 0 DRC, VALIDATE_OK, all GND pads on L2.
+
+### U603 common-mode window thresholds (3 October)
+
+U603 (TLV1704, the I/V common-mode window) pairs CMTH_HI on pins 5/9 and
+CMTH_LO on pins 6/10 across the two pin rows, and the N6_CML / N6_CMR input
+loops wall in the pin ends. The netlist is unchanged; layout changes only:
+
+- **Divider turned.** R659 / R658 / R657 (GND–LO–HI–3V3A) are each turned 180°
+  in place so same-net pads face each other. LO and HI become 1.48 mm F.Cu
+  links. R657's 3V3A pad drops to the L3 3V3A run beside it, and R659.2 ties
+  to the existing GND via.
+- **CMR via.** N6_CMR's external link now drops to a via under the U603 body,
+  instead of a via north of pin 8, with its B.Cu trunk east of the escapes.
+- **Escapes.** Pins 9/10 escape north and pins 5/6 escape south through
+  staggered vias; all four join the divider on L4.
+- **Protection.** The CMTH nets are held in a hand block (block 81) and are
+  excluded from later rip-ups.
+
+Round 15 then re-routed the 87 plain digital nets around them: 9 links, 0 DRC,
+VALIDATE_OK, all GND pads on L2 (R239.2 re-tied).
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
