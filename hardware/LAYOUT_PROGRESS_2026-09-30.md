@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **9** |
+| Full `pcbnew` ratsnest links | 864 | **7** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -331,6 +331,12 @@ on L2, high-Z deviation pairs 30.
   N6_ARM, LED_G, N2_AVCC_EN_G, N2_LINK_FRAME_MCU, LINK_MISO,
   N2_LINK_MOSI_MCU, N2_V3A_MON_PIN, CPLD_IRQ and CPLD_JTCK.
 - **Lengths.** DC_SENSE_LP / LN stay at 70 / 75 mm; LRCLK_FB is 42 mm.
+
+Round 21 (5 October; 25 passes) repeated the plain-net rip-up on the committed
+board: 9 → 7 links, 0 DRC, VALIDATE_OK, all GND pads on L2. Open: CPLD_JTMS,
+LED_G, N2_DCS_LN_PIN, LINK_MISO, N2_LINK_MOSI_MCU, N2_V3A_MON_PIN and N6_OLP_R.
+High-Z deviation pairs rose to 34 (the re-routed digital nets pass some high-Z
+nodes at 0.3-0.5 mm); review before release.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
