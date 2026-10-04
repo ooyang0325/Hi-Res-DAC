@@ -194,13 +194,16 @@ CPLD-driven copies:
 | U202 pin | New net | Series R | Capture net / MCU pin |
 | --- | --- | --- | --- |
 | 22 | N2_CPY_CK | R228 330 Ω (pad 1) | N2_CAP_CK → PB13 |
-| 15 | N2_CPY_WS | R229 330 Ω (pad 1) | N2_CAP_WS → PB12 |
+| 13 (existing) | LRCLK_FB | R229 330 Ω (pad 1) | N2_CAP_WS → PB12 |
 | 23 | N2_CPY_SD | R230 330 Ω (pad 1) | N2_CAP_SD → PB15 |
 
 - **Source series resistors.** R228–R230 now sit at the CPLD, 1.5–5 mm from
   their pins. The DAC-bound SRC lines carry no capture stubs.
-- **RTL.** Must drive the three copy pins from the same I²S output registers,
-  on the same clock edge as pins 18–20.
+- **WS tap (revised 3 October).** WS needs no new pin: LRCLK_FB (pin 13) is
+  already a copy of LRCLK from its own output register, routed to MCU PD2.
+  R229 taps it beside the CPLD, so only pins 22 and 23 are new.
+- **RTL.** Must drive pins 22 (BCLK copy) and 23 (SDATA copy) from the same
+  I²S output registers, on the same clock edge as pins 18–20.
 - **What the capture covers.** The bit-perfect capture now verifies the CPLD
   output logic, not the waveform at the DAC pins.
 - **TP717 (SDATA test pad).** Moved onto the SDATA 45° run below R206: zero

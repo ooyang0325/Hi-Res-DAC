@@ -85964,14 +85964,14 @@
       "2": "",
       "3": "",
       "22": "N2_CPY_CK",
-      "15": "N2_CPY_WS",
+      "15": "",
       "23": "N2_CPY_SD"
     },
     "R228": {
       "1": "N2_CPY_CK"
     },
     "R229": {
-      "1": "N2_CPY_WS"
+      "1": "LRCLK_FB"
     },
     "R230": {
       "1": "N2_CPY_SD"
@@ -86118,7 +86118,6 @@
   ],
   "added_nets": [
     "N2_CPY_CK",
-    "N2_CPY_WS",
     "N2_CPY_SD"
   ],
   "l2_clearance_mm": 0.3

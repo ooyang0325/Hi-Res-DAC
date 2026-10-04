@@ -142,7 +142,7 @@ def run() -> None:
         connected = sum(pin.net != "NC" for pins in design_pins.values() for pin in pins)
         nc_count = len(expected_nodes) - connected
         named_nets = {pin.net for group in design_pins.values() for pin in group if pin.net != "NC"}
-        if (len(parts), len(expected_nodes), connected, nc_count, len(named_nets)) != (534, 1465, 1425, 40, 253):  # F07: +3 CPLD copy nets
+        if (len(parts), len(expected_nodes), connected, nc_count, len(named_nets)) != (534, 1465, 1424, 41, 252):  # F07: +2 CPLD copy nets
             raise AssertionError("Unexpected post-ECO designator, pin or net counts")
 
         source_nodes = {(ref, pin.number): pin.net for ref, group in workbook_pins.items() for pin in group}
@@ -169,10 +169,10 @@ def run() -> None:
             ("U202", "14"): ("CPLD_IRQ", "NC"), ("U202", "29"): ("NC", "CPLD_IRQ"),
             ("U202", "2"): ("OSC48_EN", "NC"), ("U202", "31"): ("NC", "OSC48_EN"),
             ("U202", "3"): ("OSC44_EN", "NC"), ("U202", "8"): ("NC", "OSC44_EN"),
-            # ECO F07: CPLD-driven I2S capture copies into R228-R230 (RTL duplicates the outputs)
-            ("U202", "22"): ("NC", "N2_CPY_CK"), ("U202", "15"): ("NC", "N2_CPY_WS"),
+            # ECO F07: CPLD-driven BCLK/SDATA capture copies into R228/R230; R229 taps LRCLK_FB (WS)
+            ("U202", "22"): ("NC", "N2_CPY_CK"),
             ("U202", "23"): ("NC", "N2_CPY_SD"),
-            ("R228", "1"): ("N2_BCLK_SRC", "N2_CPY_CK"), ("R229", "1"): ("N2_LRCLK_SRC", "N2_CPY_WS"),
+            ("R228", "1"): ("N2_BCLK_SRC", "N2_CPY_CK"), ("R229", "1"): ("N2_LRCLK_SRC", "LRCLK_FB"),
             ("R230", "1"): ("N2_SDATA_SRC", "N2_CPY_SD"),
         }
         approved_added = {

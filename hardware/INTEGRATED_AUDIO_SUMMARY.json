@@ -121,7 +121,7 @@
   "manual_added_copper_items": 6459,
   "manual_moves": 191,
   "manual_replaced_source_copper_items": 8,
-  "named_nets": 253,
+  "named_nets": 252,
   "near_right_angle_free_track_bends": 0,
   "orthogonal_branches_without_through": 0,
   "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; L3 VPOS trunk from U501/C510 connected",

@@ -367,11 +367,12 @@ def apply_functional_eco(
     # Functional ECO F07 (owner decision, 2 October): I2S capture copies. The three DAC-bound
     # N2_*_SRC lines leave pins 18-20 side by side as F.Cu-only 3W routes, so the 330 ohm
     # bit-perfect capture taps cannot branch at the CPLD end. The CPLD now drives dedicated
-    # copies of BCLK/LRCLK/SDATA on spare pins 22/15/23 into R228/R229/R230, which become
-    # source series resistors; the DAC lines carry no capture stubs. RTL: duplicate the three
-    # I2S output registers onto the copy pins (same clock edge as pins 18-20).
-    copies = {"22": "N2_CPY_CK", "15": "N2_CPY_WS", "23": "N2_CPY_SD"}
-    taps = {"R228": ("N2_BCLK_SRC", "N2_CPY_CK"), "R229": ("N2_LRCLK_SRC", "N2_CPY_WS"),
+    # copies of BCLK and SDATA on spare pins 22/23 into R228/R230, which become source series
+    # resistors; WS is captured from LRCLK_FB (pin 13), which the notes already define as a copy of
+    # LRCLK from its own output register (R229 now taps it). The DAC lines carry no capture stubs.
+    # RTL: duplicate the BCLK and SDATA output registers onto pins 22/23 (same edge as 18/20).
+    copies = {"22": "N2_CPY_CK", "23": "N2_CPY_SD"}
+    taps = {"R228": ("N2_BCLK_SRC", "N2_CPY_CK"), "R229": ("N2_LRCLK_SRC", "LRCLK_FB"),
             "R230": ("N2_SDATA_SRC", "N2_CPY_SD")}
     if set(copies.values()) & {pin.net for group in pins.values() for pin in group}:
         raise ValueError("ECO F07 copy net name already exists in the source")

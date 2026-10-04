@@ -60,13 +60,13 @@
       "body_to_edge_mm": 2.2,
       "class": null,
       "jlc_body_min_mm": 2.5,
-      "ref": "J202"
+      "ref": "J201"
     },
     {
       "body_to_edge_mm": 2.2,
       "class": null,
       "jlc_body_min_mm": 2.5,
-      "ref": "J201"
+      "ref": "J202"
     }
   ]
 }

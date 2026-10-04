@@ -596,7 +596,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
     tvs = json.loads(tvs_path.read_text())
     trace = json.loads(trace_path.read_text())
     manual = json.loads((HERE / "INTEGRATED_AUDIO_MANUAL_DELTA.json").read_text())
-    if placement["footprints"] != 544 or placement["named_nets"] != 253:  # F07: +3 CPLD copy nets
+    if placement["footprints"] != 544 or placement["named_nets"] != 252:  # F07: +2 CPLD copy nets
         raise AssertionError("Integrated study population/net count changed")
     if placement["bbox_overlaps"] or placement["high_z_clock_pad_gap_violations"]:
         raise AssertionError("Integrated study overlap or sensitive-to-clock gap")
@@ -879,7 +879,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
     return {
         "board": board_path.name,
         "footprints": 544,
-        "named_nets": 253,
+        "named_nets": 252,
         "manual_moves": len(manual["moved_footprints"]),
         "manual_replaced_source_copper_items": len(manual.get("removed_source_copper", [])),
         "manual_added_copper_items": len(manual["added_copper"]),

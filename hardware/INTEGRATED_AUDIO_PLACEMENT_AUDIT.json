@@ -118,7 +118,7 @@
       "res_center_mm": 6.26
     }
   },
-  "named_nets": 253,
+  "named_nets": 252,
   "protection_timer_pad_distance_mm": {
     "LN_L": {
       "bleed": {
@@ -200,7 +200,7 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7144.2,
+  "total_nonpower_hpwl_mm": 7145.0,
   "track_count": 6486,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 6.61,
