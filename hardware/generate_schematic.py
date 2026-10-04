@@ -385,6 +385,14 @@ def apply_functional_eco(
     for ref, (_, copy) in taps.items():
         pins[ref] = [Pin(pin.number, pin.name, copy if pin.number == "1" else pin.net)
                      for pin in pins[ref]]
+    # Functional ECO F08 (layout-driven CPLD pin rotation, 4 October): east-row IO pins 21-23
+    # become N2_CPY_CK / N2_CPY_SD / MCLK_EN (top to bottom: 23 MCLK_EN). The two copies run
+    # south-east to R228/R230 and MCLK_EN north-west, so MCLK_EN must take the top pin or it
+    # crosses both copies at the pin row. RTL pin constraint change only.
+    if (cpld.get("21"), cpld.get("22"), cpld.get("23")) != ("MCLK_EN", "N2_CPY_CK", "N2_CPY_SD"):
+        raise ValueError("U202 pins 21-23 changed; re-review CPLD pin ECO F08")
+    cpld["21"], cpld["22"], cpld["23"] = "N2_CPY_CK", "N2_CPY_SD", "MCLK_EN"
+    pins["U202"] = [Pin(pin.number, pin.name, cpld[pin.number]) for pin in pins["U202"]]
     return parts, pins, libparts
 
 

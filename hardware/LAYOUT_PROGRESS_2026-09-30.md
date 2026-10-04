@@ -193,16 +193,16 @@ CPLD-driven copies:
 
 | U202 pin | New net | Series R | Capture net / MCU pin |
 | --- | --- | --- | --- |
-| 22 | N2_CPY_CK | R228 330 Ω (pad 1) | N2_CAP_CK → PB13 |
+| 21 (F08; was 22) | N2_CPY_CK | R228 330 Ω (pad 1) | N2_CAP_CK → PB13 |
 | 13 (existing) | LRCLK_FB | R229 330 Ω (pad 1) | N2_CAP_WS → PB12 |
-| 23 | N2_CPY_SD | R230 330 Ω (pad 1) | N2_CAP_SD → PB15 |
+| 22 (F08; was 23) | N2_CPY_SD | R230 330 Ω (pad 1) | N2_CAP_SD → PB15 |
 
 - **Source series resistors.** R228–R230 now sit at the CPLD, 1.5–5 mm from
   their pins. The DAC-bound SRC lines carry no capture stubs.
 - **WS tap (revised 3 October).** WS needs no new pin: LRCLK_FB (pin 13) is
   already a copy of LRCLK from its own output register, routed to MCU PD2.
-  R229 taps it beside the CPLD, so only pins 22 and 23 are new.
-- **RTL.** Must drive pins 22 (BCLK copy) and 23 (SDATA copy) from the same
+  R229 taps it beside the CPLD, so only two copy pins are new (21 and 22 after ECO F08).
+- **RTL.** Must drive pins 21 (BCLK copy) and 22 (SDATA copy; ECO F08) from the same
   I²S output registers, on the same clock edge as pins 18–20.
 - **What the capture covers.** The bit-perfect capture now verifies the CPLD
   output logic, not the waveform at the DAC pins.
@@ -285,6 +285,52 @@ loops wall in the pin ends. The netlist is unchanged; layout changes only:
 
 Round 15 then re-routed the 87 plain digital nets around them: 9 links, 0 DRC,
 VALIDATE_OK, all GND pads on L2 (R239.2 re-tied).
+
+### Held nets: comparator and MCU/CPLD clusters (4 October)
+
+Every remaining link sat in one of two clusters. These changes are layout only,
+except for ECO F08, which is a CPLD pin constraint.
+
+**Comparator cluster (U606).**
+- **R690 (N6_TRIP pull-up, block 83).** It moved from among the comparator
+  dividers onto the Q621 gate → U606.13 run, turned 180°.
+  - 3V3D comes from the B.Cu 3V3D spine through a filled via-in-pad.
+  - A TRIP link from its old position would have walled in R673.1 and R670.2.
+- **R693/R694 (HREF divider, block 84).** They stand beside U606.11.
+  - VPOS comes from R672's via, and R694.2 has a new GND via.
+  - HREF enters the pin on one diagonal, 0.22 mm from each neighbour.
+  - R660's VPOS spur now runs on to R672's via.
+- **REF13 / V13_CMP (block 85).** Re-routed against fixed copper, REF13 first.
+- **N6_H → R671.1.** A filled via above the pad and a 45° L4 run.
+
+**MCU/CPLD cluster.**
+- **DC_SENSE_LP off U201's east side (block 86).** The direct DC-sense route
+  ran on F.Cu at x 72.3 mm, 0.9 mm from the U201 pin 17–32 tips, so none of
+  those pins had a via site. It now drops to L4 north of pin 32 and returns
+  to F.Cu south of pin 17. Length is unchanged; L4 lies between L3 and GND5.
+- **ECO F08 (CPLD pin rotation).** U202 east-row I/O pins 21/22/23 become
+  N2_CPY_CK / N2_CPY_SD / MCLK_EN. The two capture copies run south-east to
+  R228/R230 and MCLK_EN runs north-west, so MCLK_EN must take the top pin.
+  - Captured in `generate_schematic.py` (asserted overlay) and
+    `verify_schematic.py` (approved delta).
+  - **The CPLD RTL pin constraints must follow this rotation.**
+- **Joint re-route (block 87).** CPLD_NRST, LRCLK_FB, MCLK_EN, the F07
+  copies, LINK_MOSI, N2_LINK_SCK_MCU/BUF, N2_LINK_FRAME_MCU, N6_ARM_MCU and
+  N2_DCS_RN_PIN were re-routed together against fixed copper. CPLD_NRST went
+  first, then LRCLK_FB; all 16 links closed.
+  - LRCLK_FB chains U202.13 → R229.1 (WS capture tap) → U201.54.
+- **Held nets.** These nets join the held list, so later rip-ups leave them in
+  place.
+
+Freerouting rounds 19 and 20 (4 October) then re-routed the 71 plain nets from
+scratch around the held copper: 24 → 9 links, 0 DRC, VALIDATE_OK, all GND pads
+on L2, high-Z deviation pairs 30.
+- **Round 18 fix.** The Freerouting prep had written 4-layer via padstack names
+  into the net classes, so round 18 could place no vias.
+- **What remains.** Every remaining link is a plain digital control net:
+  N6_ARM, LED_G, N2_AVCC_EN_G, N2_LINK_FRAME_MCU, LINK_MISO,
+  N2_LINK_MOSI_MCU, N2_V3A_MON_PIN, CPLD_IRQ and CPLD_JTCK.
+- **Lengths.** DC_SENSE_LP / LN stay at 70 / 75 mm; LRCLK_FB is 42 mm.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
