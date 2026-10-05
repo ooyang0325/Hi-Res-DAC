@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 import pcbnew
@@ -34,8 +35,8 @@ def audit(path: Path) -> dict:
         "min_clearance": 0.15,
         "min_copper_edge_clearance": 0.40,  # JLC V-cut edge
         "min_hole_clearance": 0.28,    # JLC PTH-to-track minimum
-        "min_via_annular_width": 0.20, # JLC recommended multilayer ring
-        "min_via_diameter": 0.60,      # with intended 0.20 mm drill
+        "min_via_annular_width": 0.15, # JLC multilayer absolute ring (slow digital nets only; else 0.20)
+        "min_via_diameter": 0.50,      # slow digital nets only (owner decision 5 Oct); else 0.60
         "min_silk_clearance": 0.15,
         "min_text_height": 1.0,
         "min_text_thickness": 0.15,
@@ -71,6 +72,13 @@ def audit(path: Path) -> dict:
                     if fp.GetReference() in {"J701", "J702"} else None),
             })
     slots.sort(key=lambda item: (item["ref"], item["pad"]))
+    dru = path.with_suffix(".kicad_dru")
+    digital = set()
+    if dru.exists():
+        text = dru.read_text()
+        start = text.find('(rule "Slow digital control nets 0.15 mm"')
+        if start >= 0:
+            digital = set(re.findall(r"A\.NetName == '([^']+)'", text[start:text.find("\n\n", start)]))
     vias = []
     for item in board.GetTracks():
         if not isinstance(item, pcbnew.PCB_VIA):
@@ -83,8 +91,9 @@ def audit(path: Path) -> dict:
             "drill_mm": round(drill, 3), "ring_mm": round(ring, 3),
             "through": item.GetViaType() == pcbnew.VIATYPE_THROUGH,
             "meets_project_target": (drill + 1e-6 >= 0.20
-                                     and diameter + 1e-6 >= 0.60
-                                     and ring + 1e-6 >= 0.20
+                                     and (diameter + 1e-6 >= 0.60 and ring + 1e-6 >= 0.20
+                                          or item.GetNetname() in digital
+                                          and diameter + 1e-6 >= 0.50 and ring + 1e-6 >= JLC_MULTILAYER_RING_ABSOLUTE_MM)
                                      and item.GetViaType() == pcbnew.VIATYPE_THROUGH),
         })
     return {

@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **7** |
+| Full `pcbnew` ratsnest links | 864 | **4** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -337,6 +337,32 @@ board: 9 → 7 links, 0 DRC, VALIDATE_OK, all GND pads on L2. Open: CPLD_JTMS,
 LED_G, N2_DCS_LN_PIN, LINK_MISO, N2_LINK_MOSI_MCU, N2_V3A_MON_PIN and N6_OLP_R.
 High-Z deviation pairs rose to 34 (the re-routed digital nets pass some high-Z
 nodes at 0.3-0.5 mm); review before release.
+
+**Smaller vias for slow digital nets (owner decision, 5 October).** The
+QFN-32 U202 north row and the U201 east row had no 0.6 mm via sites left.
+- **Slow digital control nets.** The 47 nets of the DRU digital rule may use
+  0.5 / 0.2 mm vias (0.15 mm ring, the JLC absolute minimum).
+- **Every other via** stays at 0.6 mm or larger with a 0.2 mm ring. The new
+  DRU rule *Vias 0.6 mm except slow digital control nets* enforces this, and
+  `audit_jlc_fab.py` checks it.
+- **Board floors.** The manifest's `design_rule_overrides` sets the board
+  floors to 0.5 / 0.15 mm. The replay writes them into
+  `DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pro`; that project-file
+  change is committed by the owner.
+
+**DC_SENSE_LP onto L3 (block 86b).** The L4 run still took the via band east
+of U201. Its middle section now runs on L3 at x 70.5 mm, under the U201 east
+pads, and the 90° rejoin is now two 45° bends.
+
+**MCU group re-route (block 88).** The 18 held MCU/CPLD nets were re-routed
+together with the smaller vias, and 27 of 28 links closed. The new
+N2_V3A_MON_PIN route keeps 1 mm clear of fiducial FID7.
+
+**Round 26 (6 October; 25 passes).** A plain-net rip-up around the new held
+copper took the board to **4 links**, with 0 DRC errors and VALIDATE_OK.
+- **Open links:** GND (U201.63 is not tied to L2), LINK_MISO, CPLD_JTCK and
+  CPLD_JTMS.
+- **High-Z deviation pairs:** 35.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 

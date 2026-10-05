@@ -192,6 +192,12 @@ def build(output_path: Path) -> None:
     title.SetTitle("DAC-HPA — 120 × 100 mm integrated audio study")
     title.SetComment(0, "DAC/CPLD clocks, LDO loops, I/V, amplifiers and jacks under study")
     title.SetComment(1, "Main feeds, via process, returns, stability and R-15 HOLD")
+    overrides = record.get("design_rule_overrides", {})
+    settings = board.GetDesignSettings()
+    if "min_via_diameter" in overrides:
+        settings.m_ViasMinSize = pcbnew.FromMM(overrides["min_via_diameter"])
+    if "min_via_annular_width" in overrides:
+        settings.m_ViasMinAnnularWidth = pcbnew.FromMM(overrides["min_via_annular_width"])
     if not pcbnew.ZONE_FILLER(board).Fill(board.Zones()):
         raise RuntimeError("Could not refill continuous L2 GND around the signal vias")
     pcbnew.SaveBoard(str(output_path), board)

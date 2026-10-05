@@ -304,8 +304,8 @@
     "min_text_height": 1.0,
     "min_text_thickness": 0.15,
     "min_track_width": 0.15,
-    "min_via_annular_width": 0.2,
-    "min_via_diameter": 0.6
+    "min_via_annular_width": 0.15,
+    "min_via_diameter": 0.5
   },
   "project_settings_below_target": {},
   "slot_ring_jlc_absolute_min_mm": 0.15,
@@ -449,270 +449,6 @@
       "through": true
     },
     {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
@@ -961,312 +697,8 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "GND",
       "ring_mm": 0.2,
@@ -1585,14 +1017,6 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
       "meets_project_target": true,
@@ -1649,464 +1073,8 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "GND",
       "ring_mm": 0.2,
@@ -2427,390 +1395,6 @@
     {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
       "meets_project_target": true,
       "net": "GND",
       "ring_mm": 0.2,
@@ -3489,46 +2073,6 @@
       "through": true
     },
     {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
@@ -3563,982 +2107,6 @@
     {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "GND",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
       "meets_project_target": true,
       "net": "GND",
       "ring_mm": 0.2,
@@ -5041,6 +2609,494 @@
       "through": true
     },
     {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
       "meets_project_target": true,
@@ -5209,6 +3265,406 @@
       "through": true
     },
     {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
       "meets_project_target": true,
@@ -5355,6 +3811,1550 @@
     {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
+      "meets_project_target": true,
+      "net": "GND",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
       "meets_project_target": true,
       "net": "GND",
       "ring_mm": 0.2,
@@ -6145,67 +6145,59 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RELAY_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RELAY_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RELAY_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RELAY_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RELAY_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RELAY_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RELAY_EN",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "RELAY_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -6745,8 +6737,8 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
+      "diameter_mm": 0.7,
+      "drill_mm": 0.3,
       "meets_project_target": true,
       "net": "1V3",
       "ring_mm": 0.2,
@@ -6777,185 +6769,281 @@
       "through": true
     },
     {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "1V3",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "1V3",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "1V3",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "1V3",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "1V3",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "1V3",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "VNEG",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
       "meets_project_target": true,
-      "net": "1V3",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "1V3",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "1V3",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "1V3",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "1V3",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "1V3",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.7,
-      "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
       "net": "VNEG",
       "ring_mm": 0.2,
       "through": true
@@ -7003,102 +7091,6 @@
     {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "VNEG",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "VNEG",
       "ring_mm": 0.2,
@@ -7449,14 +7441,6 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N2_V33_CPLD",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
       "meets_project_target": true,
@@ -7476,6 +7460,14 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
+      "net": "N2_V33_CPLD",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
       "net": "N6_V13_CMP",
       "ring_mm": 0.2,
       "through": true
@@ -7572,14 +7564,6 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "N6_CLR_N",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
       "net": "N6_ARM",
       "ring_mm": 0.2,
       "through": true
@@ -7609,14 +7593,6 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_ARM",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.8,
       "drill_mm": 0.4,
       "meets_project_target": true,
@@ -7933,14 +7909,6 @@
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "3V3M",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "AVCC_EN",
       "ring_mm": 0.2,
       "through": true
     },
@@ -8053,22 +8021,6 @@
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N6_VLLN",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_OLN_L",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_OLN_L",
       "ring_mm": 0.2,
       "through": true
     },
@@ -8141,14 +8093,6 @@
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N6_V13_TI",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_V13_TEST",
       "ring_mm": 0.2,
       "through": true
     },
@@ -8313,10 +8257,98 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "DC_PERMIT_N",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "DC_PERMIT_N",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "DC_PERMIT_N",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "DC_PERMIT_N",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "DC_PERMIT_N",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "DC_PERMIT_N",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "SWDIO",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "SWDIO",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "SWCLK",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "SWCLK",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "SWCLK",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "NRST",
       "ring_mm": 0.2,
       "through": true
     },
@@ -8324,7 +8356,7 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "DC_PERMIT_N",
+      "net": "NRST",
       "ring_mm": 0.2,
       "through": true
     },
@@ -8332,8 +8364,72 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "DC_PERMIT_N",
+      "net": "NRST",
       "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "BOOT0",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "BOOT0",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "BOOT0",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "USART_TX",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "USART_TX",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "USART_TX",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "USART_RX",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "USART_RX",
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -8433,70 +8529,6 @@
       "through": true
     },
     {
-      "diameter_mm": 0.8,
-      "drill_mm": 0.4,
-      "meets_project_target": true,
-      "net": "5V_SYS",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.8,
-      "drill_mm": 0.4,
-      "meets_project_target": true,
-      "net": "5V_SYS",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "5V_SYS",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.8,
-      "drill_mm": 0.4,
-      "meets_project_target": true,
-      "net": "5V_SYS",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.8,
-      "drill_mm": 0.4,
-      "meets_project_target": true,
-      "net": "5V_SYS",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.8,
-      "drill_mm": 0.4,
-      "meets_project_target": true,
-      "net": "5V_SYS",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.8,
-      "drill_mm": 0.4,
-      "meets_project_target": true,
-      "net": "5V_SYS",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "5V_SYS",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
@@ -8537,8 +8569,72 @@
       "through": true
     },
     {
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4,
+      "meets_project_target": true,
+      "net": "5V_SYS",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4,
+      "meets_project_target": true,
+      "net": "5V_SYS",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4,
+      "meets_project_target": true,
+      "net": "5V_SYS",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "5V_SYS",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "5V_SYS",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4,
+      "meets_project_target": true,
+      "net": "5V_SYS",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "5V_SYS",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4,
+      "meets_project_target": true,
+      "net": "5V_SYS",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4,
       "meets_project_target": true,
       "net": "5V_SYS",
       "ring_mm": 0.2,
@@ -8581,14 +8677,6 @@
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N4_IVR_N",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "AUD_EN",
       "ring_mm": 0.2,
       "through": true
     },
@@ -8705,24 +8793,24 @@
       "through": true
     },
     {
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4,
+      "meets_project_target": true,
+      "net": "5V_ANA_F",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4,
+      "meets_project_target": true,
+      "net": "5V_ANA_F",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "5V_ANA_F",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.8,
-      "drill_mm": 0.4,
-      "meets_project_target": true,
-      "net": "5V_ANA_F",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.8,
-      "drill_mm": 0.4,
       "meets_project_target": true,
       "net": "5V_ANA_F",
       "ring_mm": 0.2,
@@ -8820,46 +8908,6 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "N6_OLP_L",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_OLP_L",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_OLP_L",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_OLP_L",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_OLP_L",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
       "net": "N6_REFMCK",
       "ring_mm": 0.2,
       "through": true
@@ -8870,6 +8918,62 @@
       "meets_project_target": true,
       "net": "N6_REFMCK",
       "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "LED_G",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "LED_G",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "LED_G",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "LED_G",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "LED_G",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "LED_G",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "LED_G",
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -9180,30 +9284,6 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "NRST",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "NRST",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "NRST",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
       "net": "N4_RP_OUT",
       "ring_mm": 0.2,
       "through": true
@@ -9337,27 +9417,43 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_MCLK_OE",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_MCLK_OE",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_MCLK_OE",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_MCLK_OE",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_MCLK_OE",
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -9381,14 +9477,6 @@
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N4_IVR_P",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N2_AVCC_EN_G",
       "ring_mm": 0.2,
       "through": true
     },
@@ -9549,6 +9637,14 @@
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N6_DA_L",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N6_GMC",
       "ring_mm": 0.2,
       "through": true
     },
@@ -9780,30 +9876,6 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "N6_SR_C",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_SR_C",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_SR_C",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
       "net": "LEG_RN",
       "ring_mm": 0.2,
       "through": true
@@ -9905,51 +9977,67 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LRCLK_FB",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LRCLK_FB",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LRCLK_FB",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LRCLK_FB",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_CAP_WS",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_CAP_WS",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_CAP_WS",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_CAP_WS",
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -9985,91 +10073,75 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "BOOT0",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "BOOT0",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "BOOT0",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "BOOT0",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_DCS_LP_PIN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_DCS_LP_PIN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_DCS_LN_PIN",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_DCS_LN_PIN",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_DCS_LN_PIN",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_DCS_RP_PIN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_DCS_RP_PIN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N2_DCS_RP_PIN",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_DCS_RN_PIN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_DCS_RN_PIN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -10105,43 +10177,99 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_LINK_FRAME_MCU",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_LINK_FRAME_MCU",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_LINK_SCK_MCU",
       "ring_mm": 0.2,
       "through": true
     },
     {
       "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_LINK_SCK_MCU",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_LINK_MOSI_MCU",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_LINK_MOSI_MCU",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_V3A_MON_PIN",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_V3A_MON_PIN",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_NRST",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_NRST",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_NRST",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "CPLD_NRST",
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -10169,211 +10297,211 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_ARM_MCU",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_BOOT1",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_BOOT1",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "I2C_SCL",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "I2C_SCL",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "I2C_SCL",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "I2C_SCL",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "I2C_SDA",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "I2C_SDA",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "I2C_SDA",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "I2C_SDA",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_CAP_CK",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_CAP_CK",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_CAP_CK",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_MCLK_PERMIT",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_MCLK_PERMIT",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_MCLK_PERMIT",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_MCLK_PERMIT",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_CAP_SD",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "N2_CAP_SD",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LED_R",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LED_R",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LED_R",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LED_R",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_IRQ",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_IRQ",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_IRQ",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "CPLD_IRQ",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -10401,227 +10529,147 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "USART_TX",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "USART_TX",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "USART_RX",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "USART_RX",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "USART_RX",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "SWDIO",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "SWDIO",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "SWDIO",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "SWCLK",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "SWCLK",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "SWCLK",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "SWCLK",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ILIM_HI",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ILIM_HI",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ILIM_HI",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "ILIM_HI",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_AUD_EN_MCU",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N2_AUD_EN_MCU",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ANA_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ANA_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ANA_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ANA_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RAILS_OK_N",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RAILS_OK_N",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RAILS_OK_N",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "RAILS_OK_N",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ANA_FAULT_N",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ANA_FAULT_N",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ANA_FAULT_N",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "ANA_FAULT_N",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "ANA_FAULT_N",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -10796,6 +10844,22 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
+      "net": "N6_OAR",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "N6_BR",
+      "ring_mm": 0.2,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
       "net": "N6_BR",
       "ring_mm": 0.2,
       "through": true
@@ -10961,14 +11025,6 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "DVCC",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
       "diameter_mm": 0.7,
       "drill_mm": 0.3,
       "meets_project_target": true,
@@ -10980,7 +11036,7 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "N6_OLP_R",
+      "net": "DVCC",
       "ring_mm": 0.2,
       "through": true
     },
@@ -11228,14 +11284,6 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "N6_BL",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
       "net": "N6_EL",
       "ring_mm": 0.2,
       "through": true
@@ -11260,46 +11308,6 @@
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "N6_EL",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "OSC48_EN",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "OSC48_EN",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "OSC48_EN",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "OSC48_EN",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
       "net": "N6_VLLP",
       "ring_mm": 0.2,
       "through": true
@@ -11457,51 +11465,43 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "OSC44_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "OSC44_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "OSC44_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "OSC44_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "OSC44_EN",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "OSC44_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -11561,18 +11561,42 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "MCLK_EN",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "MCLK_EN",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "MCLK_EN",
+      "ring_mm": 0.15,
+      "through": true
+    },
+    {
+      "diameter_mm": 0.5,
+      "drill_mm": 0.2,
+      "meets_project_target": true,
+      "net": "MCLK_EN",
+      "ring_mm": 0.15,
       "through": true
     },
     {
       "diameter_mm": 0.6,
       "drill_mm": 0.2,
       "meets_project_target": true,
-      "net": "MCLK_EN",
+      "net": "N2_LINK_SCK_BUF",
       "ring_mm": 0.2,
       "through": true
     },
@@ -11641,19 +11665,19 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LINK_FRAME",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LINK_FRAME",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -11673,27 +11697,19 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N2_LINK_MOSI_BUF",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LINK_MOSI",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "LINK_MOSI",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
@@ -11729,59 +11745,35 @@
       "through": true
     },
     {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_ER",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_ER",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
-      "drill_mm": 0.2,
-      "meets_project_target": true,
-      "net": "N6_ER",
-      "ring_mm": 0.2,
-      "through": true
-    },
-    {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_JTCK",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_JTCK",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_JTMS",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
-      "diameter_mm": 0.6,
+      "diameter_mm": 0.5,
       "drill_mm": 0.2,
       "meets_project_target": true,
       "net": "CPLD_JTMS",
-      "ring_mm": 0.2,
+      "ring_mm": 0.15,
       "through": true
     },
     {
