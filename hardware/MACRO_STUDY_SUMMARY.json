@@ -17,7 +17,7 @@
   },
   "jlc_body_edge_proxy_findings": 0,
   "jlc_package_spacing_proxy_findings": 0,
-  "jlc_unclassified_package_refs": 16,
+  "jlc_unclassified_package_refs": 18,
   "mclk_via_TP711_pad_lower_bound_mm": 8.83,
   "named_nets": 246,
   "or_tap_to_filter_pad_distances_mm": {

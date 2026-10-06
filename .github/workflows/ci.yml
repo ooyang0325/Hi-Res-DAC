@@ -36,7 +36,7 @@ jobs:
       - name: Install CI dependencies
         run: apt-get update -qq && apt-get install -y --no-install-recommends python3-yaml
       - name: Run ${{ matrix.job }}
-        run: python3 .github/run_gitlab_job.py ${{ matrix.job }}
+        run: HOME=/home/kicad python3 .github/run_gitlab_job.py ${{ matrix.job }}   # KiCad's global symbol/footprint tables live there
       - name: Upload audit reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -60,7 +60,7 @@ jobs:
       - name: Install CI dependencies
         run: apt-get update -qq && apt-get install -y --no-install-recommends python3-yaml
       - name: Build review package
-        run: python3 .github/run_gitlab_job.py deliver_review_package
+        run: HOME=/home/kicad python3 .github/run_gitlab_job.py deliver_review_package   # KiCad's global symbol/footprint tables live there
       - name: Upload review package
         uses: actions/upload-artifact@v4
         with:

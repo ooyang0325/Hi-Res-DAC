@@ -79,8 +79,13 @@ def copper_gap(a: tuple[float, float, float, float],
                       max(0.0, a[2] - b[3], b[2] - a[3]))
 
 
-def check_board_netlist(path: Path) -> None:
-    """Reject a stale placement whose footprints or pad nets differ from capture."""
+# Parts changed by ECOs F05-F09 (1-6 Oct) after the functional-ECO and output-macro study boards were
+# frozen (29 Sep). Those historical boards skip them; the integrated study carries every ECO and is checked in full.
+POST_FREEZE_ECO_REFS = frozenset({"J201", "J202", "U202", "R228", "R229", "R230"})
+
+
+def check_board_netlist(path: Path, skip_refs: frozenset = frozenset()) -> None:
+    """Reject a stale placement whose footprints or pad nets differ from capture (except skip_refs)."""
     board = pcbnew.LoadBoard(str(path))
     actual_footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
     root = place_board.netlist_xml()
@@ -94,6 +99,8 @@ def check_board_netlist(path: Path) -> None:
         extra = sorted(set(actual_footprints) - set(expected_footprints))
         raise SystemExit(f"board footprint references differ: missing={missing}, extra={extra}")
     for ref, expected_id in expected_footprints.items():
+        if ref in skip_refs:
+            continue
         actual_id = actual_footprints[ref].GetFPIDAsString()
         if actual_id != expected_id:
             raise SystemExit(f"{ref} footprint {actual_id} != schematic {expected_id}")
@@ -102,12 +109,12 @@ def check_board_netlist(path: Path) -> None:
         for net in root.findall("./nets/net")
         if not (net.get("name") or "").startswith("unconnected-")
         for node in net.findall("node")
-        if node.get("ref") in expected_footprints
+        if node.get("ref") in expected_footprints and node.get("ref") not in skip_refs
     }
     actual_nets = {
         (fp.GetReference(), pad.GetNumber()): pad.GetNetname()
         for fp in actual_footprints.values() for pad in fp.Pads()
-        if pad.GetNumber() and pad.GetNetname()
+        if pad.GetNumber() and pad.GetNetname() and fp.GetReference() not in skip_refs
     }
     if actual_nets != expected_nets:
         wrong = sorted((key, expected_nets.get(key), actual_nets.get(key))

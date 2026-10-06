@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pcbnew
 
-from audit_placement import check_board_netlist
+from audit_placement import POST_FREEZE_ECO_REFS, check_board_netlist
 from manual_functional_eco_layout import (
     CLOCK_GROUND_PATH,
     CLOCK_GROUND_VIA,
@@ -74,7 +74,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         for slot in fab["plated_slots"] if slot["ref"] in {"J701", "J702"}
     ):
         raise AssertionError("JLC/project ring or rule screen failed")
-    check_board_netlist(board_path)
+    check_board_netlist(board_path, POST_FREEZE_ECO_REFS)
 
     local = {
         "R688.2-U621.1": pad_distance(footprints, "R688", "2", "U621", "1"),

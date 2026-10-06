@@ -40,7 +40,8 @@ def check(placement_path: Path, dfa_path: Path, drc_path: Path,
         raise SystemExit("JLC component-body-to-edge proxy has violations")
     connector_edge_exceptions = [item["ref"] for item in
                                  dfa["unclassified_body_edge_concerns"]]
-    if set(connector_edge_exceptions) - {"J101", "J702"}:
+    # J201/J202: ECO F05 programming headers, still at the historical boards' debug-pad positions.
+    if set(connector_edge_exceptions) - {"J101", "J702", "J201", "J202"}:
         raise SystemExit(f"New unclassified component-edge concerns: {connector_edge_exceptions}")
     if any(dfa["l1_output_corridor_blockers"].values()):
         raise SystemExit("A manually reserved L1 headphone corridor is blocked")

@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pcbnew
 
-from audit_placement import check_board_netlist
+from audit_placement import POST_FREEZE_ECO_REFS, check_board_netlist
 from manual_output_macro_study import FEEDBACK, LOAD_PATHS, MOVES, RELAY_LEGS, SIGNAL_VIAS
 
 
@@ -49,7 +49,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         raise AssertionError("Output study failed KiCad/JLC geometry screen")
     if len(board.GetTracks()) != 87:
         raise AssertionError("Output study partial-copper count differs")
-    check_board_netlist(board_path)
+    check_board_netlist(board_path, POST_FREEZE_ECO_REFS)
     for ref, (x_mm, y_mm, angle) in MOVES.items():
         footprint = footprints[ref]
         at = footprint.GetPosition()
