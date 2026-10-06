@@ -87212,6 +87212,696 @@
         61.2915
       ],
       "width_mm": 0.15
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        50.63,
+        41.77
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        53.7,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        58.7,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        60.92,
+        41.48
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        63.7,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        68.7,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        71.2,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        74.5,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        76.2,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        79.5,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        81.2,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        84.5,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        86.2,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        88.7,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        91.2,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        93.7,
+        41.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        47.0,
+        51.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        51.0,
+        47.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        51.0,
+        51.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        51.0,
+        54.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        50.72,
+        74.72
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        55.0,
+        43.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        54.15,
+        47.85
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        55.85,
+        103.85
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        59.0,
+        43.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        63.0,
+        47.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        63.0,
+        51.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        63.0,
+        63.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        63.4,
+        75.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        63.4,
+        119.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        67.0,
+        43.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        67.85,
+        75.85
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        71.0,
+        43.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        71.0,
+        47.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        75.57,
+        47.57
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        75.0,
+        75.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        79.4,
+        43.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        78.72,
+        47.28
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        79.0,
+        50.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        78.2,
+        115.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        83.0,
+        47.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        83.0,
+        55.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        83.0,
+        99.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        87.0,
+        43.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        87.0,
+        47.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        87.0,
+        87.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        91.0,
+        43.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        91.0,
+        47.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        90.15,
+        50.15
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        95.0,
+        43.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        94.15,
+        51.85
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        95.57,
+        67.57
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        95.57,
+        98.43
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        95.0,
+        106.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        103.0,
+        68.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        102.6,
+        131.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        103.0,
+        135.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        111.0,
+        123.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        115.0,
+        99.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        119.8,
+        51.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        119.0,
+        55.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        119.0,
+        99.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        119.0,
+        103.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        121.8,
+        63.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        121.8,
+        95.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        127.0,
+        97.8
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        129.8,
+        67.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        135.8,
+        123.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
+    },
+    {
+      "kind": "via",
+      "net": "GND",
+      "at_mm": [
+        125.5,
+        120.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.2
     }
   ],
   "removed_source_copper": [

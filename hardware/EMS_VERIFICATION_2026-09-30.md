@@ -33,6 +33,38 @@ Screens: [audit_ems_layout.py](audit_ems_layout.py) → [INTEGRATED_AUDIO_EMS_AU
 > noise floor. The stack-up is assumed and must be confirmed with JLC; the
 > USB pair must be re-dimensioned for 90 Ω on the thinner L1–L2 dielectric.
 
+> **Update 6 October — routing closed, layout iteration 1 complete.** The board
+> now has 0 ratsnest links and 0 DRC errors or warnings, with all 544
+> footprints placed. The audit was re-run on the final copper
+> (`INTEGRATED_AUDIO_EMS_AUDIT.json`).
+>
+> | Screen | 1 Oct | 6 Oct | Note |
+> | --- | ---: | ---: | --- |
+> | GND vias + PTH | 644 | 723 | MCU/CPLD and comparator areas stitched now that routing is closed (block 15) |
+> | Worst pour point to a GND via (F.Cu / L3 / L4 / B.Cu) | 9.05 mm | 6.76 / 6.76 / 6.76 / 5.95 mm | Under λ/20 up to ≈ 2.2 GHz; the 5 mm grid was placed wherever via sites exist |
+> | Largest board-edge fence gap | 47.5 mm | 13.7 mm | The 13.7 / 12.8 / 11.1 mm gaps are where edge passives (C651/C652/R946/R947 top, C509/R501/R502 bottom) sit on the fence line, plus a right-edge stretch near the jacks; all are < λ/20 at 1 GHz (15 mm) |
+> | Worst audio hum loop | LEG_LP 108 mm² | LEG_LP 120 mm² | 0.45 µV at 10 µT / 60 Hz (−10.7 dB re the 1.56 µV floor); 45 nV at 1 µT (−30.7 dB) |
+> | L2 plane fill | 89.5 % | 89.3 % | Still one continuous outline |
+> | Left–right headphone copper | 0.392 mm | 0.392 mm | LEG_LP/LEG_RP on L3 at the J701 contacts (DRU jack-pitch exception); ≥ 2 mm elsewhere. Both are low-impedance amplifier outputs, so coupling is negligible at audio frequencies |
+>
+> - **Hum loops.** The LEG_LP/LN growth comes from plain-net vias
+>   punching L2 antipads beside the legs (7.8 mm of LEG_LP lacks L2
+>   directly beneath). This still leaves > 10 dB margin at a transformer-close
+>   10 µT field.
+> - **Digital routes.** The routes added since 1 October are slow control
+>   lines: the CPLD/MCU link bus, CPLD_IRQ (ECO F09), the JTAG pins and
+>   enables. They stay inside the digital area, and none crosses the DAC
+>   core, I/V or output stages (`check_dac_core_routes` passes).
+> - **Unchanged.** The residual VHF/UHF finding and its ECO (Section 5) are
+>   unchanged. So is the N6_MCK_RC 80 MHz monitor node, 0.49–0.58 mm from
+>   N6_CML / N6_V3R_B on facing layers; review it in the next ECO.
+>
+> **Verdict.** For a home environment (1–3 V/m RF, ≤ 10 µT hum, USB supply), the
+> layout screen finds no new coupling path. Hum, ripple, Wi-Fi/BT/cellular and
+> ESD stay inside the margins of Sections 2–4. The VHF/UHF cable-borne residual
+> still needs the Section 5 ECO and the Section 6 measurements before
+> immunity can be claimed.
+
 ## 1. Home threat model
 
 | Threat | Level assumed | Coupling path on this board |

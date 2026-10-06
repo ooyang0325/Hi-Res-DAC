@@ -352,26 +352,26 @@
     ]
   ],
   "stitching": {
-    "gnd_vias_and_pth": 654,
+    "gnd_vias_and_pth": 723,
     "F.Cu": {
-      "pour_samples": 26251,
-      "worst_distance_to_gnd_via_mm": 9.46
+      "pour_samples": 26299,
+      "worst_distance_to_gnd_via_mm": 6.76
     },
     "PWR": {
-      "pour_samples": 31046,
-      "worst_distance_to_gnd_via_mm": 8.58
+      "pour_samples": 31440,
+      "worst_distance_to_gnd_via_mm": 6.76
     },
     "SIG": {
-      "pour_samples": 36585,
-      "worst_distance_to_gnd_via_mm": 9.46
+      "pour_samples": 36808,
+      "worst_distance_to_gnd_via_mm": 6.76
     },
     "B.Cu": {
       "pour_samples": 33412,
-      "worst_distance_to_gnd_via_mm": 9.46
+      "worst_distance_to_gnd_via_mm": 5.95
     },
     "edge_fence": {
-      "vias_within_2p5mm_of_edge": 140,
-      "largest_gap_mm": 47.5
+      "vias_within_2p5mm_of_edge": 156,
+      "largest_gap_mm": 13.7
     }
   },
   "jacks": {
