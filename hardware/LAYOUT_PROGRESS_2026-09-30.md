@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **4** |
+| Full `pcbnew` ratsnest links | 864 | **1** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -363,6 +363,23 @@ copper took the board to **4 links**, with 0 DRC errors and VALIDATE_OK.
 - **Open links:** GND (U201.63 is not tied to L2), LINK_MISO, CPLD_JTCK and
   CPLD_JTMS.
 - **High-Z deviation pairs:** 35.
+
+**Rounds 27 and 28 (6 October).** The U202 north row (pins 25–31, 0.4 mm
+pitch) could not escape LINK_MISO and both JTAG lines. Joint maze-router
+retries and pin-swap trials (LINK_MISO or CPLD_IRQ onto the free south-row
+pins) never closed more than 28 of the 32 group links.
+- **Round 27 (RIP).** Ten held slow-digital nets were released to Freerouting
+  for one round: LINK_MISO/MOSI/FRAME, CPLD_IRQ, CPLD_NRST, OSC48_EN,
+  OSC44_EN, MCLK_EN, N2_LINK_FRAME_MCU and N2_LINK_MOSI_MCU. Its negotiated
+  rip-up routed LINK_MISO, CPLD_JTCK and CPLD_JTMS.
+- **Round 28.** A four-variant ensemble (shuffled net order) held that copper
+  and ripped only the plain nets: **1 link**, 0 DRC errors, VALIDATE_OK.
+- **No pin changes.** No CPLD pin moved, so there is no new ECO.
+- **GND.** U201.63 had lost its GND via to the ANA_FAULT_N re-route. It now
+  reaches the GND via at (63.0, 65.0) on F.Cu (block 10). Every GND pad
+  reaches L2.
+- **Open link:** CPLD_IRQ (U201.39 to U202.29).
+- **High-Z deviation pairs:** 32.
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 
