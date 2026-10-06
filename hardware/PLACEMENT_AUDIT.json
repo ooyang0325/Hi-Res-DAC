@@ -1,0 +1,219 @@
+{
+  "bbox_overlaps": [],
+  "board": "hardware/DAC_HPA.kicad_pcb",
+  "clock_mm": {
+    "MCLK_core_euclidean_lower_bound": 8.89,
+    "MCLK_via_TP711_euclidean_lower_bound": 10.77,
+    "R203.2_to_U301.7": 7.28,
+    "R665.1_to_U301.7": 1.68,
+    "R665.2_to_U607.2": 1.75,
+    "X201.3_to_R203.1": 1.58
+  },
+  "dac_iv_pad_distance_mm": {
+    "DACL": 4.81,
+    "DACLB": 4.72,
+    "DACR": 3.13,
+    "DACRB": 3.95
+  },
+  "esd_to_nearest_jack_pad_mm": {
+    "D701": {
+      "closest_jack_pad": "J701.7",
+      "distance_mm": 3.83,
+      "net": "JACK_LP"
+    },
+    "D702": {
+      "closest_jack_pad": "J701.5",
+      "distance_mm": 4.03,
+      "net": "JACK_RP"
+    },
+    "D703": {
+      "closest_jack_pad": "J701.6",
+      "distance_mm": 4.03,
+      "net": "JACK_LN"
+    },
+    "D704": {
+      "closest_jack_pad": "J701.2",
+      "distance_mm": 4.03,
+      "net": "JACK_RN"
+    }
+  },
+  "fam_clk_hpwl_mm": 7.11,
+  "footprints": 536,
+  "high_z_clock_pad_gap_violations": [],
+  "i2s_mm": {
+    "BCLK": {
+      "core_R_to_DAC": 12.17,
+      "core_euclidean_lower_bound": 22.82,
+      "header_to_DAC": null,
+      "net_hpwl": 19.2,
+      "source_to_R": 10.65,
+      "test_pad_to_DAC": 12.53
+    },
+    "LRCLK": {
+      "core_R_to_DAC": 14.31,
+      "core_euclidean_lower_bound": 19.91,
+      "header_to_DAC": null,
+      "net_hpwl": 23.99,
+      "source_to_R": 5.6,
+      "test_pad_to_DAC": 16.28
+    },
+    "SDATA": {
+      "core_R_to_DAC": 16.38,
+      "core_euclidean_lower_bound": 22.05,
+      "header_to_DAC": null,
+      "net_hpwl": 28.5,
+      "source_to_R": 5.67,
+      "test_pad_to_DAC": 21.24
+    }
+  },
+  "iv_feedback_max_pad_distance_mm": {
+    "C417": 5.78,
+    "C418": 4.86,
+    "C419": 4.89,
+    "C420": 6.62,
+    "R423": 5.45,
+    "R424": 4.72,
+    "R425": 3.67,
+    "R426": 6.85
+  },
+  "lpw_group_center_mm": {
+    "U613": {
+      "cap_center_mm": 6.4,
+      "decap_center_mm": 2.69,
+      "res_center_mm": 3.35
+    },
+    "U614": {
+      "cap_center_mm": 6.58,
+      "decap_center_mm": 2.5,
+      "res_center_mm": 3.54
+    },
+    "U615": {
+      "cap_center_mm": 4.61,
+      "decap_center_mm": 2.5,
+      "res_center_mm": 6.52
+    },
+    "U616": {
+      "cap_center_mm": 3.73,
+      "decap_center_mm": 2.7,
+      "res_center_mm": 4.0
+    },
+    "U617": {
+      "cap_center_mm": 4.95,
+      "decap_center_mm": 3.0,
+      "res_center_mm": 4.0
+    },
+    "U618": {
+      "cap_center_mm": 5.02,
+      "decap_center_mm": 2.5,
+      "res_center_mm": 3.54
+    },
+    "U619": {
+      "cap_center_mm": 4.95,
+      "decap_center_mm": 3.0,
+      "res_center_mm": 3.91
+    },
+    "U620": {
+      "cap_center_mm": 5.0,
+      "decap_center_mm": 2.5,
+      "res_center_mm": 3.54
+    }
+  },
+  "named_nets": 246,
+  "protection_timer_pad_distance_mm": {
+    "LN_L": {
+      "bleed": {
+        "euclidean_pad_mm": 4.75,
+        "manhattan_pad_lower_bound_mm": 6.17
+      },
+      "cap": {
+        "euclidean_pad_mm": 5.52,
+        "manhattan_pad_lower_bound_mm": 7.4
+      },
+      "charge_resistor": {
+        "euclidean_pad_mm": 5.17,
+        "manhattan_pad_lower_bound_mm": 5.69
+      }
+    },
+    "LN_R": {
+      "bleed": {
+        "euclidean_pad_mm": 7.52,
+        "manhattan_pad_lower_bound_mm": 7.81
+      },
+      "cap": {
+        "euclidean_pad_mm": 5.88,
+        "manhattan_pad_lower_bound_mm": 7.9
+      },
+      "charge_resistor": {
+        "euclidean_pad_mm": 5.63,
+        "manhattan_pad_lower_bound_mm": 6.46
+      }
+    },
+    "LP_L": {
+      "bleed": {
+        "euclidean_pad_mm": 4.94,
+        "manhattan_pad_lower_bound_mm": 6.36
+      },
+      "cap": {
+        "euclidean_pad_mm": 5.66,
+        "manhattan_pad_lower_bound_mm": 7.7
+      },
+      "charge_resistor": {
+        "euclidean_pad_mm": 3.6,
+        "manhattan_pad_lower_bound_mm": 4.11
+      }
+    },
+    "LP_R": {
+      "bleed": {
+        "euclidean_pad_mm": 7.03,
+        "manhattan_pad_lower_bound_mm": 7.91
+      },
+      "cap": {
+        "euclidean_pad_mm": 5.71,
+        "manhattan_pad_lower_bound_mm": 7.5
+      },
+      "charge_resistor": {
+        "euclidean_pad_mm": 1.78,
+        "manhattan_pad_lower_bound_mm": 2.44
+      }
+    }
+  },
+  "relay_to_jack_pad_mm": {
+    "JACK_LN": {
+      "J701.6": 11.22
+    },
+    "JACK_LP": {
+      "J701.7": 18.0,
+      "J701.8": 24.83,
+      "J702.4": 16.92
+    },
+    "JACK_RN": {
+      "J701.2": 8.85,
+      "J701.3": 15.49
+    },
+    "JACK_RP": {
+      "J701.4": 24.86,
+      "J701.5": 19.16,
+      "J702.3": 9.09
+    }
+  },
+  "size_mm": [
+    120,
+    100
+  ],
+  "total_nonpower_hpwl_mm": 7804.45,
+  "track_count": 12,
+  "usb_mm": {
+    "C102_VBUS_to_J101_A4": 5.97,
+    "D102_VBUS_to_J101_B4": 4.89,
+    "U101_DN_to_J101_B7": 4.92,
+    "U101_DP_to_J101_A6": 3.85,
+    "U102_VBUS_to_J101_B4": 9.36,
+    "U103_CC1_to_J101_A5": 2.3,
+    "U103_CC2_to_J101_B5": 2.95,
+    "U502_IN_to_C102_VBUS": 4.87,
+    "Y201_HSE_IN_to_U201_5": 4.97,
+    "Y201_HSE_OUT_to_U201_6": 3.22
+  },
+  "zone_bbox_fill_pct": {},
+  "zone_count": 1
+}

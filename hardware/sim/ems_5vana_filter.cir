@@ -1,0 +1,48 @@
+* 5V_ANA -> FB501 -> 5V_ANA_F (LM27762 U501 input) filter and R531/C513 damper (review model).
+* Schematic values: C506 1 uF (U503 side), FB501 BLM18PG121SN1D, C507 10 uF, R531 1 ohm + C513 10 uF.
+* Assumptions (not extracted): FB501 = 0.05 ohm + (0.33 uH || 150 ohm || 1 pF); U503 output 0.1 ohm;
+* MLCC ESR 5 mohm, ESL 1 nH (+ 1 nH routing); DC-bias derating CD of the 10 uF parts at 3.85-5 V.
+.param CD=0.5 DAMP=1
+* (a) line transfer: 1 V AC ripple on 5V_ANA
+V1 vin 0 AC 1
+Rsrc vin a 0.1
+C506 a a1 1u
+Ra506 a1 a2 5m
+La506 a2 0 1n
+Rfb a f1 0.05
+Lfb f1 f 0.33u
+Rfbp f1 f 150
+Cfbp f1 f 1p
+C507 f c1 {10u*CD}
+R507 c1 c2 5m
+L507 c2 0 2n
+R531 f d1 {1+1e9*(1-DAMP)}
+C513 d1 d2 {10u*CD}
+R513 d2 d3 5m
+L513 d3 0 2n
+* (b) U501 input impedance: 1 A AC charge-pump current into a separate copy of the node
+I2 0 zf AC 1
+Rsrc2 zb 0 0.1
+C506b zb zb1 1u
+R506b zb1 zb2 5m
+L506b zb2 0 1n
+Rfb2 zb g1 0.05
+Lfb2 g1 zf 0.33u
+Rfbp2 g1 zf 150
+Cfbp2 g1 zf 1p
+C507b zf h1 {10u*CD}
+R507b h1 h2 5m
+L507b h2 0 2n
+R531b zf e1 {1+1e9*(1-DAMP)}
+C513b e1 e2 {10u*CD}
+R513b e2 e3 5m
+L513b e3 0 2n
+.ac dec 400 1k 100Meg
+.step param DAMP list 0 1
+.step param CD list 0.4 1
+.meas ac H_peak MAX mag(V(f))
+.meas ac Z_peak MAX mag(V(zf))
+.meas ac H_2M FIND mag(V(f)) AT=2Meg
+.meas ac Z_2M FIND mag(V(zf)) AT=2Meg
+.meas ac H_100 FIND mag(V(f)) AT=1k
+.end

@@ -1,0 +1,25 @@
+{
+  "bbox_overlaps": 0,
+  "board": "DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb",
+  "drc_reported_unconnected_items": 499,
+  "drc_violations": 0,
+  "feedback_centreline_loop_area_mm2": {
+    "LN": 4.833,
+    "LP": 4.833,
+    "RN": 4.833,
+    "RP": 4.833
+  },
+  "footprints": 544,
+  "jlc_spacing_and_edge_proxy_findings": 0,
+  "l2_gnd_filled_polygons": 1,
+  "load_path_trace_mohm_35um_50c_excluding_vias": {
+    "LN": 18.2,
+    "LP": 21.22,
+    "RN": 21.16,
+    "RP": 33.94
+  },
+  "moved_footprints": 22,
+  "named_nets": 250,
+  "ratsnest_unconnected_items": 1120,
+  "routing_release": "HOLD: jack branches, input/T networks, supply returns, L3/L4 return, extraction and physical gates"
+}

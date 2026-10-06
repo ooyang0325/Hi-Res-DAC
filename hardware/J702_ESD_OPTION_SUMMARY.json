@@ -1,0 +1,14 @@
+{
+  "board": "DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb",
+  "d707_rp_tvs_to_j702_route_mm": 3.861,
+  "d708_lp_j702_to_tvs_route_mm": 3.25,
+  "drc_violations": 0,
+  "eco_status": "Captured in schematic/BOM; this earlier 538-footprint trial is historical; system ESD and LP main route open",
+  "footprints": 538,
+  "intentional_corridor_occupant": "D707 on JACK_RP route",
+  "jlc_package_spacing_proxy_findings": 0,
+  "k603_to_j702_rp_trial_route_mm": 9.785,
+  "new_diodes_in_assembly_bom": true,
+  "new_diodes_in_classified_package_proxy": true,
+  "new_local_ground_vias": 2
+}

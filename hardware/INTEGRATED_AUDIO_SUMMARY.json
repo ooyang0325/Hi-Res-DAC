@@ -1,0 +1,225 @@
+{
+  "balanced_4p4_model_sensitivity_20khz": {
+    "left": {
+      "margin_to_0p5_mohm_if_same_limit": 101.0,
+      "worst_contact_path_ohm": 0.399
+    },
+    "right": {
+      "margin_to_0p5_mohm_if_same_limit": 113.6,
+      "worst_contact_path_ohm": 0.3864
+    }
+  },
+  "balanced_4p4_planning_estimate_1khz": {
+    "left": {
+      "best_contact_path_ohm": 0.3754,
+      "worst_contact_path_ohm": 0.3862,
+      "worst_planning_margin_to_0p5_mohm": 113.8
+    },
+    "right": {
+      "best_contact_path_ohm": 0.358,
+      "worst_contact_path_ohm": 0.3737,
+      "worst_planning_margin_to_0p5_mohm": 126.3
+    }
+  },
+  "bbox_overlaps": 0,
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "drc_reported_unconnected_items": 0,
+  "drc_violations": 0,
+  "feedback_centreline_loop_area_mm2": {
+    "LN": 4.833,
+    "LP": 4.833,
+    "RN": 4.833,
+    "RP": 4.833
+  },
+  "footprints": 544,
+  "iv_dac_to_summing_routes_mm": {
+    "DACL": 4.294,
+    "DACLB": 6.03,
+    "DACR": 6.837,
+    "DACRB": 4.786
+  },
+  "iv_dacl_feedback_l2_centreline_missing_mm": 0.0,
+  "iv_direct_dac_l2_missing_mm_at_offsets": {
+    "DACL": {
+      "+0.00": 0.0,
+      "+0.05": 0.0,
+      "+0.10": 0.0,
+      "-0.05": 0.0,
+      "-0.10": 0.0
+    },
+    "DACLB": {
+      "+0.00": 0.0,
+      "+0.05": 0.0,
+      "+0.10": 0.0,
+      "-0.05": 0.0,
+      "-0.10": 0.0
+    },
+    "DACR": {
+      "+0.00": 0.0,
+      "+0.05": 0.0,
+      "+0.10": 0.0,
+      "-0.05": 0.0,
+      "-0.10": 0.0
+    },
+    "DACRB": {
+      "+0.00": 0.0,
+      "+0.05": 0.0,
+      "+0.10": 0.0,
+      "-0.05": 0.0,
+      "-0.10": 0.0
+    }
+  },
+  "iv_direct_dac_l2_sample_pitch_mm": 0.01,
+  "iv_feedback_area_model": "Plan-view copper centrelines with straight part/opamp pad closures; excludes vertical and return-current area",
+  "iv_feedback_projected_2d_centreline_loop_area_mm2": {
+    "C417": 4.358,
+    "C418": 4.875,
+    "C419": 4.7,
+    "C420": 4.593,
+    "R423": 4.757,
+    "R424": 2.379,
+    "R425": 1.66,
+    "R426": 4.308
+  },
+  "iv_l2_support_model": "Saved filled L2 GND sampled at 0.01 mm along F.Cu track centreline and +/-0.05/0.10 mm normal offsets; return impedance not extracted",
+  "iv_output_signal_vias_by_net": {
+    "N4_IVL_N": 4,
+    "N4_IVL_P": 4,
+    "N4_IVR_N": 5,
+    "N4_IVR_P": 3
+  },
+  "iv_output_to_t_first_resistor_feeds_mm": {
+    "N4_IVL_N": {
+      "R403": 19.065,
+      "R405": 32.554
+    },
+    "N4_IVL_P": {
+      "R401": 21.601,
+      "R407": 15.487
+    },
+    "N4_IVR_N": {
+      "R411": 27.289,
+      "R413": 41.648
+    },
+    "N4_IVR_P": {
+      "R409": 47.752,
+      "R415": 39.348
+    }
+  },
+  "jlc_spacing_and_edge_proxy_findings": 0,
+  "l2_gnd_filled_polygons": 1,
+  "local_tvs_routes_mm": {
+    "LN J701": 4.03,
+    "LP J701": 3.83,
+    "LP J702": 3.255,
+    "RN J701": 4.03,
+    "RP J701": 4.03,
+    "RP J702": 3.864
+  },
+  "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; L3 VNEG trunk from U501/C511 and filled EP thermal vias (U401 x2, U402 x3) connected",
+  "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; L3 VPOS trunk from U501/C510 connected",
+  "manual_added_copper_items": 6636,
+  "manual_moves": 194,
+  "manual_replaced_source_copper_items": 8,
+  "named_nets": 252,
+  "near_right_angle_free_track_bends": 0,
+  "orthogonal_branches_without_through": 0,
+  "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; L3 VPOS trunk from U501/C510 connected",
+  "output_amp_hf_bypass_pad_lower_bound_mm": {
+    "U401.2 VPOS": 2.72,
+    "U401.4 VNEG": 2.91,
+    "U401.PAD VNEG": 3.0,
+    "U402.2 VPOS": 3.08,
+    "U402.4 VNEG": 2.91,
+    "U402.PAD VNEG": 3.0
+  },
+  "pad_centre_near_orthogonal_joins": 8,
+  "ratsnest_unconnected_items": 0,
+  "right_angle_track_bends": 0,
+  "routed_t_cell_branch_lengths_mm": {
+    "LN+": {
+      "capacitor_to_second": 2.08,
+      "first_to_second": 3.14,
+      "second_to_amp": 5.08
+    },
+    "LN\u2212": {
+      "capacitor_to_second": 4.49,
+      "first_to_second": 6.53,
+      "second_to_amp": 4.98
+    },
+    "LP+": {
+      "capacitor_to_second": 4.49,
+      "first_to_second": 4.43,
+      "second_to_amp": 3.87
+    },
+    "LP\u2212": {
+      "capacitor_to_second": 6.96,
+      "first_to_second": 6.13,
+      "second_to_amp": 8.29
+    },
+    "RN+": {
+      "capacitor_to_second": 7.25,
+      "first_to_second": 2.0,
+      "second_to_amp": 4.39
+    },
+    "RN\u2212": {
+      "capacitor_to_second": 3.24,
+      "first_to_second": 1.87,
+      "second_to_amp": 5.43
+    },
+    "RP+": {
+      "capacitor_to_second": 1.73,
+      "first_to_second": 2.55,
+      "second_to_amp": 6.57
+    },
+    "RP\u2212": {
+      "capacitor_to_second": 1.71,
+      "first_to_second": 5.95,
+      "second_to_amp": 7.09
+    }
+  },
+  "routed_t_cell_count": 8,
+  "routing_release": "HOLD: DACL feedback L2 detour, I/V stability and return extraction, main rails/bulk, EP thermal, R-15 measurement, discharge model, F01\u2013F04 and G-3/G-4",
+  "u501_fbp_feeder_projected_track_overlap_mm2": 0.0,
+  "u501_fbp_projection_model": "KiCad B.Cu 5V_ANA_F track polygons projected onto F.Cu N5_FBP tracks; pads, dielectric and noise excluded",
+  "u501_ground_fcu_pad_to_l2_via_mm": {
+    "C507.2": 1.0,
+    "C509.2": 0.75,
+    "C510.2": 1.2,
+    "C511.2": 0.95,
+    "R502.2": 0.975,
+    "R504.2": 0.875,
+    "U501.4": 2.511
+  },
+  "u501_ground_l2_spacing_model": "Straight via-to-via spacing in one connected filled L2 zone; not an extracted return-current path",
+  "u501_ground_l2_via_spacing_to_ic_mm": {
+    "C507.2": 3.139,
+    "C509.2": 2.094,
+    "C510.2": 8.16,
+    "C511.2": 6.767
+  },
+  "u501_local_pad_centre_routes_mm": {
+    "c1n_to_c508": 2.427,
+    "c1p_to_c508": 2.427,
+    "c510_to_r501": 12.094,
+    "c511_to_r503": 10.318,
+    "cp_to_c509": 2.138,
+    "fb501_to_c507": 16.937,
+    "fbn_to_r504": 2.128,
+    "fbp_to_r501": 2.353,
+    "r501_to_r502": 1.866,
+    "r504_to_r503": 1.65,
+    "vin12_to_c507": 2.249,
+    "vin3_to_c507": 6.014,
+    "vin8_to_c507": 5.945,
+    "vneg_to_c511": 3.43,
+    "vpos_to_c510": 3.981
+  },
+  "u501_other_5v_ana_f_track_min_width_mm": 0.8,
+  "u501_vin_narrow_escape_branches_mm": {
+    "12": 1.05,
+    "3": 0.86,
+    "8": 1.146
+  },
+  "u501_vin_narrow_min_width_mm": 0.2
+}

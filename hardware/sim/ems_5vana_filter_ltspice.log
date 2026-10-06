@@ -1,0 +1,65 @@
+LTspice 26.0.2 for MacOS
+Circuit: /private/tmp/emsrun/ems_5vana_filter.cir
+Start Time: Wed Sep 30 09:20:30 2026
+
+.step damp=0 cd=0.4
+solver = Normal
+Maximum thread count: 10
+tnom = 27
+temp = 27
+method = trap
+AsciiRawFile = true
+.OP point found by inspection.
+.OP point found by inspection.
+
+.step damp=1 cd=0.4
+.OP point found by inspection.
+.OP point found by inspection.
+
+.step damp=0 cd=1
+.OP point found by inspection.
+.OP point found by inspection.
+
+.step damp=1 cd=1
+.OP point found by inspection.
+.OP point found by inspection.
+Total elapsed time: 2.570 seconds.
+
+Files loaded:
+/private/tmp/emsrun/ems_5vana_filter.cir
+
+
+Measurement: h_peak
+  step	MAX(mag(V(f)))	FROM	TO
+     1	(5.42153684129dB,0°)	1000	100000000
+     2	(1.84064553596dB,0°)	1000	100000000
+     3	(2.04634586431dB,0°)	1000	100000000
+     4	(0.115673834155dB,0°)	1000	100000000
+
+Measurement: z_peak
+  step	MAX(mag(V(zf)))	FROM	TO
+     1	(1.93533702923dB,0°)	1000	100000000
+     2	(-2.57874687779dB,0°)	1000	100000000
+     3	(1.93697872923dB,0°)	1000	100000000
+     4	(-2.57751544581dB,0°)	1000	100000000
+
+Measurement: h_2m
+  step	mag(V(f)) 	at
+     1	(-59.6655712095dB,0°)	2000000
+     2	(-59.717426535dB,0°)	2000000
+     3	(-52.5161329136dB,0°)	2000000
+     4	(-52.571098145dB,0°)	2000000
+
+Measurement: z_2m
+  step	mag(V(zf)) 	at
+     1	(-41.9881270022dB,0°)	2000000
+     2	(-42.0399808284dB,0°)	2000000
+     3	(-34.8388361724dB,0°)	2000000
+     4	(-34.8938004905dB,0°)	2000000
+
+Measurement: h_100
+  step	mag(V(f)) 	at
+     1	(0.000369476512325dB,0°)	1000
+     2	(-0.000212358120622dB,0°)	1000
+     3	(0.000673347054837dB,0°)	1000
+     4	(-0.00458792747933dB,0°)	1000

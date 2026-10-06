@@ -1,0 +1,88 @@
+{
+  "balanced_4p4_model_sensitivity_20khz": {
+    "left": {
+      "margin_to_0p5_mohm_if_same_limit": 101.0,
+      "worst_contact_path_ohm": 0.399
+    },
+    "right": {
+      "margin_to_0p5_mohm_if_same_limit": 113.6,
+      "worst_contact_path_ohm": 0.3864
+    }
+  },
+  "balanced_4p4_planning_estimate_1khz": {
+    "left": {
+      "best_contact_path_ohm": 0.3754,
+      "worst_contact_path_ohm": 0.3862,
+      "worst_planning_margin_to_0p5_mohm": 113.8
+    },
+    "right": {
+      "best_contact_path_ohm": 0.358,
+      "worst_contact_path_ohm": 0.3737,
+      "worst_planning_margin_to_0p5_mohm": 126.3
+    }
+  },
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "candidate_manufacturer_max_link_ohm_per_leg": 0.001,
+  "illustrative_via_mohm_each_20um_wall_1p6mm_50c": 2.23,
+  "method": "least-resistance connected copper path; pads and vias have zero cost in the trace term",
+  "output_link_candidate": "R417-R420 YAGEO PA0402-R-070RL / JLC C4044221; review only",
+  "release": "HOLD: contact maxima, sleeve return, L3/L4 return, AC output impedance and loaded measurements",
+  "sheet_mohm_per_square_35um_50c": 0.551,
+  "signal_vias_per_leg": {
+    "LN": 2,
+    "LP": 2,
+    "RN": 2,
+    "RP": 2
+  },
+  "source_package_link_assumption_ohm_per_leg": 0.05,
+  "trace_paths": {
+    "LN": {
+      "J701.6": {
+        "routed_mm": 91.61,
+        "trace_mohm_50c_excluding_vias": 55.46
+      }
+    },
+    "LP": {
+      "J701.7": {
+        "routed_mm": 63.55,
+        "trace_mohm_50c_excluding_vias": 46.04
+      },
+      "J701.8": {
+        "routed_mm": 73.36,
+        "trace_mohm_50c_excluding_vias": 56.85
+      },
+      "J702.4": {
+        "routed_mm": 71.52,
+        "trace_mohm_50c_excluding_vias": 39.03
+      }
+    },
+    "RN": {
+      "J701.2": {
+        "routed_mm": 42.86,
+        "trace_mohm_50c_excluding_vias": 31.71
+      },
+      "J701.3": {
+        "routed_mm": 49.72,
+        "trace_mohm_50c_excluding_vias": 39.27
+      }
+    },
+    "RP": {
+      "J701.4": {
+        "routed_mm": 89.67,
+        "trace_mohm_50c_excluding_vias": 60.51
+      },
+      "J701.5": {
+        "routed_mm": 82.26,
+        "trace_mohm_50c_excluding_vias": 52.34
+      },
+      "J702.3": {
+        "routed_mm": 50.97,
+        "trace_mohm_50c_excluding_vias": 32.31
+      }
+    }
+  },
+  "trs_3p5_signal_only_lower_bound_ohm": {
+    "LP": 0.2255,
+    "RP": 0.2188
+  }
+}

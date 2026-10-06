@@ -1,0 +1,20 @@
+#VRML V2.0 utf8
+# Review-only Panasonic ECHU1H224GX9 body envelope, not a manufacturer STEP.
+# KiCad treats one VRML unit as 2.54 mm. Dimensions below are in mm, hence
+# the 1/2.54 scale. Body: 6.0 x 4.1 x 2.8 mm from Panasonic's product data.
+Transform {
+  scale 0.3937007874 0.3937007874 0.3937007874
+  children [
+    Transform {
+      translation 0 0 1.4
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.80 0.68 0.43 shininess 0.12 }
+          }
+          geometry Box { size 6.0 4.1 2.8 }
+        }
+      ]
+    }
+  ]
+}

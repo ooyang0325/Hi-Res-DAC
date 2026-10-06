@@ -1,0 +1,110 @@
+{
+  "3v3m_capacitors": [
+    {
+      "nominal_uF": 0.1,
+      "ref": "C203",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C204",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C205",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C206",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C207",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C208",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C209",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C210",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 2.2,
+      "ref": "C211",
+      "tolerance_plus_fraction": 0.2,
+      "upper_zero_bias_uF": 3.036,
+      "value": "2.2 \u00b5F"
+    },
+    {
+      "nominal_uF": 1.0,
+      "ref": "C221",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 1.265,
+      "value": "1 \u00b5F"
+    },
+    {
+      "nominal_uF": 2.2,
+      "ref": "C502",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 2.783,
+      "value": "2.2 \u00b5F"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C515",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C628",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    },
+    {
+      "nominal_uF": 0.1,
+      "ref": "C667",
+      "tolerance_plus_fraction": 0.1,
+      "upper_zero_bias_uF": 0.1265,
+      "value": "100 nF"
+    }
+  ],
+  "3v3m_nominal_uF": 6.5,
+  "3v3m_upper_zero_bias_uF": 8.4755,
+  "c102_upper_zero_bias_uF": 2.783,
+  "nominal_margin_uC": 6.3049,
+  "qualification": "HOLD: verify C(V,T), U502 output-cap stability, D102 C, and measured region separation/inrush",
+  "region_a_charge_no_load_credit_uC": 43.6951,
+  "region_a_limit_uC": 50.0,
+  "source": "captured schematic: Parts List v0.9 plus asserted functional ECO"
+}

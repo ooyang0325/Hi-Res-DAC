@@ -1,0 +1,25 @@
+* ES9018K2M 1V3 passive decoupling sensitivity; review model, not extraction
+* C309 = 100 nF near pin 21; C312 = 1 uF moved beside C309; C310 = 2.2 uF at U303.
+* ESR and complete branch inductance below are explicit assumptions.
+* The remote and local C312 cases use 20 nH and 5 nH, respectively.
+.param L312=5n
+Itest 0 vdd AC 1
+R309 vdd n309r 0.05
+L309 n309r n309c 2n
+C309 n309c 0 100n
+Rdc309 n309c 0 1G
+R312 vdd n312r 0.05
+L312 n312r n312c {L312}
+C312 n312c 0 1u
+Rdc312 n312c 0 1G
+R310 vdd n310r 0.06
+L310 n310r n310c 20n
+C310 n310c 0 2.2u
+Rdc310 n310c 0 1G
+.step param L312 list 5n 20n
+.ac dec 2000 100k 80Meg
+.meas ac Z_100k FIND mag(V(vdd)) AT=100k
+.meas ac Z_1Meg FIND mag(V(vdd)) AT=1Meg
+.meas ac Z_10Meg FIND mag(V(vdd)) AT=10Meg
+.meas ac Z_80Meg FIND mag(V(vdd)) AT=80Meg
+.end

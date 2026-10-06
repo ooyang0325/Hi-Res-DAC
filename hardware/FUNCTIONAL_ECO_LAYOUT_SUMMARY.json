@@ -1,0 +1,37 @@
+{
+  "bbox_overlaps": 0,
+  "board": "DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb",
+  "clock_route_mm": {
+    "R203_to_DAC": 6.479,
+    "R203_to_R227": 1.509,
+    "R665_to_U607": 2.39,
+    "X201_to_DAC": 8.311,
+    "X201_to_R203": 1.832
+  },
+  "dac_hf_bypass_pad_distances_mm": {
+    "1V3": 2.236,
+    "AVCC_L": 2.236,
+    "AVCC_R": 1.863,
+    "DVCC": 2.296,
+    "VCCA": 1.888
+  },
+  "drc_violations": 0,
+  "footprints": 544,
+  "j702_local_tvs_route_mm": {
+    "D707-RP_to_J702": 3.861,
+    "D708-LP_to_J702": 3.25
+  },
+  "jlc_body_edge_proxy_findings": 0,
+  "jlc_package_spacing_proxy_findings": 0,
+  "named_nets": 250,
+  "ratsnest_unconnected_items": 1144,
+  "routing_release": "HOLD: output/USB/I2S/power/protection routes, returns, G-3/G-4 and functional tests",
+  "schematic_pad_map": "exact",
+  "u621_local_pad_distances_mm": {
+    "C667.1-U621.5": 2.229,
+    "C667.2-U621.2": 2.229,
+    "R688.2-U621.1": 1.687,
+    "R689.2-U621.3": 1.856
+  },
+  "unconnected_items": 499
+}

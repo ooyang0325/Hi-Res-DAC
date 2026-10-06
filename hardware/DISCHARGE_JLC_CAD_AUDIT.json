@@ -1,0 +1,57 @@
+{
+  "devices": {
+    "C2907584": "FRC2512J4R7 TS",
+    "C5123624": "HoCR2512-2W-10R-1%"
+  },
+  "exact_jlc_model_sha256": "cf3262a1e76a0ee7c7842f2874e8a3b096ca5132844dc2815c13b1b5833d906f",
+  "fojan_maker_land_match": false,
+  "fojan_maker_recommended_mm": {
+    "inner_gap_A": [
+      3.6,
+      4.2
+    ],
+    "outer_span_B": [
+      7.6,
+      8.6
+    ],
+    "pad_height_C": [
+      3.0,
+      3.5
+    ]
+  },
+  "jlc_land_mm": {
+    "inner_gap_A": 4.8505,
+    "outer_span_B": 7.4155,
+    "pad_height_C": 3.456
+  },
+  "milliohm_maker_land_check": "open: manufacturer drawing not retrieved",
+  "native_footprint": "JLC_Imported:R2512",
+  "pads_mm": {
+    "1": {
+      "centre": [
+        -3.0665,
+        0.0
+      ],
+      "shape_id": 1,
+      "size": [
+        1.2825,
+        3.456
+      ]
+    },
+    "2": {
+      "centre": [
+        3.0665,
+        0.0
+      ],
+      "shape_id": 1,
+      "size": [
+        1.2825,
+        3.456
+      ]
+    }
+  },
+  "release_status": "HOLD: JLC FOJAN pad pattern conflicts with maker A/B land range",
+  "shared_footprint_uuid": "39edb952a05248efb2746e8df712da9e",
+  "shared_model_uuid": "c704f12ea0da45b6b9e7d0ddac98e7f7",
+  "source_library": "JLC_Discharge_2512.elibz"
+}

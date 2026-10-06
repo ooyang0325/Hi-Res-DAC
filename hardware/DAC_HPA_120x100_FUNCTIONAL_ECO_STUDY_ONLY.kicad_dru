@@ -1,0 +1,151 @@
+(version 1)
+
+# Manufacturing and routing constraints for the DAC-HPA review layout.
+# KiCad DRC checks geometry; routed length, EMI returns and JLC assembly
+# acceptance also require the separate reviews and physical gates.
+
+(rule "L2 is continuous GND, with no signal tracks"
+    (layer In1.Cu)
+    (constraint disallow track))
+
+(rule "L2 pour belongs to GND only"
+    (layer In1.Cu)
+    (condition "A.Type == 'Zone' && A.NetName != 'GND'")
+    (constraint disallow zone))
+
+(rule "All footprints are top side"
+    (layer B.Cu)
+    (constraint disallow footprint))
+
+(rule "No L4 routing or pour under J701"
+    (layer B.Cu)
+    (condition "A.intersectsCourtyard('J701')")
+    (constraint disallow track via zone))
+
+(rule "USB pair L1 only"
+    (layer B.Cu)
+    (condition "A.NetName == 'USB_DP' || A.NetName == 'USB_DN'")
+    (constraint disallow track via))
+
+(rule "USB pair no internal-layer tracks"
+    (layer inner)
+    (condition "A.NetName == 'USB_DP' || A.NetName == 'USB_DN'")
+    (constraint disallow track via))
+
+(rule "USB pair width with short pad neckdowns"
+    (condition "A.NetName == 'USB_DP' || A.NetName == 'USB_DN'")
+    (constraint track_width (min 0.15mm) (opt 0.235mm) (max 0.235mm)))
+
+(rule "MCLK and I2S L1 only"
+    (layer B.Cu)
+    (condition "A.NetName == 'MCLK' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA'")
+    (constraint disallow track via))
+
+(rule "MCLK and I2S no internal tracks"
+    (layer inner)
+    (condition "A.NetName == 'MCLK' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA'")
+    (constraint disallow track via))
+
+# The two source-to-DAC segments straddle R203. The combined limit is 10 mm.
+(rule "X201 to R203 clock segment"
+    (condition "A.fromTo('X201-3', 'R203-1')")
+    (constraint length (max 2mm)))
+
+(rule "R203 to DAC clock segment"
+    (condition "A.fromTo('R203-2', 'U301-7')")
+    (constraint length (max 8mm)))
+
+(rule "DAC inputs no vias"
+    (condition "A.NetName == 'DACL' || A.NetName == 'DACLB' || A.NetName == 'DACR' || A.NetName == 'DACRB'")
+    (constraint disallow via))
+
+(rule "Headphone output width including VSON pad escapes"
+    (condition "A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
+    (constraint track_width (min 0.25mm)))
+
+(rule "Headphone outputs L1 only, no vias"
+    (layer B.Cu)
+    (condition "A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
+    (constraint disallow track via))
+
+(rule "Headphone outputs no inner-layer tracks or vias"
+    (layer inner)
+    (condition "A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
+    (constraint disallow track via))
+
+(rule "Headphone outputs no vias"
+    (condition "A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'")
+    (constraint disallow via))
+
+(rule "Headphone left-right copper separation"
+    (layer F.Cu)
+    (condition "((A.NetName == 'LEG_LP' || A.NetName == 'LEG_LN' || A.NetName == 'JACK_LP' || A.NetName == 'JACK_LN') && (B.NetName == 'LEG_RP' || B.NetName == 'LEG_RN' || B.NetName == 'JACK_RP' || B.NetName == 'JACK_RN')) || ((B.NetName == 'LEG_LP' || B.NetName == 'LEG_LN' || B.NetName == 'JACK_LP' || B.NetName == 'JACK_LN') && (A.NetName == 'LEG_RP' || A.NetName == 'LEG_RN' || A.NetName == 'JACK_RP' || A.NetName == 'JACK_RN'))")
+    (constraint clearance (min 2mm)))
+
+# J701's manufacturer-defined contact pitch does not permit 2 mm clearance
+# at the plated pads. Limit this exception to tracks crossing its courtyard;
+# the 2 mm rule remains in force once the four outputs leave the jack.
+(rule "J701 fixed-contact fanout clearance"
+    (layer F.Cu)
+    (condition "((A.Type == 'Track' && A.intersectsCourtyard('J701') && B.memberOfFootprint('J701')) || (B.Type == 'Track' && B.intersectsCourtyard('J701') && A.memberOfFootprint('J701')))")
+    (constraint clearance (min 0.2mm)))
+
+# Track-to-track and track-to-pad checks activate when copper is drawn.
+# The read-only placement audit separately reports pad-to-pad proximity.
+(rule "High-impedance low-level nets versus clocks 10 mm"
+    (layer F.Cu)
+    (condition "(A.Type == 'Track' || B.Type == 'Track') && ((A.NetName == 'N6_VLL*' && (B.NetName == 'MCLK' || B.NetName == 'N2_X201_OUT' || B.NetName == 'N6_MCK_IN' || B.NetName == 'N6_MCK_BUF' || B.NetName == 'N6_PMP' || B.NetName == 'FAM_CLK' || B.NetName == 'BCLK' || B.NetName == 'LRCLK' || B.NetName == 'SDATA' || B.NetName == 'LINK_SCK')) || (B.NetName == 'N6_VLL*' && (A.NetName == 'MCLK' || A.NetName == 'N2_X201_OUT' || A.NetName == 'N6_MCK_IN' || A.NetName == 'N6_MCK_BUF' || A.NetName == 'N6_PMP' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA' || A.NetName == 'LINK_SCK')))")
+    (constraint clearance (min 10mm)))
+
+(rule "Protection high-impedance nets versus clocks 5 mm"
+    (layer F.Cu)
+    (condition "(A.Type == 'Track' || B.Type == 'Track') && ((A.NetName == 'N6_V3*' || A.NetName == 'N6_TW*' || A.NetName == 'N6_LW*' || A.NetName == 'N6_ORLN' || A.NetName == 'N6_ORLP' || A.NetName == 'N6_ORRN' || A.NetName == 'N6_ORRP') && (B.NetName == 'MCLK' || B.NetName == 'N2_X201_OUT' || B.NetName == 'N6_MCK_IN' || B.NetName == 'N6_MCK_BUF' || B.NetName == 'N6_PMP' || B.NetName == 'FAM_CLK' || B.NetName == 'BCLK' || B.NetName == 'LRCLK' || B.NetName == 'SDATA' || B.NetName == 'LINK_SCK') || (B.NetName == 'N6_V3*' || B.NetName == 'N6_TW*' || B.NetName == 'N6_LW*' || B.NetName == 'N6_ORLN' || B.NetName == 'N6_ORLP' || B.NetName == 'N6_ORRN' || B.NetName == 'N6_ORRP') && (A.NetName == 'MCLK' || A.NetName == 'N2_X201_OUT' || A.NetName == 'N6_MCK_IN' || A.NetName == 'N6_MCK_BUF' || A.NetName == 'N6_PMP' || A.NetName == 'FAM_CLK' || A.NetName == 'BCLK' || A.NetName == 'LRCLK' || A.NetName == 'SDATA' || A.NetName == 'LINK_SCK'))")
+    (constraint clearance (min 5mm)))
+
+# The four protection RC/bleed branches have an 8 mm pad-to-pad routed limit.
+(rule "LP_L capacitor timer route" (condition "A.fromTo('U609-8', 'C631-1')") (constraint length (max 8mm)))
+(rule "LP_L bleed timer route" (condition "A.fromTo('U609-8', 'Q623-3')") (constraint length (max 8mm)))
+(rule "LP_L charge timer route" (condition "A.fromTo('U609-8', 'R920-2')") (constraint length (max 8mm)))
+(rule "LN_L capacitor timer route" (condition "A.fromTo('U609-10', 'C632-1')") (constraint length (max 8mm)))
+(rule "LN_L bleed timer route" (condition "A.fromTo('U609-10', 'Q624-3')") (constraint length (max 8mm)))
+(rule "LN_L charge timer route" (condition "A.fromTo('U609-10', 'R921-2')") (constraint length (max 8mm)))
+(rule "LP_R capacitor timer route" (condition "A.fromTo('U610-8', 'C633-1')") (constraint length (max 8mm)))
+(rule "LP_R bleed timer route" (condition "A.fromTo('U610-8', 'Q625-3')") (constraint length (max 8mm)))
+(rule "LP_R charge timer route" (condition "A.fromTo('U610-8', 'R922-2')") (constraint length (max 8mm)))
+(rule "LN_R capacitor timer route" (condition "A.fromTo('U610-10', 'C634-1')") (constraint length (max 8mm)))
+(rule "LN_R bleed timer route" (condition "A.fromTo('U610-10', 'Q626-3')") (constraint length (max 8mm)))
+(rule "LN_R charge timer route" (condition "A.fromTo('U610-10', 'R923-2')") (constraint length (max 8mm)))
+
+# The six provisional <=4.2 mm local jack-to-TVS limits are measured between
+# named pads by audit_local_tvs_paths.py. KiCad's length constraint can include
+# another contact/relay branch of a JACK net and falsely fail a 4.03 mm path.
+# Keep ordinary copper and via rules here; the audit is mandatory in CI.
+
+# The maker's adjacent plated contacts in J701 are fixed at their drawing
+# pitch. They remain subject to the ordinary copper-clearance rule.
+(rule "J701 maker contact pad exception"
+    (condition "A.memberOfFootprint('J701') && B.memberOfFootprint('J701')")
+    (constraint clearance (min 0.2mm)))
+
+(rule "VBUS and 5V_SYS width"
+    (condition "A.NetName == 'VBUS' || A.NetName == '5V_SYS'")
+    (constraint track_width (min 1mm)))
+
+(rule "5V_ANA feed width"
+    (condition "A.NetName == '5V_ANA' || A.NetName == '5V_ANA_F'")
+    (constraint track_width (min 0.8mm)))
+
+(rule "Jack hand-solder access"
+    (constraint courtyard_clearance (min 1.5mm))
+    (condition "A.Reference == 'J701' || B.Reference == 'J701' || A.Reference == 'J702' || B.Reference == 'J702'"))
+
+(rule "Owner-fitted relay access"
+    (constraint courtyard_clearance (min 1.5mm))
+    (condition "A.Reference == 'K601' || A.Reference == 'K602' || A.Reference == 'K603' || A.Reference == 'K604' || B.Reference == 'K601' || B.Reference == 'K602' || B.Reference == 'K603' || B.Reference == 'K604'"))
+
+(rule "Film capacitor owner-fit fallback access"
+    (constraint courtyard_clearance (min 1.5mm))
+    (condition "A.Reference == 'C631' || A.Reference == 'C632' || A.Reference == 'C633' || A.Reference == 'C634' || B.Reference == 'C631' || B.Reference == 'C632' || B.Reference == 'C633' || B.Reference == 'C634'"))
+
+# The named-pad audit also measures D707/D708 near J702. Routed ESD return,
+# nonlinear TVS loading and system IEC testing remain separate release gates.

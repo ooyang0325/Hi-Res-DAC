@@ -1,0 +1,43 @@
+{
+  "added_local_routes": 2,
+  "bbox_overlaps": [],
+  "board": "DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb",
+  "candidate_body_to_edge_mm": {
+    "R527": 2.75,
+    "R529": 2.75,
+    "R530": 2.55
+  },
+  "candidate_nearest_fitted_body": {
+    "R527": {
+      "body_gap_mm": 2.13,
+      "ref": "R526"
+    },
+    "R529": {
+      "body_gap_mm": 1.13,
+      "ref": "R513"
+    },
+    "R530": {
+      "body_gap_mm": 0.945,
+      "ref": "Q506"
+    }
+  },
+  "drc_unconnected_items": 499,
+  "drc_violations": 0,
+  "footprints": 544,
+  "holds": [
+    "Board pads are KiCad IPC nominal; exact JLC pads conflict with FOJAN maker A/B land ranges, and Milliohm maker lands remain unchecked.",
+    "The schematic and BOM still specify 0603 resistors; this option is not an assembly order.",
+    "3V3A/3V3D/1V3 source feeds, temperature, shutdown timing and fault behavior are unverified."
+  ],
+  "jlc_classified_pair_violations": 0,
+  "local_copper_routes_mm": {
+    "Q506.3\u2192R530.2": 4.862,
+    "R527.2\u2192Q503.3": 5.6
+  },
+  "schematic_bom_aligned": false,
+  "source_board": "DAC_HPA_120x100_DISCHARGE_FIT_SOURCE_72c24c3.kicad_pcb",
+  "status": "physical-fit-option-only",
+  "three_d_model_audit_ok": true,
+  "track_and_via_items": 857,
+  "vias": 143
+}

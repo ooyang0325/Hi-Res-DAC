@@ -1,0 +1,838 @@
+[
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/fb0691c2e5d44d2593f490343b23e956",
+    "converted_bbox_mm": [
+      14.0,
+      7.7,
+      6.056
+    ],
+    "converted_bytes": 1047857,
+    "converted_file": "AUDIO-SMD_PJ-332A-6A.step",
+    "converted_sha256": "d08b9ca6a8939d477e306239055daeae360aaff9fedc17a393254ba0f4258cf3",
+    "direct_uuid": "de7bde608a6f4128afbcd97b0636c87f",
+    "lcsc_code": "C2848643",
+    "model_uuid": "fb0691c2e5d44d2593f490343b23e956",
+    "raw_bbox_mm": [
+      14.0,
+      7.7,
+      6.056
+    ],
+    "raw_bytes": 1534805,
+    "raw_sha256": "f047bb851a076125fd8461773d6c9eb82b544af53a335db497f88ea22da341b5",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/de7bde608a6f4128afbcd97b0636c87f",
+    "title": "AUDIO-SMD_PJ-332A-6A",
+    "transform": "551.18,303.149,0,0,0,0,-70.274,-0.001,-43.307",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/ccd562a410c54826a930d89355ca7be9",
+    "converted_bbox_mm": [
+      20.51,
+      8.31,
+      7.3
+    ],
+    "converted_bytes": 1270358,
+    "converted_file": "AUDIO-TH_GT-3321667P-01.step",
+    "converted_sha256": "adecac7e01585724136c92272b3664c2f063b96988c5164c8a6c31ce4023048c",
+    "direct_uuid": "6482cd2c776c4195ac6b73dbebdeb826",
+    "lcsc_code": "C2762984",
+    "model_uuid": "ccd562a410c54826a930d89355ca7be9",
+    "raw_bbox_mm": [
+      20.51,
+      8.31,
+      7.3
+    ],
+    "raw_bytes": 1973905,
+    "raw_sha256": "73c937f3a6b94282c49f9d4ce94d9a7a22c210c0146f5e346cff85e5f986d044",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/6482cd2c776c4195ac6b73dbebdeb826",
+    "title": "AUDIO-TH_GT-3321667P-01",
+    "transform": "807.4787,327.1647,0,0,0,0,-110.236,0,-31.496",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/40d013e73cd94a24b435fef0e1f44096",
+    "converted_bbox_mm": [
+      7.3,
+      4.3,
+      3.0668
+    ],
+    "converted_bytes": 1175808,
+    "converted_file": "CASE-D_L7.3-W4.3-H2.9.step",
+    "converted_sha256": "fc3132e924a8517c721669079ea85ae7a1a1313966478648b0d56f4be748702f",
+    "direct_uuid": "54b4a7b9b595470ba3bec66fde072b82",
+    "lcsc_code": "C8024",
+    "model_uuid": "40d013e73cd94a24b435fef0e1f44096",
+    "raw_bbox_mm": [
+      7.3,
+      4.3,
+      3.0668
+    ],
+    "raw_bytes": 1564535,
+    "raw_sha256": "6f56515541fbdc6f7b27258c78269897e808c07e9a0e36de675c1cb849bc554e",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/54b4a7b9b595470ba3bec66fde072b82",
+    "title": "CASE-D_L7.3-W4.3-H2.9",
+    "transform": "287.402,169.291,0,180,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/163c0e6cc94b4409af3811ba70809250",
+    "converted_bbox_mm": [
+      5.0,
+      3.2,
+      1.42
+    ],
+    "converted_bytes": 989182,
+    "converted_file": "CRYSTAL-SMD_L5.0-W3.2.step",
+    "converted_sha256": "17edfb382f04c3c5ff29b18653497468bb9e23398193498114a3ca86e32bb75a",
+    "direct_uuid": "761affdd34194a39b73f9570bc2cdc8f",
+    "lcsc_code": "C115962",
+    "model_uuid": "163c0e6cc94b4409af3811ba70809250",
+    "raw_bbox_mm": [
+      5.0,
+      3.2,
+      1.42
+    ],
+    "raw_bytes": 1514069,
+    "raw_sha256": "5cb9475282535d12a3e18e850e84f49cfbf9e34b398a4a56bc838be95e484661",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/761affdd34194a39b73f9570bc2cdc8f",
+    "title": "CRYSTAL-SMD_L5.0-W3.2",
+    "transform": "196.85,125.984,0,0,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/7028148f6b924eec86ae6696b4a125a2",
+    "converted_bbox_mm": [
+      6.106,
+      4.9013,
+      1.7247
+    ],
+    "converted_bytes": 2418704,
+    "converted_file": "ESOP-8_L4.9-W3.9-H1.6-LS6.0-P1.27.step",
+    "converted_sha256": "0bb0eac6e9417336eb31ca0390f897895739c95b92bdeed0249fdf08b4511e4a",
+    "direct_uuid": "9e2b03dd4dce46a190ce3fa245369fb2",
+    "lcsc_code": "C2155774",
+    "model_uuid": "7028148f6b924eec86ae6696b4a125a2",
+    "raw_bbox_mm": [
+      6.106,
+      4.9013,
+      1.7247
+    ],
+    "raw_bytes": 3332668,
+    "raw_sha256": "c2a5dfd4ead9745b10ef410aa32e62c659c146625ed4beea42287047f980116f",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/9e2b03dd4dce46a190ce3fa245369fb2",
+    "title": "ESOP-8_L4.9-W3.9-H1.6-LS6.0-P1.27",
+    "transform": "240.157,192.913,0,90,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/19cc79473bbc420a8203ad67d1a57d42",
+    "converted_bbox_mm": [
+      1.62,
+      0.81,
+      0.71
+    ],
+    "converted_bytes": 858514,
+    "converted_file": "LED0603_L1.6-W0.8-H0.6.step",
+    "converted_sha256": "d0049a2bd1312509d83a328ea5d660846734281eb79f09468b92b287d71a27fa",
+    "direct_uuid": "0da0275bf7a84667bce8747a921fb9e3",
+    "lcsc_code": "C2286",
+    "model_uuid": "19cc79473bbc420a8203ad67d1a57d42",
+    "raw_bbox_mm": [
+      1.62,
+      0.81,
+      0.71
+    ],
+    "raw_bytes": 1306320,
+    "raw_sha256": "bc7b5c80dea54180b294de289043b7a6224b18dbb4cf2b857d14ad5e3c84660e",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/0da0275bf7a84667bce8747a921fb9e3",
+    "title": "LED0603_L1.6-W0.8-H0.6",
+    "transform": "63.7794,31.496,0,0,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/167045bb0eae412b9d5564860e113a91",
+    "converted_bbox_mm": [
+      2.02,
+      1.26,
+      1.01
+    ],
+    "converted_bytes": 1065933,
+    "converted_file": "LED0805-RD.step",
+    "converted_sha256": "3c6f3f811b616d74bcec616d1db0b182cd76758df4336acbfbd6daa8891c5817",
+    "direct_uuid": "23093642268545519703b953fc993978",
+    "lcsc_code": "C2297",
+    "model_uuid": "167045bb0eae412b9d5564860e113a91",
+    "raw_bbox_mm": [
+      2.02,
+      1.26,
+      1.01
+    ],
+    "raw_bytes": 1653768,
+    "raw_sha256": "89d580ddc53ffa44f7228a06e4f387af3aec4fd8d97aba082caee27cd20eb8e9",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/23093642268545519703b953fc993978",
+    "title": "LED0805-RD",
+    "transform": "79.527,49.2125,0,0,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/9827011a374c44f2b05ac1eacaf21ae0",
+    "converted_bbox_mm": [
+      12.0056,
+      12.0056,
+      1.4507
+    ],
+    "converted_bytes": 9699984,
+    "converted_file": "LQFP-64_L10.0-W10.0-H1.4-LS12.0-P0.50.step",
+    "converted_sha256": "758942803f7f663ead7f9e8311bd609da77d01e3e475597f8c5ddf273d4ec793",
+    "direct_uuid": "7e9b9111dcfd48d3add0eab11d882721",
+    "lcsc_code": "C2988083",
+    "model_uuid": "9827011a374c44f2b05ac1eacaf21ae0",
+    "raw_bbox_mm": [
+      12.0056,
+      12.0056,
+      1.4507
+    ],
+    "raw_bytes": 12610101,
+    "raw_sha256": "e89210c536532875955c55d06e34cec5570f38584f20fdb7b3bf55b061c061ac",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/7e9b9111dcfd48d3add0eab11d882721",
+    "title": "LQFP-64_L10.0-W10.0-H1.4-LS12.0-P0.50",
+    "transform": "472.441,472.441,0,0,0,0,0,0.465,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/5bc86717285743f3be440a5340f9f4c7",
+    "converted_bbox_mm": [
+      5.02,
+      5.02,
+      0.93
+    ],
+    "converted_bytes": 1494424,
+    "converted_file": "QFN-28_L5.0-W5.0-H0.9-P0.50.step",
+    "converted_sha256": "91cec97b2c5fc888257f711c03a83fb6d5d97e04d833a07e18e90fc83574d356",
+    "direct_uuid": "61cfa56e70774ad8ac53f7c7ad5b53e4",
+    "lcsc_code": "C2688377",
+    "model_uuid": "5bc86717285743f3be440a5340f9f4c7",
+    "raw_bbox_mm": [
+      5.02,
+      5.02,
+      0.93
+    ],
+    "raw_bytes": 2355379,
+    "raw_sha256": "6db669a2f26265400279816df7154cce137bac8a93ef1b221458ee3a999aa8e7",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/61cfa56e70774ad8ac53f7c7ad5b53e4",
+    "title": "QFN-28_L5.0-W5.0-H0.9-P0.50",
+    "transform": "196.85,196.85,0,90,0,0,-0.003,0.003,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/5cffea2d3fa64aa0a6f9de7dfb10e8dd",
+    "converted_bbox_mm": [
+      4.02,
+      4.02,
+      0.82
+    ],
+    "converted_bytes": 995309,
+    "converted_file": "QFN-32_L4.0-W4.0-H0.8-P0.40.step",
+    "converted_sha256": "2e9311e65fd3dd2d68427255487bab52bf5a7e93248d2b14c7ccc07d04e27a4f",
+    "direct_uuid": "60ea06cd922347569f23800df9e06427",
+    "lcsc_code": "C18208899",
+    "model_uuid": "5cffea2d3fa64aa0a6f9de7dfb10e8dd",
+    "raw_bbox_mm": [
+      4.02,
+      4.02,
+      0.82
+    ],
+    "raw_bytes": 1630417,
+    "raw_sha256": "3d9f79411ea329c7a35493f96c54d7dd2c30001b157dee891850eda5c8c43cba",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/60ea06cd922347569f23800df9e06427",
+    "title": "QFN-32_L4.0-W4.0-H0.8-P0.40",
+    "transform": "158.267,158.267,0,0,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/c704f12ea0da45b6b9e7d0ddac98e7f7",
+    "converted_bbox_mm": [
+      6.3,
+      3.2,
+      0.611
+    ],
+    "converted_bytes": 658382,
+    "converted_file": "R2512_L6.3-W3.2-H0.6.step",
+    "converted_sha256": "cf3262a1e76a0ee7c7842f2874e8a3b096ca5132844dc2815c13b1b5833d906f",
+    "direct_uuid": "311a5ea298274ff3b9740151e78a7465",
+    "lcsc_code": "C2907584",
+    "model_uuid": "c704f12ea0da45b6b9e7d0ddac98e7f7",
+    "raw_bbox_mm": [
+      6.3,
+      3.2,
+      0.611
+    ],
+    "raw_bytes": 1063279,
+    "raw_sha256": "d34780eb5085295fb4a1eb5b1f5acc10fb14adc5438cd630e13497305530862e",
+    "shared_lcsc_codes": [
+      "C2907584",
+      "C5123624"
+    ],
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/311a5ea298274ff3b9740151e78a7465",
+    "title": "R2512_L6.3-W3.2-H0.6",
+    "transform": "248.031,125.984,0,0,0,0,-0.0005,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/df84906d417c4d929ec2e4259b3eb740",
+    "converted_bbox_mm": [
+      2.1,
+      2.0011,
+      1.0
+    ],
+    "converted_bytes": 1587146,
+    "converted_file": "SC-70-6_L2.0-W1.3-H1.0-P0.65.step",
+    "converted_sha256": "372c0f74e468831a98346ad4aa900dcba0ce3c868b385da2da616f34fadb5e7b",
+    "direct_uuid": "e8c049de0bbc469ba32d5592f1765e02",
+    "lcsc_code": "C507231",
+    "model_uuid": "df84906d417c4d929ec2e4259b3eb740",
+    "raw_bbox_mm": [
+      2.1,
+      2.0011,
+      1.0
+    ],
+    "raw_bytes": 2317247,
+    "raw_sha256": "955b48fdbbd184231fb0b0d72ac68852b1db3a517febad9b72d3f304e8b9371f",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/e8c049de0bbc469ba32d5592f1765e02",
+    "title": "SC-70-6_L2.0-W1.3-H1.0-P0.65",
+    "transform": "82.677,78.74,0,90,0,0,0,0.0005,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/75a5a4c4377b43aba6974acbc16228db",
+    "converted_bbox_mm": [
+      2.0004,
+      2.3127,
+      1.0
+    ],
+    "converted_bytes": 2013698,
+    "converted_file": "SC-88-6P_L2.0-W1.3-H1.0-LS2.1.step",
+    "converted_sha256": "51f09c8ec33396596bbe2731bb02e512ac1e2fed9ef0b5127c59317a565897ae",
+    "direct_uuid": "55af81dabed14becbf9277e3d80ee17f",
+    "lcsc_code": "C548242",
+    "model_uuid": "75a5a4c4377b43aba6974acbc16228db",
+    "raw_bbox_mm": [
+      2.0004,
+      2.3127,
+      1.0
+    ],
+    "raw_bytes": 2777747,
+    "raw_sha256": "980afbe6053d8afb589515eae3efe75d2c35bab68eccbaa5c026fdb715b80a0d",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/55af81dabed14becbf9277e3d80ee17f",
+    "title": "SC-88-6P_L2.0-W1.3-H1.0-LS2.1",
+    "transform": "78.74,91.339,0,0,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/858e95e7ed44456bb25fc1e35e1d1bc8",
+    "converted_bbox_mm": [
+      3.7,
+      1.8003,
+      1.31
+    ],
+    "converted_bytes": 735775,
+    "converted_file": "SOD-123FL_L2.8-W1.8-LS3.7-RD-1.step",
+    "converted_sha256": "78dfb9d197898dfdff6e213b92fe3819a662273293fd4126b6762c260aa7c68f",
+    "direct_uuid": "c6882627c5f64d6e8dd3b5c64b2adb0a",
+    "lcsc_code": "C110921",
+    "model_uuid": "858e95e7ed44456bb25fc1e35e1d1bc8",
+    "raw_bbox_mm": [
+      3.7,
+      1.8003,
+      1.31
+    ],
+    "raw_bytes": 1087959,
+    "raw_sha256": "21da8bacf03f2865846baa144d71b039e85d9afa6b62333161309505a086db57",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/c6882627c5f64d6e8dd3b5c64b2adb0a",
+    "title": "SOD-123FL_L2.8-W1.8-LS3.7-RD-1",
+    "transform": "145.669,70.866,0,0,0,0,0,0.276,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/4084e30f0f42442eb5952d3b89d1d381",
+    "converted_bbox_mm": [
+      1.6,
+      0.8001,
+      0.71
+    ],
+    "converted_bytes": 806368,
+    "converted_file": "SOD-523_L1.2-W0.8-LS1.6-BI.step",
+    "converted_sha256": "b2ebc41c72d74f45f42acd0b61e35e0c315df64e751a156e2750bc05248de8f7",
+    "direct_uuid": "1c55af31f47d4d9db45f00e5a148cdf3",
+    "lcsc_code": "C41399463",
+    "model_uuid": "4084e30f0f42442eb5952d3b89d1d381",
+    "raw_bbox_mm": [
+      1.6,
+      0.8001,
+      0.71
+    ],
+    "raw_bytes": 1185150,
+    "raw_sha256": "4df110749a6e9873827135741d24df525d4d227a68b18180b7ff52e6daaecee4",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/1c55af31f47d4d9db45f00e5a148cdf3",
+    "title": "SOD-523_L1.2-W0.8-LS1.6-BI",
+    "transform": "62.992,31.496,0,0,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/2ec1ac1bf9bf4d09a988fcee15e6a02d",
+    "converted_bbox_mm": [
+      4.9015,
+      6.0,
+      1.7
+    ],
+    "converted_bytes": 392310,
+    "converted_file": "SOIC-8_L4.9-W3.9-H1.7-LS6.0-P1.27.step",
+    "converted_sha256": "7311d70c1c874ede3b1674752e8228605b86ef1eef5e5ccfdc1b209298b4d808",
+    "direct_uuid": "ec3b9f9b31a74655be3e55848dbee9c1",
+    "lcsc_code": "C91242",
+    "model_uuid": "2ec1ac1bf9bf4d09a988fcee15e6a02d",
+    "raw_bbox_mm": [
+      4.9015,
+      6.0,
+      1.7
+    ],
+    "raw_bytes": 559091,
+    "raw_sha256": "c9e66a7ae97340cddaa32fc0b458357145b93a48b0d225f6177e644853b59e00",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/ec3b9f9b31a74655be3e55848dbee9c1",
+    "title": "SOIC-8_L4.9-W3.9-H1.7-LS6.0-P1.27",
+    "transform": "192.913,236.22,0,0,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/9e479aa4755a4392b89c401224ad1275",
+    "converted_bbox_mm": [
+      4.9,
+      6.0,
+      1.501
+    ],
+    "converted_bytes": 1195076,
+    "converted_file": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL-1.step",
+    "converted_sha256": "62ca113673e9da7cc5e0af7e1ab5e1352e88340c7990ea31c6c2a5fcc6d8d615",
+    "direct_uuid": "a8bf75347d3a44d9bc6814f39c22bf07",
+    "lcsc_code": "C38732",
+    "model_uuid": "9e479aa4755a4392b89c401224ad1275",
+    "raw_bbox_mm": [
+      4.9,
+      6.0,
+      1.501
+    ],
+    "raw_bytes": 1740668,
+    "raw_sha256": "d884c2b3aaea7f93dde52659d3b88cce8b014086c464e36fddcea84c6080f51c",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/a8bf75347d3a44d9bc6814f39c22bf07",
+    "title": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL-1",
+    "transform": "192.913,236.22,0,0,0,0,-0.393,2.749,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/4eed685bb9f4439b846746bc2193f3c0",
+    "converted_bbox_mm": [
+      2.9008,
+      2.8,
+      1.1
+    ],
+    "converted_bytes": 827281,
+    "converted_file": "SOT-23-3L_L2.9-W1.6-H1.1-LS2.8-P0.95.step",
+    "converted_sha256": "3242eee6092445043f04a3d384c043f1b273e916872a59470ce7aa06c113bba1",
+    "direct_uuid": "cefd4596db214da394d9632b2b88f8f2",
+    "lcsc_code": "C81464",
+    "model_uuid": "4eed685bb9f4439b846746bc2193f3c0",
+    "raw_bbox_mm": [
+      2.9008,
+      2.8,
+      1.1
+    ],
+    "raw_bytes": 1214930,
+    "raw_sha256": "5dcb6e5e088c8891b321686a6eb872c57d71b75753aac8519a866feb21821607",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/cefd4596db214da394d9632b2b88f8f2",
+    "title": "SOT-23-3L_L2.9-W1.6-H1.1-LS2.8-P0.95",
+    "transform": "114.173,110.236,0,90,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/62a57c6760504a01965db6419a6d07df",
+    "converted_bbox_mm": [
+      2.5056,
+      2.9007,
+      1.0648
+    ],
+    "converted_bytes": 1965501,
+    "converted_file": "SOT-23-3P_L2.9-W1.3-H1.0-LS2.4-P0.95.step",
+    "converted_sha256": "d8d58923ba889e03f0cdd43883daafb7b700233d8099dc1e490f0aa7369b259e",
+    "direct_uuid": "d777607a152f4f3aac9bb0d0c14ed6fd",
+    "lcsc_code": "C20526",
+    "model_uuid": "62a57c6760504a01965db6419a6d07df",
+    "raw_bbox_mm": [
+      2.5056,
+      2.9007,
+      1.0648
+    ],
+    "raw_bytes": 2773949,
+    "raw_sha256": "77ba908a82212855f2a6d38b120604e403137808eaba47113ce858f1831017e5",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/d777607a152f4f3aac9bb0d0c14ed6fd",
+    "title": "SOT-23-3P_L2.9-W1.3-H1.0-LS2.4-P0.95",
+    "transform": "98.425,114.173,0,180,0,0,0.0005,-0.0005,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 0.961297,
+    "component_url": "https://pro.easyeda.com/api/v2/components/3168b22659ce4998ae232d44bb704e0a",
+    "converted_bbox_mm": [
+      2.896,
+      2.7886,
+      1.2153
+    ],
+    "converted_bytes": 2170900,
+    "converted_file": "SOT-23-5_L2.9-W1.6-H1.1-LS2.8-P0.95.step",
+    "converted_sha256": "dd122130d6ac460bafec3da1643b0528ff5e23d377eb3fc47a082fe384db4438",
+    "direct_uuid": "460193f9bf2d42e58cf3c2f675b07dc6",
+    "lcsc_code": "C2877852",
+    "model_uuid": "3168b22659ce4998ae232d44bb704e0a",
+    "raw_bbox_mm": [
+      3.0126,
+      2.9009,
+      1.2643
+    ],
+    "raw_bytes": 2944507,
+    "raw_sha256": "428abdfbc472055993422a992aaa8df42fe862d74021d8cd7cbee9d7277f41b1",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/460193f9bf2d42e58cf3c2f675b07dc6",
+    "title": "SOT-23-5_L2.9-W1.6-H1.1-LS2.8-P0.95",
+    "transform": "114.173,109.636,0,180,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/5bf53fa97d9848eeb37d584d4730b7f1",
+    "converted_bbox_mm": [
+      2.9002,
+      2.9,
+      1.101
+    ],
+    "converted_bytes": 1048613,
+    "converted_file": "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR.step",
+    "converted_sha256": "12e66c89f0cb620f98651a207190b593d6bda8aaa5c4c174bfb1947b419af4bf",
+    "direct_uuid": "8c971aea3af54c53b74baeb1f489d393",
+    "lcsc_code": "C1852057",
+    "model_uuid": "5bf53fa97d9848eeb37d584d4730b7f1",
+    "raw_bbox_mm": [
+      2.9002,
+      2.9,
+      1.101
+    ],
+    "raw_bytes": 1599556,
+    "raw_sha256": "3fbe347cadf5ca95a7857d3fd5f984fa1bab936aa2a69e9d96409dd40984ca51",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/8c971aea3af54c53b74baeb1f489d393",
+    "title": "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR",
+    "transform": "114.173,114.173,0,90,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/1370be37a17e44418ae52e2b4cc1f5e5",
+    "converted_bbox_mm": [
+      2.8128,
+      2.9009,
+      1.66
+    ],
+    "converted_bytes": 2367825,
+    "converted_file": "SOT-23-6_L2.9-W1.6-H1.5-LS2.8-P0.95.step",
+    "converted_sha256": "36e832b28e687d0bf1cb2011ca305e05ec371434bec792ad6404ae4f6511f58b",
+    "direct_uuid": "229b69761e2c45dba6a83d8866dec72d",
+    "lcsc_code": "C7519",
+    "model_uuid": "1370be37a17e44418ae52e2b4cc1f5e5",
+    "raw_bbox_mm": [
+      2.8128,
+      2.9009,
+      1.66
+    ],
+    "raw_bytes": 3277159,
+    "raw_sha256": "f24d05dd87ac04518fdaed88a57d135441fe22452089387784c4deda2bc09d61",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/229b69761e2c45dba6a83d8866dec72d",
+    "title": "SOT-23-6_L2.9-W1.6-H1.5-LS2.8-P0.95",
+    "transform": "110.236,113.364,0,90,0,0,0.0005,0.0005,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/9c651890c14f4164885657d2cfe1b0c6",
+    "converted_bbox_mm": [
+      2.0006,
+      2.1,
+      1.1
+    ],
+    "converted_bytes": 291966,
+    "converted_file": "SOT-363-6P_L2.0-W1.3-H1.1-LS2.0-P0.65.step",
+    "converted_sha256": "abcb9226a4ebedfcd6307dd6c080ea9830d53cae680703ca1fa00cc880bed050",
+    "direct_uuid": "c48363a009b446bc89c236a3f3be363d",
+    "lcsc_code": "C135822",
+    "model_uuid": "9c651890c14f4164885657d2cfe1b0c6",
+    "raw_bbox_mm": [
+      2.0006,
+      2.1,
+      1.1
+    ],
+    "raw_bytes": 406909,
+    "raw_sha256": "cff69b76985e7b40a6137d4b54d139447174eb22329546c4b5f56f377f7b1807",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/c48363a009b446bc89c236a3f3be363d",
+    "title": "SOT-363-6P_L2.0-W1.3-H1.1-LS2.0-P0.65",
+    "transform": "78.74,82.677,0,90,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/4c76d97157364292a433f6059cdc0af3",
+    "converted_bbox_mm": [
+      1.6,
+      1.6,
+      0.631
+    ],
+    "converted_bytes": 918876,
+    "converted_file": "SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.step",
+    "converted_sha256": "eba86287b6ce7388b914f025a891801706259550259d37604909a87fa20d9e02",
+    "direct_uuid": "ce682da4a06c4a098d062f74e6fe00c1",
+    "lcsc_code": "C1972959",
+    "model_uuid": "4c76d97157364292a433f6059cdc0af3",
+    "raw_bbox_mm": [
+      1.6,
+      1.6,
+      0.631
+    ],
+    "raw_bytes": 1441864,
+    "raw_sha256": "d37df5d63ae2788825a1cc53e6e89e0be321ab0cbb665907fad2efc8c0c89546",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/ce682da4a06c4a098d062f74e6fe00c1",
+    "title": "SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1",
+    "transform": "62.992,62.992,0,0,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/7b9d7b420d4a4df89ca820f7d1e45ec6",
+    "converted_bbox_mm": [
+      6.0126,
+      5.0011,
+      1.1117
+    ],
+    "converted_bytes": 3251268,
+    "converted_file": "TSSOP-14_L5.0-W4.4-H1.0-LS6.4-P0.65.step",
+    "converted_sha256": "ff537b7d9a4f273534b4cac81c1af4e9355896447258d27195d744a3af7e180c",
+    "direct_uuid": "5377177da492449fa1a3111d646cac17",
+    "lcsc_code": "C181596",
+    "model_uuid": "7b9d7b420d4a4df89ca820f7d1e45ec6",
+    "raw_bbox_mm": [
+      6.0126,
+      5.0011,
+      1.1117
+    ],
+    "raw_bytes": 4412556,
+    "raw_sha256": "edee5bac5c525e4702e736c9feddb2dfb6a645ff5f964a7829aa48781736f168",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/5377177da492449fa1a3111d646cac17",
+    "title": "TSSOP-14_L5.0-W4.4-H1.0-LS6.4-P0.65",
+    "transform": "237.007,196.85,0,90,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/f9996f70ec594f1fa1f051d0da75de4b",
+    "converted_bbox_mm": [
+      2.1003,
+      2.2,
+      1.276
+    ],
+    "converted_bytes": 1531908,
+    "converted_file": "TSSOP-5_L2.1-W1.3-H1.1-LS2.2-P0.65.step",
+    "converted_sha256": "6ec9570005bcbcad722f4516b8c6c43f2128e139bd97b8a5600d85edcc500885",
+    "direct_uuid": "4721e824c93a4c288b21021527682248",
+    "lcsc_code": "C545626",
+    "model_uuid": "f9996f70ec594f1fa1f051d0da75de4b",
+    "raw_bbox_mm": [
+      2.1003,
+      2.2,
+      1.276
+    ],
+    "raw_bytes": 2229618,
+    "raw_sha256": "dd6f4719e31af651b97247143eaea4ea2d95a4a6376bfdd5795c95fab4c75a60",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/4721e824c93a4c288b21021527682248",
+    "title": "TSSOP-5_L2.1-W1.3-H1.1-LS2.2-P0.65",
+    "transform": "82.677,86.614,0,90,0,0,-0.002,0.002,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/225b872a47724028a42acaac3b904dc4",
+    "converted_bbox_mm": [
+      3.02,
+      3.02,
+      0.921
+    ],
+    "converted_bytes": 1028023,
+    "converted_file": "VSON-10_L3.0-W3.0-P0.50-BL-EP1.65.step",
+    "converted_sha256": "cb093420fb85d434be7732c72ad93d26e8a9d0c51de1cefd5dd33fcd2aa4b256",
+    "direct_uuid": "5b684d31b96e44d5afe5d3a835e3ded7",
+    "lcsc_code": "C2876559",
+    "model_uuid": "225b872a47724028a42acaac3b904dc4",
+    "raw_bbox_mm": [
+      3.02,
+      3.02,
+      0.921
+    ],
+    "raw_bytes": 1618938,
+    "raw_sha256": "219df8ea86136bddb8b96ffbc1454e8014e3d74b7dd57724ded1fda6446f56a6",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/5b684d31b96e44d5afe5d3a835e3ded7",
+    "title": "VSON-10_L3.0-W3.0-P0.50-BL-EP1.65",
+    "transform": "118.8974,118.8974,0,90,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/eea7862749434464be9d0e2ff9cbca30",
+    "converted_bbox_mm": [
+      3.5126,
+      2.0013,
+      1.0688
+    ],
+    "converted_bytes": 2515778,
+    "converted_file": "VSSOP-8_L2.0-W2.3-H0.9-LS3.1-P0.50.step",
+    "converted_sha256": "69a2f8f264cf1e2093755cbf054f26a124e08740fe64f01e5f211ad31db0ec89",
+    "direct_uuid": "714a6271b466408e99a25b85bfe66811",
+    "lcsc_code": "C130024",
+    "model_uuid": "eea7862749434464be9d0e2ff9cbca30",
+    "raw_bbox_mm": [
+      3.5126,
+      2.0013,
+      1.0688
+    ],
+    "raw_bytes": 3472550,
+    "raw_sha256": "84ad0c1c64afdee0cf1b5f7617af2441dc1dc44208b0aa28f2e1e2888365a153",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/714a6271b466408e99a25b85bfe66811",
+    "title": "VSSOP-8_L2.0-W2.3-H0.9-LS3.1-P0.50",
+    "transform": "138.583,78.74,0,180,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/68be92a4e3a543c889091f303a6e8ef7",
+    "converted_bbox_mm": [
+      2.0,
+      3.1,
+      0.851
+    ],
+    "converted_bytes": 1079450,
+    "converted_file": "VSSOP-8_L2.3-W2.0-P0.50-LS3.1-BL.step",
+    "converted_sha256": "fec6b4f1ed48b01c8c5d54d0a72e73d6ec6b1853544ae0124ec2894d6f20c555",
+    "direct_uuid": "4ba1a5485b0b4bfe8267dec7566677a7",
+    "lcsc_code": "C503431",
+    "model_uuid": "68be92a4e3a543c889091f303a6e8ef7",
+    "raw_bbox_mm": [
+      2.0,
+      3.1,
+      0.851
+    ],
+    "raw_bytes": 1632088,
+    "raw_sha256": "556a77cc836f1834b6f37bfd11f44b1ddc1ad3bf134411e8f91202fc114d2f25",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/4ba1a5485b0b4bfe8267dec7566677a7",
+    "title": "VSSOP-8_L2.3-W2.0-P0.50-LS3.1-BL",
+    "transform": "78.74,122.047,0,90,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/452b2081c2ff4048a25a8c4e89707136",
+    "converted_bbox_mm": [
+      5.0126,
+      3.0009,
+      1.2614
+    ],
+    "converted_bytes": 2513109,
+    "converted_file": "VSSOP-8_L3.0-W3.0-H1.1-LS4.9-P0.65.step",
+    "converted_sha256": "fde25b815d35b9e97edb10940ac5898372884447d2070a662eb6fdad07022731",
+    "direct_uuid": "745f4a63f92f44b78c4ba3925feaa542",
+    "lcsc_code": "C140314",
+    "model_uuid": "452b2081c2ff4048a25a8c4e89707136",
+    "raw_bbox_mm": [
+      5.0126,
+      3.0009,
+      1.2614
+    ],
+    "raw_bytes": 3462525,
+    "raw_sha256": "5222bab8b2da5a2fe026505c1397734c7cd93477c4def51e05e9b8a984ab2f37",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/745f4a63f92f44b78c4ba3925feaa542",
+    "title": "VSSOP-8_L3.0-W3.0-H1.1-LS4.9-P0.65",
+    "transform": "197.34433,118.11,0,90,0,0,0,0.0005,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/cd0a0201d7d74912b3d471423687075e",
+    "converted_bbox_mm": [
+      2.02,
+      3.0,
+      1.011
+    ],
+    "converted_bytes": 1386051,
+    "converted_file": "WSON-12_L3.0-W2.0-H0.8-P0.50.step",
+    "converted_sha256": "76b8ca5a98078c6771ebcf2bffa7d4cb3158228b6b426d137c2a0aa19c25bfcf",
+    "direct_uuid": "7935202aa6c140ae82f5644aa48b910c",
+    "lcsc_code": "C473398",
+    "model_uuid": "cd0a0201d7d74912b3d471423687075e",
+    "raw_bbox_mm": [
+      2.02,
+      3.0,
+      1.011
+    ],
+    "raw_bytes": 2080602,
+    "raw_sha256": "b818685225e3bdd593048d77f8c93ef7465b31174497fe54992ecce2ff15b2dc",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/7935202aa6c140ae82f5644aa48b910c",
+    "title": "WSON-12_L3.0-W2.0-H0.8-P0.50",
+    "transform": "79.527,118.8974,0,90,0,0,0,0,0",
+    "warning": null
+  },
+  {
+    "applied_scale": 1.0,
+    "component_url": "https://pro.easyeda.com/api/v2/components/8444490de3b54ad88c9bb3ba8e089887",
+    "converted_bbox_mm": [
+      2.02,
+      2.0,
+      0.811
+    ],
+    "converted_bytes": 1305638,
+    "converted_file": "WSON-6_L2.0-W2.0-H0.8-P0.65.step",
+    "converted_sha256": "d037a73bd061511fff0b7b14e3df00ef4261dcf70088a715351d661c1a5c24f8",
+    "direct_uuid": "c909123e4a7a4da5a0270979fee6c02c",
+    "lcsc_code": "C128401",
+    "model_uuid": "8444490de3b54ad88c9bb3ba8e089887",
+    "raw_bbox_mm": [
+      2.02,
+      2.0,
+      0.811
+    ],
+    "raw_bytes": 1991123,
+    "raw_sha256": "6ecb7c0d9e2bf26099d55ccee55650efa5907cb2b0ad51fc1b7b2ff8c71d0dd0",
+    "step_url": "https://modules.easyeda.com/qAxj6KHrDKw4blvCG8QJPs7Y/c909123e4a7a4da5a0270979fee6c02c",
+    "title": "WSON-6_L2.0-W2.0-H0.8-P0.65",
+    "transform": "79.527,78.74,0,0,0,0,0,0,0",
+    "warning": null
+  }
+]

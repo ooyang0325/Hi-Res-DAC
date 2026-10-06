@@ -1,0 +1,31 @@
+{
+  "board": "hardware/DAC_HPA.kicad_pcb",
+  "esd_limit_mm": 4.2,
+  "l2_gnd_filled_area_mm2": 11669.24,
+  "l2_gnd_filled_polygon_count": 1,
+  "release": "HOLD: system IEC ESD test and full routing pending",
+  "routes": {
+    "D701": {
+      "ground_stub_mm": 1.02,
+      "jack_pad": "7",
+      "signal_length_mm": 3.83
+    },
+    "D702": {
+      "ground_stub_mm": 1.02,
+      "jack_pad": "5",
+      "signal_length_mm": 4.03
+    },
+    "D703": {
+      "ground_stub_mm": 1.02,
+      "jack_pad": "6",
+      "signal_length_mm": 4.03
+    },
+    "D704": {
+      "ground_stub_mm": 1.02,
+      "jack_pad": "2",
+      "signal_length_mm": 4.03
+    }
+  },
+  "track_count": 8,
+  "via_count": 4
+}

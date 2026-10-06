@@ -5,9 +5,10 @@ stages:
 default:
   image: kicad/kicad:10.0.1
   before_script:
+    - export KICAD10_3DMODEL_DIR="$CI_PROJECT_DIR/hardware/KICAD_STOCK_MODELS"
     - sudo apt-get update -qq
-    - sudo apt-get install -y --no-install-recommends python3-openpyxl
-    - python3 -c 'import openpyxl, pcbnew; print("openpyxl and pcbnew available")'
+    - sudo apt-get install -y --no-install-recommends python3-openpyxl python3-numpy
+    - python3 -c 'import openpyxl, numpy, pcbnew; print("openpyxl, numpy and pcbnew available")'
     - kicad-cli version
     - sudo chown -R "$(id -u):$(id -g)" "$CI_PROJECT_DIR/.git"
     - git config --global --add safe.directory "$CI_PROJECT_DIR"
@@ -15,26 +16,419 @@ default:
 validate_schematic:
   stage: validate
   script:
+    - python3 hardware/audit_jlc_library.py
+    - python3 hardware/derive_connector_footprints.py
     - python3 hardware/generate_schematic.py
     - python3 hardware/verify_schematic.py
     - python3 hardware/verify_design_notes.py
     - python3 hardware/verify_critical_footprints.py
     - python3 hardware/export_assembly_review.py
-    - git diff --exit-code -- hardware/DAC_HPA.kicad_sch hardware/0*.kicad_sch hardware/DAC_HPA.kicad_sym hardware/sym-lib-table hardware/*_REVIEW_ONLY.csv
+    - python3 hardware/check_attach_charge.py
+    - python3 hardware/audit_discharge_capture.py --output hardware/DISCHARGE_CAPTURE_AUDIT.json
+    - python3 hardware/check_spi2_capture_contract.py
+    - python3 hardware/export_g3_connector_overlay.py
+    - python3 hardware/export_g3_part_overlay.py
+    - git diff --exit-code -- hardware/DAC_HPA.kicad_sch hardware/0*.kicad_sch hardware/DAC_HPA.kicad_sym hardware/sym-lib-table hardware/jlc_footprints.json hardware/DAC_HPA.pretty/J701_GT-3321667P-01_maker_slots.kicad_mod hardware/DAC_HPA.pretty/J702_PJ-332A-6A_peg_holes.kicad_mod hardware/*_REVIEW_ONLY.csv hardware/G3_*_REVIEW_ONLY.svg hardware/G3_OVERLAY_INDEX.md hardware/ATTACH_CHARGE_RECONCILIATION.json hardware/DISCHARGE_CAPTURE_AUDIT.json
+
+validate_placement:
+  stage: validate
+  needs:
+    - validate_schematic
+  script:
+    # Historical boards predate the eight-part functional ECO. Audit their
+    # geometry for comparison; only validate_functional_eco checks the current
+    # captured schematic against a board pad map.
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_100x80_REVIEW_ONLY.kicad_pcb --height 80 > hardware/PLACEMENT_100x80_AUDIT.json
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_100x100_BASELINE_REVIEW_ONLY.kicad_pcb --height 100 > hardware/PLACEMENT_100x100_BASELINE_AUDIT.json
+    - python3 hardware/audit_placement.py hardware/DAC_HPA.kicad_pcb --height 100 > hardware/PLACEMENT_AUDIT.json
+    - python3 hardware/audit_3d_models.py --output hardware/MODEL_3D_AUDIT.json
+    - echo "Historical placement geometry checked; current ECO board is gated separately."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/PLACEMENT_AUDIT.json
+      - hardware/PLACEMENT_100x80_AUDIT.json
+      - hardware/PLACEMENT_100x100_BASELINE_AUDIT.json
+      - hardware/MODEL_3D_AUDIT.json
+
+validate_manual_review:
+  stage: validate
+  needs:
+    - validate_schematic
+  script:
+    # These are explicit hand placements. The read-only audits never move parts.
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_100x100_TIMER_STUDY_ONLY.kicad_pcb --height 100 > hardware/MANUAL_100x100_TIMER_PLACEMENT_AUDIT.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_100x100_TIMER_STUDY_ONLY.kicad_pcb > hardware/MANUAL_100x100_TIMER_DFA_DFM_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_100x100_TIMER_STUDY_ONLY.kicad_pcb > hardware/MANUAL_100x100_TIMER_JLC_FAB_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/MANUAL_100x100_TIMER_DRC.json hardware/DAC_HPA_100x100_TIMER_STUDY_ONLY.kicad_pcb
+    - python3 hardware/check_manual_review.py hardware/MANUAL_100x100_TIMER_PLACEMENT_AUDIT.json hardware/MANUAL_100x100_TIMER_DFA_DFM_AUDIT.json hardware/MANUAL_100x100_TIMER_DRC.json --require-timer-feasible -o hardware/MANUAL_100x100_TIMER_SUMMARY.json
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_120x100_CLOCK_ESCAPE_STUDY_ONLY.kicad_pcb --height 100 > hardware/MANUAL_120x100_CLOCK_PLACEMENT_AUDIT.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_CLOCK_ESCAPE_STUDY_ONLY.kicad_pcb > hardware/MANUAL_120x100_CLOCK_DFA_DFM_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_CLOCK_ESCAPE_STUDY_ONLY.kicad_pcb > hardware/MANUAL_120x100_CLOCK_JLC_FAB_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/MANUAL_120x100_CLOCK_DRC.json hardware/DAC_HPA_120x100_CLOCK_ESCAPE_STUDY_ONLY.kicad_pcb
+    - python3 hardware/check_manual_review.py hardware/MANUAL_120x100_CLOCK_PLACEMENT_AUDIT.json hardware/MANUAL_120x100_CLOCK_DFA_DFM_AUDIT.json hardware/MANUAL_120x100_CLOCK_DRC.json --require-timer-feasible --require-clean-drc --esd-limit-mm 4.2 -o hardware/MANUAL_120x100_CLOCK_SUMMARY.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA.kicad_pcb > hardware/MANUAL_120x100_PRIMARY_DFA_DFM_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA.kicad_pcb > hardware/MANUAL_120x100_PRIMARY_JLC_FAB_AUDIT.json
+    - python3 hardware/audit_esd_routes.py hardware/DAC_HPA.kicad_pcb > hardware/MANUAL_120x100_ESD_ROUTE_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/MANUAL_120x100_PRIMARY_DRC.json hardware/DAC_HPA.kicad_pcb
+    - python3 hardware/check_manual_review.py hardware/PLACEMENT_AUDIT.json hardware/MANUAL_120x100_PRIMARY_DFA_DFM_AUDIT.json hardware/MANUAL_120x100_PRIMARY_DRC.json --require-timer-feasible --require-clean-drc --esd-limit-mm 4.2 -o hardware/MANUAL_120x100_PRIMARY_SUMMARY.json
+    - echo "Manual 120 x 100 placement, JLC policy screens, and four J701 TVS routes checked. Full routing and ESD test remain HOLD."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/MANUAL_*_AUDIT.json
+      - hardware/MANUAL_*_DRC.json
+      - hardware/MANUAL_*_SUMMARY.json
+      - hardware/MANUAL_120x100_ESD_ROUTE_AUDIT.json
+
+validate_macro_study:
+  stage: validate
+  needs:
+    - validate_schematic
+  script:
+    # Hand-selected coordinates only; no placement search or PCB routing runs.
+    - python3 hardware/verify_routing_policy.py
+    - python3 hardware/manual_macro_relayout.py
+    - git diff --exit-code -- hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb --height 100 > hardware/MACRO_STUDY_AUDIT.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb > hardware/MACRO_STUDY_DFA_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb > hardware/MACRO_STUDY_JLC_FAB_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/MACRO_STUDY_DRC.json hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/check_macro_study.py hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb hardware/MACRO_STUDY_AUDIT.json hardware/MACRO_STUDY_DFA_AUDIT.json hardware/MACRO_STUDY_DRC.json --output hardware/MACRO_STUDY_SUMMARY.json
+    - python3 hardware/review_j702_tvs_sensitivity.py --output hardware/J702_TVS_SENSITIVITY_REVIEW.json
+    - python3 hardware/j702_esd_option.py
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb > hardware/J702_ESD_OPTION_DFA_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/J702_ESD_OPTION_DRC.json hardware/DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb
+    - python3 hardware/check_j702_option.py hardware/DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb hardware/J702_ESD_OPTION_DFA_AUDIT.json hardware/J702_ESD_OPTION_DRC.json --output hardware/J702_ESD_OPTION_SUMMARY.json
+    - git diff --exit-code -- hardware/MACRO_STUDY_SUMMARY.json hardware/J702_ESD_OPTION_SUMMARY.json
+    - echo "Historical macro and TVS fit studies checked; the captured ECO board is gated separately."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/MACRO_STUDY_AUDIT.json
+      - hardware/MACRO_STUDY_DFA_AUDIT.json
+      - hardware/MACRO_STUDY_JLC_FAB_AUDIT.json
+      - hardware/MACRO_STUDY_DRC.json
+      - hardware/MACRO_STUDY_SUMMARY.json
+      - hardware/J702_ESD_OPTION_DFA_AUDIT.json
+      - hardware/J702_ESD_OPTION_DRC.json
+      - hardware/J702_ESD_OPTION_SUMMARY.json
+      - hardware/J702_TVS_SENSITIVITY_REVIEW.json
+      - hardware/DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb
+
+validate_functional_eco:
+  stage: validate
+  needs:
+    - validate_schematic
+  script:
+    # The committed board uses explicit hand-selected coordinates. The
+    # checker verifies every ECO/moved position, all pad nets, partial copper,
+    # DAC bypass proximity, JLC geometry and KiCad DRC; no auto-placement runs.
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb --height 100 > hardware/FUNCTIONAL_ECO_PLACEMENT_AUDIT.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb > hardware/FUNCTIONAL_ECO_DFA_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb > hardware/FUNCTIONAL_ECO_JLC_FAB_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/FUNCTIONAL_ECO_DRC.json hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/audit_local_tvs_paths.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb --output hardware/LOCAL_TVS_ROUTE_AUDIT.json
+    - python3 hardware/check_functional_eco_layout.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb hardware/FUNCTIONAL_ECO_PLACEMENT_AUDIT.json hardware/FUNCTIONAL_ECO_DFA_AUDIT.json hardware/FUNCTIONAL_ECO_JLC_FAB_AUDIT.json hardware/FUNCTIONAL_ECO_DRC.json --output hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json
+    - python3 hardware/audit_3d_models.py hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb --output hardware/FUNCTIONAL_ECO_3D_AUDIT.json
+    - git diff --exit-code -- hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json hardware/LOCAL_TVS_ROUTE_AUDIT.json
+    - echo "Current ECO schematic/board population, JLC geometry, DRC and 3D links checked. Full routing and functional qualification remain HOLD."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/FUNCTIONAL_ECO_PLACEMENT_AUDIT.json
+      - hardware/FUNCTIONAL_ECO_DFA_AUDIT.json
+      - hardware/FUNCTIONAL_ECO_JLC_FAB_AUDIT.json
+      - hardware/FUNCTIONAL_ECO_DRC.json
+      - hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json
+      - hardware/FUNCTIONAL_ECO_3D_AUDIT.json
+      - hardware/LOCAL_TVS_ROUTE_AUDIT.json
+
+validate_output_macro_study:
+  stage: validate
+  needs:
+    - validate_functional_eco
+  script:
+    # Separate hand-placed comparison. Geometry, feedback and the four
+    # amplifier-to-relay inputs are checked; remaining ratsnest is a HOLD.
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb --height 100 > hardware/OUTPUT_MACRO_STUDY_PLACEMENT_AUDIT.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb > hardware/OUTPUT_MACRO_STUDY_DFA_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb > hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/OUTPUT_MACRO_STUDY_DRC.json hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/audit_local_tvs_paths.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb --output hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
+    - python3 hardware/check_output_macro_study.py hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb hardware/OUTPUT_MACRO_STUDY_PLACEMENT_AUDIT.json hardware/OUTPUT_MACRO_STUDY_DFA_AUDIT.json hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json hardware/OUTPUT_MACRO_STUDY_DRC.json --output hardware/OUTPUT_MACRO_STUDY_SUMMARY.json
+    - git diff --exit-code -- hardware/OUTPUT_MACRO_STUDY_SUMMARY.json hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
+    - echo "Manual output-macro copper checked; jack, returns and qualification remain HOLD."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/OUTPUT_MACRO_STUDY_PLACEMENT_AUDIT.json
+      - hardware/OUTPUT_MACRO_STUDY_DFA_AUDIT.json
+      - hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json
+      - hardware/OUTPUT_MACRO_STUDY_DRC.json
+      - hardware/OUTPUT_MACRO_STUDY_SUMMARY.json
+      - hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
+
+validate_integrated_audio_study:
+  stage: validate
+  needs:
+    - validate_output_macro_study
+  script:
+    # Replay frozen engineer-selected coordinates/copper and validate the
+    # committed study. No placement or routing search runs.
+    - python3 hardware/manual_integrated_audio_study.py --output /tmp/dac-integrated-audio-regenerated.kicad_pcb
+    - test -s /tmp/dac-integrated-audio-regenerated.kicad_pcb
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --height 100 > hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb > hardware/INTEGRATED_AUDIO_DFA_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb > hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json
+    - python3 hardware/audit_via_pad_process.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json --gate
+    - python3 hardware/audit_power_pad_escapes.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_POWER_ESCAPE_AUDIT.json --gate
+    - python3 hardware/audit_film_solder_access.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json --gate
+    - python3 hardware/audit_timer_routes.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_TIMER_ROUTE_AUDIT.json --gate --require-complete
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/INTEGRATED_AUDIO_DRC.json hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/audit_local_tvs_paths.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json
+    - python3 hardware/audit_audio_output_traces.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json
+    - python3 hardware/check_integrated_audio_study.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json hardware/INTEGRATED_AUDIO_DFA_AUDIT.json hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json hardware/INTEGRATED_AUDIO_DRC.json hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json --output hardware/INTEGRATED_AUDIO_SUMMARY.json
+    - python3 hardware/check_dac_core_routes.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/DAC_CORE_ROUTE_AUDIT.json
+    - git diff --exit-code -- hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json hardware/INTEGRATED_AUDIO_SUMMARY.json hardware/DAC_CORE_ROUTE_AUDIT.json hardware/INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json hardware/INTEGRATED_AUDIO_POWER_ESCAPE_AUDIT.json hardware/INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json hardware/INTEGRATED_AUDIO_TIMER_ROUTE_AUDIT.json
+    - echo "Partial audio/DAC/CPLD/regulator copper checked; remaining via-mask process, main feeds, L3/L4 return, measured outputs and full routing HOLD."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_DFA_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_POWER_ESCAPE_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_TIMER_ROUTE_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_DRC.json
+      - hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json
+      - hardware/INTEGRATED_AUDIO_SUMMARY.json
+      - hardware/DAC_CORE_ROUTE_AUDIT.json
+
+validate_discharge_fit_option:
+  stage: validate
+  needs:
+    - validate_integrated_audio_study
+  script:
+    # Deliberately schematic/BOM-divergent package trial. Check only its
+    # explicit footprint/route delta and physical screens, never PCBA release.
+    - python3 hardware/audit_placement.py hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb --height 100 > hardware/DISCHARGE_FIT_OPTION_PLACEMENT_AUDIT.json
+    - python3 hardware/audit_dfa_dfm.py hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb > hardware/DISCHARGE_FIT_OPTION_DFA_AUDIT.json
+    - python3 hardware/audit_jlc_fab.py hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb > hardware/DISCHARGE_FIT_OPTION_JLC_FAB_AUDIT.json
+    - python3 hardware/audit_via_pad_process.py hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb --output hardware/DISCHARGE_FIT_OPTION_VIA_AUDIT.json --gate
+    - python3 hardware/audit_3d_models.py hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb --output hardware/DISCHARGE_FIT_OPTION_3D_AUDIT.json
+    - python3 hardware/verify_discharge_jlc_cad.py --output hardware/DISCHARGE_JLC_CAD_AUDIT.json
+    - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/DISCHARGE_FIT_OPTION_DRC.json hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb
+    - python3 hardware/check_discharge_fit_option.py hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb hardware/DISCHARGE_FIT_OPTION_PLACEMENT_AUDIT.json hardware/DISCHARGE_FIT_OPTION_DFA_AUDIT.json hardware/DISCHARGE_FIT_OPTION_DRC.json hardware/DISCHARGE_FIT_OPTION_3D_AUDIT.json --output hardware/DISCHARGE_FIT_OPTION_SUMMARY.json
+    - git diff --exit-code -- hardware/DISCHARGE_FIT_OPTION_SUMMARY.json hardware/DISCHARGE_JLC_CAD_AUDIT.json
+    - echo "Three 2512 body/route fit options screened; schematic/BOM, source feeds, thermal and discharge timing remain HOLD."
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - hardware/DISCHARGE_FIT_OPTION_PLACEMENT_AUDIT.json
+      - hardware/DISCHARGE_FIT_OPTION_DFA_AUDIT.json
+      - hardware/DISCHARGE_FIT_OPTION_JLC_FAB_AUDIT.json
+      - hardware/DISCHARGE_FIT_OPTION_VIA_AUDIT.json
+      - hardware/DISCHARGE_FIT_OPTION_3D_AUDIT.json
+      - hardware/DISCHARGE_FIT_OPTION_DRC.json
+      - hardware/DISCHARGE_FIT_OPTION_SUMMARY.json
+      - hardware/DISCHARGE_JLC_CAD_AUDIT.json
 
 deliver_review_package:
   stage: deliver
   needs:
     - validate_schematic
+    - validate_placement
+    - validate_manual_review
+    - validate_macro_study
+    - validate_functional_eco
+    - validate_output_macro_study
+    - validate_integrated_audio_study
+    - validate_discharge_fit_option
   script:
     - python3 hardware/export_assembly_review.py
     - kicad-cli sch export pdf -o hardware/DAC_HPA_review_only.pdf hardware/DAC_HPA.kicad_sch
     - test -s hardware/DAC_HPA_review_only.pdf
+    - kicad-cli pcb export glb --force -o hardware/DAC_HPA_3D_REVIEW_ONLY.glb hardware/DAC_HPA.kicad_pcb
+    - test -s hardware/DAC_HPA_3D_REVIEW_ONLY.glb
+    - kicad-cli pcb export glb --force -o hardware/DAC_HPA_MACRO_STUDY_REVIEW.glb hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_MACRO_STUDY_REVIEW.glb
+    - kicad-cli pcb export glb --force -o hardware/DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb
+    - kicad-cli pcb export glb --force -o hardware/DAC_HPA_DISCHARGE_FIT_OPTION_REVIEW.glb hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_DISCHARGE_FIT_OPTION_REVIEW.glb
+    - kicad-cli pcb export glb --force -o hardware/DAC_HPA_OUTPUT_MACRO_STUDY_REVIEW.glb hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_OUTPUT_MACRO_STUDY_REVIEW.glb
+    - kicad-cli pcb export glb --force -o hardware/DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb
+    - kicad-cli pcb export svg --mode-single --layers F.Fab,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_MACRO_STUDY_PLACEMENT_REVIEW.svg hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_MACRO_STUDY_PLACEMENT_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers F.Cu,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_FUNCTIONAL_ECO_PLACEMENT_REVIEW.svg hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_FUNCTIONAL_ECO_PLACEMENT_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers F.Cu,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_OUTPUT_MACRO_TOP_REVIEW.svg hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_OUTPUT_MACRO_TOP_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers B.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet --mirror -o hardware/DAC_HPA_OUTPUT_MACRO_BOTTOM_REVIEW.svg hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_OUTPUT_MACRO_BOTTOM_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers F.Cu,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers In1.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_INTEGRATED_AUDIO_L2_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_L2_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers In2.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_INTEGRATED_AUDIO_L3_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_L3_REVIEW.svg
+    - kicad-cli pcb export svg --mode-single --layers B.Cu,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet --mirror -o hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg
+    - python3 hardware/j702_esd_option.py
+    - kicad-cli pcb export svg --mode-single --layers F.Cu,F.CrtYd,Edge.Cuts --page-size-mode 2 --exclude-drawing-sheet -o hardware/DAC_HPA_J702_ESD_OPTION_REVIEW.svg hardware/DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb
+    - test -s hardware/DAC_HPA_J702_ESD_OPTION_REVIEW.svg
+    - git rev-parse HEAD > hardware/REVIEW_COMMIT.txt
+    - git archive --format=zip --output=hardware/DAC_HPA_REVIEW_SOURCE.zip HEAD
+    - test -s hardware/DAC_HPA_REVIEW_SOURCE.zip
   artifacts:
     name: "dac-hpa-review-$CI_COMMIT_SHORT_SHA"
     expire_in: 30 days
     paths:
       - hardware/DAC_HPA_review_only.pdf
+      - hardware/DAC_HPA_3D_REVIEW_ONLY.glb
+      - hardware/DAC_HPA_MACRO_STUDY_REVIEW.glb
+      - hardware/DAC_HPA_MACRO_STUDY_PLACEMENT_REVIEW.svg
+      - hardware/DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb
+      - hardware/DAC_HPA_DISCHARGE_FIT_OPTION_REVIEW.glb
+      - hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pcb
+      - hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_pro
+      - hardware/DAC_HPA_120x100_DISCHARGE_FIT_OPTION_ONLY.kicad_dru
+      - hardware/DAC_HPA_FUNCTIONAL_ECO_PLACEMENT_REVIEW.svg
+      - hardware/DAC_HPA_OUTPUT_MACRO_STUDY_REVIEW.glb
+      - hardware/DAC_HPA_OUTPUT_MACRO_TOP_REVIEW.svg
+      - hardware/DAC_HPA_OUTPUT_MACRO_BOTTOM_REVIEW.svg
+      - hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pcb
+      - hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_pro
+      - hardware/DAC_HPA_120x100_OUTPUT_MACRO_STUDY_ONLY.kicad_dru
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_REVIEW.glb
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_TOP_REVIEW.svg
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_L2_REVIEW.svg
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_L3_REVIEW.svg
+      - hardware/DAC_HPA_INTEGRATED_AUDIO_BOTTOM_REVIEW.svg
+      - hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+      - hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pro
+      - hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_dru
+      - hardware/DAC_HPA_FUNCTIONAL_ECO_PLACEMENT_REVIEW.png
+      - hardware/DAC_HPA_120x100_FUNCTIONAL_ECO_STUDY_ONLY.kicad_pcb
+      - hardware/DAC_HPA_J702_ESD_OPTION_REVIEW.svg
+      - hardware/DAC_HPA_120x100_MACRO_STUDY_ONLY.kicad_pcb
+      - hardware/DAC_HPA_J702_ESD_OPTION_ONLY.kicad_pcb
+      - hardware/DAC_HPA_REVIEW_SOURCE.zip
+      - hardware/REVIEW_COMMIT.txt
+      - README.md
+      - hardware/REVIEWER_START_HERE.md
+      - hardware/LAYOUT_HANDOVER_REPORT.md
+      - hardware/PCB_CLI_VISUAL_REVIEW.md
+      - hardware/make_review_views.sh
+      - hardware/SCHEMATIC_REVIEW_GUIDE.md
+      - hardware/SCHEMATIC_SIMPLIFICATION_REVIEW.md
+      - hardware/PLACEMENT_REVIEW_GUIDE.md
+      - hardware/MACRO_PLACEMENT_REVIEW.md
+      - hardware/FUNCTIONAL_ECO_2026-09-28.md
+      - hardware/MCU_SPI2_CAPTURE_ECO.md
+      - hardware/ATTACH_CHARGE_RECONCILIATION.json
+      - hardware/DISCHARGE_CAPTURE_REVIEW.md
+      - hardware/DISCHARGE_CAPTURE_AUDIT.json
+      - hardware/DISCHARGE_FIT_OPTION_SUMMARY.json
+      - hardware/DISCHARGE_JLC_CAD_AUDIT.json
+      - hardware/DISCHARGE_FIT_OPTION_3D_AUDIT.json
+      - hardware/DISCHARGE_FIT_OPTION_DRC.json
+      - hardware/FUNCTIONAL_ECO_LAYOUT_SUMMARY.json
+      - hardware/FUNCTIONAL_ECO_3D_AUDIT.json
+      - hardware/FUNCTIONAL_ECO_DRC.json
+      - hardware/LOCAL_TVS_ROUTE_AUDIT.json
+      - hardware/OUTPUT_MACRO_ROUTE_STUDY.md
+      - hardware/OUTPUT_MACRO_STUDY_SUMMARY.json
+      - hardware/OUTPUT_MACRO_STUDY_DRC.json
+      - hardware/OUTPUT_MACRO_LOCAL_TVS_AUDIT.json
+      - hardware/OUTPUT_MACRO_STUDY_PLACEMENT_AUDIT.json
+      - hardware/OUTPUT_MACRO_STUDY_DFA_AUDIT.json
+      - hardware/OUTPUT_MACRO_STUDY_JLC_FAB_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_ROUTE_STUDY.md
+      - hardware/INTEGRATED_AUDIO_MANUAL_DELTA.json
+      - hardware/INTEGRATED_AUDIO_SUMMARY.json
+      - hardware/DAC_CORE_ROUTE_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_POWER_ESCAPE_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_TIMER_ROUTE_AUDIT.json
+      - hardware/DAC_CORE_ROUTE_STUDY.md
+      - hardware/FREEROUTING_PROBE.md
+      - hardware/sim/README.md
+      - hardware/sim/dac_1v3_bypass.cir
+      - hardware/sim/dac_1v3_bypass.m
+      - hardware/sim/dac_1v3_bypass_ltspice.log
+      - hardware/sim/dac_1v3_bypass_sweep.csv
+      - hardware/sim/dac_1v3_bypass_sweep.png
+      - hardware/INTEGRATED_AUDIO_DRC.json
+      - hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json
+      - hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_DFA_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json
+      - hardware/CONSTRAINT_DISPOSITION_V2.md
+      - hardware/J702_LOCAL_TVS_OPTION.md
+      - hardware/REVIEW_FINDINGS_TEMPLATE.md
+      - hardware/README.md
+      - hardware/SOURCE_RECONCILIATION.md
+      - hardware/PRELAYOUT_GATES.md
+      - hardware/CONNECTOR_REVIEW.md
+      - hardware/POLARITY_REVIEW.md
+      - hardware/PCBA_PROCESS_REVIEW.md
+      - hardware/FOOTPRINT_SOURCES.md
+      - hardware/3D_MODEL_REVIEW.md
+      - hardware/PLACEMENT_AUDIT.json
+      - hardware/MODEL_3D_AUDIT.json
+      - hardware/MANUAL_120x100_PRIMARY_DFA_DFM_AUDIT.json
+      - hardware/MANUAL_120x100_PRIMARY_JLC_FAB_AUDIT.json
+      - hardware/MANUAL_120x100_ESD_ROUTE_AUDIT.json
+      - hardware/MANUAL_120x100_PRIMARY_DRC.json
+      - hardware/MACRO_STUDY_SUMMARY.json
+      - hardware/MACRO_STUDY_AUDIT.json
+      - hardware/MACRO_STUDY_DFA_AUDIT.json
+      - hardware/MACRO_STUDY_JLC_FAB_AUDIT.json
+      - hardware/MACRO_STUDY_DRC.json
+      - hardware/J702_TVS_SENSITIVITY_REVIEW.json
+      - hardware/J702_ESD_OPTION_SUMMARY.json
+      - hardware/J702_ESD_OPTION_DRC.json
       - hardware/JLCPCB_BOM_REVIEW_ONLY.csv
       - hardware/OWNER_FITTED_REVIEW_ONLY.csv
       - hardware/DNF_REVIEW_ONLY.csv
+      - hardware/G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg
+      - hardware/G3_PART_OVERLAY_REVIEW_ONLY.svg
+      - hardware/G3_OVERLAY_INDEX.md
+      - hardware/G3_OVERLAY_CHECKLIST.md
+      - hardware/G1_G2_CONTINUITY_RECORD.md
+      - hardware/G4_POLARITY_CHECKLIST.md
+      - hardware/DAC_HPA.kicad_pcb
+      - hardware/DAC_HPA_100x100_BASELINE_REVIEW_ONLY.kicad_pcb
+      - hardware/DAC_HPA_placement_preview.png
+      - hardware/DAC_HPA_100x80_REVIEW_ONLY.kicad_pcb
+      - hardware/DAC_HPA_100x80_placement_preview.png
+      - hardware/DAC_HPA_100x100_TIMER_STUDY_ONLY.kicad_pcb
+      - hardware/DAC_HPA_120x100_CLOCK_ESCAPE_STUDY_ONLY.kicad_pcb
+      - hardware/DAC_HPA_100x100_timer_preview.png
+      - hardware/DAC_HPA_120x100_manual_preview.png
+      - hardware/DAC_HPA_120x100_output_zoom.png
+      - hardware/DAC_HPA_120x100_timer_zoom.png
+      - hardware/DAC_HPA_120x100_clock_zoom.png
+      - hardware/DAC_HPA_3D_review.png
+      - hardware/DAC_HPA_J101_3D_detail.png
+      - hardware/JLCPCB_DFA_DFM_RULES.md
+      - hardware/MANUAL_PLACEMENT_REVIEW.md
+      - hardware/ROUTABILITY_REVIEW.md
+      - hardware/AUDIO_EMI_PLACEMENT_REVIEW.md
+      - hardware/IV_7MM_RECHECK.md

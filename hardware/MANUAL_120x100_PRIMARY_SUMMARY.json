@@ -1,0 +1,27 @@
+{
+  "board": "hardware/DAC_HPA.kicad_pcb",
+  "esd_limit_mm": 4.2,
+  "esd_refs_over_limit": [],
+  "esd_signal_pad_max_mm": 4.03,
+  "footprint_overlaps": 0,
+  "footprints": 536,
+  "jlc_body_edge_proxy_violations": 0,
+  "jlc_connector_edge_exceptions_pending_panel_review": [
+    "J101",
+    "J702"
+  ],
+  "jlc_package_pair_body_proxy_violations": 0,
+  "jlc_unclassified_package_refs": 20,
+  "known_j701_hand_access_drc_holds": [],
+  "l1_output_corridor_blockers": 0,
+  "named_nets": 246,
+  "outline_mm": [
+    120.0,
+    100.0
+  ],
+  "protection_timer_manhattan_lower_bound_max_mm": 7.91,
+  "routing_release": "HOLD",
+  "track_count": 12,
+  "unconnected_items": 499,
+  "zone_count": 1
+}

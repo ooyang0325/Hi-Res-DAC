@@ -1,0 +1,84 @@
+{
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "exception_count": 5,
+  "exceptions": [
+    {
+      "end_mm": [
+        50.97,
+        83.65
+      ],
+      "layer": "F.Cu",
+      "length_mm": 1.2,
+      "net": "5V_SYS",
+      "pad": "U102.1",
+      "start_mm": [
+        50.9715,
+        84.85
+      ],
+      "width_mm": 0.3
+    },
+    {
+      "end_mm": [
+        52.03,
+        131.2
+      ],
+      "layer": "F.Cu",
+      "length_mm": 1.15,
+      "net": "5V_SYS",
+      "pad": "U504.6",
+      "start_mm": [
+        52.0285,
+        132.35
+      ],
+      "width_mm": 0.3
+    },
+    {
+      "end_mm": [
+        48.9,
+        72.6
+      ],
+      "layer": "F.Cu",
+      "length_mm": 1.53,
+      "net": "VBUS",
+      "pad": "J101.A4/B9",
+      "start_mm": [
+        47.37,
+        72.6
+      ],
+      "width_mm": 0.5
+    },
+    {
+      "end_mm": [
+        49.2,
+        77.4
+      ],
+      "layer": "F.Cu",
+      "length_mm": 1.83,
+      "net": "VBUS",
+      "pad": "J101.B4/A9",
+      "start_mm": [
+        47.37,
+        77.4
+      ],
+      "width_mm": 0.5
+    },
+    {
+      "end_mm": [
+        53.03,
+        84.05
+      ],
+      "layer": "F.Cu",
+      "length_mm": 0.8,
+      "net": "VBUS",
+      "pad": "U102.6",
+      "start_mm": [
+        53.0285,
+        84.85
+      ],
+      "width_mm": 0.3
+    }
+  ],
+  "method": "one F.Cu pad-centred straight neckdown per listed small land; all other VBUS/5V_SYS copper at least 1 mm",
+  "trunk_min_width_mm": 1.0,
+  "violations": []
+}

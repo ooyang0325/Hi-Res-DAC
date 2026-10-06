@@ -1,0 +1,14 @@
+{
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "local_routes_mm": {
+    "LN J701": 4.03,
+    "LP J701": 3.83,
+    "LP J702": 3.255,
+    "RN J701": 4.03,
+    "RP J701": 4.03,
+    "RP J702": 3.864
+  },
+  "method": "shortest named-pad F.Cu centreline path, with same-net junctions",
+  "provisional_limit_mm": 4.2,
+  "system_iec_esd": "HOLD: discharge return, nonlinear loading and system test"
+}

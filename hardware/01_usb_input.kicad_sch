@@ -4,7 +4,7 @@
 (generator_version "10.0")
 (uuid "65692628-cb55-5e33-b74c-8afe67803eb7")
 (paper "A3")
-(title_block (title "1  USB-C INPUT / OVP / SENSING") (date "2026-09-26") (rev "Schematic capture v1.0") (comment 1 "REVIEW ONLY: G-1 to G-4 and J702 contact map remain open"))
+(title_block (title "1  USB-C INPUT / OVP / SENSING") (date "2026-09-28") (rev "v1.1-ECO1") (comment 1 "Spec v1.1 / Notes v1.0 / Parts List v0.9 + ECO F02/F04") (comment 2 "REVIEW ONLY: capture F01, attach F03 and G-1 to G-4 open"))
 (lib_symbols
 (symbol "DAC_HPA:P004"
 (pin_numbers (hide yes))
@@ -94,7 +94,7 @@
 (property "Value" "GCT USB4105-GF-A" (at 0 -15.24 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "USB-C receptacle, USB 2.0, 16 contacts on 12 SMT pads (A1/B12, A4/B9, B4/A9, B1/A12 combined) + 4 THT shell stakes; 2 NPTH locating pegs; shell to GND via R107" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "USB-C receptacle, USB 2.0: 16 contacts on the 12 composite GCT solder lands (shared A1/B12, A4/B9, B4/A9, B1/A12; single A5, A6, A7, A8, B5, B6, B7, B8) plus the plated shell stakes S1–S4; the provisional footprint uses the 16 JLCPCB pad IDs (each shared land is two touching pads on one net), plus two Ø0.65 mm non-plated locating holes; pin-in-paste on S1–S4 only after JLCPCB confirms the process and the aperture geometry (G-6); fallback: the owner hand-solders S1–S4 from the bottom side before the first plug-in (the stakes carry the shell and the mechanical retention); shell to GND via R107" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P009_1_1"
 (rectangle (start -13.97 11.43) (end 13.97 -11.43) (stroke (width 0.254) (type default)) (fill (type background)))
 (pin passive line (at -19.05 8.89 0) (length 5.08) (name "GND (A1+B12)" (effects (font (size 0.762 0.762)))) (number "A1/B12" (effects (font (size 0.762 0.762)))))
@@ -198,7 +198,7 @@
 (property "Value" "100 kΩ" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
 (property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
-(property "Description" "U102 current-limit resistor (IOS 870/970/1077 mA ≥ the 760.76 mA of state S4: +109 mA to the minimum)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "U102 current-limit resistor (IOS 870/970/1077 mA ≥ the 760.77 mA of state S4: +109 mA to the minimum; 765.27 mA with the NDK X201 second source)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (symbol "P015_1_1"
 (rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
 (pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))

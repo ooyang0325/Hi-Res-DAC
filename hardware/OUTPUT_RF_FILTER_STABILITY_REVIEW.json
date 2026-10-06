@@ -1,0 +1,110 @@
+{
+  "cable_cap_pf": 1000,
+  "loads_ohm": [
+    16,
+    32,
+    300
+  ],
+  "results": [
+    {
+      "gain_margin_db": 7.861,
+      "peak_sensitivity_db": 6.145,
+      "phase_margin_deg": 49.712,
+      "variant": "as built: 0 ohm link"
+    },
+    {
+      "gain_margin_db": 6.911,
+      "peak_sensitivity_db": 7.088,
+      "phase_margin_deg": 48.47,
+      "variant": "120 ohm bead + 47 pF"
+    },
+    {
+      "gain_margin_db": 6.788,
+      "peak_sensitivity_db": 7.182,
+      "phase_margin_deg": 48.057,
+      "variant": "120 ohm bead + 100 pF"
+    },
+    {
+      "gain_margin_db": 6.465,
+      "peak_sensitivity_db": 7.477,
+      "phase_margin_deg": 47.112,
+      "variant": "120 ohm bead + 220 pF"
+    },
+    {
+      "gain_margin_db": 5.845,
+      "peak_sensitivity_db": 8.152,
+      "phase_margin_deg": 45.107,
+      "variant": "120 ohm bead + 470 pF"
+    },
+    {
+      "gain_margin_db": 4.632,
+      "peak_sensitivity_db": 9.87,
+      "phase_margin_deg": 38.648,
+      "variant": "120 ohm bead + 1000 pF"
+    },
+    {
+      "gain_margin_db": 6.595,
+      "peak_sensitivity_db": 7.646,
+      "phase_margin_deg": 48.66,
+      "variant": "220 ohm bead + 47 pF"
+    },
+    {
+      "gain_margin_db": 6.393,
+      "peak_sensitivity_db": 7.856,
+      "phase_margin_deg": 48.24,
+      "variant": "220 ohm bead + 100 pF"
+    },
+    {
+      "gain_margin_db": 5.933,
+      "peak_sensitivity_db": 8.31,
+      "phase_margin_deg": 47.282,
+      "variant": "220 ohm bead + 220 pF"
+    },
+    {
+      "gain_margin_db": 5.109,
+      "peak_sensitivity_db": 9.331,
+      "phase_margin_deg": 44.134,
+      "variant": "220 ohm bead + 470 pF"
+    },
+    {
+      "gain_margin_db": 3.709,
+      "peak_sensitivity_db": 11.774,
+      "phase_margin_deg": 26.962,
+      "variant": "220 ohm bead + 1000 pF"
+    },
+    {
+      "gain_margin_db": 8.001,
+      "peak_sensitivity_db": 9.553,
+      "phase_margin_deg": 32.853,
+      "variant": "600 ohm bead + 47 pF"
+    },
+    {
+      "gain_margin_db": 7.113,
+      "peak_sensitivity_db": 9.991,
+      "phase_margin_deg": 30.464,
+      "variant": "600 ohm bead + 100 pF"
+    },
+    {
+      "gain_margin_db": 5.582,
+      "peak_sensitivity_db": 10.828,
+      "phase_margin_deg": 25.534,
+      "variant": "600 ohm bead + 220 pF"
+    },
+    {
+      "gain_margin_db": 4.013,
+      "peak_sensitivity_db": 13.089,
+      "phase_margin_deg": 17.928,
+      "variant": "600 ohm bead + 470 pF"
+    },
+    {
+      "gain_margin_db": 1.65,
+      "peak_sensitivity_db": 20.329,
+      "phase_margin_deg": 7.005,
+      "variant": "600 ohm bead + 1000 pF"
+    }
+  ],
+  "scope": "Selected closed-switch calibrated-model corners; linear bead + LEG capacitor models only",
+  "source_zip": "DAC_HPA_Calculation_Package_v1.1.zip",
+  "stress_32ohm_cap_pf": 2000,
+  "switch_model_sha256": "f1a371e91fc82faea06ecaa023c0f33d93a29718a3aebb2d5dfad85d55f11c95"
+}

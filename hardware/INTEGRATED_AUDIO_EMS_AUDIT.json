@@ -1,0 +1,387 @@
+{
+  "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "stackup_assumption": "6-layer: L1-L2 0.0994 mm, L2-L3 0.55 mm, L3-L4 0.1088 mm, L4-L5 0.55 mm, L5-L6 0.0994 mm (assumed JLC 1.6 mm standard; verify)",
+  "l2_plane": {
+    "filled_outlines": 1,
+    "fill_fraction_of_board": 0.893
+  },
+  "return_path": {
+    "f_cu_track_mm_without_l2": 509.39,
+    "f_cu_track_mm_total": 3542.4,
+    "b_cu_track_mm_without_l3_gnd": 247.47,
+    "b_cu_track_mm_total": 2268.1
+  },
+  "return_path_sensitive_gaps": [
+    [
+      "LEG_RN",
+      "B.Cu",
+      8.69,
+      66.05
+    ],
+    [
+      "LEG_LP",
+      "F.Cu",
+      7.81,
+      56.62
+    ],
+    [
+      "LEG_LN",
+      "F.Cu",
+      7.21,
+      38.06
+    ],
+    [
+      "N6_OLN_R",
+      "F.Cu",
+      6.88,
+      34.51
+    ],
+    [
+      "LEG_LN",
+      "B.Cu",
+      6.46,
+      74.84
+    ],
+    [
+      "N6_MCK_RC",
+      "F.Cu",
+      6.42,
+      29.96
+    ],
+    [
+      "N6_VT",
+      "F.Cu",
+      6.29,
+      37.67
+    ],
+    [
+      "N6_VORP",
+      "F.Cu",
+      6.21,
+      23.41
+    ],
+    [
+      "N6_OLP_L",
+      "SIG",
+      6.12,
+      64.19
+    ],
+    [
+      "LEG_LP",
+      "PWR",
+      6.06,
+      187.58
+    ],
+    [
+      "LEG_RP",
+      "F.Cu",
+      5.91,
+      30.87
+    ],
+    [
+      "N6_ER",
+      "SIG",
+      5.71,
+      34.83
+    ],
+    [
+      "N6_VLLN",
+      "F.Cu",
+      5.47,
+      34.31
+    ],
+    [
+      "N6_VLLP",
+      "F.Cu",
+      5.37,
+      26.18
+    ],
+    [
+      "N6_H",
+      "F.Cu",
+      5.12,
+      96.4
+    ]
+  ],
+  "hum": {
+    "model": "loop = routed length x prepreg height to the adjacent GND copper (return current flows directly beneath)",
+    "largest_loops_mm2": [
+      [
+        "LEG_LP",
+        120.13
+      ],
+      [
+        "LEG_LN",
+        54.1
+      ],
+      [
+        "LEG_RP",
+        49.23
+      ],
+      [
+        "LEG_RN",
+        33.27
+      ],
+      [
+        "N4_IVR_N",
+        26.52
+      ],
+      [
+        "N4_IVL_N",
+        18.13
+      ],
+      [
+        "VREF",
+        17.8
+      ],
+      [
+        "N4_IVR_P",
+        15.89
+      ],
+      [
+        "N4_VNEG_IV",
+        11.92
+      ],
+      [
+        "N4_IVL_P",
+        10.59
+      ],
+      [
+        "N4_VPOS_IV",
+        10.53
+      ],
+      [
+        "JACK_LP",
+        7.31
+      ]
+    ],
+    "emf_nV_at_60Hz": {
+      "1uT": {
+        "LEG_LP": 45.288,
+        "LEG_LN": 20.396,
+        "LEG_RP": 18.561,
+        "LEG_RN": 12.544,
+        "N4_IVR_N": 9.998,
+        "N4_IVL_N": 6.835
+      },
+      "10uT": {
+        "LEG_LP": 452.876,
+        "LEG_LN": 203.962,
+        "LEG_RP": 185.606,
+        "LEG_RN": 125.443,
+        "N4_IVR_N": 99.982,
+        "N4_IVL_N": 68.347
+      }
+    }
+  },
+  "aggressor_min_gaps_mm": [
+    [
+      "N6_MCK_RC",
+      "N6_CML",
+      0.49,
+      "B.Cu",
+      "PWR"
+    ],
+    [
+      "N6_MCK_RC",
+      "N6_V3R_B",
+      0.575,
+      "B.Cu",
+      "B.Cu"
+    ],
+    [
+      "N6_PMP",
+      "N6_CMR",
+      0.613,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_RC",
+      "N6_V3AG_A",
+      0.74,
+      "B.Cu",
+      "PWR"
+    ],
+    [
+      "N6_MCK_RC",
+      "N6_CMR",
+      0.75,
+      "PWR",
+      "PWR"
+    ],
+    [
+      "N2_MCLK_OE",
+      "N6_V3AG_A",
+      0.776,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_RC",
+      "N6_V3R_A",
+      0.796,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_RC",
+      "LEG_RN",
+      1.125,
+      "PWR",
+      "PWR"
+    ],
+    [
+      "MCLK",
+      "VREF",
+      1.137,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "MCLK",
+      "DACR",
+      1.626,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N2_MCLK_OE",
+      "N6_V3R_B",
+      1.945,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "MCLK",
+      "DACRB",
+      2.06,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N2_MCLK_OE",
+      "N6_CMR",
+      2.115,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_RC",
+      "N6_TLN_L",
+      2.138,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_RC",
+      "N6_V3AG_B",
+      2.237,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N2_X201_OUT",
+      "DACR",
+      2.26,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N2_MCLK_OE",
+      "N6_V3R_A",
+      2.296,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_IN",
+      "VREF",
+      2.468,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_RC",
+      "N6_ORRN",
+      2.554,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_IN",
+      "DACR",
+      2.95,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_RC",
+      "N6_VT",
+      3.029,
+      "PWR",
+      "PWR"
+    ],
+    [
+      "MCLK",
+      "N4_VNEG_IV",
+      3.149,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "MCLK",
+      "N4_IVR_P",
+      3.234,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N6_MCK_CMP",
+      "N6_VORP",
+      3.269,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N2_MCLK_OE",
+      "N4_VNEG_IV",
+      3.275,
+      "F.Cu",
+      "F.Cu"
+    ]
+  ],
+  "stitching": {
+    "gnd_vias_and_pth": 723,
+    "F.Cu": {
+      "pour_samples": 26299,
+      "worst_distance_to_gnd_via_mm": 6.76
+    },
+    "PWR": {
+      "pour_samples": 31440,
+      "worst_distance_to_gnd_via_mm": 6.76
+    },
+    "SIG": {
+      "pour_samples": 36808,
+      "worst_distance_to_gnd_via_mm": 6.76
+    },
+    "B.Cu": {
+      "pour_samples": 33412,
+      "worst_distance_to_gnd_via_mm": 5.95
+    },
+    "edge_fence": {
+      "vias_within_2p5mm_of_edge": 156,
+      "largest_gap_mm": 13.7
+    }
+  },
+  "jacks": {
+    "J701.1_gnd_vias_within_3mm": 2,
+    "J702.1_gnd_vias_within_3mm": 6,
+    "J702.2_gnd_vias_within_3mm": 5,
+    "headphone_left_right_min_gap_mm": [
+      0.392,
+      "LEG_LP",
+      "LEG_RP"
+    ]
+  }
+}
