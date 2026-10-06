@@ -1,0 +1,25 @@
+DAC-HPA hum/whine sign-off budget (MATLAB 25.1.0.2973910 (R2025a) Update 1)
+Output noise floor 1.56 uV. Grid 0.3/0.2 mm convergence shown in signoff_gnd_transfer.csv
+
+Board board.json (ECO F10 ground sense: 0)
+Effective 60 Hz loop areas (route + resistive plane return): SE-L -24.2, SE-R 553.2, BAL-L -66.4, BAL-R -143.0 mm2
+
+term                                                  uV dB/noise dBSPL@IEM audib.lim   margin
+USB frame-rate MCU/CPLD current (20 mA p-p) - 3.5 mm    0.2047    -17.6       1.2       2.4      1.2
+USB frame-rate MCU/CPLD current (20 mA p-p) - 4.4 mm bal    0.0538    -29.3     -10.4       2.4     12.8
+DAC digital current (10 mA p-p) - 3.5 mm          0.2079    -17.5       1.4       2.4      1.0
+DAC digital current (10 mA p-p) - 4.4 mm bal      0.0375    -32.4     -13.5       2.4     15.9
+60 Hz field 1 uT - 3.5 mm L                       0.0091    -44.7     -25.8      38.9     64.7
+60 Hz field 10 uT - 3.5 mm L                      0.0912    -24.7      -5.8      38.9     44.7
+60 Hz field 10 uT - 3.5 mm R                      2.0854      2.5      21.4      38.9     17.5
+60 Hz field 1 uT - 3.5 mm R                       0.2085    -17.5       1.4      38.9     37.5
+60 Hz field 10 uT - 4.4 mm bal L                  0.2503    -15.9       3.0      38.9     35.9
+60 Hz field 10 uT - 4.4 mm bal R                  0.5390     -9.2       9.6      38.9     29.2
+USB 100/120 Hz ripple (EMS ems_budget.m)          0.0079    -45.9     -27.0      22.9     50.0
+
+Sign-off criterion: every term >= 6 dB below audibility (threshold in quiet or self-noise masking) on a 135 dB SPL/V IEM.
+Smallest margin 1.0 dB -> REVIEW
+
+Line-out ground loop (J101->J702, informational): 281.2 uohm -> 2.81 uV per 10 mA loop current
+
+Trace parasitics used by the LTspice decks: signoff_parasitics.csv

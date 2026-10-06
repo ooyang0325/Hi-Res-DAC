@@ -1,0 +1,2 @@
+board_old.json: U504.OUT->C512 27.3 mm, 2 layer changes, 4.65 nH, 24.6 mOhm | U504.IN->C501 14.4 mm, 2 layer changes, 2.34 nH, 10.4 mOhm
+board.json: U504.OUT->C512 1.9 mm, 1 layer changes, 0.77 nH, 3.3 mOhm | U504.IN->C501 2.1 mm, 0 layer changes, 0.35 nH, 2.3 mOhm

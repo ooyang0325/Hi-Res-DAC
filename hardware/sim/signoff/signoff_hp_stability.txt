@@ -1,0 +1,43 @@
+OPA1622 leg loop gain (TI PSpice SBOM958D, LTspice 26.0.2), extracted layout parasitics
+
+hp_loop (as built, R417 0 ohm)
+case                         fc MHz   PM deg    GM dB   f180 MHz
+relay off, unplugged           2.56     71.9      Inf        NaN
+relay on, unplugged            2.56     71.9      Inf        NaN
+16 ohm + 1.2 m cable           2.07     67.7      Inf        NaN
+32 ohm + 1.2 m cable           2.26     67.2      Inf        NaN
+300 ohm + 3 m cable            2.54     69.8     23.2       24.0
+300 ohm + 2 nF                 2.63     60.5     13.9        9.6
+16 ohm resistive               2.04     60.8      Inf        NaN
+
+hp_loop_eco (R417 ferrite + 220 pF)
+case                         fc MHz   PM deg    GM dB   f180 MHz
+relay off, unplugged           2.57     70.9     27.1       18.3
+relay on, unplugged            2.57     70.9     27.0       18.2
+16 ohm + 1.2 m cable           2.11     68.9      Inf        NaN
+32 ohm + 1.2 m cable           2.27     67.1      Inf        NaN
+300 ohm + 3 m cable            2.55     68.6     28.9       13.4
+300 ohm + 2 nF                 2.63     57.1     16.8        6.2
+16 ohm resistive               2.03     62.4      Inf        NaN
+
+hp_loop_f10 (as built, R417 0 ohm, ECO F10 sense return)
+case                         fc MHz   PM deg    GM dB   f180 MHz
+relay off, unplugged           2.56     71.9      Inf        NaN
+relay on, unplugged            2.56     71.9      Inf        NaN
+16 ohm + 1.2 m cable           2.07     67.7      Inf        NaN
+32 ohm + 1.2 m cable           2.26     67.2      Inf        NaN
+300 ohm + 3 m cable            2.54     69.8     23.2       24.0
+300 ohm + 2 nF                 2.63     60.5     13.9        9.6
+16 ohm resistive               2.04     60.8      Inf        NaN
+
+hp_loop_eco_f10 (R417 ferrite + 220 pF, ECO F10 sense return)
+case                         fc MHz   PM deg    GM dB   f180 MHz
+relay off, unplugged           2.57     70.9     27.1       18.3
+relay on, unplugged            2.57     70.9     27.0       18.2
+16 ohm + 1.2 m cable           2.11     68.9      Inf        NaN
+32 ohm + 1.2 m cable           2.27     67.1      Inf        NaN
+300 ohm + 3 m cable            2.55     68.6     28.9       13.4
+300 ohm + 2 nF                 2.63     57.1     16.8        6.2
+16 ohm resistive               2.03     62.4      Inf        NaN
+
+Criterion PM >= 45 deg, GM >= 6 dB in every case: min PM 57.1 deg, min GM 13.9 dB -> PASS

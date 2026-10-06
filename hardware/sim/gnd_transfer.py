@@ -99,12 +99,13 @@ if __name__ == "__main__":
         v = solve(s, k); sl = v[node("J702", "1")]; sl1 = v[node("J701", "1")]
         print(f"\n{name}")
         for lab, pn in probes.items():
+            if pn not in P: continue  # ECO F10: R404/R408/R412/R416 are on N4_GSENSE, not GND
             x = v[node(*pn)]
             print(f"  {lab:18s} vs J702 sleeve {1e6*(x-sl):9.1f} uOhm   vs J701 sleeve {1e6*(x-sl1):9.1f} uOhm")
     # self-check: reciprocity of the assembled network (drive A->B, sense C-D == drive C->D, sense A-B)
-    a, b, c, e = pads("J101"), pads("J702"), [("R404", "2")], [("U501", "PAD")]
+    a, b, c, e = pads("J101"), pads("J702"), [("R432", "2")], [("U501", "PAD")]
     v1, v2 = solve(a, b), solve(c, e)
-    t1 = v1[node("R404", "2")] - v1[node("U501", "PAD")]
+    t1 = v1[node("R432", "2")] - v1[node("U501", "PAD")]
     t2 = np.mean([v2[node(*p)] for p in a]) - np.mean([v2[node(*p)] for p in b])
     assert abs(t1 - t2) < 0.02 * max(abs(t1), abs(t2)) + 1e-9, (t1, t2)
     print(f"\nreciprocity check ok: {1e6*t1:.1f} / {1e6*t2:.1f} uOhm")

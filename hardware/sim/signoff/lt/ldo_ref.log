@@ -1,0 +1,17 @@
+LTspice 26.0.2 for MacOS
+Circuit: /Users/ooyang/dac_layout_work/signoff/lt/ldo_ref.cir
+Start Time: Wed Oct  7 01:23:11 2026
+solver = Normal
+Maximum thread count: 10
+tnom = 27
+temp = 27
+method = trap
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 0.569 seconds.
+
+Files loaded:
+/Users/ooyang/dac_layout_work/signoff/lt/ldo_ref.cir
+/Users/ooyang/dac_layout_work/signoff/lt/TLV76701_TRANS.lib
+
+vout: V(out) =3.30753231049 at 0.0029
+vfb: V(fb) =0.801826000214 at 0.0029

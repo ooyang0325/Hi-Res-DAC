@@ -1,0 +1,41 @@
+* DAC-HPA sign-off: MCLK (80 MHz) and BCLK signal integrity with extracted L1 microstrip lines
+* signoff_parasitics.csv: N2_X201_OUT 3.34 mm Z0 58 td 19.9 ps; MCLK 7.14 mm Z0 58 td 42.6 ps;
+*   N6_MCK_IN 2.16 mm Z0 58 td 13 ps; N2_BCLK_SRC 4.55 mm td 27.2 ps; BCLK 16.64 mm td 99.3 ps.
+* Drivers (stress): X201 CMOS 3.3 V, Ro 25 ohm, tr/tf {TR}; AGRV2K LVCMOS33 8 mA, Ro 30 ohm, tr/tf {TR}.
+* Loads: ES9018K2M XI / BCLK 5 pF (assumed, not published), U607 74AUP1G17 1.5 pF, TP pads 0.3 pF,
+*   R227 10 k pull-down, 0402 pads 0.15 pF each end.
+.param TR=0.5n
+* --- MCLK ---
+VX x 0 PULSE(0 3.3 1n {TR} {TR} {6.25n-TR} 12.5n)
+RX x xo 25
+CXP xo 0 0.15p
+R227 xo 0 10k
+T1 xo 0 r1 0 Z0=58 Td=19.9p
+CR1 r1 0 0.15p
+R203 r1 m1 33
+CR2 m1 0 0.15p
+T2 m1 0 xi 0 Z0=58 Td=42.6p
+CTP xi 0 0.3p
+CXI xi 0 5p
+R665 xi t1 330
+T3 t1 0 u607 0 Z0=58 Td=13p
+CU607 u607 0 1.5p
+* --- BCLK (CPLD 49.152/45.1584 MHz domain; BCLK up to 24.576 MHz) ---
+VB b 0 PULSE(0 3.3 1n {TR} {TR} {20n-TR} 40.7n)
+RB b bo 30
+CBO bo 0 0.15p
+T4 bo 0 b1 0 Z0=58 Td=27.2p
+R204 b1 b2 33
+T5 b2 0 bck 0 Z0=58 Td=99.3p
+CTPB bck 0 0.3p
+CBCK bck 0 5p
+.tran 0 60n 0 1p
+.meas tran xi_max max V(xi) from 20n to 60n
+.meas tran xi_min min V(xi) from 20n to 60n
+.meas tran xi_tr trig V(xi) val=0.33 rise=3 targ V(xi) val=2.97 rise=3
+.meas tran u607_max max V(u607) from 20n to 60n
+.meas tran bck_max max V(bck) from 20n to 60n
+.meas tran bck_min min V(bck) from 20n to 60n
+.meas tran bck_tr trig V(bck) val=0.33 rise=1 targ V(bck) val=2.97 rise=1
+.step param TR list 0.3n 0.5n 1n
+.end

@@ -114,3 +114,5 @@ filter with the unchanged calibrated OPA1622 model from Calculation Package v1.1
 | [coupling_screen.py](coupling_screen.py) | Same-layer (< 0.5 mm) and L3/L4 broadside (< 0.3 mm) coupled length between toggling nets and audio/high-Z nets |
 
 Results: [../LAYOUT_REVIEW_SI_EMI_AUDIO_2026-10-07.md](../LAYOUT_REVIEW_SI_EMI_AUDIO_2026-10-07.md).
+
+Sign-off simulations (LTspice + MATLAB with TI vendor models): [signoff/README.md](signoff/README.md).

@@ -1,0 +1,37 @@
+LTspice 26.0.2 for MacOS
+Circuit: /Users/ooyang/dac_layout_work/signoff/lt/cp_u501_ro.cir
+Start Time: Wed Oct  7 02:39:39 2026
+
+.step new=0
+solver = Normal
+Maximum thread count: 10
+tnom = 27
+temp = 27
+method = trap
+C506: Increased Cpar to 1e-12
+C507: Increased Cpar to 5e-12
+C513: Increased Cpar to 5e-12
+Direct Newton iteration succeeded in finding operating point.
+
+.step new=1
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 3.637 seconds.
+
+Files loaded:
+/Users/ooyang/dac_layout_work/signoff/lt/cp_u501_ro.cir
+
+
+Measurement: gnd_pp
+  step	PP(V(gic))	FROM	TO
+     1	0.086974106729	0	1e-05
+     2	0.0289913695306	0	1e-05
+
+Measurement: vin_pp
+  step	PP(V(vin))	FROM	TO
+     1	0.0755457878113	0	1e-05
+     2	0.0755457878113	0	1e-05
+
+Measurement: v5_pp
+  step	PP(V(a))	FROM	TO
+     1	0.000545978546143	0	1e-05
+     2	0.000545978546143	0	1e-05

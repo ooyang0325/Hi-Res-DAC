@@ -1,0 +1,27 @@
+* DAC-HPA sign-off: U501 LM27762 reduced-order switching model (TI SNVMAV1 model does not reach steady
+* state in LTspice: ~19k points per 2 MHz cycle). Datasheet operating point: fsw 2 MHz, inverting pump
+* supplies I- = 35 mA quiescent + 88 mA peak half-wave -> worst instantaneous 123 mA; the pump draws it
+* from VIN in the charge phase as 2 x I- at 50 % duty with 10 ns switch edges; the positive LDO draws
+* I+ (36 + 88 mA) continuously. Charge-phase current returns through the IC GND pin + exposed pad.
+*   OLD ground: pad -> 3 mm pour -> 1 via: 0.9 nH, 3 mOhm.   NEW: 2 filled vias in pad: 0.3 nH, 1 mOhm.
+.param NEW=0 LG={if(NEW,0.3n,0.9n)} RG={if(NEW,1m,3m)} IM=123m IP=124m
+V5 v5 0 5
+RS v5 a 0.1
+C506 a 0 1u Rser=5m Lser=1n
+RFB a f1 0.05
+LFB f1 vin 0.33u Rpar=150
+C507 vin c7 5u Rser=5m Lser=0.5n
+LC7 c7 0 1n
+R531 vin d1 1
+C513 d1 0 5u Rser=5m Lser=1.5n
+* IC: VIN pin -> (continuous LDO current + pulsed pump current) -> GND pin/pad node gic
+LVIN vin vpin 0.5n
+IPOS vpin gic {IP}
+IPUMP vpin gic PULSE(0 {2*IM} 0 10n 10n 240n 500n)
+LGND gic 0 {LG} Rser={RG}
+.tran 0 20u 10u 0.2n
+.meas tran gnd_pp pp V(gic)
+.meas tran vin_pp pp V(vin)
+.meas tran v5_pp pp V(a)
+.step param NEW list 0 1
+.end

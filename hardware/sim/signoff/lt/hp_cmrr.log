@@ -1,0 +1,47 @@
+LTspice 26.0.2 for MacOS
+Circuit: /Users/ooyang/dac_layout_work/signoff/lt/hp_cmrr.cir
+Start Time: Wed Oct  7 02:40:51 2026
+
+.step wc=-1
+solver = Normal
+Maximum thread count: 10
+tnom = 27
+temp = 27
+method = trap
+Direct Newton iteration succeeded in finding operating point.
+
+.step wc=0
+Direct Newton iteration succeeded in finding operating point.
+
+.step wc=1
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 0.645 seconds.
+
+Files loaded:
+/Users/ooyang/dac_layout_work/signoff/lt/hp_cmrr.cir
+/Users/ooyang/dac_layout_work/signoff/lt/OPA1622.LIB
+
+
+Measurement: acm60
+  step	mag(V(out)) 	at
+     1	(-56.4305447114dB,0°)	60
+     2	(-102.325191406dB,0°)	60
+     3	(-56.4385203569dB,0°)	60
+
+Measurement: acm1k
+  step	mag(V(out)) 	at
+     1	(-56.3988772569dB,0°)	1000
+     2	(-77.9028474733dB,0°)	1000
+     3	(-56.4094931509dB,0°)	1000
+
+Measurement: acm8k
+  step	mag(V(out)) 	at
+     1	(-54.7582585787dB,0°)	8000
+     2	(-59.8406675079dB,0°)	8000
+     3	(-54.8813123312dB,0°)	8000
+
+Measurement: acm20k
+  step	mag(V(out)) 	at
+     1	(-50.4921519895dB,0°)	20000
+     2	(-51.8795773033dB,0°)	20000
+     3	(-50.7412075994dB,0°)	20000

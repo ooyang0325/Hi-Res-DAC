@@ -69,8 +69,12 @@ Screens: [audit_ems_layout.py](audit_ems_layout.py) → [INTEGRATED_AUDIO_EMS_AU
 > [LAYOUT_REVIEW_SI_EMI_AUDIO_2026-10-07.md](LAYOUT_REVIEW_SI_EMI_AUDIO_2026-10-07.md).
 > A six-layer ground solve puts USB/MCU/DAC ground currents ≥ 17 dB below the noise floor at
 > both jacks. Block 16 moved U504's input/output capacitors to ≤ 2 mm and added in-pad vias
-> to U501. The LEG_* hum-loop figure above counts protection-divider taps that carry no
-> headphone current, so it is a conservative bound.
+> to U501. LTspice/MATLAB sign-off
+> ([SIGNOFF_SIMULATION_2026-10-07.md](SIGNOFF_SIMULATION_2026-10-07.md)) led to
+> **ECO F10**, a ground-sense reference at the J702 sleeve. All hum, whine, stability and
+> signal-integrity criteria now pass, with a smallest audibility margin of 17.6 dB. The 60 Hz loop
+> figures in this report (trace length × height) understate the resistive plane return;
+> use the sign-off values.
 
 ## 1. Home threat model
 

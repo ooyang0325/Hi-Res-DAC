@@ -1,0 +1,34 @@
+LTspice 26.0.2 for MacOS
+Circuit: /Users/ooyang/dac_layout_work/signoff/lt/ldo_u504_zout.cir
+Start Time: Wed Oct  7 01:24:03 2026
+
+.step new=0
+solver = Normal
+Maximum thread count: 10
+tnom = 27
+temp = 27
+method = trap
+CBULK: Increased Cpar to 1e-11
+C501: Increased Cpar to 7e-13
+C512: Increased Cpar to 6e-12
+CLD: Increased Cpar to 1.9e-12
+Direct Newton iteration succeeded in finding operating point.
+
+.step new=1
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 0.607 seconds.
+
+Files loaded:
+/Users/ooyang/dac_layout_work/signoff/lt/ldo_u504_zout.cir
+/Users/ooyang/dac_layout_work/signoff/lt/TLV76701_TRANS.lib
+
+
+Measurement: zpk
+  step	MAX(mag(V(vout)))	FROM	TO
+     1	(-13.0244898489dB,0°)	100	100000000
+     2	(-12.154869995dB,0°)	100	100000000
+
+Measurement: fpk
+  step	mag(V(vout))=zpk*0.999 
+     1	13043027.863
+     2	23944150.0286

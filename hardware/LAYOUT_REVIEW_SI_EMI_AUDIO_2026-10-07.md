@@ -7,6 +7,13 @@ after layout iteration 1 (0 ratsnest links, 0 DRC).
 1.56 µV output noise floor. No fast clock, I²S, USB or charge-pump node couples into
 the DAC outputs, the I/V stage, the difference stage or VREF.
 
+> **Superseded in part by the LTspice/MATLAB sign-off**
+> ([SIGNOFF_SIMULATION_2026-10-07.md](SIGNOFF_SIMULATION_2026-10-07.md)).
+> Judged against audibility on a 135 dB SPL/V IEM rather than the noise floor alone, the
+> 3.5 mm output's USB-frame-rate whine margin was only about 1 dB. **ECO F10** fixed it
+> with a ground-sense reference at the J702 sleeve. All sign-off criteria now pass, with a
+> smallest margin of 17.6 dB. Sections 1 and 2 below describe the board before F10.
+
 The review found two placement defects and fixed both in block 16:
 
 - **U504 capacitors.** The input and output capacitors of the 3.3 V LDO (U504) were
@@ -64,6 +71,11 @@ the left reference (R404) and the sleeve, per ampere flowing through the board g
   - or run the source on battery.
   The C101/R107 shield option does not break this loop: the USB GND wire carries it.
 
+**After ECO F10.** R404/R408/R412/R416 return to the J702 sleeve through N4_GSENSE. The
+rows above now reach the 3.5 mm output only through the difference stage's common-mode
+rejection: ≥ 54.9 dB at the worst 0.1 %/0.05 % resistor corner (LTspice). The board's share of SE
+crosstalk is removed, and the line-out ground-loop term drops by the same factor.
+
 ## 2. Magnetic (50/60 Hz) pickup
 
 The earlier EMS screen reported LEG_LP at 120 mm² (0.45 µV at 10 µT, −10.7 dB). That
@@ -73,7 +85,15 @@ carry no headphone current. Their pickup appears only at the comparator inputs,
 millivolts below the thresholds.
 
 The audio loop is the series path only: OPA1622 → R417 → K601 → jack → sleeve →
-GND. That path is about 40 mm of LEG/JACK copper, so −10.7 dB is a conservative bound.
+GND.
+
+> **Corrected by the sign-off.** An earlier version of this section called −10.7 dB
+> "a conservative bound". That was wrong. At 60 Hz the plane return current spreads
+> resistively and does not follow the trace. The MATLAB model therefore integrates the
+> vector potential over the extracted route plus the resistive return. It gives
+> effective loops up to about 550 mm², and the same after F10 with the sense route.
+> That is 2.1 µV at 10 µT, which is still ≥ 17.5 dB below audibility on a
+> 135 dB SPL/V IEM ([sim/signoff/signoff_hum_budget.txt](sim/signoff/signoff_hum_budget.txt)).
 
 ## 3. Signal integrity
 

@@ -1,0 +1,35 @@
+* DAC-HPA sign-off: U504 TLV767 (TI SLVMCY1 model, 0.8 V ref, 312.5k/100k -> 3.3 V), 3V3D load step
+* PCB paths extracted from the routed boards (MATLAB pathLC.m, signoff_ldo_paths.txt):
+*   OLD: OUT->C512 27.3 mm 4.65 nH 24.6 mOhm (C512 on a stub), IN->C501 14.4 mm 2.34 nH 10.4 mOhm
+*   NEW: OUT->C512  1.9 mm 0.77 nH  3.3 mOhm,                  IN->C501  2.1 mm 0.35 nH  2.3 mOhm
+* C512 10 uF 0805 X5R derated to 6 uF at 3.3 V (ESR 5 mOhm, ESL 0.4 nH); C501 1 uF 0603 -> 0.7 uF at 5 V.
+* 3V3D trunk U504 -> load cluster (CPLD, oscillators, DAC DVCC/1V3 LDO) ~80 mm: 18 nH, 60 mOhm; 1.9 uF of local MLCCs.
+.lib TLV76701_TRANS.lib
+.param NEW=0
+.param LOUT={if(NEW,0.77n,4.65n)} ROUTP={if(NEW,3.3m,24.6m)} LIN={if(NEW,0.35n,2.34n)} RIN={if(NEW,2.3m,10.4m)}
+V5 v5 0 5
+R5 v5 v5a 30m
+L5 v5a vsys 20n
+CBULK vsys 0 10u Rser=5m Lser=0.5n
+LTR vsys c501 2n Rser=8m
+C501 c501 0 0.7u Rser=10m Lser=0.3n
+LIN c501 vin {LIN} Rser={RIN}
+VEN en 0 5
+X1 en fb 0 vin vout TLV76701_TRANS
+R1 vout fb 312.5k
+R2 fb 0 100k
+LSTUB vout c512 {LOUT} Rser={ROUTP}
+C512 c512 0 6u Rser=5m Lser=0.4n
+LTRK vout ld 18n Rser=60m
+CLD ld 0 1.9u Rser=20m Lser=1n
+ILD ld 0 PWL(0 40m 1m 40m 1.001m 160m 1.5m 160m 1.501m 40m)
+IAC vout 0 AC {AC1}
+.param AC1=0
+.tran 0 2m 0 5n
+.meas tran vpre find V(vout) at 0.99m
+.meas tran vmin min V(vout) from 1m to 1.2m
+.meas tran vmax max V(vout) from 1.5m to 1.7m
+.meas tran ldmin min V(ld) from 1m to 1.2m
+.meas tran vinmin min V(vin) from 1m to 1.2m
+.step param NEW list 0 1
+.end

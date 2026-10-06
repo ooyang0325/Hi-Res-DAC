@@ -1,0 +1,14 @@
+* find TLV76701 model regulation point: R2 100k, sweep R1
+.lib TLV76701_TRANS.lib
+VIN vin 0 5
+VEN en 0 5
+X1 en fb 0 vin out TLV76701_TRANS
+R1 out fb {R1}
+R2 fb 0 100k
+C1 out 0 10u
+RL out 0 33
+.param R1=312.5k
+.tran 0 3m 0 1u
+.meas tran vout find V(out) at 2.9m
+.meas tran vfb find V(fb) at 2.9m
+.end

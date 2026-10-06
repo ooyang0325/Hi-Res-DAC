@@ -1,0 +1,54 @@
+* DAC-HPA sign-off: OPA1622 difference-stage leg (U401 A, LP leg) loop gain, TI PSpice model SBOM958D
+* Layout parasitics from signoff_parasitics.csv (MATLAB extraction of the routed board):
+*   N4_LP_OUT 34.8 mm: 19.0 pF / 3.5 nH; LEG_LP 264.8 mm (incl. protection taps): 37.3 pF, series path ~20 nH;
+*   JACK_LP 73.5 mm: 24.5 pF / 9.6 nH.  TLP3545A RON 0.081 ohm (60 C), COFF 1 nF bound; LESD5D5.0 12 pF.
+* ECO F10: R404 returns via N4_GSENSE (40 nH, 0.3 ohm conservative) to the sleeve.
+* Loop broken at IN- (Middlebrook voltage injection; source side = 680 ohm || 2 k network, load = op-amp input).
+.lib OPA1622.LIB
+.param K=1 ECO=0
+* case table: 1 relay off/unplugged, 2 on/unplugged, 3 16R+1.2m cable, 4 32R+cable, 5 300R+3m cable, 6 300R+2nF, 7 16R
+.param RL=table(K,1,1e9,2,1e9,3,16,4,32,5,300,6,300,7,16)
+.param CC=table(K,1,1p,2,1p,3,100p,4,100p,5,300p,6,2n,7,1p)
+.param LC=table(K,1,1n,2,1n,3,0.6u,4,0.6u,5,1.5u,6,1n,7,1n)
+.param RON=table(K,1,1e9,2,0.081,3,0.081,4,0.081,5,0.081,6,0.081,7,0.081)
+VP vpos 0 3.85
+VN vneg 0 -3.72
+* I/V outputs as AC grounds (low impedance OPA2210 outputs)
+VIP ivp 0 0
+VIN ivn 0 0
+R401 ivp tn 1.3k
+C431 tn 0 1.8n
+R438 tn nfb 680
+R403 ivn tp 1.3k
+C432 tp 0 1.8n
+R439 tp inp 680
+R404 inp gs 2k
+LGS gs 0 40n Rser=0.3
+C402 inp 0 10p
+R402 nfb out 2k
+C401 nfb out 10p
+Vi inm nfb AC 1
+XU inp inm vpos vneg out OPA1622
+* N4_LP_OUT trace
+C1a out 0 9.5p
+L1 out o2 3.5n
+C1b o2 0 9.5p
+* R417: 0 ohm, or ECO ferrite (120 ohm @100 MHz class: 0.05 ohm + 190 nH || 120 ohm) + 220 pF C0G on LEG
+RB o2 o3 {if(ECO,0.05,1m)}
+LB o3 leg {if(ECO,190n,1p)} Rpar={if(ECO,120,1e9)}
+CECO leg 0 {if(ECO,220p,1f)}
+CLEG leg 0 37.3p
+LLEG leg rl 20n
+* TLP3545A: on = RON, off = COFF 1 nF
+RSW rl jk {RON}
+CSW rl jk 1n
+CJK jk 0 24.5p
+CTVS jk 0 12p
+LJK jk cab 9.6n
+LCAB cab hp {LC}
+CCAB cab 0 {CC}
+RLD hp 0 {RL}
+.ac dec 100 1k 500Meg
+.step param K list 1 2 3 4 5 6 7
+.save V(inm) V(nfb)
+.end

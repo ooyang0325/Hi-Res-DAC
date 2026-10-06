@@ -1,0 +1,28 @@
+* DAC-HPA sign-off (ECO F10): common-mode rejection of the LP difference leg, TI OPA1622 model.
+* Ground difference Vg between the DAC/I-V ground and the J702 sleeve (ground-sense reference) appears
+* on both I/V outputs and on the local-plane caps; R404 returns to the sleeve (node 0).
+* Tolerances: R401/R403/R438/R439 YAGEO RT +-0.1 %, R402/R404 Susumu RG +-0.05 %. WC=1 worst corner.
+.lib OPA1622.LIB
+.param WC=0 TA=0.001 TB=0.0005
+VP vpos 0 3.85
+VN vneg 0 -3.72
+VG g 0 AC 1
+R401 g tn {1.3k*(1+WC*TA)}
+C431 tn g 1.8n
+R438 tn inn {680*(1+WC*TA)}
+R403 g tp {1.3k*(1-WC*TA)}
+C432 tp g 1.8n
+R439 tp inp {680*(1-WC*TA)}
+R404 inp 0 {2k*(1+WC*TB)}
+C402 inp g 10p
+R402 inn out {2k*(1-WC*TB)}
+C401 inn out 10p
+XU inp inn vpos vneg out OPA1622
+RL out 0 16
+.ac list 60 1k 8k 20k
+.step param WC list -1 0 1
+.meas ac acm60 find mag(V(out)) at 60
+.meas ac acm1k find mag(V(out)) at 1k
+.meas ac acm8k find mag(V(out)) at 8k
+.meas ac acm20k find mag(V(out)) at 20k
+.end
