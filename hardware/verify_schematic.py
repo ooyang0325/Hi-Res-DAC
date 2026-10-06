@@ -142,7 +142,7 @@ def run() -> None:
         connected = sum(pin.net != "NC" for pins in design_pins.values() for pin in pins)
         nc_count = len(expected_nodes) - connected
         named_nets = {pin.net for group in design_pins.values() for pin in group if pin.net != "NC"}
-        if (len(parts), len(expected_nodes), connected, nc_count, len(named_nets)) != (534, 1465, 1424, 41, 252):  # F07: +2 CPLD copy nets
+        if (len(parts), len(expected_nodes), connected, nc_count, len(named_nets)) != (535, 1467, 1426, 41, 253):  # F07: +2 CPLD copy nets; F10: +R448, +N4_GSENSE
             raise AssertionError("Unexpected post-ECO designator, pin or net counts")
 
         source_nodes = {(ref, pin.number): pin.net for ref, group in workbook_pins.items() for pin in group}
@@ -176,6 +176,9 @@ def run() -> None:
             ("U202", "23"): ("NC", "MCLK_EN"),
             ("R228", "1"): ("N2_BCLK_SRC", "N2_CPY_CK"), ("R229", "1"): ("N2_LRCLK_SRC", "LRCLK_FB"),
             ("R230", "1"): ("N2_SDATA_SRC", "N2_CPY_SD"),
+            # ECO F10: difference-stage reference resistors ground-sensed at the J702 sleeve
+            ("R404", "2"): ("GND", "N4_GSENSE"), ("R408", "2"): ("GND", "N4_GSENSE"),
+            ("R412", "2"): ("GND", "N4_GSENSE"), ("R416", "2"): ("GND", "N4_GSENSE"),
         }
         approved_added = {
             ("U621", "1"): "N6_V3AG_A_BUF_IN", ("U621", "2"): "GND",
@@ -188,6 +191,7 @@ def run() -> None:
             ("C667", "1"): "3V3M", ("C667", "2"): "GND",
             ("D707", "1"): "JACK_RP", ("D707", "2"): "GND",
             ("D708", "1"): "JACK_LP", ("D708", "2"): "GND",
+            ("R448", "1"): "N4_GSENSE", ("R448", "2"): "GND",  # ECO F10 net tie at the J702 sleeve
         }
         approved_delta.update({key: (None, net) for key, net in approved_added.items()})
         if actual_delta != approved_delta:

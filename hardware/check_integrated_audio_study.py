@@ -596,7 +596,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
     tvs = json.loads(tvs_path.read_text())
     trace = json.loads(trace_path.read_text())
     manual = json.loads((HERE / "INTEGRATED_AUDIO_MANUAL_DELTA.json").read_text())
-    if placement["footprints"] != 544 or placement["named_nets"] != 252:  # F07: +2 CPLD copy nets
+    if placement["footprints"] != 545 or placement["named_nets"] != 253:  # F07: +2 CPLD copy nets; F10: R448, N4_GSENSE
         raise AssertionError("Integrated study population/net count changed")
     if placement["bbox_overlaps"] or placement["high_z_clock_pad_gap_violations"]:
         raise AssertionError("Integrated study overlap or sensitive-to-clock gap")
@@ -621,7 +621,14 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
     source = pcbnew.LoadBoard(str(HERE / manual["source_board"]))
     original = {fp.GetReference(): fp for fp in source.GetFootprints()}
     actual_moves = {}
+    added = manual.get("added_footprints", {})
     for ref, fp in footprints.items():
+        if ref in added:  # functional-ECO part absent from the source board: check its recorded place
+            at = fp.GetPosition()
+            if [round(pcbnew.ToMM(at.x), 4), round(pcbnew.ToMM(at.y), 4),
+                    round(fp.GetOrientationDegrees() % 360, 3)] != added[ref]["at_mm"]:
+                raise AssertionError(f"Added footprint {ref} differs from its manual record")
+            continue
         before = original[ref]
         if (fp.GetPosition().x, fp.GetPosition().y, fp.GetOrientationDegrees()) != (
                 before.GetPosition().x, before.GetPosition().y,
@@ -873,13 +880,13 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
                               ("R416", "U402", "5")):
         if (opamp, pin) not in group(shunt, "1"):
             raise AssertionError(f"{shunt} input shunt does not reach {opamp}.{pin}")
-        if not any(item.GetClass() == "ZONE"
-                   for item in connectivity.GetConnectedItems(pad(shunt, "2"))):
-            raise AssertionError(f"{shunt} input shunt has no L2 return")
+        # ECO F10: the reference returns through N4_GSENSE to R448 at the J702 sleeve, not the plane
+        if pad(shunt, "2").GetNetname() != "N4_GSENSE" or ("R448", "1") not in group(shunt, "2"):
+            raise AssertionError(f"{shunt} reference is not ground-sensed through R448")
     return {
         "board": board_path.name,
-        "footprints": 544,
-        "named_nets": 252,
+        "footprints": 545,
+        "named_nets": 253,
         "manual_moves": len(manual["moved_footprints"]),
         "manual_replaced_source_copper_items": len(manual.get("removed_source_copper", [])),
         "manual_added_copper_items": len(manual["added_copper"]),

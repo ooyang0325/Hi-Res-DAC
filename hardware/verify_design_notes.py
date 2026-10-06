@@ -529,10 +529,10 @@ def main() -> None:
     # Functional ECO F02/F04 is an explicit overlay on the checked v0.9
     # workbook, not a silent edit to the Notes or calculation package.
     eco_parts, eco_pins, _ = apply_functional_eco(parts, corrected_pins, libparts)
-    assert len(eco_parts) == 534 and sum(map(len, eco_pins.values())) == 1465
-    assert len({p.net for group in eco_pins.values() for p in group if p.net != "NC"}) == 252  # F07: +2 CPLD copy nets
+    assert len(eco_parts) == 535 and sum(map(len, eco_pins.values())) == 1467  # F10: +R448
+    assert len({p.net for group in eco_pins.values() for p in group if p.net != "NC"}) == 253  # F07: +2 CPLD copy nets; F10: +N4_GSENSE
     assert Counter(part.fit for part in eco_parts.values()) == {
-        "Yes": 465, "Owner": 7, "No": 9, "Pads": 1, "No part": 52,  # F05: J201/J202 headers fitted
+        "Yes": 466, "Owner": 7, "No": 9, "Pads": 1, "No part": 52,  # F05: J201/J202 headers fitted; F10: R448
     }
     checks += 3
     expected_eco = {

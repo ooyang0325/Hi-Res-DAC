@@ -1,6 +1,6 @@
 {
   "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
-  "different_net_near_smd_pad_count": 165,
+  "different_net_near_smd_pad_count": 166,
   "filled_capped_near_smd_pad_count": 39,
   "jlc_mask_bridge_source": "https://jlcpcb.com/help/article/instructions-for-ordering",
   "jlc_source": "https://jlcpcb.com/help/article/pcb-via-covering",
@@ -1267,6 +1267,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "N6_VT"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.15,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N4_GSENSE",
+      "nearest_smd_pad": "R412.2",
+      "side": "top",
+      "via_at_mm": [
+        123.325,
+        76.15
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N4_GSENSE"
     },
     {
       "conservative_copper_edge_gap_mm": 0.1508,
@@ -3003,6 +3017,20 @@
       "via_diameter_mm": 0.5,
       "via_drill_mm": 0.2,
       "via_net": "N2_CAP_WS"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.2056,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N4_IVR_N",
+      "nearest_smd_pad": "R413.1",
+      "side": "top",
+      "via_at_mm": [
+        129.775,
+        86.35
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N4_GSENSE"
     },
     {
       "conservative_copper_edge_gap_mm": 0.2061,
@@ -6101,6 +6129,20 @@
     {
       "conservative_copper_edge_gap_mm": 0.3,
       "filled_and_capped": false,
+      "nearest_pad_net": "N4_GSENSE",
+      "nearest_smd_pad": "R408.2",
+      "side": "top",
+      "via_at_mm": [
+        117.625,
+        84.75
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N4_GSENSE"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.3,
+      "filled_and_capped": false,
       "nearest_pad_net": "GND",
       "nearest_smd_pad": "C634.2",
       "side": "top",
@@ -7040,7 +7082,7 @@
   "scope": "via-to-SMT-pad process triage on both board sides; filling/capping still requires a JLC order remark/preview",
   "screen_gap_mm": 0.35,
   "unfilled_below_0p10_copper_gap_count": 0,
-  "unfilled_near_smd_pad_count": 463,
+  "unfilled_near_smd_pad_count": 466,
   "unfilled_smd_pad_overlap_count": 0,
-  "via_count": 1523
+  "via_count": 1528
 }

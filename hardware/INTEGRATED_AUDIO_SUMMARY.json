@@ -31,7 +31,7 @@
     "RN": 4.833,
     "RP": 4.833
   },
-  "footprints": 544,
+  "footprints": 545,
   "iv_dac_to_summing_routes_mm": {
     "DACL": 4.294,
     "DACLB": 6.03,
@@ -118,10 +118,10 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; L3 VNEG trunk from U501/C511 and filled EP thermal vias (U401 x2, U402 x3) connected",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; L3 VPOS trunk from U501/C510 connected",
-  "manual_added_copper_items": 6635,
+  "manual_added_copper_items": 6670,
   "manual_moves": 197,
   "manual_replaced_source_copper_items": 8,
-  "named_nets": 252,
+  "named_nets": 253,
   "near_right_angle_free_track_bends": 0,
   "orthogonal_branches_without_through": 0,
   "output_amp_enable_pin8": "U401/U402 EN pin 8 physically joins both VPOS supply pins and local C409/C411; L3 VPOS trunk from U501/C510 connected",
@@ -133,7 +133,7 @@
     "U402.4 VNEG": 2.91,
     "U402.PAD VNEG": 3.0
   },
-  "pad_centre_near_orthogonal_joins": 9,
+  "pad_centre_near_orthogonal_joins": 8,
   "ratsnest_unconnected_items": 0,
   "right_angle_track_bends": 0,
   "routed_t_cell_branch_lengths_mm": {

@@ -3126,6 +3126,21 @@
 (pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
 )
 )
+(symbol "P9006"
+(pin_numbers (hide yes))
+(pin_names (offset 0.508))
+(exclude_from_sim no) (in_bom yes) (on_board yes)
+(property "Reference" "R" (at 0 6.35 0) (effects (font (size 1.016 1.016))))
+(property "Value" "0 Ω" (at 0 -6.35 0) (effects (font (size 1.016 1.016))))
+(property "Footprint" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Description" "0 Ω net tie: N4_GSENSE to GND at the J702 sleeve (single join)" (at 0 0 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(symbol "P9006_1_1"
+(rectangle (start -2.54 1.27) (end 2.54 -1.27) (stroke (width 0.254) (type default)) (fill (type none)))
+(pin passive line (at -5.08 0 0) (length 2.54) (name "1" (effects (font (size 0.889 0.889)))) (number "1" (effects (font (size 0.762 0.762)))))
+(pin passive line (at 5.08 0 180) (length 2.54) (name "2" (effects (font (size 0.889 0.889)))) (number "2" (effects (font (size 0.762 0.762)))))
+)
+)
 (symbol "MH"
 (pin_numbers (hide yes)) (pin_names (hide yes))
 (exclude_from_sim no) (in_bom no) (on_board yes)

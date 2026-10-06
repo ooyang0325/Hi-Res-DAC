@@ -81,7 +81,8 @@ def copper_gap(a: tuple[float, float, float, float],
 
 # Parts changed by ECOs F05-F09 (1-6 Oct) after the functional-ECO and output-macro study boards were
 # frozen (29 Sep). Those historical boards skip them; the integrated study carries every ECO and is checked in full.
-POST_FREEZE_ECO_REFS = frozenset({"J201", "J202", "U202", "R228", "R229", "R230"})
+POST_FREEZE_ECO_REFS = frozenset({"J201", "J202", "U202", "R228", "R229", "R230",
+                                  "R404", "R408", "R412", "R416", "R448"})  # F10 ground sense
 
 
 def check_board_netlist(path: Path, skip_refs: frozenset = frozenset()) -> None:
@@ -94,12 +95,12 @@ def check_board_netlist(path: Path, skip_refs: frozenset = frozenset()) -> None:
         for comp in root.findall("./components/comp")
         if comp.find("property[@name='exclude_from_board']") is None
     }
-    if set(actual_footprints) != set(expected_footprints):
-        missing = sorted(set(expected_footprints) - set(actual_footprints))
-        extra = sorted(set(actual_footprints) - set(expected_footprints))
+    missing = sorted(set(expected_footprints) - set(actual_footprints) - skip_refs)
+    extra = sorted(set(actual_footprints) - set(expected_footprints) - skip_refs)
+    if missing or extra:
         raise SystemExit(f"board footprint references differ: missing={missing}, extra={extra}")
     for ref, expected_id in expected_footprints.items():
-        if ref in skip_refs:
+        if ref in skip_refs or ref not in actual_footprints:
             continue
         actual_id = actual_footprints[ref].GetFPIDAsString()
         if actual_id != expected_id:

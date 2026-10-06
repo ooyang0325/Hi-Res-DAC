@@ -120,6 +120,19 @@ def build(output_path: Path) -> None:
         board.Remove(old)
         board.Add(new)
         footprints[ref] = new
+    for ref, spec in record.get("added_footprints", {}).items():
+        # Part added by a functional ECO: a copy of an existing board footprint of the same
+        # library part (pad nets come from renamed_pads below).
+        if ref in footprints:
+            raise AssertionError(f"ECO footprint {ref} already exists")
+        new = pcbnew.FOOTPRINT(footprints[spec["clone_of"]])
+        new.SetReference(ref)
+        new.SetValue(spec["value"])
+        new.SetPath(pcbnew.KIID_PATH())
+        new.SetPosition(xy(*spec["at_mm"][:2]))
+        new.SetOrientationDegrees(spec["at_mm"][2])
+        board.Add(new)
+        footprints[ref] = new
     for net_name in record.get("added_nets", []):
         # Nets introduced by a functional ECO (absent from the 72c24c3 source board).
         if board.FindNet(net_name) is None:

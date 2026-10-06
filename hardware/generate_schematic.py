@@ -400,6 +400,23 @@ def apply_functional_eco(
         raise ValueError("U202 pins 29/3 changed; re-review CPLD pin ECO F09")
     cpld["3"], cpld["29"] = "CPLD_IRQ", "NC"
     pins["U202"] = [Pin(pin.number, pin.name, cpld[pin.number]) for pin in pins["U202"]]
+    # Functional ECO F10 (sign-off review, 7 October): ground-sense reference for the 3.5 mm output.
+    # The difference-stage reference resistors R404/R408/R412/R416 return to the J702 sleeve through
+    # N4_GSENSE instead of the local plane, so ground currents between the DAC area and the jack (USB
+    # frame-rate digital current, SE load return, line-out ground loop) are rejected by the stage's
+    # CMRR instead of adding 1:1 to the single-ended output. R448 (0 ohm) is the only GND join,
+    # placed at the sleeve; C402/C404/C406/C408 stay on the plane for RF.
+    gsense = ("R404", "R408", "R412", "R416")
+    if any({pin.number: pin.net for pin in pins[ref]}.get("2") != "GND" for ref in gsense):
+        raise ValueError("R404/R408/R412/R416 pin 2 changed; re-review ground-sense ECO F10")
+    for ref in gsense:
+        pins[ref] = [Pin(pin.number, pin.name, "N4_GSENSE" if pin.number == "2" else pin.net)
+                     for pin in pins[ref]]
+    add(replace(base_parts["R107"], row=9006, block=4, refs=["R448"],
+                description="0 Ω net tie: N4_GSENSE to GND at the J702 sleeve (single join)",
+                notes="Functional ECO F10: ground-sense reference join at the J702 sleeve"), {
+        "R448": [Pin("1", "1", "N4_GSENSE"), Pin("2", "2", "GND")],
+    })
     return parts, pins, libparts
 
 
@@ -845,6 +862,7 @@ def make() -> None:
         "R952": (220, 278), "R953": (256, 278),
         "R954": (292, 278), "R955": (328, 278), "C667": (364, 278),
         "D707": (112, 105), "D708": (148, 105),
+        "R448": (76, 207),  # ECO F10: next free cell after R447 on sheet 4
     })
     project_file = HERE / f"{PROJECT}.kicad_pro"
     if not project_file.exists():

@@ -38,7 +38,7 @@
     }
   },
   "fam_clk_hpwl_mm": 2.9,
-  "footprints": 544,
+  "footprints": 545,
   "high_z_clock_pad_gap_violations": [],
   "i2s_mm": {
     "BCLK": {
@@ -118,7 +118,7 @@
       "res_center_mm": 6.26
     }
   },
-  "named_nets": 252,
+  "named_nets": 253,
   "protection_timer_pad_distance_mm": {
     "LN_L": {
       "bleed": {
@@ -200,8 +200,8 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7137.0,
-  "track_count": 6662,
+  "total_nonpower_hpwl_mm": 7206.57,
+  "track_count": 6697,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 6.61,
     "D102_VBUS_to_J101_B4": 4.89,
