@@ -104,3 +104,13 @@ curves ([summary](ems_budget_summary.txt), [plot](ems_rf_demod.png)). Regenerate
 [../review_output_rf_filter.py](../review_output_rf_filter.py) checks the proposed output
 filter with the unchanged calibrated OPA1622 model from Calculation Package v1.1
 ([results](../OUTPUT_RF_FILTER_STABILITY_REVIEW.json)).
+
+## Layout ground and coupling screens (7 October)
+
+| File | Purpose |
+| --- | --- |
+| [board_dump.py](board_dump.py) | KiCad python: dump pads, tracks, vias and filled zones to JSON (`board_dump.py BOARD.kicad_pcb board.json`) |
+| [gnd_transfer.py](gnd_transfer.py) | numpy/scipy: resistive solve of the GND copper on all six layers plus vias; prints audio-reference-to-sleeve transfer resistances for USB/MCU/DAC/charge-pump/load currents, and checks network reciprocity |
+| [coupling_screen.py](coupling_screen.py) | Same-layer (< 0.5 mm) and L3/L4 broadside (< 0.3 mm) coupled length between toggling nets and audio/high-Z nets |
+
+Results: [../LAYOUT_REVIEW_SI_EMI_AUDIO_2026-10-07.md](../LAYOUT_REVIEW_SI_EMI_AUDIO_2026-10-07.md).
