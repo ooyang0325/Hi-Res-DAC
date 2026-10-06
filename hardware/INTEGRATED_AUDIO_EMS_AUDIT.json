@@ -3,62 +3,44 @@
   "stackup_assumption": "6-layer: L1-L2 0.0994 mm, L2-L3 0.55 mm, L3-L4 0.1088 mm, L4-L5 0.55 mm, L5-L6 0.0994 mm (assumed JLC 1.6 mm standard; verify)",
   "l2_plane": {
     "filled_outlines": 1,
-    "fill_fraction_of_board": 0.895
+    "fill_fraction_of_board": 0.893
   },
   "return_path": {
-    "f_cu_track_mm_without_l2": 488.46,
-    "f_cu_track_mm_total": 3803.0,
-    "b_cu_track_mm_without_l3_gnd": 301.44,
-    "b_cu_track_mm_total": 2743.8
+    "f_cu_track_mm_without_l2": 509.39,
+    "f_cu_track_mm_total": 3542.4,
+    "b_cu_track_mm_without_l3_gnd": 247.47,
+    "b_cu_track_mm_total": 2268.1
   },
   "return_path_sensitive_gaps": [
     [
-      "N6_OLN_R",
-      "B.Cu",
-      12.97,
-      119.19
-    ],
-    [
-      "N6_OLN_R",
-      "F.Cu",
-      12.42,
-      133.52
-    ],
-    [
-      "N6_H",
-      "F.Cu",
-      9.82,
-      53.45
-    ],
-    [
-      "N6_OLN_R",
-      "PWR",
-      8.99,
-      42.76
-    ],
-    [
-      "N6_H",
-      "B.Cu",
-      8.65,
-      61.45
-    ],
-    [
       "LEG_RN",
       "B.Cu",
-      7.67,
-      65.51
-    ],
-    [
-      "N6_OLN_L",
-      "F.Cu",
-      7.15,
-      30.07
+      8.69,
+      66.05
     ],
     [
       "LEG_LP",
       "F.Cu",
-      6.75,
-      53.05
+      7.81,
+      56.62
+    ],
+    [
+      "LEG_LN",
+      "F.Cu",
+      7.21,
+      38.06
+    ],
+    [
+      "N6_OLN_R",
+      "F.Cu",
+      6.88,
+      34.51
+    ],
+    [
+      "LEG_LN",
+      "B.Cu",
+      6.46,
+      74.84
     ],
     [
       "N6_MCK_RC",
@@ -67,10 +49,22 @@
       29.96
     ],
     [
+      "N6_VT",
+      "F.Cu",
+      6.29,
+      37.67
+    ],
+    [
+      "N6_VORP",
+      "F.Cu",
+      6.21,
+      23.41
+    ],
+    [
       "N6_OLP_L",
-      "PWR",
-      6.13,
-      52.85
+      "SIG",
+      6.12,
+      64.19
     ],
     [
       "LEG_LP",
@@ -79,28 +73,34 @@
       187.58
     ],
     [
-      "LEG_LN",
-      "F.Cu",
-      6.0,
-      35.9
-    ],
-    [
       "LEG_RP",
       "F.Cu",
       5.91,
       30.87
     ],
     [
-      "N6_OLP_L",
-      "F.Cu",
-      5.85,
-      44.17
+      "N6_ER",
+      "SIG",
+      5.71,
+      34.83
     ],
     [
       "N6_VLLN",
       "F.Cu",
       5.47,
       34.31
+    ],
+    [
+      "N6_VLLP",
+      "F.Cu",
+      5.37,
+      26.18
+    ],
+    [
+      "N6_H",
+      "F.Cu",
+      5.12,
+      96.4
     ]
   ],
   "hum": {
@@ -108,7 +108,11 @@
     "largest_loops_mm2": [
       [
         "LEG_LP",
-        108.44
+        120.13
+      ],
+      [
+        "LEG_LN",
+        54.1
       ],
       [
         "LEG_RP",
@@ -116,11 +120,7 @@
       ],
       [
         "LEG_RN",
-        33.22
-      ],
-      [
-        "LEG_LN",
-        30.27
+        33.27
       ],
       [
         "N4_IVR_N",
@@ -157,18 +157,18 @@
     ],
     "emf_nV_at_60Hz": {
       "1uT": {
-        "LEG_LP": 40.882,
+        "LEG_LP": 45.288,
+        "LEG_LN": 20.396,
         "LEG_RP": 18.561,
-        "LEG_RN": 12.524,
-        "LEG_LN": 11.413,
+        "LEG_RN": 12.544,
         "N4_IVR_N": 9.998,
         "N4_IVL_N": 6.835
       },
       "10uT": {
-        "LEG_LP": 408.817,
+        "LEG_LP": 452.876,
+        "LEG_LN": 203.962,
         "LEG_RP": 185.606,
-        "LEG_RN": 125.242,
-        "LEG_LN": 114.126,
+        "LEG_RN": 125.443,
         "N4_IVR_N": 99.982,
         "N4_IVL_N": 68.347
       }
@@ -204,18 +204,18 @@
       "PWR"
     ],
     [
-      "N2_MCLK_OE",
-      "N6_CML",
-      0.744,
-      "PWR",
-      "B.Cu"
-    ],
-    [
       "N6_MCK_RC",
       "N6_CMR",
       0.75,
       "PWR",
       "PWR"
+    ],
+    [
+      "N2_MCLK_OE",
+      "N6_V3AG_A",
+      0.776,
+      "F.Cu",
+      "F.Cu"
     ],
     [
       "N6_MCK_RC",
@@ -239,20 +239,6 @@
       "F.Cu"
     ],
     [
-      "N2_MCLK_OE",
-      "N6_V3AG_A",
-      1.29,
-      "F.Cu",
-      "F.Cu"
-    ],
-    [
-      "N2_MCLK_OE",
-      "N6_V3R_B",
-      1.594,
-      "F.Cu",
-      "F.Cu"
-    ],
-    [
       "MCLK",
       "DACR",
       1.626,
@@ -261,8 +247,8 @@
     ],
     [
       "N2_MCLK_OE",
-      "N6_CMR",
-      1.903,
+      "N6_V3R_B",
+      1.945,
       "F.Cu",
       "F.Cu"
     ],
@@ -270,6 +256,13 @@
       "MCLK",
       "DACRB",
       2.06,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N2_MCLK_OE",
+      "N6_CMR",
+      2.115,
       "F.Cu",
       "F.Cu"
     ],
@@ -291,6 +284,13 @@
       "N2_X201_OUT",
       "DACR",
       2.26,
+      "F.Cu",
+      "F.Cu"
+    ],
+    [
+      "N2_MCLK_OE",
+      "N6_V3R_A",
+      2.296,
       "F.Cu",
       "F.Cu"
     ],
@@ -344,29 +344,29 @@
       "F.Cu"
     ],
     [
-      "N6_MCK_CMP",
-      "N6_TLN_L",
-      3.303,
+      "N2_MCLK_OE",
+      "N4_VNEG_IV",
+      3.275,
       "F.Cu",
       "F.Cu"
     ]
   ],
   "stitching": {
-    "gnd_vias_and_pth": 644,
+    "gnd_vias_and_pth": 654,
     "F.Cu": {
-      "pour_samples": 25087,
-      "worst_distance_to_gnd_via_mm": 9.05
+      "pour_samples": 26251,
+      "worst_distance_to_gnd_via_mm": 9.46
     },
     "PWR": {
-      "pour_samples": 30368,
-      "worst_distance_to_gnd_via_mm": 9.05
+      "pour_samples": 31046,
+      "worst_distance_to_gnd_via_mm": 8.58
     },
     "SIG": {
-      "pour_samples": 41858,
+      "pour_samples": 36585,
       "worst_distance_to_gnd_via_mm": 9.46
     },
     "B.Cu": {
-      "pour_samples": 31409,
+      "pour_samples": 33412,
       "worst_distance_to_gnd_via_mm": 9.46
     },
     "edge_fence": {

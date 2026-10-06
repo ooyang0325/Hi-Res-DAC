@@ -13,7 +13,7 @@ order PCBA from this copper.
 | Manual footprint moves | 138 | 179 |
 | Added copper items | 828 | 5795 |
 | Vias (manifest) | 143 | 1366 |
-| Full `pcbnew` ratsnest links | 864 | **1** |
+| Full `pcbnew` ratsnest links | 864 | **0** |
 | KiCad DRC violations (errors + warnings) | 0 | 0 |
 | Exact / near-90° free bends | 0 | 0 |
 
@@ -380,6 +380,34 @@ pins) never closed more than 28 of the 32 group links.
   reaches L2.
 - **Open link:** CPLD_IRQ (U201.39 to U202.29).
 - **High-Z deviation pairs:** 32.
+
+**Last link closed by hand (6 October): 0 links, 0 DRC errors or warnings, 544
+footprints placed, VALIDATE_OK.**
+- **Pin 29 blocked.** U202 pin 29 sits under LINK_MISO's escape via, between
+  pins 28 and 30, with the exposed pad below it, so nothing could leave it.
+- **ECO F09 (CPLD pin move).** CPLD_IRQ moves from pin 29 to pin 3, the I/O
+  that carried OSC44_EN before ECO F06. Pin 29 becomes NC.
+  - Captured in `generate_schematic.py` (asserted overlay) and
+    `verify_schematic.py` (approved delta). `02_usb_bridge.kicad_sch` is
+    regenerated, and ERC is 0.
+  - **The CPLD RTL pin constraints must follow this move** (IRQ output on pin 3).
+- **U201 end (block 11).** U201.39 escapes on F.Cu between N2_RESET_DRV,
+  LED_R's via and Q207 to a 0.5 mm via at (66.6, 55.5).
+- **3V3D link onto L3 (block 12).** The 3V3D link between the vias at
+  (75.36, 58.35) and (82.18, 52.51) moved from B.Cu to L3, the power layer.
+  The B.Cu diagonal had walled the U201-side B.Cu area off from U202.
+- **CPLD end (block 13).** CPLD_IRQ runs B.Cu → L4 → B.Cu → L3 → B.Cu to the old
+  CPLD_NRST via site at (79.15, 63.5), then reaches pin 3 on F.Cu.
+  - The via is 0.9 mm from FAM_CLK, outside its 0.8 mm via keep-away.
+  - CPLD_NRST's pin-4 stub now drops to a new via at (78.6, 65.45) and
+    rejoins its net on B.Cu under the U202 west pads.
+- **LINK_MISO via moved (block 14).** The via went from (81.84, 61.29) to
+  (81.95, 61.25), 0.2 mm from the now-unconnected pin 29.
+
+| U202 pin (ECO F09) | Before | After |
+| --- | --- | --- |
+| 3 | NC (OSC44_EN before F06) | CPLD_IRQ |
+| 29 | CPLD_IRQ | NC |
 
 ## CPLD pin reassignment (functional ECO F06, 1 October)
 

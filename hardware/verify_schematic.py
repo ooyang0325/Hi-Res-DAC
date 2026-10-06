@@ -166,9 +166,10 @@ def run() -> None:
             ("U202", "10"): ("LINK_MOSI", "NC"), ("U202", "27"): ("NC", "LINK_MOSI"),
             ("U202", "11"): ("LINK_FRAME", "NC"), ("U202", "26"): ("NC", "LINK_FRAME"),
             ("U202", "12"): ("LINK_MISO", "NC"), ("U202", "28"): ("NC", "LINK_MISO"),
-            ("U202", "14"): ("CPLD_IRQ", "NC"), ("U202", "29"): ("NC", "CPLD_IRQ"),
+            ("U202", "14"): ("CPLD_IRQ", "NC"),
             ("U202", "2"): ("OSC48_EN", "NC"), ("U202", "31"): ("NC", "OSC48_EN"),
-            ("U202", "3"): ("OSC44_EN", "NC"), ("U202", "8"): ("NC", "OSC44_EN"),
+            ("U202", "3"): ("OSC44_EN", "CPLD_IRQ"),  # ECO F09: CPLD_IRQ from pin 29 to pin 3
+            ("U202", "8"): ("NC", "OSC44_EN"),
             # ECO F07: CPLD-driven BCLK/SDATA capture copies into R228/R230; R229 taps LRCLK_FB (WS)
             ("U202", "21"): ("MCLK_EN", "N2_CPY_CK"),  # ECO F08 pin rotation (F07 copies)
             ("U202", "22"): ("NC", "N2_CPY_SD"),

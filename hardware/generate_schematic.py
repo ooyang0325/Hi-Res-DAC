@@ -393,6 +393,13 @@ def apply_functional_eco(
         raise ValueError("U202 pins 21-23 changed; re-review CPLD pin ECO F08")
     cpld["21"], cpld["22"], cpld["23"] = "N2_CPY_CK", "N2_CPY_SD", "MCLK_EN"
     pins["U202"] = [Pin(pin.number, pin.name, cpld[pin.number]) for pin in pins["U202"]]
+    # Functional ECO F09 (layout-driven, 6 October): CPLD_IRQ moves from north-row pin 29 to west-row
+    # pin 3. Pin 29 sits under LINK_MISO's escape via between pins 28 and 30, so no route can leave it;
+    # pin 3 (the I/O that carried OSC44_EN before F06) escapes west. RTL pin constraint change only.
+    if (cpld.get("29"), cpld.get("3")) != ("CPLD_IRQ", "NC"):
+        raise ValueError("U202 pins 29/3 changed; re-review CPLD pin ECO F09")
+    cpld["3"], cpld["29"] = "CPLD_IRQ", "NC"
+    pins["U202"] = [Pin(pin.number, pin.name, cpld[pin.number]) for pin in pins["U202"]]
     return parts, pins, libparts
 
 
