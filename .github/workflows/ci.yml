@@ -1,0 +1,74 @@
+name: CI
+
+# Same checks as .gitlab-ci.yml: each matrix entry runs that GitLab job through .github/run_gitlab_job.py.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    container:
+      image: kicad/kicad:10.0.1
+      options: --user root
+    strategy:
+      fail-fast: false
+      matrix:
+        job:
+          - validate_schematic
+          - validate_placement
+          - validate_manual_review
+          - validate_macro_study
+          - validate_functional_eco
+          - validate_output_macro_study
+          - validate_integrated_audio_study
+          - validate_discharge_fit_option
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install CI dependencies
+        run: apt-get update -qq && apt-get install -y --no-install-recommends python3-yaml
+      - name: Run ${{ matrix.job }}
+        run: python3 .github/run_gitlab_job.py ${{ matrix.job }}
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.job }}
+          path: |
+            hardware/*AUDIT*.json
+            hardware/*SUMMARY*.json
+            hardware/*DRC*.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+  deliver_review_package:
+    needs: validate
+    runs-on: ubuntu-latest
+    container:
+      image: kicad/kicad:10.0.1
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install CI dependencies
+        run: apt-get update -qq && apt-get install -y --no-install-recommends python3-yaml
+      - name: Build review package
+        run: python3 .github/run_gitlab_job.py deliver_review_package
+      - name: Upload review package
+        uses: actions/upload-artifact@v4
+        with:
+          name: dac-hpa-review-${{ github.sha }}
+          path: |
+            hardware/DAC_HPA_review_only.pdf
+            hardware/*.glb
+            hardware/*_REVIEW.svg
+            hardware/DAC_HPA_REVIEW_SOURCE.zip
+            hardware/REVIEW_COMMIT.txt
+          retention-days: 30
