@@ -72,7 +72,7 @@ def main() -> None:
     checks += 1
     cpld = footprint("DAC_HPA", "QFN-32_L4.0-W4.0-P0.40-BL-EP2.7_EP")
     pad(cpld, "EP", (0, 0), (2.8, 2.8))
-    connector = footprint("DAC_HPA", "J101_USB4105-GF-A_12lands_4stakes")
+    connector = footprint("DAC_HPA", "J101_USB4105-GF-A_12lands_4stakes_NPTH030")
     signal = [p for p in connector.Pads() if p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD]
     stakes = [p for p in connector.Pads() if p.GetAttribute() == pcbnew.PAD_ATTRIB_PTH]
     locating = [p for p in connector.Pads() if p.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH]

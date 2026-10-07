@@ -1,6 +1,6 @@
 LTspice 26.0.2 for MacOS
 Circuit: /Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/pdn_AVCC_R.cir
-Start Time: Wed Oct  7 22:16:29 2026
+Start Time: Wed Oct  7 22:35:14 2026
 
 .step h=0.09
 solver = Normal
@@ -19,7 +19,7 @@ AsciiRawFile = true
 .step h=0.2
 .OP point found by inspection.
 .OP point found by inspection.
-Total elapsed time: 0.523 seconds.
+Total elapsed time: 0.506 seconds.
 
 Files loaded:
 /Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/pdn_AVCC_R.cir

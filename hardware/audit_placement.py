@@ -82,7 +82,8 @@ def copper_gap(a: tuple[float, float, float, float],
 # Parts changed by ECOs F05-F09 (1-6 Oct) after the functional-ECO and output-macro study boards were
 # frozen (29 Sep). Those historical boards skip them; the integrated study carries every ECO and is checked in full.
 POST_FREEZE_ECO_REFS = frozenset({"J201", "J202", "U202", "R228", "R229", "R230",
-                                  "R404", "R408", "R412", "R416", "R448"})  # F10 ground sense
+                                  "R404", "R408", "R412", "R416", "R448",  # F10 ground sense
+                                  "J101"})  # NPTH030 land pattern (sign-off review, 7 Oct 2026)
 
 
 def check_board_netlist(path: Path, skip_refs: frozenset = frozenset()) -> None:

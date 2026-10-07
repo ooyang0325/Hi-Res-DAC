@@ -7,9 +7,9 @@
 Itest 0 vdd AC 1
 Rsrc vdd nsrc 0.01
 Lsrc nsrc 0 {1.25664e-08*h}
-* C102 0805 2200 nF, 23.7 mm from the pin
+* C102 0805 2200 nF, 23.6 mm from the pin
 R0 vdd a0 0.0348044
-L0 a0 b0 {3.91182e-08*h+7e-10}
+L0 a0 b0 {3.9064e-08*h+7e-10}
 C0 b0 0 2.2e-06
 Rp0 b0 0 1G
 .step param h list 0.09 0.12 0.2

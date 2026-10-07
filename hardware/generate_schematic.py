@@ -430,7 +430,7 @@ def footprint(part: Part, ref: str) -> str:
     package = part.package.strip()
     prefix = re.match(r"[A-Za-z]+", ref).group(0)
     if ref == "J101":
-        return "DAC_HPA:J101_USB4105-GF-A_12lands_4stakes"
+        return "DAC_HPA:J101_USB4105-GF-A_12lands_4stakes_NPTH030"  # NPTH-to-copper 0.30 mm lands (sign-off review)
     if ref == "D102":
         return "DAC_HPA:D102_SMDJ12A_HandSolder"
     if ref in {"C631", "C632", "C633", "C634"}:

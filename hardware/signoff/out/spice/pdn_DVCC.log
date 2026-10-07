@@ -1,6 +1,6 @@
 LTspice 26.0.2 for MacOS
 Circuit: /Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/pdn_DVCC.cir
-Start Time: Wed Oct  7 22:16:39 2026
+Start Time: Wed Oct  7 22:35:24 2026
 
 .step h=0.09
 solver = Normal

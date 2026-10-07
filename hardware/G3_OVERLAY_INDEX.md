@@ -6,7 +6,7 @@ Use manufacturer dimensions or a calibrated optical/CAD overlay for 0.4/0.5 mm p
 
 | Cell | References represented by one land pattern | KiCad footprint |
 | --- | --- | --- |
-| 01 | J101 | `DAC_HPA:J101_USB4105-GF-A_12lands_4stakes` |
+| 01 | J101 | `DAC_HPA:J101_USB4105-GF-A_12lands_4stakes_NPTH030` |
 | 02 | J701 | `DAC_HPA:J701_GT-3321667P-01_maker_slots` |
 | 03 | J702 | `DAC_HPA:J702_PJ-332A-6A_peg_holes` |
 | 04 | K601, K602, K603, K604 | `DAC_HPA:K601_TLP3545A_LF1_HandSolder` |

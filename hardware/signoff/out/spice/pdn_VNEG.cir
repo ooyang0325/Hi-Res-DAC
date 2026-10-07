@@ -6,132 +6,132 @@
 .param h=0.12
 Itest 0 vdd AC 1
 Rsrc vdd nsrc 0.101213
-Lsrc nsrc 0 {1.52638e-07*h}
-* C414 0805 10000 nF, 130.3 mm from the pin
+Lsrc nsrc 0 {1.51695e-07*h}
+* C414 0805 10000 nF, 130.0 mm from the pin
 R0 vdd a0 0.194599
-L0 a0 b0 {4.16601e-07*h+7e-10}
+L0 a0 b0 {4.15658e-07*h+7e-10}
 C0 b0 0 1e-05
 Rp0 b0 0 1G
-* C416 0805 10000 nF, 126.0 mm from the pin
+* C416 0805 10000 nF, 125.7 mm from the pin
 R1 vdd a1 0.18734
-L1 a1 b1 {4.03583e-07*h+7e-10}
+L1 a1 b1 {4.02641e-07*h+7e-10}
 C1 b1 0 1e-05
 Rp1 b1 0 1G
-* C511 0805 10000 nF, 45.2 mm from the pin
+* C511 0805 10000 nF, 44.9 mm from the pin
 R2 vdd a2 0.112774
-L2 a2 b2 {1.47998e-07*h+7e-10}
+L2 a2 b2 {1.47056e-07*h+7e-10}
 C2 b2 0 1e-05
 Rp2 b2 0 1G
-* C659 0402 100 nF, 219.0 mm from the pin, returns via VPOS
+* C659 0402 100 nF, 218.4 mm from the pin, returns via VPOS
 R3 vdd a3 0.286859
-L3 a3 b3 {6.93779e-07*h+4e-10}
+L3 a3 b3 {6.91797e-07*h+4e-10}
 C3 b3 c3 1e-07
 Rf3 c3 d3 0.00247934
 Lf3 d3 e3 {9.61764e-10*h}
 Cf3 e3 0 3.08e-05
 Rp3 e3 0 1G
 Rq3 c3 0 1G
-* C412 0402 100 nF, 153.9 mm from the pin
+* C412 0402 100 nF, 153.6 mm from the pin
 R4 vdd a4 0.229741
-L4 a4 b4 {4.92528e-07*h+4e-10}
+L4 a4 b4 {4.91586e-07*h+4e-10}
 C4 b4 0 1e-07
 Rp4 b4 0 1G
-* C666 0402 100 nF, 215.1 mm from the pin, returns via VPOS
+* C666 0402 100 nF, 214.7 mm from the pin, returns via VPOS
 R5 vdd a5 0.283528
-L5 a5 b5 {6.84232e-07*h+4e-10}
+L5 a5 b5 {6.83068e-07*h+4e-10}
 C5 b5 c5 1e-07
 Rf5 c5 d5 0.00247934
 Lf5 d5 e5 {9.61764e-10*h}
 Cf5 e5 0 3.08e-05
 Rp5 e5 0 1G
 Rq5 c5 0 1G
-* C638 0402 100 nF, 95.4 mm from the pin
+* C638 0402 100 nF, 95.1 mm from the pin
 R6 vdd a6 0.176356
-L6 a6 b6 {3.05758e-07*h+4e-10}
+L6 a6 b6 {3.04815e-07*h+4e-10}
 C6 b6 0 1e-07
 Rp6 b6 0 1G
-* C619 0402 100 nF, 58.3 mm from the pin
+* C619 0402 100 nF, 58.0 mm from the pin
 R7 vdd a7 0.134359
-L7 a7 b7 {1.93284e-07*h+4e-10}
+L7 a7 b7 {1.92342e-07*h+4e-10}
 C7 b7 0 1e-07
 Rp7 b7 0 1G
-* C660 0402 100 nF, 208.0 mm from the pin, returns via VPOS
+* C660 0402 100 nF, 208.2 mm from the pin, returns via VPOS
 R8 vdd a8 0.277676
-L8 a8 b8 {6.5898e-07*h+4e-10}
+L8 a8 b8 {6.59548e-07*h+4e-10}
 C8 b8 c8 1e-07
 Rf8 c8 d8 0.00247934
 Lf8 d8 e8 {9.61764e-10*h}
 Cf8 e8 0 3.08e-05
 Rp8 e8 0 1G
 Rq8 c8 0 1G
-* C410 0402 100 nF, 163.5 mm from the pin
-R9 vdd a9 0.247504
-L9 a9 b9 {5.2137e-07*h+4e-10}
+* C410 0402 100 nF, 163.2 mm from the pin
+R9 vdd a9 0.247503
+L9 a9 b9 {5.20428e-07*h+4e-10}
 C9 b9 0 1e-07
 Rp9 b9 0 1G
-* C665 0402 100 nF, 187.8 mm from the pin, returns via VPOS
+* C665 0402 100 nF, 187.5 mm from the pin, returns via VPOS
 R10 vdd a10 0.258434
-L10 a10 b10 {5.95463e-07*h+4e-10}
+L10 a10 b10 {5.94521e-07*h+4e-10}
 C10 b10 c10 1e-07
 Rf10 c10 d10 0.00247934
 Lf10 d10 e10 {9.61764e-10*h}
 Cf10 e10 0 3.08e-05
 Rp10 e10 0 1G
 Rq10 c10 0 1G
-* C656 0402 100 nF, 23.1 mm from the pin
+* C656 0402 100 nF, 22.8 mm from the pin
 R11 vdd a11 0.0818288
-L11 a11 b11 {7.87767e-08*h+4e-10}
+L11 a11 b11 {7.78342e-08*h+4e-10}
 C11 b11 0 1e-07
 Rp11 b11 0 1G
-* C661 0402 100 nF, 216.5 mm from the pin, returns via VPOS
+* C661 0402 100 nF, 215.9 mm from the pin, returns via VPOS
 R12 vdd a12 0.284086
-L12 a12 b12 {6.87777e-07*h+4e-10}
+L12 a12 b12 {6.85794e-07*h+4e-10}
 C12 b12 c12 1e-07
 Rf12 c12 d12 0.00247934
 Lf12 d12 e12 {9.61764e-10*h}
 Cf12 e12 0 3.08e-05
 Rp12 e12 0 1G
 Rq12 c12 0 1G
-* C658 0402 100 nF, 26.9 mm from the pin
+* C658 0402 100 nF, 26.6 mm from the pin
 R13 vdd a13 0.0894208
-L13 a13 b13 {9.12219e-08*h+4e-10}
+L13 a13 b13 {9.02794e-08*h+4e-10}
 C13 b13 0 1e-07
 Rp13 b13 0 1G
-* C664 0402 100 nF, 214.1 mm from the pin, returns via VPOS
+* C664 0402 100 nF, 213.6 mm from the pin, returns via VPOS
 R14 vdd a14 0.282515
-L14 a14 b14 {6.78217e-07*h+4e-10}
+L14 a14 b14 {6.76573e-07*h+4e-10}
 C14 b14 c14 1e-07
 Rf14 c14 d14 0.00247934
 Lf14 d14 e14 {9.61764e-10*h}
 Cf14 e14 0 3.08e-05
 Rp14 e14 0 1G
 Rq14 c14 0 1G
-* C627 0402 100 nF, 23.3 mm from the pin
+* C627 0402 100 nF, 23.0 mm from the pin
 R15 vdd a15 0.0816936
-L15 a15 b15 {8.00943e-08*h+4e-10}
+L15 a15 b15 {7.91519e-08*h+4e-10}
 C15 b15 0 1e-07
 Rp15 b15 0 1G
-* C663 0402 100 nF, 211.4 mm from the pin, returns via VPOS
+* C663 0402 100 nF, 211.5 mm from the pin, returns via VPOS
 R16 vdd a16 0.281626
-L16 a16 b16 {6.70279e-07*h+4e-10}
+L16 a16 b16 {6.70667e-07*h+4e-10}
 C16 b16 c16 1e-07
 Rf16 c16 d16 0.00247934
 Lf16 d16 e16 {9.61764e-10*h}
 Cf16 e16 0 3.08e-05
 Rp16 e16 0 1G
 Rq16 c16 0 1G
-* C662 0402 100 nF, 191.2 mm from the pin, returns via VPOS
+* C662 0402 100 nF, 190.9 mm from the pin, returns via VPOS
 R17 vdd a17 0.26237
-L17 a17 b17 {6.06377e-07*h+4e-10}
+L17 a17 b17 {6.05435e-07*h+4e-10}
 C17 b17 c17 1e-07
 Rf17 c17 d17 0.00247934
 Lf17 d17 e17 {9.61764e-10*h}
 Cf17 e17 0 3.08e-05
 Rp17 e17 0 1G
 Rq17 c17 0 1G
-* C636 0402 100 nF, 96.3 mm from the pin
+* C636 0402 100 nF, 96.0 mm from the pin
 R18 vdd a18 0.183622
-L18 a18 b18 {3.09801e-07*h+4e-10}
+L18 a18 b18 {3.08859e-07*h+4e-10}
 C18 b18 0 1e-07
 Rp18 b18 0 1G
 .step param h list 0.09 0.12 0.2

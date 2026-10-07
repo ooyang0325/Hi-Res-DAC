@@ -7,14 +7,14 @@
 Itest 0 vdd AC 1
 Rsrc vdd nsrc 0.01
 Lsrc nsrc 0 {1.25664e-08*h}
-* C301 0603 2200 nF, 89.7 mm from the pin
+* C301 0603 2200 nF, 89.6 mm from the pin
 R0 vdd a0 0.0806416
-L0 a0 b0 {1.20244e-07*h+5.5e-10}
+L0 a0 b0 {1.20188e-07*h+5.5e-10}
 C0 b0 0 2.2e-06
 Rp0 b0 0 1G
 * C501 0603 1000 nF, 9.0 mm from the pin
 R1 vdd a1 0.0315095
-L1 a1 b1 {1.8445e-08*h+5.5e-10}
+L1 a1 b1 {1.84455e-08*h+5.5e-10}
 C1 b1 0 1e-06
 Rp1 b1 0 1G
 * C505 0402 100 nF, 15.9 mm from the pin

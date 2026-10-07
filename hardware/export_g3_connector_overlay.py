@@ -95,7 +95,7 @@ def footprint_svg(ref: str, name: str, index: int, part: str, x: float, y: float
 
 def main() -> None:
     drawings = [
-        footprint_svg("J101", "J101_USB4105-GF-A_12lands_4stakes", 1, "USB4105-GF-A", 60, 57),
+        footprint_svg("J101", "J101_USB4105-GF-A_12lands_4stakes_NPTH030", 1, "USB4105-GF-A", 60, 57),
         footprint_svg("J701", "J701_GT-3321667P-01_maker_slots", 2, "GT-3321667P-01", 60, 112),
         footprint_svg("J702", "J702_PJ-332A-6A_peg_holes", 3, "PJ-332A-6A", 60, 167),
     ]

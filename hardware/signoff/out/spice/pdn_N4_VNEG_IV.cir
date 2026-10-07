@@ -6,7 +6,7 @@
 .param h=0.12
 Itest 0 vdd AC 1
 Rsrc vdd nsrc 0.0179644
-Lsrc nsrc 0 {2.49543e-08*h}
+Lsrc nsrc 0 {2.4936e-08*h}
 * C443 0603 220000 nF, 79.3 mm from the pin
 R0 vdd a0 0.245642
 L0 a0 b0 {2.14432e-07*h+5.5e-10}
@@ -14,7 +14,7 @@ C0 b0 0 0.00022
 Rp0 b0 0 1G
 * C424 0402 100 nF, 13.2 mm from the pin
 R1 vdd a1 0.0537995
-L1 a1 b1 {3.55281e-08*h+4e-10}
+L1 a1 b1 {3.55309e-08*h+4e-10}
 C1 b1 0 1e-07
 Rp1 b1 0 1G
 * C426 0402 100 nF, 5.4 mm from the pin

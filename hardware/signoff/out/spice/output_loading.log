@@ -1,6 +1,6 @@
 LTspice 26.0.2 for MacOS
 Circuit: /Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/output_loading.cir
-Start Time: Wed Oct  7 22:18:01 2026
+Start Time: Wed Oct  7 22:36:45 2026
 solver = Normal
 Maximum thread count: 10
 tnom = 27
@@ -9,7 +9,7 @@ method = trap
 AsciiRawFile = true
 .OP point found by inspection.
 .OP point found by inspection.
-Total elapsed time: 0.109 seconds.
+Total elapsed time: 0.103 seconds.
 
 Files loaded:
 /Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/output_loading.cir

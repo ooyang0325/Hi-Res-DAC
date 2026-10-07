@@ -392,7 +392,7 @@
 (symbol (lib_id "DAC_HPA:P009") (at 60.96 72.39 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "e02ed882-5a6a-5e5c-bc56-a7f454427cc7")
 (property "Reference" "J101" (at 60.96 58.42 0) (effects (font (size 0.889 0.889))))
 (property "Value" "GCT USB4105-GF-A" (at 60.96 86.36 0) (effects (font (size 0.889 0.889))))
-(property "Footprint" "DAC_HPA:J101_USB4105-GF-A_12lands_4stakes" (at 60.96 72.39 0) (effects (font (size 1.016 1.016)) (hide yes)))
+(property "Footprint" "DAC_HPA:J101_USB4105-GF-A_12lands_4stakes_NPTH030" (at 60.96 72.39 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "Datasheet" "https://gct.co/connector/usb4105 (drawing text: https://www.mouser.com/datasheet/2/837/USB4105-1948910.pdf)" (at 60.96 72.39 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "MPN" "GCT USB4105-GF-A" (at 60.96 72.39 0) (effects (font (size 1.016 1.016)) (hide yes)))
 (property "LCSC" "C3020560" (at 60.96 72.39 0) (effects (font (size 1.016 1.016)) (hide yes)))

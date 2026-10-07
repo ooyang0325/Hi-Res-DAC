@@ -88921,7 +88921,7 @@
       }
     },
     "J101": {
-      "footprint": "DAC_HPA:J101_USB4105-GF-A_12lands_4stakes",
+      "footprint": "DAC_HPA:J101_USB4105-GF-A_12lands_4stakes_NPTH030",
       "value": "GCT USB4105-GF-A"
     }
   },

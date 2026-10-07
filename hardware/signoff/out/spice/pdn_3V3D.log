@@ -1,6 +1,6 @@
 LTspice 26.0.2 for MacOS
 Circuit: /Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/pdn_3V3D.cir
-Start Time: Wed Oct  7 22:15:32 2026
+Start Time: Wed Oct  7 22:34:17 2026
 
 .step h=0.09
 solver = Normal
@@ -19,7 +19,7 @@ AsciiRawFile = true
 .step h=0.2
 .OP point found by inspection.
 .OP point found by inspection.
-Total elapsed time: 1.244 seconds.
+Total elapsed time: 1.164 seconds.
 
 Files loaded:
 /Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/pdn_3V3D.cir
@@ -27,30 +27,30 @@ Files loaded:
 
 Measurement: zmax
   step	MAX(mag(V(vdd)) )	FROM	TO
-     1	(-5.28805870661dB,0°)	100000	100000000
-     2	(-2.95914871116dB,0°)	100000	100000000
-     3	(1.26590387656dB,0°)	100000	100000000
+     1	(-5.31725613868dB,0°)	100000	100000000
+     2	(-2.98743689473dB,0°)	100000	100000000
+     3	(1.23884463912dB,0°)	100000	100000000
 
 Measurement: zlow
   step	mag(V(vdd)) 	at
-     1	(-21.7702377241dB,0°)	100000
-     2	(-21.6793563425dB,0°)	100000
-     3	(-21.4057629274dB,0°)	100000
+     1	(-21.768019568dB,0°)	100000
+     2	(-21.6762146474dB,0°)	100000
+     3	(-21.3996829101dB,0°)	100000
 
 Measurement: zcrit
   step	mag(V(vdd)) 	at
-     1	(-18.8355016495dB,0°)	22579200
-     2	(-16.3560267443dB,0°)	22579200
-     3	(-11.9464547288dB,0°)	22579200
+     1	(-18.8701579804dB,0°)	22579200
+     2	(-16.3883237977dB,0°)	22579200
+     3	(-11.9758739369dB,0°)	22579200
 
 Measurement: zhigh
   step	mag(V(vdd)) 	at
-     1	(-5.28805870661dB,0°)	100000000
-     2	(-2.95914871116dB,0°)	100000000
-     3	(1.26590387656dB,0°)	100000000
+     1	(-5.31725613868dB,0°)	100000000
+     2	(-2.98743689473dB,0°)	100000000
+     3	(1.23884463912dB,0°)	100000000
 
 Measurement: fcross
   step	mag(V(vdd))=0.970588 
      1	failed
      2	failed
-     3	83955527.5346
+     3	84216693.8507
