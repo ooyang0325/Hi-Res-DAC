@@ -1,0 +1,22 @@
+* PDN impedance at the worst-case VBUS_SENSE pin, from extracted layout.
+* Element values: R from the solved copper network, L from the real
+* via geometry and routed path, C from the placed part.
+* h = outer-layer to first-plane dielectric height in mm (swept),
+* because the board declares no stackup.
+.param h=0.12
+Itest 0 vdd AC 1
+Rsrc vdd nsrc 0.01
+Lsrc nsrc 0 {6.28319e-08*h}
+* C103 0402 0.1 nF, 33.8 mm from the pin
+R0 vdd a0 0.120979
+L0 a0 b0 {2.14759e-07*h+4e-10}
+C0 b0 0 1e-10
+Rp0 b0 0 1G
+.step param h list 0.09 0.12 0.2
+.ac dec 400 100000 1e+08
+.meas ac zmax MAX mag(V(vdd)) FROM 100000 TO 1e+08
+.meas ac zlow FIND mag(V(vdd)) AT=100000
+.meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
+.meas ac zhigh FIND mag(V(vdd)) AT=1e+08
+.meas ac fcross WHEN mag(V(vdd))=50 RISE=1
+.end

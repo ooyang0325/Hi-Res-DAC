@@ -1,0 +1,37 @@
+* PDN impedance at the worst-case N2_V33_CPLD pin, from extracted layout.
+* Element values: R from the solved copper network, L from the real
+* via geometry and routed path, C from the placed part.
+* h = outer-layer to first-plane dielectric height in mm (swept),
+* because the board declares no stackup.
+.param h=0.12
+Itest 0 vdd AC 1
+Rsrc vdd nsrc 0.0458557
+Lsrc nsrc 0 {8.06633e-08*h}
+* C220 0603 1000 nF, 18.5 mm from the pin
+R0 vdd a0 0.0757019
+L0 a0 b0 {1.04834e-07*h+5.5e-10}
+C0 b0 0 1e-06
+Rp0 b0 0 1G
+* C214 0402 100 nF, 8.6 mm from the pin
+R1 vdd a1 0.0560106
+L1 a1 b1 {5.00359e-08*h+4e-10}
+C1 b1 0 1e-07
+Rp1 b1 0 1G
+* C213 0402 100 nF, 13.8 mm from the pin
+R2 vdd a2 0.0715481
+L2 a2 b2 {7.62769e-08*h+4e-10}
+C2 b2 0 1e-07
+Rp2 b2 0 1G
+* C215 0402 100 nF, 3.1 mm from the pin
+R3 vdd a3 0.0374398
+L3 a3 b3 {2.19422e-08*h+4e-10}
+C3 b3 0 1e-07
+Rp3 b3 0 1G
+.step param h list 0.09 0.12 0.2
+.ac dec 400 100000 1e+08
+.meas ac zmax MAX mag(V(vdd)) FROM 100000 TO 1e+08
+.meas ac zlow FIND mag(V(vdd)) AT=100000
+.meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
+.meas ac zhigh FIND mag(V(vdd)) AT=1e+08
+.meas ac fcross WHEN mag(V(vdd))=1.65 RISE=1
+.end

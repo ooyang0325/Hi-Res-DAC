@@ -1,0 +1,57 @@
+LTspice 26.1.1 for Windows
+Circuit: C:\Users\a-diegoyang\AppData\Local\Microsoft\Copilot\User Data\CopilotCodingHome\075eff695964b011981f6f0b2e1a2ead\copilot-worktrees\Hi-Res-DAC\test-user-cuddly-system\hardware\signoff\out\spice\pdn_VNEG.cir
+Start Time: Wed Oct  7 18:04:40 2026
+
+.step h=0.09
+solver = Normal
+Maximum thread count: 8
+tnom = 27
+temp = 27
+method = trap
+AsciiRawFile = true
+.OP point found by inspection.
+.OP point found by inspection.
+
+.step h=0.12
+.OP point found by inspection.
+.OP point found by inspection.
+
+.step h=0.2
+.OP point found by inspection.
+.OP point found by inspection.
+Total elapsed time: 1.443 seconds.
+Total iterations: 0
+
+Files loaded:
+C:\Users\a-diegoyang\AppData\Local\Microsoft\Copilot\User Data\CopilotCodingHome\075eff695964b011981f6f0b2e1a2ead\copilot-worktrees\Hi-Res-DAC\test-user-cuddly-system\hardware\signoff\out\spice\pdn_VNEG.cir
+
+
+Measurement: zmax
+  step	MAX(mag(V(vdd)))	FROM	TO
+     1	(-3.01854610934dB,0°)	100000	100000000
+     2	(-0.585458279412dB,0°)	100000	100000000
+     3	(3.77155521049dB,0°)	100000	100000000
+
+Measurement: zlow
+  step	mag(V(vdd))	at
+     1	(-27.3244150963dB,0°)	100000
+     2	(-27.3734510863dB,0°)	100000
+     3	(-27.4950775762dB,0°)	100000
+
+Measurement: zcrit
+  step	mag(V(vdd))	at
+     1	(-16.209660812dB,0°)	22579200
+     2	(-13.7143012207dB,0°)	22579200
+     3	(-9.27898717899dB,0°)	22579200
+
+Measurement: zhigh
+  step	mag(V(vdd))	at
+     1	(-3.01854610934dB,0°)	100000000
+     2	(-0.585458279412dB,0°)	100000000
+     3	(3.77155521049dB,0°)	100000000
+
+Measurement: fcross
+  step	mag(V(vdd))=0.375
+     1	53296703.628
+     2	40369126.3738
+     3	24583650.7398

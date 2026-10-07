@@ -1,0 +1,87 @@
+* PDN impedance at the worst-case 3V3M pin, from extracted layout.
+* Element values: R from the solved copper network, L from the real
+* via geometry and routed path, C from the placed part.
+* h = outer-layer to first-plane dielectric height in mm (swept),
+* because the board declares no stackup.
+.param h=0.12
+Itest 0 vdd AC 1
+Rsrc vdd nsrc 0.172476
+Lsrc nsrc 0 {2.2851e-07*h}
+* C502 0603 2200 nF, 103.2 mm from the pin
+R0 vdd a0 0.267813
+L0 a0 b0 {3.34849e-07*h+5.5e-10}
+C0 b0 0 2.2e-06
+Rp0 b0 0 1G
+* C211 0402 2200 nF, 116.0 mm from the pin
+R1 vdd a1 0.303842
+L1 a1 b1 {3.72697e-07*h+4e-10}
+C1 b1 0 2.2e-06
+Rp1 b1 0 1G
+* C221 0603 1000 nF, 122.1 mm from the pin
+R2 vdd a2 0.3135
+L2 a2 b2 {3.90879e-07*h+5.5e-10}
+C2 b2 0 1e-06
+Rp2 b2 0 1G
+* C209 0402 100 nF, 108.1 mm from the pin
+R3 vdd a3 0.28685
+L3 a3 b3 {3.45462e-07*h+4e-10}
+C3 b3 0 1e-07
+Rp3 b3 0 1G
+* C667 0402 100 nF, 49.4 mm from the pin
+R4 vdd a4 0.14836
+L4 a4 b4 {1.62127e-07*h+4e-10}
+C4 b4 0 1e-07
+Rp4 b4 0 1G
+* C515 0402 100 nF, 16.4 mm from the pin
+R5 vdd a5 0.0676338
+L5 a5 b5 {6.16691e-08*h+4e-10}
+C5 b5 0 1e-07
+Rp5 b5 0 1G
+* C203 0402 100 nF, 109.0 mm from the pin
+R6 vdd a6 0.288785
+L6 a6 b6 {3.48542e-07*h+4e-10}
+C6 b6 0 1e-07
+Rp6 b6 0 1G
+* C205 0402 100 nF, 66.1 mm from the pin
+R7 vdd a7 0.186622
+L7 a7 b7 {2.14567e-07*h+4e-10}
+C7 b7 0 1e-07
+Rp7 b7 0 1G
+* C206 0402 100 nF, 104.8 mm from the pin
+R8 vdd a8 0.278761
+L8 a8 b8 {3.36325e-07*h+4e-10}
+C8 b8 0 1e-07
+Rp8 b8 0 1G
+* C204 0402 100 nF, 68.6 mm from the pin
+R9 vdd a9 0.192646
+L9 a9 b9 {2.21685e-07*h+4e-10}
+C9 b9 0 1e-07
+Rp9 b9 0 1G
+* C628 0402 100 nF, 60.5 mm from the pin
+R10 vdd a10 0.172843
+L10 a10 b10 {1.98274e-07*h+4e-10}
+C10 b10 0 1e-07
+Rp10 b10 0 1G
+* C208 0402 100 nF, 112.9 mm from the pin
+R11 vdd a11 0.297229
+L11 a11 b11 {3.60633e-07*h+4e-10}
+C11 b11 0 1e-07
+Rp11 b11 0 1G
+* C207 0402 100 nF, 117.9 mm from the pin
+R12 vdd a12 0.309288
+L12 a12 b12 {3.76104e-07*h+4e-10}
+C12 b12 0 1e-07
+Rp12 b12 0 1G
+* C210 0402 100 nF, 103.6 mm from the pin
+R13 vdd a13 0.275162
+L13 a13 b13 {3.32039e-07*h+4e-10}
+C13 b13 0 1e-07
+Rp13 b13 0 1G
+.step param h list 0.09 0.12 0.2
+.ac dec 400 100000 1e+08
+.meas ac zmax MAX mag(V(vdd)) FROM 100000 TO 1e+08
+.meas ac zlow FIND mag(V(vdd)) AT=100000
+.meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
+.meas ac zhigh FIND mag(V(vdd)) AT=1e+08
+.meas ac fcross WHEN mag(V(vdd))=1.65 RISE=1
+.end
