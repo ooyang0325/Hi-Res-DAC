@@ -43,6 +43,20 @@ def _terminal_resistance(model, stack, net, ref_a, ref_b):
     return min(vals) if vals else None
 
 
+def series_path_resistance(model, stack, net):
+    """Copper resistance of the load-current path of one output net.
+
+    Measured between the parts that carry headphone current
+    (``design_intent.OUTPUT_SERIES_TERMINALS``); for a net that serves two
+    jacks, the worse path.  Sense taps hanging off the net are excluded.
+    """
+    vals = [_terminal_resistance(model, stack, net, a, b)
+            for a, b in di.OUTPUT_SERIES_TERMINALS.get(net, [])]
+    if not vals or any(v is None for v in vals):
+        return None
+    return max(vals)
+
+
 @gate(
     "G30",
     "Headphone output path resistance and channel matching",
@@ -63,6 +77,11 @@ def g30_output_path(model, ctx, r):
         "Only drawn copper is included: connector contact, relay contact and "
         "amplifier output impedance are additional to these numbers."
     )
+    r.assume(
+        "Each net is measured along its load-current path between the parts in "
+        "design_intent.OUTPUT_SERIES_TERMINALS; the high-value sense-divider "
+        "taps on LEG_xx carry no headphone current and are excluded."
+    )
 
     names = set(model["nets"].values())
     pads = _pad_lookup(model)
@@ -74,19 +93,12 @@ def g30_output_path(model, ctx, r):
         nn = build_for_net(net, model, stack, include_zones=True)
         if nn.node_count == 0 or not nn.pad_nodes:
             continue
-        # End to end across the net: the two pads furthest apart in copper.
-        keys = sorted(nn.pad_nodes)
-        if len(keys) < 2:
-            continue
-        src = nn.pad_nodes[keys[0]]
-        reff = nn.effective_resistances(src, [n for k in keys[1:]
-                                              for n in nn.pad_nodes[k]])
-        vals = [v for v in reff.values() if v <= OPEN_OHM]
-        if not vals:
+        res = series_path_resistance(model, stack, net)
+        if res is None:
             r.fail("OUTPUT_NET_OPEN",
-                   f"{net}: no DC path between its pads.", net=net)
+                   f"{net}: no DC path between its load-current terminals.", net=net)
             continue
-        resistances[net] = max(vals)
+        resistances[net] = res
 
     r.metrics["output_net_resistance_ohm"] = {
         k: round(v, 5) for k, v in sorted(resistances.items())

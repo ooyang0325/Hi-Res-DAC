@@ -147,7 +147,10 @@ def main() -> None:
                 errors.append(f"{board_path.name}: duplicate reference {ref}")
             references.add(ref)
             models = list(footprint.Models())
-            copper_only = ref.startswith(("TP", "FID", "MH")) or ref in COPPER_ONLY
+            # J201/J202 are bare debug pads on the historical boards and fitted SMD pin
+            # headers (functional ECO F05) on the integrated board.
+            copper_only = ref.startswith(("TP", "FID", "MH")) or (
+                ref in COPPER_ONLY and "PinHeader" not in footprint.GetFPIDAsString())
             if not models:
                 if copper_only:
                     counts["copper_only"] += 1

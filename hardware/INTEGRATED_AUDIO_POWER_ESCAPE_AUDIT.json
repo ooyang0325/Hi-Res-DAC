@@ -15,7 +15,7 @@
         50.9715,
         84.85
       ],
-      "width_mm": 0.3
+      "width_mm": 0.36
     },
     {
       "end_mm": [
@@ -38,11 +38,11 @@
         72.6
       ],
       "layer": "F.Cu",
-      "length_mm": 1.53,
+      "length_mm": 1.445,
       "net": "VBUS",
       "pad": "J101.A4/B9",
       "start_mm": [
-        47.37,
+        47.455,
         72.6
       ],
       "width_mm": 0.5
@@ -53,11 +53,11 @@
         77.4
       ],
       "layer": "F.Cu",
-      "length_mm": 1.83,
+      "length_mm": 1.745,
       "net": "VBUS",
       "pad": "J101.B4/A9",
       "start_mm": [
-        47.37,
+        47.455,
         77.4
       ],
       "width_mm": 0.5
@@ -75,7 +75,7 @@
         53.0285,
         84.85
       ],
-      "width_mm": 0.3
+      "width_mm": 0.36
     }
   ],
   "method": "one F.Cu pad-centred straight neckdown per listed small land; all other VBUS/5V_SYS copper at least 1 mm",

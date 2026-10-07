@@ -24,6 +24,16 @@
       "sha256": "11e948c72c90e2b6322436b72745f40ff4e8ba0da64fb2a0df943dfa61e89c1a"
     },
     {
+      "path": "Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x05_P2.54mm_Vertical_SMD_Pin1Right.step",
+      "bytes": 207320,
+      "sha256": "bfe73e0fc5354c1a9e8012a16d4bb88c35330be2cc736445e7a6b03b8ddaadce"
+    },
+    {
+      "path": "Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x08_P2.54mm_Vertical_SMD_Pin1Right.step",
+      "bytes": 329490,
+      "sha256": "a12660bd4ac4881f25861f87974cfa8d03b6a230c6fed820c7cd350bd750d402"
+    },
+    {
       "path": "Connector_USB.3dshapes/USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.step",
       "bytes": 1059856,
       "sha256": "6338ce740fa231c2d3dcc6384e0576994a47240a312a21413cb85d76990a69a0"

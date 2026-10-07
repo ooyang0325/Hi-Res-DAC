@@ -95,7 +95,54 @@ def extract_stackup(board) -> dict:
             info["layers"] = rows
     except Exception as exc:  # noqa: BLE001 - SWIG surface varies by build
         info["probe_error"] = repr(exc)
+    if not info["defined"]:
+        rows = parse_stackup_text(board.GetFileName())
+        for row in rows:
+            if row["layer"] and row["type"] == "copper":
+                row["layer"] = board.GetLayerName(board.GetLayerID(row["layer"]))
+        if rows:
+            info.update(defined=True, layers=rows, source="board file (stackup) block")
     return info
+
+
+def parse_stackup_text(path: str) -> list:
+    """Read the ``(stackup ...)`` block straight from the board file.
+
+    KiCad 10.0.x SWIG builds do not all expose BOARD_STACKUP.GetList(), so
+    the file is the reliable source.  Each row keeps KiCad's own type string
+    (copper, prepreg, core, Top Solder Mask, ...).
+    """
+    import re
+    try:
+        text = open(path, encoding="utf-8").read()
+    except OSError:
+        return []
+    start = text.find("(stackup")
+    if start < 0:
+        return []
+    depth, end = 0, start
+    for end in range(start, len(text)):
+        depth += {"(": 1, ")": -1}.get(text[end], 0)
+        if depth == 0:
+            break
+    block = text[start:end + 1]
+    rows = []
+    for m in re.finditer(r'\(layer "([^"]+)"(.*?)\n\t\t\t\)', block, re.S):
+        body = m.group(2)
+        num = lambda key: (float(re.search(rf"\({key} ([-\d.eE]+)\)", body).group(1))
+                           if re.search(rf"\({key} ", body) else None)
+        kind = re.search(r'\(type "([^"]+)"\)', body)
+        material = re.search(r'\(material "([^"]+)"\)', body)
+        rows.append({
+            "type": kind.group(1) if kind else None,
+            "layer": m.group(1) if m.group(1).endswith(".Cu") else None,
+            "name": m.group(1),
+            "thickness_mm": num("thickness"),
+            "epsilon_r": num("epsilon_r"),
+            "loss_tangent": num("loss_tangent"),
+            "material": material.group(1) if material else None,
+        })
+    return rows
 
 
 def extract_project(pcb_path: str) -> dict:

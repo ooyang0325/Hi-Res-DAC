@@ -1,0 +1,38 @@
+Controlled-impedance sign-off (MATLAB 25.1.0.2973910 (R2025a) Update 1), 2-D finite-difference field solver tline_fd.m
+
+Validation 1 (thin strip t = one cell, h 0.1 mm, no mask, er 4.1) vs Hammerstad-Jensen (t = 0):
+  w/h = 1, grid 0.00250 mm: FD 71.48 ohm, HJ 73.31 ohm, diff -2.49 %
+  w/h = 1, grid 0.00125 mm: FD 72.18 ohm, HJ 73.31 ohm, diff -1.54 %
+  w/h = 2, grid 0.00250 mm: FD 49.37 ohm, HJ 50.29 ohm, diff -1.83 %
+  w/h = 2, grid 0.00125 mm: FD 49.67 ohm, HJ 50.29 ohm, diff -1.23 %
+  -> the residual shrinks with the grid (edge singularity) and includes the strip's own
+     thickness; the solver is within ~1.5 % and reads slightly LOW at the grids used below.
+Validation 2 (t 0.035 mm, h 0.1 mm, no mask) vs Hammerstad-Jensen with its thickness correction:
+  w/h = 1: FD 64.90 ohm, HJ 68.60 ohm, diff -5.38 %
+  w/h = 2: FD 46.35 ohm, HJ 48.21 ohm, diff -3.86 %
+  w/h = 3: FD 36.33 ohm, HJ 37.53 ohm, diff -3.20 %
+  -> 3-5 % apart at t/h = 0.35, where the closed-form thickness correction is approximate.
+     Taking the H-J value instead would raise every Zdiff below by <= 5 %: the worst USB corner
+     would be ~103 ohm, still inside 90 ohm +15 %.
+Grid convergence, USB pair (w 0.17, gap 0.215, t 0.035, mask):
+  grid 0.0060 mm: Zdiff 89.78 ohm
+  grid 0.0040 mm: Zdiff 89.16 ohm
+  grid 0.0030 mm: Zdiff 88.84 ohm
+
+USB 2.0 HS pair as built (target 90 ohm +/-15 %; sections from the routed board):
+  coupled 0.17 mm / gap 0.215 mm (10.0 mm)       nominal                            Zdiff   89.2  Zodd  44.6  Zcomm  26.1 ohm
+  coupled 0.17 mm / gap 0.215 mm (10.0 mm)       prepreg -10 %, er +0.2, Cu +5 um   Zdiff   82.3  Zodd  41.2  Zcomm  23.7 ohm
+  coupled 0.17 mm / gap 0.215 mm (10.0 mm)       prepreg +10 %, er -0.2, Cu -5 um   Zdiff   96.8  Zodd  48.4  Zcomm  28.6 ohm
+  coupled 0.18 mm / gap 0.32 mm (2.5 mm)         nominal                            Zdiff   90.0  Zodd  45.0  Zcomm  24.5 ohm
+  coupled 0.18 mm / gap 0.32 mm (2.5 mm)         prepreg -10 %, er +0.2, Cu +5 um   Zdiff   82.2  Zodd  41.1  Zcomm  22.2 ohm
+  coupled 0.18 mm / gap 0.32 mm (2.5 mm)         prepreg +10 %, er -0.2, Cu -5 um   Zdiff   98.6  Zodd  49.3  Zcomm  27.0 ohm
+  split 0.20 mm around U101 (centre 1.6 mm)      nominal                            Zdiff   89.0  Zodd  44.5  Zcomm  22.3 ohm
+  split 0.20 mm around U101 (centre 1.6 mm)      prepreg -10 %, er +0.2, Cu +5 um   Zdiff   81.2  Zodd  40.6  Zcomm  20.4 ohm
+  split 0.20 mm around U101 (centre 1.6 mm)      prepreg +10 %, er -0.2, Cu -5 um   Zdiff   97.3  Zodd  48.6  Zcomm  24.4 ohm
+  J101 pin escape 0.16 mm (centre 1.5 mm)        nominal                            Zdiff  100.3  Zodd  50.1  Zcomm  25.2 ohm
+  J101 pin escape 0.16 mm (centre 1.5 mm)        prepreg -10 %, er +0.2, Cu +5 um   Zdiff   91.5  Zodd  45.7  Zcomm  22.9 ohm
+  J101 pin escape 0.16 mm (centre 1.5 mm)        prepreg +10 %, er -0.2, Cu -5 um   Zdiff  109.0  Zodd  54.5  Zcomm  27.3 ohm
+  odd-mode eeff 2.981 -> 5.8 ps/mm; 2.153 mm intra-pair mismatch = 12.4 ps (USB 2.0 HS budget 100 ps)
+
+Clock lines (0.15 mm, single-ended, nominal stackup):
+  Z0 51.5 ohm, eeff 3.148, 5.92 ps/mm (clk_si.cir uses Z0 58 ohm, 5.96 ps/mm)

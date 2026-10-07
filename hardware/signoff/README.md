@@ -7,6 +7,12 @@ can disagree with the first.
 
 ## Running it
 
+On macOS, `run.py` finds LTspice 26's Wine bottle and drives it through
+`ltspice_wine.sh`; extract with KiCad's own Python
+(`/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3`).
+The gates need NumPy and SciPy (G20's field solver).
+
+
 ```powershell
 # Extract the board model (positional argument, not --pcb)
 python hardware/signoff/extract.py <board.kicad_pcb> -o hardware/signoff/out/model_integrated.json
@@ -164,3 +170,22 @@ Current budgets in `design_intent.RAILS` are estimates and are marked
   plane; it is a lumped study, not a 3D field solve.
 - Zones are included in the solved network, but the board routes its rails as
   0.4 mm traces rather than poured planes, so this matters little here.
+
+## Changes after the first run (7 October 2026)
+
+The designer's response is in
+[../SIGNOFF_REVIEW_RESPONSE_2026-10-07.md](../SIGNOFF_REVIEW_RESPONSE_2026-10-07.md). Summary of
+what changed in the suite (board changes are listed there):
+
+- `design_intent.RAILS` takes its currents and voltages from Calculation Package v1.1, adds
+  `source` (rail drivers, never loads), `loads` (per-part maxima), `transient_a` (G40 step) and
+  `supply: False` for sense/reference nets.
+- G10/G11 solve the current each track and via carries with the declared loads at their pads
+  (`NetNetwork.item_currents`); rails without `loads` keep the full-budget check.
+- G30/G41 measure the load-current path (`OUTPUT_SERIES_TERMINALS`), not the sense taps.
+- G20 computes the differential impedance of every coupled and split section with
+  `tline.py` on the declared stackup and its build corners; 3W approaches inside the pin
+  field of a part the pair lands on are reported as INFO.
+- `extract.py` reads the board file's `(stackup)` block when SWIG cannot; `build_stack`
+  takes the copper weights from it.
+

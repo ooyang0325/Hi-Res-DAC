@@ -5,31 +5,31 @@
 * because the board declares no stackup.
 .param h=0.12
 Itest 0 vdd AC 1
-Rsrc vdd nsrc 0.110218
+Rsrc vdd nsrc 0.12236
 Lsrc nsrc 0 {2.64363e-07*h}
 * C415 0805 10000 nF, 69.9 mm from the pin
-R0 vdd a0 0.127572
+R0 vdd a0 0.139884
 L0 a0 b0 {2.27733e-07*h+7e-10}
 C0 b0 0 1e-05
 Rp0 b0 0 1G
 * C510 0805 10000 nF, 80.2 mm from the pin
-R1 vdd a1 0.120334
+R1 vdd a1 0.132565
 L1 a1 b1 {2.58601e-07*h+7e-10}
 C1 b1 0 1e-05
 Rp1 b1 0 1G
 * C413 0805 10000 nF, 98.4 mm from the pin
-R2 vdd a2 0.171259
+R2 vdd a2 0.186943
 L2 a2 b2 {3.19159e-07*h+7e-10}
 C2 b2 0 1e-05
 Rp2 b2 0 1G
-* C655 0402 100 nF, 91.4 mm from the pin
-R3 vdd a3 0.149839
-L3 a3 b3 {2.93887e-07*h+4e-10}
+* C655 0402 100 nF, 91.1 mm from the pin
+R3 vdd a3 0.164886
+L3 a3 b3 {2.93206e-07*h+4e-10}
 C3 b3 0 1e-07
 Rp3 b3 0 1G
-* C659 0402 100 nF, 178.7 mm from the pin, returns via VNEG
-R4 vdd a4 0.262868
-L4 a4 b4 {5.67098e-07*h+4e-10}
+* C659 0402 100 nF, 178.6 mm from the pin, returns via VNEG
+R4 vdd a4 0.29399
+L4 a4 b4 {5.66856e-07*h+4e-10}
 C4 b4 c4 1e-07
 Rf4 c4 d4 0.00247934
 Lf4 d4 e4 {1.03563e-09*h}
@@ -37,7 +37,7 @@ Cf4 e4 0 3.08e-05
 Rp4 e4 0 1G
 Rq4 c4 0 1G
 * C666 0402 100 nF, 134.3 mm from the pin, returns via VNEG
-R5 vdd a5 0.190484
+R5 vdd a5 0.211359
 L5 a5 b5 {4.30496e-07*h+4e-10}
 C5 b5 c5 1e-07
 Rf5 c5 d5 0.00247934
@@ -45,13 +45,13 @@ Lf5 d5 e5 {1.03563e-09*h}
 Cf5 e5 0 3.08e-05
 Rp5 e5 0 1G
 Rq5 c5 0 1G
-* C618 0402 100 nF, 21.0 mm from the pin
-R6 vdd a6 0.0711325
-L6 a6 b6 {6.83366e-08*h+4e-10}
+* C618 0402 100 nF, 20.7 mm from the pin
+R6 vdd a6 0.0757822
+L6 a6 b6 {6.75532e-08*h+4e-10}
 C6 b6 0 1e-07
 Rp6 b6 0 1G
 * C660 0402 100 nF, 168.4 mm from the pin, returns via VNEG
-R7 vdd a7 0.246534
+R7 vdd a7 0.275344
 L7 a7 b7 {5.34606e-07*h+4e-10}
 C7 b7 c7 1e-07
 Rf7 c7 d7 0.00247934
@@ -60,12 +60,12 @@ Cf7 e7 0 3.08e-05
 Rp7 e7 0 1G
 Rq7 c7 0 1G
 * C411 0402 100 nF, 121.5 mm from the pin
-R8 vdd a8 0.167145
+R8 vdd a8 0.184681
 L8 a8 b8 {3.87555e-07*h+4e-10}
 C8 b8 0 1e-07
 Rp8 b8 0 1G
 * C665 0402 100 nF, 147.6 mm from the pin, returns via VNEG
-R9 vdd a9 0.212473
+R9 vdd a9 0.236462
 L9 a9 b9 {4.69425e-07*h+4e-10}
 C9 b9 c9 1e-07
 Rf9 c9 d9 0.00247934
@@ -74,12 +74,12 @@ Cf9 e9 0 3.08e-05
 Rp9 e9 0 1G
 Rq9 c9 0 1G
 * C637 0402 100 nF, 71.7 mm from the pin
-R10 vdd a10 0.137708
+R10 vdd a10 0.149979
 L10 a10 b10 {2.31425e-07*h+4e-10}
 C10 b10 0 1e-07
 Rp10 b10 0 1G
 * C661 0402 100 nF, 164.6 mm from the pin, returns via VNEG
-R11 vdd a11 0.240078
+R11 vdd a11 0.267974
 L11 a11 b11 {5.24683e-07*h+4e-10}
 C11 b11 c11 1e-07
 Rf11 c11 d11 0.00247934
@@ -88,12 +88,12 @@ Cf11 e11 0 3.08e-05
 Rp11 e11 0 1G
 Rq11 c11 0 1G
 * C409 0402 100 nF, 134.4 mm from the pin
-R12 vdd a12 0.181878
+R12 vdd a12 0.201541
 L12 a12 b12 {4.27756e-07*h+4e-10}
 C12 b12 0 1e-07
 Rp12 b12 0 1G
 * C664 0402 100 nF, 178.6 mm from the pin, returns via VNEG
-R13 vdd a13 0.263482
+R13 vdd a13 0.29469
 L13 a13 b13 {5.66679e-07*h+4e-10}
 C13 b13 c13 1e-07
 Rf13 c13 d13 0.00247934
@@ -101,23 +101,23 @@ Lf13 d13 e13 {1.03563e-09*h}
 Cf13 e13 0 3.08e-05
 Rp13 e13 0 1G
 Rq13 c13 0 1G
-* C626 0402 100 nF, 42.5 mm from the pin
-R14 vdd a14 0.0994758
-L14 a14 b14 {1.39428e-07*h+4e-10}
+* C626 0402 100 nF, 42.1 mm from the pin
+R14 vdd a14 0.107469
+L14 a14 b14 {1.38233e-07*h+4e-10}
 C14 b14 0 1e-07
 Rp14 b14 0 1G
 * C635 0402 100 nF, 21.8 mm from the pin
-R15 vdd a15 0.0713595
+R15 vdd a15 0.0764413
 L15 a15 b15 {7.48454e-08*h+4e-10}
 C15 b15 0 1e-07
 Rp15 b15 0 1G
-* C657 0402 100 nF, 86.0 mm from the pin
-R16 vdd a16 0.139696
-L16 a16 b16 {2.78689e-07*h+4e-10}
+* C657 0402 100 nF, 86.1 mm from the pin
+R16 vdd a16 0.153382
+L16 a16 b16 {2.78938e-07*h+4e-10}
 C16 b16 0 1e-07
 Rp16 b16 0 1G
 * C663 0402 100 nF, 169.1 mm from the pin, returns via VNEG
-R17 vdd a17 0.247726
+R17 vdd a17 0.276704
 L17 a17 b17 {5.37558e-07*h+4e-10}
 C17 b17 c17 1e-07
 Rf17 c17 d17 0.00247934
@@ -126,7 +126,7 @@ Cf17 e17 0 3.08e-05
 Rp17 e17 0 1G
 Rq17 c17 0 1G
 * C662 0402 100 nF, 154.4 mm from the pin, returns via VNEG
-R18 vdd a18 0.223364
+R18 vdd a18 0.248893
 L18 a18 b18 {4.90651e-07*h+4e-10}
 C18 b18 c18 1e-07
 Rf18 c18 d18 0.00247934
@@ -140,5 +140,5 @@ Rq18 c18 0 1G
 .meas ac zlow FIND mag(V(vdd)) AT=100000
 .meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
 .meas ac zhigh FIND mag(V(vdd)) AT=1e+08
-.meas ac fcross WHEN mag(V(vdd))=0.375 RISE=1
+.meas ac fcross WHEN mag(V(vdd))=1.06944 RISE=1
 .end

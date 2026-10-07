@@ -200,14 +200,14 @@
     120,
     100
   ],
-  "total_nonpower_hpwl_mm": 7206.57,
-  "track_count": 6697,
+  "total_nonpower_hpwl_mm": 7206.59,
+  "track_count": 6736,
   "usb_mm": {
     "C102_VBUS_to_J101_A4": 6.61,
-    "D102_VBUS_to_J101_B4": 4.89,
+    "D102_VBUS_to_J101_B4": 4.82,
     "U101_DN_to_J101_B7": 5.4,
     "U101_DP_to_J101_A6": 6.83,
-    "U102_VBUS_to_J101_B4": 9.36,
+    "U102_VBUS_to_J101_B4": 9.3,
     "U103_CC1_to_J101_A5": 6.49,
     "U103_CC2_to_J101_B5": 9.99,
     "U502_IN_to_C102_VBUS": 1.65,

@@ -101,7 +101,7 @@ GND.
 | --- | --- | --- | --- |
 | MCLK (X201 80 MHz → R203 → U301) | L1 only, 7.1 mm, no vias; X201 → XI 8.3 mm (rule ≤ 10), R665 → U607 1.6 mm (rule ≤ 3) | 100 % over solid L2 | Pass |
 | BCLK / LRCLK / SDATA, oscillator outputs | L1 only, 1.7–16.6 mm, no vias, series source resistors | 100 % over L2 | Pass |
-| USB HS D+/D− | L1 only, no vias; 0.16 mm / 0.225 mm gap; 2.2 mm intra-pair mismatch | Solid L2 at 0.099 mm | Zdiff ≈ 90 Ω (IPC-2141); skew ≈ 15 ps, below the ~100 ps guideline. Pass |
+| USB HS D+/D− | L1 only, no vias; 0.16 mm / 0.225 mm gap; 2.2 mm intra-pair mismatch | Solid L2 at 0.099 mm | Zdiff ≈ 90 Ω (IPC-2141); skew ≈ 15 ps, below the ~100 ps guideline. **Superseded:** a field solve on the declared stackup gave 93.5–97 Ω; the pair was widened to 0.17/0.18/0.20 mm (88.7–90.0 Ω), see [SIGNOFF_REVIEW_RESPONSE_2026-10-07.md](SIGNOFF_REVIEW_RESPONSE_2026-10-07.md) |
 | LINK bus, I²C, JTAG/SWD, enables, LRCLK_FB | L1/L3/L4/L6 with vias | L3/L4 over the 0.55 mm cores; 3–15 mm void beneath on the facing L3/L4 layer | Slow control nets; acceptable. Keep any future fast net on L1/L6 |
 
 **Stack-up note.** L3 and L4 are 0.109 mm apart and 0.55 mm from their planes, so L4

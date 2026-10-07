@@ -11,7 +11,8 @@ Tools: LTspice 26.0.2 and MATLAB R2025a, with TI vendor models:
 | TLV767 | SLVMCY1 (TLV76701 unencrypted) | U504 transient |
 | LM27762 | SNVMAV1 | See note under row 5 |
 
-Scripts, decks and results: [sim/signoff/](sim/signoff/README.md).
+Scripts, decks and results: [sim/signoff/](sim/signoff/README.md). The independent review of this
+sign-off and the changes it led to are in [SIGNOFF_REVIEW_RESPONSE_2026-10-07.md](SIGNOFF_REVIEW_RESPONSE_2026-10-07.md).
 
 **Verdict: PASS on every criterion below.**
 
@@ -24,13 +25,13 @@ listed in Section 2.
 
 | # | Check | Tool | Criterion | Result | Status |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Hum and whine at the headphone output (Section 1a) | MATLAB | Every term ≥ 6 dB below audibility on a 135 dB SPL/V IEM | Smallest margin **17.6 dB** after F10 (was **1.0 dB**) | PASS |
+| 1 | Hum and whine at the headphone output (Section 1a) | MATLAB | Every term ≥ 6 dB below audibility on a 135 dB SPL/V IEM | Smallest margin **16.2 dB** after F10, including the I/V-output pair loops (was **1.0 dB**) | PASS |
 | 2 | OPA1622 output-stage stability (Section 1b) | LTspice | PM ≥ 45°, GM ≥ 6 dB, all cases | Min PM **57.1°**, min GM **13.9 dB** | PASS |
 | 3 | Difference-stage CMRR (F10) | LTspice | Rejects ground differences ≥ 40 dB | Worst tolerance corner **−56.4 dB** at 60 Hz–1 kHz, −54.9 dB at 8 kHz, −50.5 dB at 20 kHz | PASS |
 | 4 | U504 TLV767 placement (block 16) | MATLAB extraction + LTspice | Schematic rule ≤ 3 mm; datasheet COUT 1–220 µF, ESR 2–500 mΩ | See Section 1c | PASS |
 | 5 | U501 LM27762 ground pad (block 16) | LTspice | Lower 2 MHz ground bounce | **87 → 29 mV p-p** at the IC pad; 5V_ANA (before FB501) 0.55 mV p-p | PASS |
-| 6 | MCLK 80 MHz and BCLK signal integrity | LTspice | No overshoot past the rails, monotonic edges; X201 load ≤ 14.23 pF | See Section 1d | PASS |
-| 7 | USB HS pair | IPC-2141 | 90 Ω ±15 %, intra-pair skew ≤ 100 ps | 0.16 / 0.225 mm on 0.099 mm prepreg → ≈ 90 Ω; 2.2 mm → ≈ 15 ps | PASS |
+| 6 | MCLK 80 MHz and BCLK signal integrity | LTspice | No overshoot past the rails, monotonic edges; X201 load ≤ 14.23 pF | See Section 1d (Z0 51.5 Ω field-solved) | PASS |
+| 7 | USB HS pair on the declared JLC06161H-3313 stackup | MATLAB 2-D field solver (`tline_fd.m`) | 90 Ω ±15 % at every build corner; intra-pair skew ≤ 100 ps | Coupled 0.17/0.18 mm and split 0.20 mm sections 88.7–90.0 Ω nominal, 81.2–98.6 Ω at the corners; 2.15 mm = 12 ps ([signoff_impedance.txt](sim/signoff/signoff_impedance.txt)) | PASS |
 | 8 | Ground-solver validation | MATLAB | Convergence and reciprocity | 0.3 vs 0.2 mm grid within 4 %; matches the independent Python solver; reciprocity and synthetic-sheet unit tests pass | PASS |
 
 **Note on row 5.** TI's switching model needs about 19,000 time points per 2 MHz cycle
@@ -63,6 +64,12 @@ model (datasheet operating point, 10 ns edges) on the extracted capacitor and gr
 
 The magnetic loop moved from R to L, at the same size (≈ 550 mm²). The 3.5 mm loop is
 now the output route plus the sense route.
+
+**I/V outputs to the difference stage** (added after the independent review, G31). A 60 Hz EMF
+between the P and N routes of an OPA2210 output pair is a differential input of the difference
+stage, so it reaches the output × 2.0 k/1.3 k = 1.54. The differential loops are LP 63.5, LN 88.6,
+RP 133.8 and RN 61.1 mm². Added in magnitude to the output loops (worst case), the 10 µT terms
+are 2.43 µV (3.5 mm L, margin 16.2 dB) and 1.99 µV (4.4 mm R, 17.9 dB).
 
 **Why the 60 Hz loop is not "trace length × height".** At 60 Hz the return current spreads
 through the plane resistively. Near the board edge its centroid bows up to ~12 mm from
@@ -135,8 +142,9 @@ The solver's unit test reproduces this bow on a uniform sheet.
    the margin is ≥ 27 dB even if they are 20× larger.
 2. **Magnetic field.** 10 µT at 60 Hz is the close-to-a-transformer case; 1 µT is
    typical, and gives margins ≥ 37 dB.
-3. **Stack-up and copper.** JLC 6-layer: 0.0994 / 0.55 / 0.1088 mm, εr 4.3, 1 oz outer,
-   0.5 oz inner.
+3. **Stack-up and copper.** Declared on the board since the review response: JLC06161H-3313,
+   0.0994 / 0.55 / 0.1088 mm, εr 4.1 / 4.6 / 4.16, 1 oz outer, 0.5 oz inner, 15 µm mask. The
+   hum and parasitic models use εr 4.3, which moves Z0 by about 2 %.
 4. **Component data.**
    - TLP3545A COFF ≤ 1 nF.
    - ES9018K2M input capacitance 5 pF (not published).

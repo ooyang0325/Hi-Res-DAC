@@ -1,10 +1,10 @@
-LTspice 26.1.1 for Windows
-Circuit: C:\Users\a-diegoyang\AppData\Local\Microsoft\Copilot\User Data\CopilotCodingHome\075eff695964b011981f6f0b2e1a2ead\copilot-worktrees\Hi-Res-DAC\test-user-cuddly-system\hardware\signoff\out\spice\pdn_VNEG.cir
-Start Time: Wed Oct  7 18:04:40 2026
+LTspice 26.0.2 for MacOS
+Circuit: /Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/pdn_VNEG.cir
+Start Time: Wed Oct  7 22:17:32 2026
 
 .step h=0.09
 solver = Normal
-Maximum thread count: 8
+Maximum thread count: 10
 tnom = 27
 temp = 27
 method = trap
@@ -19,39 +19,38 @@ AsciiRawFile = true
 .step h=0.2
 .OP point found by inspection.
 .OP point found by inspection.
-Total elapsed time: 1.443 seconds.
-Total iterations: 0
+Total elapsed time: 2.441 seconds.
 
 Files loaded:
-C:\Users\a-diegoyang\AppData\Local\Microsoft\Copilot\User Data\CopilotCodingHome\075eff695964b011981f6f0b2e1a2ead\copilot-worktrees\Hi-Res-DAC\test-user-cuddly-system\hardware\signoff\out\spice\pdn_VNEG.cir
+/Users/ooyang/dac_layout_work/wt/hardware/signoff/out/spice/pdn_VNEG.cir
 
 
 Measurement: zmax
-  step	MAX(mag(V(vdd)))	FROM	TO
-     1	(-3.01854610934dB,0°)	100000	100000000
-     2	(-0.585458279412dB,0°)	100000	100000000
-     3	(3.77155521049dB,0°)	100000	100000000
+  step	MAX(mag(V(vdd)) )	FROM	TO
+     1	(-2.9727402314dB,0°)	100000	100000000
+     2	(-0.539122137764dB,0°)	100000	100000000
+     3	(3.81856773933dB,0°)	100000	100000000
 
 Measurement: zlow
-  step	mag(V(vdd))	at
-     1	(-27.3244150963dB,0°)	100000
-     2	(-27.3734510863dB,0°)	100000
-     3	(-27.4950775762dB,0°)	100000
+  step	mag(V(vdd)) 	at
+     1	(-26.8321242996dB,0°)	100000
+     2	(-26.878826891dB,0°)	100000
+     3	(-26.9921943738dB,0°)	100000
 
 Measurement: zcrit
-  step	mag(V(vdd))	at
-     1	(-16.209660812dB,0°)	22579200
-     2	(-13.7143012207dB,0°)	22579200
-     3	(-9.27898717899dB,0°)	22579200
+  step	mag(V(vdd)) 	at
+     1	(-16.158748847dB,0°)	22579200
+     2	(-13.6645419007dB,0°)	22579200
+     3	(-9.23021183059dB,0°)	22579200
 
 Measurement: zhigh
-  step	mag(V(vdd))	at
-     1	(-3.01854610934dB,0°)	100000000
-     2	(-0.585458279412dB,0°)	100000000
-     3	(3.77155521049dB,0°)	100000000
+  step	mag(V(vdd)) 	at
+     1	(-2.9727402314dB,0°)	100000000
+     2	(-0.539122137764dB,0°)	100000000
+     3	(3.81856773933dB,0°)	100000000
 
 Measurement: fcross
-  step	mag(V(vdd))=0.375
-     1	53296703.628
-     2	40369126.3738
-     3	24583650.7398
+  step	mag(V(vdd))=1.1 
+     1	failed
+     2	failed
+     3	70922721.4034

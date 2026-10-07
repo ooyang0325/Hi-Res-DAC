@@ -19,9 +19,12 @@ The [manual macro-placement study](MACRO_PLACEMENT_REVIEW.md) has the older 536-
 ## Coverage and sources
 
 `audit_3d_models.py` checks model paths, file headers, and the JLC file hashes.
-On the current integrated-audio board, **478 component bodies resolve**
-(474 STEP and four VRML), while 66 copper-only items intentionally have no
-model. Of the 478, 385 use KiCad stock models and 93 use project-local files.
+On the current integrated-audio board, **481 component bodies resolve**
+(477 STEP and four VRML), while 64 copper-only items intentionally have no
+model. Of the 481, 388 use KiCad stock models and 93 use project-local files.
+There, J201/J202 are the fitted SMD programming headers (ECO F05) and carry KiCad's
+stock `PinHeader_1x08/1x05_P2.54mm_Vertical_SMD_Pin1Right` bodies, rotated onto the
+XKB R1 land pattern.
 The five historical review boards each have 536 footprints: **470 component bodies resolve**
 (466 STEP and four VRML), while 66 copper-only items intentionally have no
 model (53 test pads, seven fiducials, four mounting holes, and J201/J202 debug

@@ -5,7 +5,8 @@ These files support [../../SIGNOFF_SIMULATION_2026-10-07.md](../../SIGNOFF_SIMUL
 ## Inputs
 
 - **Board dump.** Dump the routed board with KiCad's python:
-  `../board_dump.py ../../DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb board.json`.
+  `../board_dump.py ../../DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb board.json`, then
+  run `BOARD=board.json matlab -batch signoff_ground_hum`.
   It is not committed (about 6 MB).
 - **TI vendor models.** Download them from ti.com into `lt/`. They are not committed: they
   are TI-licensed.
@@ -27,6 +28,7 @@ These files support [../../SIGNOFF_SIMULATION_2026-10-07.md](../../SIGNOFF_SIMUL
 | `ltraw.m`, `hp_margins.m` | Read the LTspice ASCII raw files and compute crossover, phase margin and gain margin (`signoff_hp_stability.txt`). |
 | `test_gndsolver.m` | Unit test on a synthetic sheet: a symmetric pair gives zero chord deviation; an edge pair bows into the sheet. |
 | `check_routes.m` | Plots the extracted single-ended routes against their straight returns (`check_routes.png`). |
+| `tline_fd.m`, `signoff_impedance.m` | 2-D finite-difference field solver for L1 microstrip on the declared stackup, validated against Hammerstad-Jensen; USB pair sections and clock Z0 at the build corners (`signoff_impedance.txt`). The sign-off suite's G20 uses a NumPy port of the same solver (`../../signoff/tline.py`). |
 
 ## LTspice 26.0.2 (`lt/`)
 

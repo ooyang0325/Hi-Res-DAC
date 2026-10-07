@@ -105,7 +105,7 @@ def build(output_path: Path) -> None:
         lib, name = spec["footprint"].split(":")
         new = load_footprint(HERE / f"{lib}.pretty" / f"{name}.kicad_mod")
         nets = {pad.GetNumber(): pad.GetNet() for pad in old.Pads()}
-        if sorted(nets) != sorted(pad.GetNumber() for pad in new.Pads()):
+        if set(nets) != {pad.GetNumber() for pad in new.Pads()}:  # unnamed NPTH holes repeat ""
             raise AssertionError(f"{ref}: pad numbers differ from {spec['footprint']}")
         new.SetFPID(pcbnew.LIB_ID(lib, name))
         new.SetReference(ref)
@@ -197,6 +197,8 @@ def build(output_path: Path) -> None:
         zone.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
         zone.SetAssignedPriority(item.get("priority", 0))
         board.Add(zone)
+    if "silk" in record:
+        apply_silk(board, record["silk"])
     for drawing in board.GetDrawings():
         if (isinstance(drawing, pcbnew.PCB_TEXT)
                 and drawing.GetText().startswith("FUNCTIONAL ECO / MANUAL PLACEMENT")):
@@ -214,9 +216,68 @@ def build(output_path: Path) -> None:
     if not pcbnew.ZONE_FILLER(board).Fill(board.Zones()):
         raise RuntimeError("Could not refill continuous L2 GND around the signal vias")
     pcbnew.SaveBoard(str(output_path), board)
+    if "stackup" in record:
+        write_stackup(output_path, record["stackup"])
     refill_with_custom_rules(output_path)
     print(f"Saved {output_path.name}: {len(record['moved_footprints'])} explicit moves, "
           f"{len(record['added_copper'])} explicit copper items")
+
+
+def apply_silk(board: pcbnew.BOARD, spec: dict) -> None:
+    """Fabrication legend: strokes at the fab minimum, and a ${REFERENCE} text on
+    F.SilkS at each reviewed position (refs that do not fit stay on the F.Fab
+    assembly drawing only)."""
+    min_w = pcbnew.FromMM(spec["min_line_mm"])
+    height = pcbnew.FromMM(spec["text_mm"][0])
+    thickness = pcbnew.FromMM(spec["text_mm"][1])
+    for footprint in board.GetFootprints():
+        for item in footprint.GraphicalItems():
+            if (item.GetLayer() == pcbnew.F_SilkS and isinstance(item, pcbnew.PCB_SHAPE)
+                    and 0 < item.GetWidth() < min_w):
+                item.SetWidth(min_w)
+        field = footprint.Reference()
+        if field.GetLayer() == pcbnew.F_SilkS:
+            field.SetLayer(pcbnew.F_Fab)       # library default; the legend text is added below
+        at = spec["refs"].get(footprint.GetReference())
+        if at is None:
+            continue
+        text = pcbnew.PCB_TEXT(footprint)
+        text.SetText("${REFERENCE}")
+        text.SetLayer(pcbnew.F_SilkS)
+        text.SetTextSize(pcbnew.VECTOR2I(height, height))
+        text.SetTextThickness(thickness)
+        text.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_CENTER)
+        text.SetVertJustify(pcbnew.GR_TEXT_V_ALIGN_CENTER)
+        text.SetPosition(xy(at[0], at[1]))
+        text.SetTextAngleDegrees(at[2])
+        footprint.Add(text)
+
+
+def write_stackup(path: Path, spec: dict) -> None:
+    """Physical stackup in the board setup (fab build, copper weights, impedance
+    basis). Written as text because the SWIG BOARD_STACKUP surface is incomplete;
+    the kicad-cli refill that follows re-saves it in KiCad's own format."""
+    def layer(name, kind, *props):
+        body = "".join(f"\n\t\t\t\t{p}" for p in props)
+        return f'\n\t\t\t(layer "{name}"\n\t\t\t\t(type "{kind}"){body}\n\t\t\t)'
+    mask = ('(color "Green")', f'(thickness {spec["mask_mm"]})', f'(epsilon_r {spec["mask_er"]})')
+    rows = [layer("F.SilkS", "Top Silk Screen"), layer("F.Paste", "Top Solder Paste"),
+            layer("F.Mask", "Top Solder Mask", *mask)]
+    copper = ["F.Cu", "In1.Cu", "In2.Cu", "In3.Cu", "In4.Cu", "B.Cu"]
+    for i, name in enumerate(copper):
+        rows.append(layer(name, "copper", f'(thickness {spec["copper_mm"][i]})'))
+        if i < len(spec["dielectrics"]):
+            kind, thick, er, material = spec["dielectrics"][i]
+            rows.append(layer(f"dielectric {i + 1}", kind, f"(thickness {thick})", f'(material "{material}")',
+                              f"(epsilon_r {er})", f"(loss_tangent {spec['loss_tangent']})"))
+    rows += [layer("B.Mask", "Bottom Solder Mask", *mask), layer("B.Paste", "Bottom Solder Paste"),
+             layer("B.SilkS", "Bottom Silk Screen")]
+    block = ("\n\t\t(stackup" + "".join(rows) + f'\n\t\t\t(copper_finish "{spec["finish"]}")'
+             "\n\t\t\t(dielectric_constraints yes)\n\t\t)")
+    text = path.read_text()
+    if "(stackup" in text:
+        raise AssertionError("board already carries a stackup")
+    path.write_text(text.replace("\t(setup", "\t(setup" + block, 1))
 
 
 def refill_with_custom_rules(path: Path) -> None:

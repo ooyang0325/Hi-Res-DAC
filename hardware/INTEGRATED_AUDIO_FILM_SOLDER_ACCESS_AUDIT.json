@@ -28,7 +28,7 @@
     },
     {
       "approach_width_mm": 4.3,
-      "clearance_mm": 3.29,
+      "clearance_mm": 3.275,
       "direction": "north",
       "nearest_other_footprint": "TP735",
       "pad_bbox_mm": [

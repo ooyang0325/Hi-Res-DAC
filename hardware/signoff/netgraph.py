@@ -103,6 +103,7 @@ class NetNetwork:
         self._edges = []            # (i, j, resistance)
         self._tracks = []           # deferred until connect_tracks()
         self.pad_nodes = defaultdict(list)   # "REF.PAD" -> [node index]
+        self.edge_owner = {}        # edge index -> track/via dict it models
 
     # -- node bookkeeping -------------------------------------------------
     def node(self, layer: str, x: float, y: float) -> int:
@@ -121,8 +122,10 @@ class NetNetwork:
     def coord(self, idx):
         return self._coords[idx]
 
-    def add_edge(self, i: int, j: int, resistance: float):
+    def add_edge(self, i: int, j: int, resistance: float, owner=None):
         if i != j:
+            if owner is not None:
+                self.edge_owner[len(self._edges)] = owner
             self._edges.append((i, j, max(resistance, SHORT_OHM)))
 
     # -- construction -----------------------------------------------------
@@ -197,7 +200,7 @@ class NetNetwork:
                     deduped.append((t_par, idx))
             for (t0, i0), (t1, i1) in zip(deduped, deduped[1:]):
                 seg_len = abs(t1 - t0) * length
-                self.add_edge(i0, i1, track_resistance_ohm(seg_len, width, thick))
+                self.add_edge(i0, i1, track_resistance_ohm(seg_len, width, thick), track)
 
     def add_via(self, via, layer_order):
         x, y = via["pos_mm"]
@@ -212,7 +215,7 @@ class NetNetwork:
             na = self.node(a, x, y)
             nb = self.node(b, x, y)
             h = self.stack.separation_mm(a, b)
-            self.add_edge(na, nb, via_resistance_ohm(h, via["drill_mm"]))
+            self.add_edge(na, nb, via_resistance_ohm(h, via["drill_mm"]), via)
 
     def add_pad(self, pad):
         """A pad is a lump of copper: short everything that lands in it."""
@@ -360,6 +363,24 @@ class NetNetwork:
         except np.linalg.LinAlgError:
             v, *_ = np.linalg.lstsq(G, rhs, rcond=None)
         return v
+
+    def item_currents(self, source_nodes, load_currents):
+        """Solve once and return [(track-or-via dict, worst |I| in A)].
+
+        Each track or via may be split into several edges; the largest current
+        through any of its pieces is the one that heats it.
+        """
+        v = self.solve(source_nodes, load_currents)
+        if v is None:
+            return []
+        worst = {}
+        for k, owner in self.edge_owner.items():
+            i, j, r = self._edges[k]
+            amps = abs(v[i] - v[j]) / r
+            key = id(owner)
+            if key not in worst or amps > worst[key][1]:
+                worst[key] = (owner, amps)
+        return list(worst.values())
 
     def effective_resistances(self, source_nodes, probe_nodes):
         """R_eff from the (shorted) source to each probe node, in ohms."""

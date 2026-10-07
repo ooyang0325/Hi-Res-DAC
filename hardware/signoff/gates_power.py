@@ -46,6 +46,42 @@ def _stack(model):
     )
 
 
+
+def _minor(spec):
+    return spec.get("minor_load_a", 0.001)
+
+
+def solved_item_currents(model, stack, net, spec):
+    """[(track/via, A)] with each declared load drawn at its own pads.
+
+    Returns None when the rail declares no loads, so the gate falls back to the
+    full budget through every conductor.
+    """
+    loads, sources = spec.get("loads"), spec.get("source")
+    if not loads or not sources:
+        return None
+    nn = build_for_net(net, model, stack, include_zones=True)
+    src = [n for k, nodes in nn.pad_nodes.items()
+           if k.split(".")[0] in sources for n in nodes]
+    if not src or nn.node_count > 6000:
+        return None
+    pads_by_ref = defaultdict(list)
+    for k, nodes in nn.pad_nodes.items():
+        pads_by_ref[k.split(".")[0]].append(nodes)
+    draw = defaultdict(float)
+    for ref, groups in pads_by_ref.items():
+        if ref in sources:
+            continue
+        if ref in loads:
+            amps = loads[ref]
+        elif di.ref_prefix(ref) in ("C", "TP", "FID", "MH"):
+            continue
+        else:
+            amps = _minor(spec)
+        for nodes in groups:
+            draw[nodes[0]] += amps / len(groups)
+    return nn.item_currents(src, draw)
+
 @gate(
     "G10",
     "Conductor ampacity (IPC-2221B)",
@@ -63,7 +99,9 @@ def g10_ampacity(model, ctx, r):
     )
     r.assume(
         "DC current budgets are the declared values in design_intent.RAILS and are "
-        "upper bounds, not measurements."
+        "upper bounds, not measurements. Where a rail declares its loads, each "
+        "conductor is held to the current the solved copper network puts through "
+        "it with every load at its maximum; otherwise to the full rail budget."
     )
     r.metrics["delta_t_k"] = DESIGN_DELTA_T_K
     r.metrics["layer_copper_mm"] = {k: round(v, 5) for k, v in stack.thickness_mm.items()}
@@ -80,12 +118,17 @@ def g10_ampacity(model, ctx, r):
         if not segs:
             continue
         current = spec["current_a"]
+        solved = solved_item_currents(model, stack, net, spec)
+        if solved is not None:
+            per_track = {id(t): amps for t, amps in solved if "layer" in t}
         worst = None
         for t in segs:
             internal = not stack.is_outer(t["layer"])
             th = stack.thickness_mm.get(t["layer"])
             if not th:
                 continue
+            if solved is not None:
+                current = max(per_track.get(id(t), 0.0), 1e-6)
             cap = ipc2221_current_a(t["width_mm"], th, internal=internal)
             need = ipc2221_width_mm(current, th, internal=internal)
             margin = cap / current if current > 0 else float("inf")
@@ -98,6 +141,8 @@ def g10_ampacity(model, ctx, r):
                     "capacity_a": round(cap, 4),
                     "length_mm": round(t.get("length_mm", 0.0), 3),
                     "at": t["start_mm"],
+                    "current_a": round(current, 4),
+                    "solved": solved is not None,
                 }
         if worst is None:
             continue
@@ -109,8 +154,11 @@ def g10_ampacity(model, ctx, r):
             worst["capacity_at_double_copper_a"] = round(
                 worst["capacity_a"] * (2 ** 0.725), 4)
 
+        current = worst["current_a"]
         results[net] = {
-            "budget_a": current,
+            "budget_a": spec["current_a"],
+            "conductor_current_a": current,
+            "current_basis": "solved per segment" if worst["solved"] else "full rail budget",
             "narrowest_mm": worst["width_mm"],
             "layer": worst["layer"],
             "required_mm": worst["required_width_mm"],
@@ -129,7 +177,8 @@ def g10_ampacity(model, ctx, r):
             r.fail(
                 "AMPACITY",
                 f"{net}: narrowest conductor {worst['width_mm']} mm on {worst['layer']} "
-                f"carries {worst['capacity_a']} A but the rail budget is {current} A "
+                f"carries {worst['capacity_a']} A but must carry {current} A "
+                f"({results[net]['current_basis']}) "
                 f"(needs {worst['required_width_mm']} mm).{caveat}",
                 net=net, **worst,
             )
@@ -137,7 +186,7 @@ def g10_ampacity(model, ctx, r):
             r.warn(
                 "AMPACITY_MARGIN",
                 f"{net}: narrowest conductor has only {worst['margin']:.2f}x margin "
-                f"over the {current} A budget.",
+                f"over the {current} A it carries ({results[net]['current_basis']}).",
                 net=net, **worst,
             )
     r.metrics["rails"] = results
@@ -151,6 +200,7 @@ def g10_ampacity(model, ctx, r):
     sources=[IPC2221_SRC, "JLCPCB: 18 um average through-hole plating"],
 )
 def g11_via_ampacity(model, ctx, r):
+    stack = ctx["stack"]
     r.assume("Barrel plating assumed 18 um (fabricator stated average).")
     r.assume("A via barrel is evaluated with the IPC-2221B internal constant "
              "because it is enclosed by laminate.")
@@ -174,6 +224,31 @@ def g11_via_ampacity(model, ctx, r):
         if not vias:
             continue
         current = spec["current_a"]
+        solved = solved_item_currents(model, stack, net, spec)
+        if solved is not None:
+            # Each via against the current the solved network puts through it;
+            # parallel vias share their transition automatically.
+            per_via = {id(v): amps for v, amps in solved if "drill_mm" in v}
+            worst = None
+            for v in vias:
+                amps = max(per_via.get(id(v), 0.0), 1e-6)
+                cap = via_current_a(v["drill_mm"])
+                if worst is None or cap / amps < worst[0]:
+                    worst = (cap / amps, cap, amps, v)
+            margin, cap, amps, v = worst
+            summary[net] = {"budget_a": current, "via_current_a": round(amps, 4),
+                            "current_basis": "solved per via",
+                            "weakest_via_capacity_a": round(cap, 4),
+                            "margin_x": round(margin, 2), "at": v["pos_mm"]}
+            detail = dict(capacity_a=cap, via_count=1, at=v["pos_mm"],
+                          drills_mm=[round(v["drill_mm"], 3)], solved_current_a=round(amps, 4))
+            if margin < 1.0:
+                r.fail("VIA_AMPACITY", f"{net}: a {v['drill_mm']} mm via at {v['pos_mm']} carries "
+                       f"{amps:.3f} A (solved) against a {cap:.3f} A capacity.", net=net, **detail)
+            elif margin < 1.5:
+                r.warn("VIA_AMPACITY_MARGIN", f"{net}: weakest via has {margin:.2f}x margin "
+                       f"({amps:.3f} A solved).", net=net, **detail)
+            continue
         uf = geom.UnionFind()
         idx = geom.GridIndex(4.0)
         for i, v in enumerate(vias):
@@ -425,10 +500,10 @@ def g13_decoupling(model, ctx, r):
     for p in model["pads"]:
         net = p["net"]
         spec = di.RAILS.get(net)
-        if not spec or net == "GND":
+        if not spec or net == "GND" or not spec.get("supply", True):
             continue
-        if not di.is_ic(p["ref"]):
-            continue
+        if not di.is_ic(p["ref"]) or p["ref"] in spec.get("source", ()):
+            continue                          # a regulator's own output pin is not a load
         candidates = cap_pads_by_net.get(net, [])
         if not candidates:
             r.fail("NO_BYPASS",

@@ -8,12 +8,12 @@ Itest 0 vdd AC 1
 Rsrc vdd nsrc 0.01
 Lsrc nsrc 0 {4.18879e-08*h}
 * C304 0603 2200 nF, 6.5 mm from the pin
-R0 vdd a0 0.0375845
+R0 vdd a0 0.0374723
 L0 a0 b0 {3.40099e-08*h+5.5e-10}
 C0 b0 0 2.2e-06
 Rp0 b0 0 1G
 * C306 0402 100 nF, 2.0 mm from the pin
-R1 vdd a1 0.0350828
+R1 vdd a1 0.0350375
 L1 a1 b1 {1.0991e-08*h+4e-10}
 C1 b1 0 1e-07
 Rp1 b1 0 1G
@@ -23,5 +23,5 @@ Rp1 b1 0 1G
 .meas ac zlow FIND mag(V(vdd)) AT=100000
 .meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
 .meas ac zhigh FIND mag(V(vdd)) AT=1e+08
-.meas ac fcross WHEN mag(V(vdd))=0.4125 RISE=1
+.meas ac fcross WHEN mag(V(vdd))=4.125 RISE=1
 .end

@@ -5,10 +5,10 @@
 * because the board declares no stackup.
 .param h=0.12
 Itest 0 vdd AC 1
-Rsrc vdd nsrc 0.0458496
+Rsrc vdd nsrc 0.051662
 Lsrc nsrc 0 {6.10126e-08*h}
 * C421 0402 0.033 nF, 22.9 mm from the pin
-R0 vdd a0 0.130936
+R0 vdd a0 0.143532
 L0 a0 b0 {1.5301e-07*h+4e-10}
 C0 b0 0 3.3e-11
 Rp0 b0 0 1G
@@ -18,5 +18,5 @@ Rp0 b0 0 1G
 .meas ac zlow FIND mag(V(vdd)) AT=100000
 .meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
 .meas ac zhigh FIND mag(V(vdd)) AT=1e+08
-.meas ac fcross WHEN mag(V(vdd))=3.3 RISE=1
+.meas ac fcross WHEN mag(V(vdd))=33 RISE=1
 .end

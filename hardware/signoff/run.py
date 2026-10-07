@@ -108,6 +108,11 @@ def build_stack(model):
     thickness = stackup.get("board_thickness_mm") or 1.6
     outer_oz = stackup.get("outer_copper_oz")
     inner_oz = stackup.get("inner_copper_oz")
+    copper = [row for row in stackup.get("layers", []) if row.get("type") == "copper"]
+    if stackup.get("defined") and len(copper) >= 2 and all(r.get("thickness_mm") for r in copper):
+        # 1 oz = 0.0347 mm; outer from F.Cu, inner from the first internal layer.
+        outer_oz = round(copper[0]["thickness_mm"] / 0.0347, 3)
+        inner_oz = round(copper[1]["thickness_mm"] / 0.0347, 3) if len(copper) > 2 else outer_oz
     assumed = outer_oz is None or inner_oz is None
     return LayerStack(
         names,
@@ -318,6 +323,9 @@ def find_ltspice():
     for c in candidates:
         if os.path.exists(c):
             return c
+    # macOS: LTspice ships as a Wine bottle; ltspice_wine.sh gives it the LTspice.exe CLI.
+    if os.path.exists("/Applications/LTspice.app/Contents/SharedSupport/ltspice/LTspice/wine"):
+        return os.path.join(_HERE, "ltspice_wine.sh")
     return ""
 
 

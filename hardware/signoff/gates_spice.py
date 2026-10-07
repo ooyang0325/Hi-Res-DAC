@@ -39,6 +39,11 @@ def _fmt(x: float) -> str:
 _FB_RE = re.compile(r"(^|_)(FB|FEEDBACK|ADJ|SENSE)(_|$)", re.IGNORECASE)
 
 
+def _transient_a(spec):
+    """Current step that sizes the target impedance (design_intent.RAILS)."""
+    return spec.get("transient_a", spec["current_a"])
+
+
 def regulator_refs(model, rail):
     """Components that regulate ``rail`` rather than consume it.
 
@@ -221,6 +226,8 @@ def g40_pdn_impedance(model, ctx, r):
     for rail, spec in sorted(di.RAILS.items()):
         if rail == "GND" or rail not in names:
             continue
+        if not spec.get("supply", True):
+            continue                          # sense/reference/debug nets, not a load supply
         if spec.get("kind") in ("switching", "return"):
             # A charge-pump flying-capacitor node is driven hard and is meant
             # to swing; target impedance is not a meaningful criterion there.
@@ -229,7 +236,9 @@ def g40_pdn_impedance(model, ctx, r):
         if not caps:
             warnings.append({"rail": rail, "reason": "no decoupling capacitor"})
             continue
-        regs = regulator_refs(model, rail)
+        # Feedback-net regulators plus the declared rail sources (fixed-output
+        # LDOs, eFuses and load switches carry no feedback net).
+        regs = regulator_refs(model, rail) | set(spec.get("source", ()))
         load = _worst_case_load(model, rail, caps, exclude=regs)
         if load is None:
             continue
@@ -254,7 +263,7 @@ def g40_pdn_impedance(model, ctx, r):
             model, stack, rail, load, h_typ, ctx.get("rail_sources") or {},
             width)
         ztarget = rules.pdn_target_impedance_ohm(
-            abs(spec["volts"]), spec["current_a"], spec.get("kind", "default"))
+            abs(spec["volts"]), _transient_a(spec), spec.get("kind", "default"))
 
         deck = _pdn_deck(rail, branches, r_src, l_src_per_h, band,
                          ztarget, f_crit)
@@ -291,7 +300,7 @@ def g40_pdn_impedance(model, ctx, r):
             "nearest_cap_mm": round(min(b["path_mm"] for b in branches), 2),
             "margin_db_at_mclk": (round(20 * math.log10(ztarget / zcrit), 2)
                                   if zcrit > 0 else None),
-            "assumed_current_a": spec["current_a"],
+            "assumed_current_a": _transient_a(spec),
             # The target scales with the transient current, which is an
             # estimate.  Quoting the current at which this rail would just
             # meet its target makes the verdict's sensitivity explicit and
@@ -474,25 +483,6 @@ def g41_output_loading(model, ctx, r):
 
 
 def _net_series_resistance(model, stack, net):
-    """End-to-end copper resistance of one output net."""
-    nn = build_for_net(net, model, stack, include_zones=True)
-    if nn.node_count == 0:
-        return None
-    groups = defaultdict(list)
-    for key, nodes in nn.pad_nodes.items():
-        groups[key.split(".")[0]].extend(nodes)
-    if len(groups) < 2:
-        return None
-    refs = sorted(groups)
-    # Worst pair: a connector against the first driver found.
-    conn = [x for x in refs if di.ref_prefix(x) == "J"]
-    a_ref = conn[0] if conn else refs[0]
-    others = [x for x in refs if x != a_ref]
-    best = None
-    for b_ref in others:
-        reff = nn.effective_resistances(groups[a_ref], groups[b_ref])
-        vals = [v for v in reff.values() if v <= OPEN_OHM]
-        if vals:
-            v = min(vals)
-            best = v if best is None else max(best, v)
-    return best
+    """Copper resistance of one output net's load-current path (see G30)."""
+    from .gates_audio import series_path_resistance
+    return series_path_resistance(model, stack, net)

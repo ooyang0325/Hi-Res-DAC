@@ -110,6 +110,13 @@ if any(strcmp({pads.net}, 'N4_GSENSE'))      % F10: the two references join thro
     rp = findpad(pads,'R412','2'); rn = findpad(pads,'R416','2');
     A_BALR = balS(balPR, balNR, rp, rn, routepath(trk, pads, {'R416','2','N4_GSENSE','R412','2'}));
 end
+% I/V outputs -> difference stage (OPA2210 U403/U404 -> R401/R403 ... ): a 60 Hz EMF between the
+% P and N routes is a differential input of the difference stage and reaches its output x Gd.
+% Loop = P route out, across the input resistors, N route back, across the OPA2210 package.
+Gd = 2.00/1.30;                                              % R402/R401 (calc package v1.1)
+ivA = @(u, rp, rn, np, nn) ivloopA(routepath(trk, pads, {u,'7',np,rp,'1'}), routepath(trk, pads, {u,'1',nn,rn,'1'}));
+A_IV = struct('LP', ivA('U403','R401','R403','N4_IVL_P','N4_IVL_N'), 'LN', ivA('U403','R407','R405','N4_IVL_P','N4_IVL_N'), ...
+              'RP', ivA('U404','R409','R411','N4_IVR_P','N4_IVR_N'), 'RN', ivA('U404','R415','R413','N4_IVR_P','N4_IVR_N'));
 hum = @(A, k) w * B(k) * A * 1e-6;     % V at field level k
 % (b) ground-current terms (V): R404 - sleeve transfer x current
 Ivals = [20e-3, 10e-3];               % MCU+CPLD frame-rate p-p, DAC digital p-p (conservative)
@@ -149,17 +156,24 @@ if isF10
      '60 Hz field 10 uT - 4.4 mm bal L', hum(abs(A_BAL),2);
      '60 Hz field 10 uT - 4.4 mm bal R', hum(abs(A_BALR),2);
      'USB 100/120 Hz ripple (EMS ems_budget.m)', 7.9e-9};
+    rows = [rows(1:end-1,:); {
+     'I/V pair x Gd + output loop, 10 uT - 3.5 mm L', hum(abs(A_SE_L) + Gd*abs(A_IV.LP), 2);
+     'I/V pair x Gd + output loop, 10 uT - 3.5 mm R', hum(abs(A_SE_R) + Gd*abs(A_IV.RP), 2);
+     'I/V pairs x Gd + output loop, 10 uT - 4.4 mm bal L', hum(abs(A_BAL) + Gd*(abs(A_IV.LP) + abs(A_IV.LN)), 2);
+     'I/V pairs x Gd + output loop, 10 uT - 4.4 mm bal R', hum(abs(A_BALR) + Gd*(abs(A_IV.RP) + abs(A_IV.RN)), 2);
+     }; rows(end,:)];
 end
 fid = fopen('signoff_hum_budget.txt', 'w');
 fprintf(fid, 'DAC-HPA hum/whine sign-off budget (MATLAB %s)\n', version);
 fprintf(fid, 'Output noise floor %.2f uV. Grid 0.3/0.2 mm convergence shown in signoff_gnd_transfer.csv\n\n', noise*1e6);
-fprintf(fid, 'Board %s (ECO F10 ground sense: %d)\nEffective 60 Hz loop areas (route + %s): SE-L %.1f, SE-R %.1f, BAL-L %.1f, BAL-R %.1f mm2\n\n', bf, isF10, ternary(isF10, 'N4_GSENSE sense route', 'resistive plane return'), A_SE_L, A_SE_R, A_BAL, A_BALR);
+fprintf(fid, 'Board %s (ECO F10 ground sense: %d)\nEffective 60 Hz loop areas (route + %s): SE-L %.1f, SE-R %.1f, BAL-L %.1f, BAL-R %.1f mm2\n', bf, isF10, ternary(isF10, 'N4_GSENSE sense route', 'resistive plane return'), A_SE_L, A_SE_R, A_BAL, A_BALR);
+fprintf(fid, 'I/V output pair loops (U403/U404 -> difference-stage inputs, gain %.2f): LP %.1f, LN %.1f, RP %.1f, RN %.1f mm2\n\n', Gd, A_IV.LP, A_IV.LN, A_IV.RP, A_IV.RN);
 % audibility: ISO 226:2003 threshold in quiet and masking by the amplifier's own noise in one ERB
 fq = [20 25 31.5 40 50 63 80 100 125 160 200 250 315 400 500 630 800 1000 1250 1600 2000 2500 3150 4000 5000 6300 8000 10000 12500];
 tq = [78.5 68.7 59.5 51.1 44.0 37.5 31.5 26.5 22.1 17.9 14.4 11.4 8.6 6.2 4.4 3.0 2.2 2.4 3.5 1.7 -1.3 -4.2 -6.0 -5.4 -1.5 6.0 12.6 13.9 12.3];
 Sv = 135;                                  % dB SPL/V: ultra-sensitive IEM (115 dB SPL/mW at 16 ohm)
 en = [15.7e-9 25.4e-9];                    % V/rtHz at 1 kHz, SE leg / balanced (calc package v1.1)
-freq = [1000 1000 1000 1000 60 60 60 60 60 60 120];
+freq = 1000*ones(1, size(rows,1)); freq(contains(rows(:,1), 'uT')) = 60; freq(contains(rows(:,1), 'ripple')) = 120;
 isbal = contains(rows(:,1), 'bal');
 fprintf(fid, '%-46s %9s %8s %9s %9s %8s\n', 'term', 'uV', 'dB/noise', 'dBSPL@IEM', 'audib.lim', 'margin');
 vals = zeros(size(rows,1),1); marg = vals;
@@ -194,6 +208,10 @@ function [z, ee] = mstrip(w, h, er)
     else, z = 120*pi / (sqrt(ee) * (u + 1.393 + 0.667*log(u + 1.444))); end
 end
 function out = ternary(c, a, b), if c, out = a; else, out = b; end, end
+function A = ivloopA(P, N)
+% Signed area (mm^2) of P out, P(end) -> N(end), N back, N(1) -> P(1); A.dl with B = 1 along z.
+A = trapA(P) + segA(P(end,:), N(end,:)) - trapA(N) + segA(N(1,:), P(1,:));
+end
 function pads = allpads(fp)
     pads = struct('ref',{},'n',{},'net',{},'x',{},'y',{},'sx',{},'sy',{},'th',{},'lay',{});
     for i = 1:numel(fp)

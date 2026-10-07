@@ -128,6 +128,12 @@ def g20_usb_pair(model, ctx, r):
             for t in items:
                 g.insert(geom.track_bbox(t), t)
             grids[layer] = g
+        # Pin fields of the parts the pair lands on (connector, ESD array, MCU)
+        # plus 1 mm of fan-out: there the pinout, not the routing, sets the
+        # neighbour spacing (USB-C A5/A6, LQFP 0.5 mm pitch).
+        in_field = _pin_field_test(model, pos, neg)
+
+        pin_field = {}
         for t in pair_tracks:
             g = grids.get(t["layer"])
             if g is None:
@@ -139,11 +145,18 @@ def g20_usb_pair(model, ctx, r):
                 if worst is None or edge < worst[0]:
                     worst = (edge, a["net"], t["layer"])
                 if edge < need:
-                    if a["net"] not in intruders or edge < intruders[a["net"]][0]:
-                        intruders[a["net"]] = (round(edge, 4), t["layer"])
+                    bucket = pin_field if in_field(t) and in_field(a) else intruders
+                    if a["net"] not in bucket or edge < bucket[a["net"]][0]:
+                        bucket[a["net"]] = (round(edge, 4), t["layer"])
         if worst:
             r.metrics["min_spacing_to_other_signal_mm"] = round(worst[0], 4)
             r.metrics["min_spacing_offender"] = [worst[1], worst[2]]
+        pin_field = {k: v for k, v in pin_field.items() if k not in intruders}
+        if pin_field:
+            r.info("USB_PIN_FIELD_SPACING",
+                   f"{len(pin_field)} net(s) sit closer than 3W only inside the pin "
+                   f"field of a part the pair lands on (pinout-fixed).",
+                   worst=[{"net": k, "gap_mm": v[0]} for k, v in sorted(pin_field.items())])
         if intruders:
             r.warn("USB_3W_SPACING",
                    f"{len(intruders)} other net(s) come closer to the USB pair "
@@ -165,7 +178,113 @@ def g20_usb_pair(model, ctx, r):
                target_ohm=USB_HS["z_diff_ohm"],
                tolerance_pct=USB_HS["z_diff_tol_pct"])
         r.assume("Impedance is therefore not evaluated numerically.")
+    else:
+        _usb_impedance(model, r, tp, tn, gap, pair_w)
 
+
+def _pin_field_test(model, pos, neg):
+    """Predicate: does a track touch the pin field (courtyard + 1 mm fan-out) of a
+    part the pair lands on?  There the pinout, not the routing, sets the geometry."""
+    end_refs = {p["ref"] for p in model["pads"] if p["net"] in (pos, neg)}
+    fields = []
+    for fp in model.get("footprints", []):
+        if fp["ref"] in end_refs:
+            pts = [q for poly in (fp.get("courtyard") or {}).get("front", []) for q in poly]
+            if pts:
+                xs, ys = [q[0] for q in pts], [q[1] for q in pts]
+                fields.append((min(xs) - 1.0, min(ys) - 1.0, max(xs) + 1.0, max(ys) + 1.0))
+
+    def in_field(tr):
+        bx = geom.track_bbox(tr)
+        return any(bx[0] < f[2] and f[0] < bx[2] and bx[1] < f[3] and f[1] < bx[3] for f in fields)
+    return in_field
+
+
+def _coupled_sections(tp, tn, max_pitch=0.55):
+    """{(width, centre pitch): coupled length} for parallel DP/DN runs, and the uncoupled length."""
+    sections, coupled, loose = {}, 0.0, []
+    for t in tp + tn:
+        (ax, ay), (bx, by) = t["start_mm"], t["end_mm"]
+        L = math.dist((ax, ay), (bx, by))
+        if L < 1e-6:
+            continue
+        ux, uy = (bx - ax) / L, (by - ay) / L
+        best = None
+        for o in (tn if t in tp else tp):
+            (cx, cy), (dx, dy) = o["start_mm"], o["end_mm"]
+            L2 = math.dist((cx, cy), (dx, dy))
+            if L2 < 1e-6 or abs(ux * (dx - cx) / L2 + uy * (dy - cy) / L2) < 0.999:
+                continue
+            t1, t2 = sorted(((cx - ax) * ux + (cy - ay) * uy, (dx - ax) * ux + (dy - ay) * uy))
+            overlap = min(L, t2) - max(0.0, t1)
+            d = abs((cx - ax) * -uy + (cy - ay) * ux)
+            if overlap > 0.1 and d < max_pitch and (best is None or d < best[0]):
+                best = (d, overlap, (t["width_mm"] + o["width_mm"]) / 2)
+        if best and t in tp:
+            key = (round(best[2], 3), round(best[0], 3))
+            sections[key] = sections.get(key, 0.0) + best[1]
+            coupled += best[1]
+        elif not best:
+            loose.append(t)
+    return sections, loose
+
+
+def _usb_impedance(model, r, tp, tn, centre_gap, width):
+    """Differential impedance of each coupled section of the routed pair on the declared stackup."""
+    from .tline import microstrip
+    rows = model["stackup"]["layers"]
+    layer = tp[0]["layer"]
+    names = [row["layer"] or row["name"] for row in rows]
+    i = names.index(layer)
+    step = 1 if i < len(rows) / 2 else -1          # towards the board centre = towards the plane
+    cu = rows[i]["thickness_mm"]
+    diel = rows[i + step]
+    mask = next((row for row in rows if "Solder Mask" in (row["type"] or "")
+                 and (row["name"][0] == layer[0])), None)
+    tm = (mask or {}).get("thickness_mm") or 0.0
+    erm = (mask or {}).get("epsilon_r") or 3.8
+    target, tol = USB_HS["z_diff_ohm"], USB_HS["z_diff_tol_pct"]
+    lo, hi = target * (1 - tol / 100), target * (1 + tol / 100)
+    h, er = diel["thickness_mm"], diel["epsilon_r"]
+    builds = {"nominal": (h, er, cu),
+              "prepreg -10 %, er +0.2, copper +5 um": (0.9 * h, er + 0.2, cu + 0.005),
+              "prepreg +10 %, er -0.2, copper -5 um": (1.1 * h, er - 0.2, cu - 0.005)}
+    sections, loose = _coupled_sections(tp, tn)
+    in_field = _pin_field_test(model, "USB_DP", "USB_DN")
+    table, bad = [], []
+    for (w, pitch), length in sorted(sections.items(), key=lambda kv: -kv[1]):
+        z = {k: microstrip(w, t, hh, e, s=pitch - w, tm=tm, erm=erm)["zdiff"]
+             for k, (hh, e, t) in builds.items()}
+        row = {"kind": "coupled", "width_mm": w, "edge_gap_mm": round(pitch - w, 3), "length_mm": round(length, 2),
+               "zdiff_ohm": {k: round(v, 1) for k, v in z.items()}}
+        table.append(row)
+        if length >= 1.0 and not all(lo <= v <= hi for v in z.values()):
+            bad.append(row)
+    # Uncoupled runs (legs > 0.55 mm apart): each leg is its own microstrip, Zdiff ~ 2 Z0.
+    split, escape = {}, {}
+    for t in loose:
+        bucket = escape if in_field(t) else split
+        bucket[t["width_mm"]] = bucket.get(t["width_mm"], 0.0) + math.dist(t["start_mm"], t["end_mm"]) / 2
+    for kind, bucket in (("split", split), ("pin escape", escape)):
+        for w, length in sorted(bucket.items()):
+            z = {k: 2 * microstrip(w, t, hh, e, tm=tm, erm=erm)["z0"] for k, (hh, e, t) in builds.items()}
+            row = {"kind": kind, "width_mm": w, "length_mm": round(length, 2),
+                   "zdiff_ohm": {k: round(v, 1) for k, v in z.items()}}
+            table.append(row)
+            if kind == "split" and length >= 1.0 and not all(lo <= v <= hi for v in z.values()):
+                bad.append(row)
+    r.metrics["usb_sections"] = table
+    r.metrics["usb_impedance_basis"] = (f"2-D field solve (tline.py): {layer} over {h} mm "
+                                        f"{diel.get('material')} er {er}, mask {tm} mm; build corners "
+                                        f"+/-10 % prepreg, +/-0.2 er, +/-5 um copper")
+    if bad:
+        r.fail("USB_IMPEDANCE", f"{len(bad)} coupled section(s) leave {target} ohm +/-{tol}% "
+               f"at a build corner.", sections=bad)
+    else:
+        nom = [row["zdiff_ohm"]["nominal"] for row in table if row["kind"] != "pin escape"]
+        r.note(f"USB Zdiff {min(nom):.1f}-{max(nom):.1f} ohm nominal over every coupled and split "
+               f"section; all stay inside {lo:.1f}-{hi:.1f} ohm at the build corners. Pin-field escapes "
+               f"are listed in the metrics.")
 
 def _pair_gap_and_widths(tp, tn):
     """Median centre-to-centre spacing between the two legs of a pair."""
