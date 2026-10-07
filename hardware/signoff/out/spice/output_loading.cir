@@ -1,0 +1,40 @@
+* Headphone output: solved copper resistance driving the rated load.
+Vin in 0 AC 1
+R0 in o0 0.0313961
+Rl0 o0 0 32
+R1 in o1 0.0447472
+Rl1 o1 0 32
+R2 in o2 0.00878951
+Rl2 o2 0 32
+R3 in o3 0.0285915
+Rl3 o3 0 32
+R4 in o4 0.326694
+Rl4 o4 0 32
+R5 in o5 0.485201
+Rl5 o5 0 32
+R6 in o6 0.340167
+Rl6 o6 0 32
+R7 in o7 0.264345
+Rl7 o7 0 32
+R8 in o8 0.0268329
+Rl8 o8 0 32
+R9 in o9 0.0248989
+Rl9 o9 0 32
+R10 in o10 0.0156679
+Rl10 o10 0 32
+R11 in o11 0.0324037
+Rl11 o11 0 32
+.ac lin 1 1k 1k
+.meas ac g0 FIND mag(V(o0)) AT=1k
+.meas ac g1 FIND mag(V(o1)) AT=1k
+.meas ac g2 FIND mag(V(o2)) AT=1k
+.meas ac g3 FIND mag(V(o3)) AT=1k
+.meas ac g4 FIND mag(V(o4)) AT=1k
+.meas ac g5 FIND mag(V(o5)) AT=1k
+.meas ac g6 FIND mag(V(o6)) AT=1k
+.meas ac g7 FIND mag(V(o7)) AT=1k
+.meas ac g8 FIND mag(V(o8)) AT=1k
+.meas ac g9 FIND mag(V(o9)) AT=1k
+.meas ac g10 FIND mag(V(o10)) AT=1k
+.meas ac g11 FIND mag(V(o11)) AT=1k
+.end

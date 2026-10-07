@@ -1,0 +1,32 @@
+* PDN impedance at the worst-case 1V3 pin, from extracted layout.
+* Element values: R from the solved copper network, L from the real
+* via geometry and routed path, C from the placed part.
+* h = outer-layer to first-plane dielectric height in mm (swept),
+* because the board declares no stackup.
+.param h=0.12
+Itest 0 vdd AC 1
+Rsrc vdd nsrc 0.01
+Lsrc nsrc 0 {3.14159e-08*h}
+* C310 0603 2200 nF, 31.5 mm from the pin
+R0 vdd a0 0.101354
+L0 a0 b0 {1.06776e-07*h+5.5e-10}
+C0 b0 0 2.2e-06
+Rp0 b0 0 1G
+* C312 0603 1000 nF, 4.3 mm from the pin
+R1 vdd a1 0.0333855
+L1 a1 b1 {2.06819e-08*h+5.5e-10}
+C1 b1 0 1e-06
+Rp1 b1 0 1G
+* C309 0402 100 nF, 2.4 mm from the pin
+R2 vdd a2 0.0345606
+L2 a2 b2 {1.43418e-08*h+4e-10}
+C2 b2 0 1e-07
+Rp2 b2 0 1G
+.step param h list 0.09 0.12 0.2
+.ac dec 400 100000 1e+08
+.meas ac zmax MAX mag(V(vdd)) FROM 100000 TO 1e+08
+.meas ac zlow FIND mag(V(vdd)) AT=100000
+.meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
+.meas ac zhigh FIND mag(V(vdd)) AT=1e+08
+.meas ac fcross WHEN mag(V(vdd))=0.0433333 RISE=1
+.end

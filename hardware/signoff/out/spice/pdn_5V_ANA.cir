@@ -1,0 +1,22 @@
+* PDN impedance at the worst-case 5V_ANA pin, from extracted layout.
+* Element values: R from the solved copper network, L from the real
+* via geometry and routed path, C from the placed part.
+* h = outer-layer to first-plane dielectric height in mm (swept),
+* because the board declares no stackup.
+.param h=0.12
+Itest 0 vdd AC 1
+Rsrc vdd nsrc 0.01
+Lsrc nsrc 0 {1.5708e-08*h}
+* C506 0603 1000 nF, 18.4 mm from the pin
+R0 vdd a0 0.0458418
+L0 a0 b0 {3.54119e-08*h+5.5e-10}
+C0 b0 0 1e-06
+Rp0 b0 0 1G
+.step param h list 0.09 0.12 0.2
+.ac dec 400 100000 1e+08
+.meas ac zmax MAX mag(V(vdd)) FROM 100000 TO 1e+08
+.meas ac zlow FIND mag(V(vdd)) AT=100000
+.meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
+.meas ac zhigh FIND mag(V(vdd)) AT=1e+08
+.meas ac fcross WHEN mag(V(vdd))=0.166667 RISE=1
+.end

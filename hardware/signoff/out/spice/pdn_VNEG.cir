@@ -1,0 +1,144 @@
+* PDN impedance at the worst-case VNEG pin, from extracted layout.
+* Element values: R from the solved copper network, L from the real
+* via geometry and routed path, C from the placed part.
+* h = outer-layer to first-plane dielectric height in mm (swept),
+* because the board declares no stackup.
+.param h=0.12
+Itest 0 vdd AC 1
+Rsrc vdd nsrc 0.0921482
+Lsrc nsrc 0 {1.51766e-07*h}
+* C414 0805 10000 nF, 130.0 mm from the pin
+R0 vdd a0 0.17618
+L0 a0 b0 {4.1573e-07*h+7e-10}
+C0 b0 0 1e-05
+Rp0 b0 0 1G
+* C416 0805 10000 nF, 125.7 mm from the pin
+R1 vdd a1 0.168882
+L1 a1 b1 {4.02712e-07*h+7e-10}
+C1 b1 0 1e-05
+Rp1 b1 0 1G
+* C511 0805 10000 nF, 44.9 mm from the pin
+R2 vdd a2 0.103633
+L2 a2 b2 {1.47127e-07*h+7e-10}
+C2 b2 0 1e-05
+Rp2 b2 0 1G
+* C659 0402 100 nF, 218.7 mm from the pin, returns via VPOS
+R3 vdd a3 0.264821
+L3 a3 b3 {6.92907e-07*h+4e-10}
+C3 b3 c3 1e-07
+Rf3 c3 d3 0.00247934
+Lf3 d3 e3 {9.61764e-10*h}
+Cf3 e3 0 3.08e-05
+Rp3 e3 0 1G
+Rq3 c3 0 1G
+* C412 0402 100 nF, 153.7 mm from the pin
+R4 vdd a4 0.20724
+L4 a4 b4 {4.91657e-07*h+4e-10}
+C4 b4 0 1e-07
+Rp4 b4 0 1G
+* C666 0402 100 nF, 214.8 mm from the pin, returns via VPOS
+R5 vdd a5 0.261461
+L5 a5 b5 {6.83361e-07*h+4e-10}
+C5 b5 c5 1e-07
+Rf5 c5 d5 0.00247934
+Lf5 d5 e5 {9.61764e-10*h}
+Cf5 e5 0 3.08e-05
+Rp5 e5 0 1G
+Rq5 c5 0 1G
+* C638 0402 100 nF, 95.1 mm from the pin
+R6 vdd a6 0.160353
+L6 a6 b6 {3.04886e-07*h+4e-10}
+C6 b6 0 1e-07
+Rp6 b6 0 1G
+* C619 0402 100 nF, 58.0 mm from the pin
+R7 vdd a7 0.123668
+L7 a7 b7 {1.92413e-07*h+4e-10}
+C7 b7 0 1e-07
+Rp7 b7 0 1G
+* C660 0402 100 nF, 208.0 mm from the pin, returns via VPOS
+R8 vdd a8 0.255556
+L8 a8 b8 {6.58919e-07*h+4e-10}
+C8 b8 c8 1e-07
+Rf8 c8 d8 0.00247934
+Lf8 d8 e8 {9.61764e-10*h}
+Cf8 e8 0 3.08e-05
+Rp8 e8 0 1G
+Rq8 c8 0 1G
+* C410 0402 100 nF, 163.2 mm from the pin
+R9 vdd a9 0.222743
+L9 a9 b9 {5.20499e-07*h+4e-10}
+C9 b9 0 1e-07
+Rp9 b9 0 1G
+* C665 0402 100 nF, 187.5 mm from the pin, returns via VPOS
+R10 vdd a10 0.236141
+L10 a10 b10 {5.94592e-07*h+4e-10}
+C10 b10 c10 1e-07
+Rf10 c10 d10 0.00247934
+Lf10 d10 e10 {9.61764e-10*h}
+Cf10 e10 0 3.08e-05
+Rp10 e10 0 1G
+Rq10 c10 0 1G
+* C656 0402 100 nF, 22.8 mm from the pin
+R11 vdd a11 0.0761904
+L11 a11 b11 {7.78342e-08*h+4e-10}
+C11 b11 0 1e-07
+Rp11 b11 0 1G
+* C661 0402 100 nF, 216.3 mm from the pin, returns via VPOS
+R12 vdd a12 0.262024
+L12 a12 b12 {6.86905e-07*h+4e-10}
+C12 b12 c12 1e-07
+Rf12 c12 d12 0.00247934
+Lf12 d12 e12 {9.61764e-10*h}
+Cf12 e12 0 3.08e-05
+Rp12 e12 0 1G
+Rq12 c12 0 1G
+* C658 0402 100 nF, 26.9 mm from the pin
+R13 vdd a13 0.0828401
+L13 a13 b13 {9.13351e-08*h+4e-10}
+C13 b13 0 1e-07
+Rp13 b13 0 1G
+* C664 0402 100 nF, 213.6 mm from the pin, returns via VPOS
+R14 vdd a14 0.260438
+L14 a14 b14 {6.76645e-07*h+4e-10}
+C14 b14 c14 1e-07
+Rf14 c14 d14 0.00247934
+Lf14 d14 e14 {9.61764e-10*h}
+Cf14 e14 0 3.08e-05
+Rp14 e14 0 1G
+Rq14 c14 0 1G
+* C627 0402 100 nF, 23.0 mm from the pin
+R15 vdd a15 0.0761138
+L15 a15 b15 {7.90509e-08*h+4e-10}
+C15 b15 0 1e-07
+Rp15 b15 0 1G
+* C663 0402 100 nF, 211.3 mm from the pin, returns via VPOS
+R16 vdd a16 0.259542
+L16 a16 b16 {6.70038e-07*h+4e-10}
+C16 b16 c16 1e-07
+Rf16 c16 d16 0.00247934
+Lf16 d16 e16 {9.61764e-10*h}
+Cf16 e16 0 3.08e-05
+Rp16 e16 0 1G
+Rq16 c16 0 1G
+* C662 0402 100 nF, 190.9 mm from the pin, returns via VPOS
+R17 vdd a17 0.240112
+L17 a17 b17 {6.05506e-07*h+4e-10}
+C17 b17 c17 1e-07
+Rf17 c17 d17 0.00247934
+Lf17 d17 e17 {9.61764e-10*h}
+Cf17 e17 0 3.08e-05
+Rp17 e17 0 1G
+Rq17 c17 0 1G
+* C636 0402 100 nF, 96.0 mm from the pin
+R18 vdd a18 0.166694
+L18 a18 b18 {3.0893e-07*h+4e-10}
+C18 b18 0 1e-07
+Rp18 b18 0 1G
+.step param h list 0.09 0.12 0.2
+.ac dec 400 100000 1e+08
+.meas ac zmax MAX mag(V(vdd)) FROM 100000 TO 1e+08
+.meas ac zlow FIND mag(V(vdd)) AT=100000
+.meas ac zcrit FIND mag(V(vdd)) AT=2.25792e+07
+.meas ac zhigh FIND mag(V(vdd)) AT=1e+08
+.meas ac fcross WHEN mag(V(vdd))=0.375 RISE=1
+.end

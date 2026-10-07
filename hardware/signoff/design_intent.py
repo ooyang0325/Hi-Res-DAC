@@ -1,0 +1,282 @@
+"""Declared electrical intent for the DAC_HPA board.
+
+The gates need to know what each net *is* before they can judge the copper that
+implements it: its nominal voltage, its DC current budget, and whether it is a
+clock, an analogue audio path or plain logic.
+
+These values are stated here explicitly, with the reasoning, rather than being
+inferred from the layout, so that a reviewer can argue with the assumption
+instead of having to reverse-engineer it.  Anything the gates could not justify
+from the schematic is marked ``assumed`` and is reported as such.
+"""
+
+from __future__ import annotations
+
+import re
+
+# ---------------------------------------------------------------------------
+# Supply rails: nominal voltage and the DC current the copper must carry.
+# ---------------------------------------------------------------------------
+# Current budgets are deliberately conservative upper bounds:
+#   VBUS/5V_SYS  USB 2.0 bus-powered budget, 500 mA.
+#   VPOS/VNEG    +/-15 V analogue rails feeding four output amplifiers plus the
+#                I/V stage.  Four balanced legs into 32 ohm at 2 Vrms is
+#                4 * 2.83 V / 32 = 354 mA peak, so 400 mA covers peak drive
+#                plus the quiescent current of the I/V and output devices.
+#   5V_ANA       Analogue housekeeping and the charge-pump input.
+#   3V3D/3V3A/3V3M  Digital, analogue and MCU 3.3 V domains.
+#   1V3          DAC core rail.
+#   AVCC_L/R     DAC analogue supplies.
+
+RAILS = {
+    "VBUS":      {"volts": 5.0,   "current_a": 0.50, "kind": "digital", "assumed": True},
+    "VBUS_SENSE": {"volts": 5.0,  "current_a": 0.001, "kind": "analog", "assumed": True},
+    "5V_SYS":    {"volts": 5.0,   "current_a": 0.50, "kind": "digital", "assumed": True},
+    "5V_ANA":    {"volts": 5.0,   "current_a": 0.30, "kind": "analog", "assumed": True},
+    "5V_ANA_F":  {"volts": 5.0,   "current_a": 0.30, "kind": "analog", "assumed": True},
+    "VPOS":      {"volts": 15.0,  "current_a": 0.40, "kind": "analog", "assumed": True},
+    "VNEG":      {"volts": -15.0, "current_a": 0.40, "kind": "analog", "assumed": True},
+    "N4_VPOS_IV": {"volts": 15.0, "current_a": 0.10, "kind": "analog", "assumed": True},
+    "N4_VNEG_IV": {"volts": -15.0, "current_a": 0.10, "kind": "analog", "assumed": True},
+    "3V3D":      {"volts": 3.3,   "current_a": 0.25, "kind": "digital", "assumed": True},
+    "3V3A":      {"volts": 3.3,   "current_a": 0.10, "kind": "analog", "assumed": True},
+    "3V3M":      {"volts": 3.3,   "current_a": 0.10, "kind": "digital", "assumed": True},
+    "N2_V33_CPLD": {"volts": 3.3, "current_a": 0.10, "kind": "digital", "assumed": True},
+    "N2_J201_3V3": {"volts": 3.3, "current_a": 0.05, "kind": "digital", "assumed": True},
+    "1V3":       {"volts": 1.3,   "current_a": 0.30, "kind": "analog", "assumed": True},
+    "DVCC":      {"volts": 3.3,   "current_a": 0.10, "kind": "digital", "assumed": True},
+    "VCCA":      {"volts": 3.3,   "current_a": 0.05, "kind": "analog", "assumed": True},
+    "AVCC_L":    {"volts": 3.3,   "current_a": 0.08, "kind": "analog", "assumed": True},
+    "AVCC_R":    {"volts": 3.3,   "current_a": 0.08, "kind": "analog", "assumed": True},
+    "VREF":      {"volts": 3.3,   "current_a": 0.01, "kind": "analog", "assumed": True},
+    "N5_CP":     {"volts": 5.0,   "current_a": 0.40, "kind": "switching", "assumed": True},
+    "N5_C1P":    {"volts": 5.0,   "current_a": 0.40, "kind": "switching", "assumed": True},
+    "N5_C1N":    {"volts": 5.0,   "current_a": 0.40, "kind": "switching", "assumed": True},
+    "GND":       {"volts": 0.0,   "current_a": 1.00, "kind": "return", "assumed": False},
+}
+
+#: The highest voltage present anywhere, used for the clearance gate.
+MAX_RAIL_VOLTS = 15.0
+#: Worst-case potential difference between any two conductors (VPOS to VNEG).
+MAX_CONDUCTOR_DELTA_V = 30.0
+
+
+# ---------------------------------------------------------------------------
+# Net role classification
+# ---------------------------------------------------------------------------
+
+CLOCK_NETS = {
+    "MCLK", "BCLK", "LRCLK", "LRCLK_FB", "SDATA", "FAM_CLK",
+    "N2_X201_OUT", "N2_X202_OUT", "N2_X203_OUT",
+    "N2_HSE_IN", "N2_HSE_OUT",
+    "N2_BCLK_SRC", "N2_LRCLK_SRC", "N2_SDATA_SRC",
+    "N2_CAP_CK", "N2_CAP_SD", "N2_CAP_WS",
+    "N2_CPY_CK", "N2_CPY_SD",
+    "N6_MCK_BUF", "N6_MCK_CMP", "N6_MCK_IN", "N6_MCK_RC", "N6_REFMCK",
+    "N7_MCLK_MON", "LINK_SCK", "N2_LINK_SCK_MCU", "N2_LINK_SCK_BUF",
+    "SWCLK", "CPLD_JTCK",
+}
+
+#: Highest-rate clock on the board, used for the jitter and crosstalk budget.
+#: A 22.5792 MHz master clock is the usual 44.1 kHz-family MCLK.
+MCLK_HZ = 22.5792e6
+AUDIO_FULL_SCALE_VRMS = 2.0
+TARGET_DYNAMIC_RANGE_DB = 120.0
+
+USB_PAIR = ("USB_DP", "USB_DN")
+
+#: DAC current outputs into the I/V stage -- the most sensitive nodes present.
+IV_INPUT_NETS = {"DACL", "DACLB", "DACR", "DACRB"}
+#: I/V amplifier outputs.
+IV_OUTPUT_NETS = {"N4_IVL_P", "N4_IVL_N", "N4_IVR_P", "N4_IVR_N"}
+#: Balanced headphone output path, amplifier -> relay -> jack.
+OUTPUT_PATH_NETS = {
+    "LEG_LP", "LEG_LN", "LEG_RP", "LEG_RN",
+    "JACK_LP", "JACK_LN", "JACK_RP", "JACK_RN",
+    "N4_LP_OUT", "N4_LN_OUT", "N4_RP_OUT", "N4_RN_OUT",
+}
+#: Headphone output channel pairing, for channel-matching checks.
+OUTPUT_CHANNEL_PAIRS = [
+    ("JACK_LP", "JACK_RP"),
+    ("JACK_LN", "JACK_RN"),
+    ("LEG_LP", "LEG_RP"),
+    ("LEG_LN", "LEG_RN"),
+]
+
+#: Amplifier input / feedback nodes: high impedance, loop area matters.
+FEEDBACK_NETS = {
+    "N4_LP_INN", "N4_LP_INP", "N4_LN_INN", "N4_LN_INP",
+    "N4_RP_INN", "N4_RP_INP", "N4_RN_INN", "N4_RN_INP",
+    "N4_LP_TP", "N4_LP_TN", "N4_LN_TP", "N4_LN_TN",
+    "N4_RP_TP", "N4_RP_TN", "N4_RN_TP", "N4_RN_TN",
+}
+
+ANALOG_AUDIO_NETS = IV_INPUT_NETS | IV_OUTPUT_NETS | OUTPUT_PATH_NETS | FEEDBACK_NETS
+
+#: Connector pins exposed to the outside world, which need an ESD path.
+EXTERNAL_PORT_NETS = {
+    "USB_DP", "USB_DN", "VBUS", "CC1", "CC2", "N1_SHIELD",
+    "JACK_LP", "JACK_LN", "JACK_RP", "JACK_RN",
+}
+
+#: The switching regulator / charge pump area -- keep-out reference.
+SWITCHING_NETS = {"N5_CP", "N5_C1P", "N5_C1N", "N5_DVDT", "N5_DAMP"}
+
+#: Part-number fragments that identify a dedicated ESD/TVS protection device.
+#: Reference designators alone are not reliable: an ESD array is commonly
+#: placed as ``U`` (USBLC6-2SC6, TPD2E2U06) rather than ``D``.
+_ESD_PART_HINTS = (
+    "USBLC", "TPD", "ESD", "PESD", "SP0503", "SP3012", "SRV05",
+    "CDSOT", "SMAJ", "SMBJ", "SMF", "PSM712", "NUP", "RCLAMP",
+    "TVS", "DVIULC", "ULC6",
+)
+
+
+def is_protection_device(ref: str, value: str = "") -> bool:
+    """True when a part can clamp an ESD strike on an exposed port.
+
+    Matching is primarily on the part number because the protection device on
+    a USB port is usually an ``U``-prefixed array.  A bare diode (``D``) or a
+    ferrite (``FB``/``L`` in series) is also accepted as a clamp/filter.
+    """
+    up = (value or "").upper().replace("-", "").replace(" ", "")
+    if any(h.replace("-", "") in up for h in _ESD_PART_HINTS):
+        return True
+    pre = ref_prefix(ref)
+    return pre in {"D", "TVS", "FB", "ZD"}
+
+_DIGITAL_HINTS = (
+    "I2C_", "USART_", "SWD", "SWCLK", "JT", "LINK_", "LED_", "NRST", "BOOT",
+    "PROG", "_EN", "EN_", "IRQ", "RESET", "PERMIT", "FAULT", "OK_N", "LOCK",
+)
+
+
+def rail_for(net: str):
+    return RAILS.get(net)
+
+
+def is_power(net: str) -> bool:
+    return net in RAILS
+
+
+def is_clock(net: str) -> bool:
+    return net in CLOCK_NETS
+
+
+def is_analog_audio(net: str) -> bool:
+    return net in ANALOG_AUDIO_NETS
+
+
+def is_digital(net: str) -> bool:
+    if net in CLOCK_NETS:
+        return True
+    if net in RAILS or net in ANALOG_AUDIO_NETS:
+        return False
+    return any(h in net for h in _DIGITAL_HINTS)
+
+
+def net_role(net: str) -> str:
+    if net == "GND":
+        return "return"
+    if net in RAILS:
+        return "power"
+    if net in USB_PAIR:
+        return "usb"
+    if net in CLOCK_NETS:
+        return "clock"
+    if net in ANALOG_AUDIO_NETS:
+        return "analog_audio"
+    if net in SWITCHING_NETS:
+        return "switching"
+    if is_digital(net):
+        return "digital"
+    return "signal"
+
+
+def net_voltage(net: str) -> float:
+    """Nominal potential of a net relative to GND, for the clearance gate."""
+    rail = RAILS.get(net)
+    if rail:
+        return rail["volts"]
+    role = net_role(net)
+    if role in ("clock", "digital"):
+        return 3.3
+    if role == "usb":
+        return 3.3
+    if role in ("analog_audio",):
+        # Balanced legs swing on the +/-15 V rails.
+        return 15.0
+    if role == "switching":
+        return 5.0
+    return 5.0
+
+
+# ---------------------------------------------------------------------------
+# Reference designator families
+# ---------------------------------------------------------------------------
+
+_REF_RE = re.compile(r"^([A-Za-z_]+)(\d+)$")
+
+
+def ref_prefix(ref: str) -> str:
+    m = _REF_RE.match(ref or "")
+    return m.group(1).upper() if m else (ref or "").upper()
+
+
+def is_capacitor(ref: str) -> bool:
+    return ref_prefix(ref) == "C"
+
+
+def is_resistor(ref: str) -> bool:
+    return ref_prefix(ref) == "R"
+
+
+def is_ic(ref: str) -> bool:
+    return ref_prefix(ref) in ("U", "IC")
+
+
+# ---------------------------------------------------------------------------
+# Capacitor value parsing (from the footprint Value field)
+# ---------------------------------------------------------------------------
+
+_VALUE_RE = re.compile(
+    r"^\s*([0-9]*\.?[0-9]+)\s*(p|n|u|µ|μ|m)?\s*F?\s*$", re.IGNORECASE
+)
+_MULT = {"p": 1e-12, "n": 1e-9, "u": 1e-6, "µ": 1e-6, "μ": 1e-6, "m": 1e-3}
+
+
+def parse_capacitance(value: str):
+    """Parse '100 nF', '4.7uF', '1.8 nF' -> farads.  None if not a capacitance."""
+    if not value:
+        return None
+    m = _VALUE_RE.match(value.strip())
+    if not m:
+        return None
+    num, suffix = m.group(1), (m.group(2) or "").lower()
+    try:
+        base = float(num)
+    except ValueError:
+        return None
+    if not suffix:
+        return None
+    return base * _MULT.get(suffix, 1.0)
+
+
+_RES_RE = re.compile(
+    r"^\s*([0-9]*\.?[0-9]+)\s*(m|k|K|M|R)?\s*(?:ohm|Ohm|OHM|R|Ω)?\s*$"
+)
+_RES_MULT = {"m": 1e-3, "R": 1.0, "k": 1e3, "K": 1e3, "M": 1e6}
+
+
+def parse_resistance(value: str):
+    if not value:
+        return None
+    v = value.strip().replace("Ω", "").replace("ohm", "").replace("Ohm", "")
+    m = _RES_RE.match(v)
+    if not m:
+        return None
+    try:
+        base = float(m.group(1))
+    except ValueError:
+        return None
+    return base * _RES_MULT.get(m.group(2) or "R", 1.0)

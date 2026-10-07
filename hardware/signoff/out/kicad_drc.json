@@ -1,0 +1,130 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-10-07T14:05:16",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.6",
+    "schematic_parity": [],
+    "source": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Hole clearance violation (board setup constraints hole clearance 0.2800 mm; actual 0.1301 mm)",
+            "items": [
+                {
+                    "description": "Pad A1/B12 [GND] of J101 on F.Cu",
+                    "pos": {
+                        "x": 47.37,
+                        "y": 71.8
+                    },
+                    "uuid": "bd10e9ab-dbe2-4507-b928-a0e2ade79ab9"
+                },
+                {
+                    "description": "NPTH pad of J101",
+                    "pos": {
+                        "x": 46.34,
+                        "y": 72.11
+                    },
+                    "uuid": "04be08cd-af10-44b7-beaf-7cb98f2344f6"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (board setup constraints hole clearance 0.2800 mm; actual 0.1681 mm)",
+            "items": [
+                {
+                    "description": "Pad A4/B9 [VBUS] of J101 on F.Cu",
+                    "pos": {
+                        "x": 47.37,
+                        "y": 72.6
+                    },
+                    "uuid": "5022462e-e6a3-44f6-be21-c36a9b9b729c"
+                },
+                {
+                    "description": "NPTH pad of J101",
+                    "pos": {
+                        "x": 46.34,
+                        "y": 72.11
+                    },
+                    "uuid": "04be08cd-af10-44b7-beaf-7cb98f2344f6"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (board setup constraints hole clearance 0.2800 mm; actual 0.1301 mm)",
+            "items": [
+                {
+                    "description": "Pad B1/A12 [GND] of J101 on F.Cu",
+                    "pos": {
+                        "x": 47.37,
+                        "y": 78.2
+                    },
+                    "uuid": "c762426f-2f6d-4af9-828c-0b6e56a44d6d"
+                },
+                {
+                    "description": "NPTH pad of J101",
+                    "pos": {
+                        "x": 46.34,
+                        "y": 77.89
+                    },
+                    "uuid": "42bc04ff-6e12-494b-8c04-1357f49774e1"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (board setup constraints hole clearance 0.2800 mm; actual 0.1681 mm)",
+            "items": [
+                {
+                    "description": "Pad B4/A9 [VBUS] of J101 on F.Cu",
+                    "pos": {
+                        "x": 47.37,
+                        "y": 77.4
+                    },
+                    "uuid": "223df0d8-1911-4265-a07d-b1087fdf021d"
+                },
+                {
+                    "description": "NPTH pad of J101",
+                    "pos": {
+                        "x": 46.34,
+                        "y": 77.89
+                    },
+                    "uuid": "42bc04ff-6e12-494b-8c04-1357f49774e1"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        }
+    ]
+}

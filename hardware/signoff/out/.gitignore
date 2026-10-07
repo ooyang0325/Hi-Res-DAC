@@ -1,0 +1,5 @@
+# LTspice waveform dumps and solver scratch: hundreds of megabytes, and
+# regenerated on every run.  The decks (.cir) and the measurement logs (.log)
+# are the evidence worth keeping, so they are deliberately not ignored.
+*.raw
+*.db
