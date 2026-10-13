@@ -5,5 +5,6 @@
   "violations": 0,
   "unconnected_items": 0,
   "schematic_parity_issues": 0,
+  "library_footprints_typed_in_scratch_copy": 34,
   "first_items": []
 }

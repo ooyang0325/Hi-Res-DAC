@@ -1,7 +1,7 @@
 {
   "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
-  "different_net_near_smd_pad_count": 182,
-  "filled_capped_near_smd_pad_count": 55,
+  "different_net_near_smd_pad_count": 183,
+  "filled_capped_near_smd_pad_count": 59,
   "jlc_mask_bridge_source": "https://jlcpcb.com/help/article/instructions-for-ordering",
   "jlc_source": "https://jlcpcb.com/help/article/pcb-via-covering",
   "mask_bridge_screen_mm": 0.1,
@@ -347,6 +347,34 @@
     {
       "conservative_copper_edge_gap_mm": -0.3,
       "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "R218.2",
+      "side": "top",
+      "via_at_mm": [
+        74.28,
+        57.12
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.3,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "C224.2",
+      "side": "top",
+      "via_at_mm": [
+        87.5,
+        55.05
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.3,
+      "filled_and_capped": true,
       "nearest_pad_net": "3V3D",
       "nearest_smd_pad": "R690.1",
       "side": "top",
@@ -457,6 +485,20 @@
       "via_net": "N4_VNEG_IV"
     },
     {
+      "conservative_copper_edge_gap_mm": -0.155,
+      "filled_and_capped": true,
+      "nearest_pad_net": "3V3D",
+      "nearest_smd_pad": "C224.1",
+      "side": "top",
+      "via_at_mm": [
+        86.85,
+        55.75
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "3V3D"
+    },
+    {
       "conservative_copper_edge_gap_mm": -0.125,
       "filled_and_capped": true,
       "nearest_pad_net": "GND",
@@ -525,6 +567,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "VNEG"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.06,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "C219.2",
+      "side": "top",
+      "via_at_mm": [
+        73.15,
+        70.62
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "GND"
     },
     {
       "conservative_copper_edge_gap_mm": -0.05,
@@ -2445,20 +2501,6 @@
       "via_net": "NRST"
     },
     {
-      "conservative_copper_edge_gap_mm": 0.19,
-      "filled_and_capped": false,
-      "nearest_pad_net": "3V3D",
-      "nearest_smd_pad": "C224.1",
-      "side": "top",
-      "via_at_mm": [
-        90.1,
-        52.15
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3D"
-    },
-    {
       "conservative_copper_edge_gap_mm": 0.1912,
       "filled_and_capped": false,
       "nearest_pad_net": "GND",
@@ -3932,6 +3974,20 @@
       "conservative_copper_edge_gap_mm": 0.225,
       "filled_and_capped": false,
       "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U208.4",
+      "side": "top",
+      "via_at_mm": [
+        91.33,
+        53.6
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.225,
+      "filled_and_capped": false,
+      "nearest_pad_net": "GND",
       "nearest_smd_pad": "R447.2",
       "side": "top",
       "via_at_mm": [
@@ -4459,6 +4515,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.2365,
+      "filled_and_capped": false,
+      "nearest_pad_net": "N2_LINK_MOSI_OUT",
+      "nearest_smd_pad": "U208.5",
+      "side": "top",
+      "via_at_mm": [
+        87.6,
+        54.02
+      ],
+      "via_diameter_mm": 0.5,
+      "via_drill_mm": 0.2,
+      "via_net": "LINK_MOSI"
     },
     {
       "conservative_copper_edge_gap_mm": 0.2371,
@@ -7460,7 +7530,7 @@
   "scope": "via-to-SMT-pad process triage on both board sides; filling/capping still requires a JLC order remark/preview",
   "screen_gap_mm": 0.35,
   "unfilled_below_0p10_copper_gap_count": 0,
-  "unfilled_near_smd_pad_count": 477,
+  "unfilled_near_smd_pad_count": 478,
   "unfilled_smd_pad_overlap_count": 0,
-  "via_count": 1575
+  "via_count": 1578
 }

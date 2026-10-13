@@ -15,6 +15,14 @@ engine, the 2.5-D thermal model and the PDN droop model. The copper model was re
 board file with the reviewer's own parser (`geometry/sexp.py`, `geometry/model.py`). The wrappers and
 results are in [sim/layout_review_v1/](sim/layout_review_v1/README.md).
 
+**Corrections from the reviewer's re-verification (layout review v1.1, 14 Oct; follow-up in
+[LAYOUT_REVIEW_V1_1_RESPONSE_2026-10-14.md](LAYOUT_REVIEW_V1_1_RESPONSE_2026-10-14.md)).** The numbers
+below stand, with these corrections:
+- T1: the hold-node capacitance is 1.57 pF, not 1.74 pF; the wrapper counted the shared 1.27 mm of track twice (conservative).
+- R1: the leakage exposure rose (49.9 → 56.1 V·sq), it did not fall: TP747, a 1 mm exposed pad, now sits on N6_MCK_CMP. The minimum surface resistivity for ≤ 0.5 ms is still about 1.0 × 10⁹ Ω/sq.
+- T2: the LINK_SCK stub to R247 is 2.32 mm, not ≤ 1.6 mm; LINK_FRAME is 16.46 mm with 3 vias. The 0 mA result is from these lengths.
+- Moves this response did not list: C224 (it lost its GND via; fixed 14 Oct), C625, R666, R667, R218, TP708, TP734 and TP747, and N6_MCK_RC's old trunk renamed N6_MCK_CMP.
+
 ## 1. Fix-before-order items
 
 | ID | Change | Reviewer's number (as routed → compact ref.) | Revised board, same solver |

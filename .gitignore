@@ -35,3 +35,5 @@ __pycache__/
 /hardware/sim/layout_review_v1/si_run/
 /hardware/sim/layout_review_v1/pw/
 /hardware/sim/layout_review_v1/pcbrev/
+/hardware/sim/layout_review_v1_1/indrev2/
+/hardware/sim/layout_review_v1_1/pcbrev2/

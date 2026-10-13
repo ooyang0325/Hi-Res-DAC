@@ -244,7 +244,8 @@ def fix_edge_corner(board: pcbnew.BOARD) -> None:
 def sync_schematic(board: pcbnew.BOARD) -> None:
     """What KiCad's Update-PCB-from-Schematic would carry for schematic parity: symbol fields (hidden,
     F.Fab), the DNP flag (DNP parts also leave the position file, so no board export places them;
-    they stay on the BOM as DNP lines, like their symbols) and the schematic's unconnected-(...) net
+    they stay on the BOM as DNP lines, like their symbols), the owner-fitted parts' exclusion from the
+    position file, a component type on every BOM footprint, and the schematic's unconnected-(...) net
     on each no-connect pad."""
     root = place_board.netlist_xml()
     footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
@@ -252,17 +253,22 @@ def sync_schematic(board: pcbnew.BOARD) -> None:
         fp = footprints.get(comp.get("ref"))
         if fp is None:
             continue
-        for field in comp.findall("./fields/field"):
-            if field.get("name") == "Footprint":
+        fields = {field.get("name"): field.text or "" for field in comp.findall("./fields/field")}
+        for name, text in fields.items():
+            if name == "Footprint":
                 continue
-            fp.SetField(field.get("name"), field.text or "")
-            item = fp.GetField(field.get("name"))
+            fp.SetField(name, text)
+            item = fp.GetField(name)
             item.SetVisible(False)
             item.SetLayer(pcbnew.F_Fab)
         dnp = comp.find("property[@name='dnp']") is not None
         fp.SetDNP(dnp)
-        if dnp:
+        if dnp or fields.get("Assembly") == "Owner":   # owner-fitted parts are hand-soldered, not JLC-placed
             fp.SetExcludedFromPosFiles(True)
+    for fp in footprints.values():   # MH1-MH4 (off the BOM and position file) stay untyped
+        if not fp.GetAttributes() & (pcbnew.FP_SMD | pcbnew.FP_THROUGH_HOLE) and not fp.IsExcludedFromBOM():
+            tht = any(pad.GetAttribute() == pcbnew.PAD_ATTRIB_PTH for pad in fp.Pads())
+            fp.SetAttributes(fp.GetAttributes() | (pcbnew.FP_THROUGH_HOLE if tht else pcbnew.FP_SMD))
     for net in root.findall("./nets/net"):
         name = (net.get("name") or "").replace("/", "{slash}")   # KiCad's escaped net-name form
         if not name.startswith("unconnected-"):
@@ -304,6 +310,17 @@ def apply_silk(board: pcbnew.BOARD, spec: dict) -> None:
         text.SetPosition(xy(at[0], at[1]))
         text.SetTextAngleDegrees(at[2])
         footprint.Add(text)
+    for content, x, y, angle in spec.get("texts", {}).values():   # Spec R17 / OD-11 marks and notes
+        text = pcbnew.PCB_TEXT(board)
+        text.SetText(content)
+        text.SetLayer(pcbnew.F_SilkS)
+        text.SetTextSize(pcbnew.VECTOR2I(height, height))
+        text.SetTextThickness(thickness)
+        text.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_CENTER)
+        text.SetVertJustify(pcbnew.GR_TEXT_V_ALIGN_CENTER)
+        text.SetPosition(xy(x, y))
+        text.SetTextAngleDegrees(angle)
+        board.Add(text)
 
 
 def write_stackup(path: Path, spec: dict) -> None:

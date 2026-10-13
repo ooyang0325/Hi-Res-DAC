@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import csv
 import heapq
 import json
 import math
@@ -584,6 +585,46 @@ def check_u501_local(board: pcbnew.BOARD, footprints: dict,
     }
 
 
+def type_only_library_mismatches(footprints: dict, drc: dict) -> list[str]:
+    """Layout review v1.1 OD-14d: the integrated board types every BOM footprint (SMD/THT) while the
+    shared JLC_Imported/DAC_HPA library copies stay untyped for the frozen study boards. KiCad reports
+    those as lib_footprint_mismatch; accept one only when the library copy, given the board's type,
+    matches the board footprint exactly (KiCad's own comparison)."""
+    refs = []
+    for violation in drc["violations"]:
+        if violation["type"] != "lib_footprint_mismatch":
+            continue
+        ref = violation["items"][0]["description"].removeprefix("Footprint ")
+        fp = footprints[ref]
+        fpid = fp.GetFPID()
+        lib = pcbnew.FootprintLoad(str(HERE / f"{fpid.GetLibNickname().wx_str()}.pretty"),
+                                   fpid.GetLibItemName().wx_str())
+        kind = pcbnew.FP_SMD | pcbnew.FP_THROUGH_HOLE
+        if lib is None or lib.GetAttributes() & kind or not fp.GetAttributes() & kind:
+            continue
+        lib.SetAttributes(lib.GetAttributes() | (fp.GetAttributes() & kind))
+        if not fp.FootprintNeedsUpdate(lib, pcbnew.FOOTPRINT.DRC):   # the comparison KiCad DRC makes
+            refs.append(ref)
+    return refs
+
+
+def assembly_attributes(footprints: dict) -> dict:
+    """OD-14c/d: a type on every BOM footprint; owner-fitted and DNF parts out of the position file."""
+    kind = pcbnew.FP_SMD | pcbnew.FP_THROUGH_HOLE
+    untyped = sorted(ref for ref, fp in footprints.items() if not fp.IsExcludedFromBOM() and not fp.GetAttributes() & kind)
+    owner = sorted(ref for ref, fp in footprints.items() if fp.HasField("Assembly") and fp.GetFieldText("Assembly") == "Owner")
+    placed_owner = [ref for ref in owner if not footprints[ref].IsExcludedFromPosFiles()]
+    placed_dnp = [ref for ref, fp in footprints.items() if fp.IsDNP() and not fp.IsExcludedFromPosFiles()]
+    placed = {ref for ref, fp in footprints.items() if not fp.IsExcludedFromPosFiles() and not ref.startswith("FID")}
+    with (HERE / "JLCPCB_BOM_REVIEW_ONLY.csv").open(encoding="utf-8-sig") as handle:
+        bom = {ref.strip() for row in csv.DictReader(handle) for ref in row["Designator"].split(",")}
+    if untyped or placed_owner or placed_dnp or len(owner) != 7 or placed != bom:
+        raise AssertionError(f"Assembly attributes: untyped {untyped}, owner-fitted {owner} placed {placed_owner}, "
+                             f"DNP placed {placed_dnp}, position file vs JLC BOM {sorted(placed ^ bom)}")
+    return {"untyped_bom_footprints": 0, "owner_fitted_excluded_from_position_file": owner,
+            "position_file_footprints": sum(not fp.IsExcludedFromPosFiles() for fp in footprints.values())}
+
+
 def check(board_path: Path, placement_path: Path, dfa_path: Path,
           fab_path: Path, drc_path: Path, tvs_path: Path,
           trace_path: Path) -> dict:
@@ -600,11 +641,13 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         raise AssertionError("Integrated study population/net count changed")
     if placement["bbox_overlaps"] or placement["high_z_clock_pad_gap_violations"]:
         raise AssertionError("Integrated study overlap or sensitive-to-clock gap")
+    type_only = type_only_library_mismatches(footprints, drc)
+    assembly = assembly_attributes(footprints)
     if (dfa["package_pair_spacing_violation_count"]
             or dfa["board_edge_body_spacing_violation_count"]
             or fab["via_target_failure_count"]
             or fab["project_settings_below_target"]
-            or drc["violations"]):
+            or len(drc["violations"]) != len(type_only)):
         raise AssertionError("Integrated study KiCad/JLC geometry screen failed")
     if tvs["board"] != board_path.name or trace["board"] != board_path.name:
         raise AssertionError("Audit board identity differs")
@@ -899,6 +942,8 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
         "orthogonal_branches_without_through": 0,
         "pad_centre_near_orthogonal_joins": len(pad_centre_near_orthogonal_joins),
         "drc_violations": 0,
+        "drc_library_type_only_differences": len(type_only),
+        **assembly,
         "bbox_overlaps": 0,
         "jlc_spacing_and_edge_proxy_findings": 0,
         "l2_gnd_filled_polygons": 1,

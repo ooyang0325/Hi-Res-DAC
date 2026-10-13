@@ -1,0 +1,72 @@
+{
+ "U201": {
+  "U201.19": {
+   "routed_tr1ns_mV": 74.26025113649071,
+   "pkg_Ldidt_tr1ns_mV": 48.75,
+   "routed_tr2ns_mV": 41.919326729868715,
+   "pkg_Ldidt_tr2ns_mV": 24.375,
+   "compact_tr1ns_mV": 27.92409969153927,
+   "compact_tr2ns_mV": 15.117493509747343
+  },
+  "U201.32": {
+   "routed_tr1ns_mV": 41.07651229556244,
+   "pkg_Ldidt_tr1ns_mV": 48.75,
+   "routed_tr2ns_mV": 23.071621455231,
+   "pkg_Ldidt_tr2ns_mV": 24.375,
+   "compact_tr1ns_mV": 25.094716916182726,
+   "compact_tr2ns_mV": 13.823662689442408
+  },
+  "U201.48": {
+   "routed_tr1ns_mV": 52.597753310972394,
+   "pkg_Ldidt_tr1ns_mV": 48.75,
+   "routed_tr2ns_mV": 29.673794192133688,
+   "pkg_Ldidt_tr2ns_mV": 24.375,
+   "compact_tr1ns_mV": 22.899192584326045,
+   "compact_tr2ns_mV": 12.532711081932124
+  },
+  "U201.64": {
+   "routed_tr1ns_mV": 30.120488570713757,
+   "pkg_Ldidt_tr1ns_mV": 48.75,
+   "routed_tr2ns_mV": 16.56030170088838,
+   "pkg_Ldidt_tr2ns_mV": 24.375,
+   "compact_tr1ns_mV": 31.656950138183717,
+   "compact_tr2ns_mV": 17.43806112023174
+  }
+ },
+ "clocks_edge_spike": {
+  "X201.4": {
+   "routed_tr1ns_mV": 59.72498001577576,
+   "pkg_Ldidt_tr1ns_mV": 33.333333333333336,
+   "routed_tr2ns_mV": 32.06823969096983,
+   "pkg_Ldidt_tr2ns_mV": 16.666666666666668,
+   "compact_tr1ns_mV": 56.617354916908496,
+   "compact_tr2ns_mV": 30.357054314288664
+  },
+  "X202.4": {
+   "routed_tr1ns_mV": 61.925465942323775,
+   "pkg_Ldidt_tr1ns_mV": 33.333333333333336,
+   "routed_tr2ns_mV": 32.98316520386375,
+   "pkg_Ldidt_tr2ns_mV": 16.666666666666668,
+   "compact_tr1ns_mV": 55.42478448093513,
+   "compact_tr2ns_mV": 29.507107833497273
+  },
+  "X203.4": {
+   "routed_tr1ns_mV": 54.62578444229268,
+   "pkg_Ldidt_tr1ns_mV": 33.333333333333336,
+   "routed_tr2ns_mV": 29.13591588485531,
+   "pkg_Ldidt_tr2ns_mV": 16.666666666666668,
+   "compact_tr1ns_mV": 57.63057492440757,
+   "compact_tr2ns_mV": 30.69049439169924
+  }
+ },
+ "U208_edge_spike": {
+  "U208.8": {
+   "routed_tr1ns_mV": 86.60314069249277,
+   "pkg_Ldidt_tr1ns_mV": 50.0,
+   "routed_tr2ns_mV": 46.17277606268065,
+   "pkg_Ldidt_tr2ns_mV": 25.0,
+   "compact_tr1ns_mV": 88.3337510360903,
+   "compact_tr2ns_mV": 47.00695805877701
+  }
+ }
+}

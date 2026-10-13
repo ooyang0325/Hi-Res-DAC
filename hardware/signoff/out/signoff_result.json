@@ -22,114 +22,87 @@
       "B.Cu": 0.0350346998
     },
     "rail_sources": {
-      "N4_VNEG_IV": "U403",
-      "N5_C1N": "U501",
-      "N5_C1P": "U501",
-      "VBUS": "U102",
-      "DVCC": "U301",
-      "VNEG": "U501",
-      "N4_VPOS_IV": "U403",
+      "VBUS_SENSE": "U201",
       "AVCC_R": "U301",
       "3V3A": "U302",
+      "N5_C1N": "U501",
       "VCCA": "U301",
-      "3V3M": "U201",
-      "VREF": "U403",
-      "VBUS_SENSE": "U201",
-      "AVCC_L": "U301",
       "VPOS": "U501",
-      "1V3": "U301",
-      "5V_SYS": "U503",
-      "5V_ANA_F": "U501",
-      "N2_V33_CPLD": "FB202",
-      "N2_J201_3V3": "R241",
-      "5V_ANA": "U503",
+      "VBUS": "U102",
       "N5_CP": "U501",
-      "3V3D": "U504"
+      "N2_V33_CPLD": "FB202",
+      "3V3M": "U201",
+      "DVCC": "U301",
+      "N5_C1P": "U501",
+      "5V_SYS": "U503",
+      "N2_J201_3V3": "R241",
+      "3V3D": "U504",
+      "N4_VNEG_IV": "U403",
+      "5V_ANA_F": "U501",
+      "VREF": "U403",
+      "5V_ANA": "U503",
+      "VNEG": "U501",
+      "AVCC_L": "U301",
+      "1V3": "U301",
+      "N4_VPOS_IV": "U403"
     },
     "rail_source_evidence": {
-      "N4_VNEG_IV": [
-        "DACL",
-        "DACLB",
-        "N4_IVL_N",
-        "N4_IVL_P",
-        "N4_VNEG_IV",
-        "N4_VPOS_IV",
-        "VREF"
-      ],
-      "N5_C1N": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
-      ],
-      "N5_C1P": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
-      ],
-      "VBUS": [
-        "5V_SYS",
-        "GND",
-        "N1_U102_EN",
-        "N1_U102_ILIM",
-        "VBUS",
-        "unconnected-(U102-FAULT-Pad3)"
-      ],
-      "DVCC": [
-        "1V3",
-        "AVCC_L",
-        "AVCC_R",
-        "BCLK",
-        "DACL",
-        "DACLB",
-        "DACR",
-        "DACRB",
+      "VBUS_SENSE": [
+        "3V3M",
+        "ANA_EN",
+        "ANA_FAULT_N",
+        "ANA_SENSE",
+        "AVCC_EN",
+        "BOOT0",
+        "CC1_ADC",
+        "CC2_ADC",
+        "CPLD_IRQ",
+        "CPLD_NRST",
         "DAC_LOCK",
-        "DAC_RESETB",
-        "DVCC",
+        "DC_PERMIT_N",
         "GND",
         "I2C_SCL",
         "I2C_SDA",
-        "LRCLK",
-        "MCLK",
-        "SDATA",
-        "VCCA",
-        "unconnected-(U301-GPIO1-Pad24)",
-        "unconnected-(U301-XO-Pad6)"
-      ],
-      "VNEG": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
-      ],
-      "N4_VPOS_IV": [
-        "DACL",
-        "DACLB",
-        "N4_IVL_N",
-        "N4_IVL_P",
-        "N4_VNEG_IV",
-        "N4_VPOS_IV",
-        "VREF"
+        "ILIM_HI",
+        "LED_G",
+        "LED_R",
+        "LINK_MISO",
+        "LRCLK_FB",
+        "N2_AUD_EN_MCU",
+        "N2_BOOT1",
+        "N2_CAP_CK",
+        "N2_CAP_SD",
+        "N2_CAP_WS",
+        "N2_DCS_LN_PIN",
+        "N2_DCS_LP_PIN",
+        "N2_DCS_RN_PIN",
+        "N2_DCS_RP_PIN",
+        "N2_HSE_IN",
+        "N2_HSE_OUT",
+        "N2_LINK_FRAME_MCU",
+        "N2_LINK_MOSI_MCU",
+        "N2_LINK_SCK_MCU",
+        "N2_MCLK_OE",
+        "N2_MCLK_PERMIT",
+        "N2_RESET_DRV",
+        "N2_V3A_MON_PIN",
+        "N5_U102_OFF",
+        "N6_ARM_MCU",
+        "N6_ORTEST",
+        "N6_V13_TEST",
+        "N6_V3AG_A_MCU",
+        "N6_V3AG_B_MCU",
+        "NRST",
+        "PROG",
+        "RAILS_OK_N",
+        "RELAY_EN",
+        "SWCLK",
+        "SWDIO",
+        "USART_RX",
+        "USART_TX",
+        "USB_DN",
+        "USB_DP",
+        "VBUS_SENSE"
       ],
       "AVCC_R": [
         "1V3",
@@ -160,6 +133,18 @@
         "GND",
         "unconnected-(U302-N{slash}C-Pad4)"
       ],
+      "N5_C1N": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
+      ],
       "VCCA": [
         "1V3",
         "AVCC_L",
@@ -181,6 +166,42 @@
         "VCCA",
         "unconnected-(U301-GPIO1-Pad24)",
         "unconnected-(U301-XO-Pad6)"
+      ],
+      "VPOS": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
+      ],
+      "VBUS": [
+        "5V_SYS",
+        "GND",
+        "N1_U102_EN",
+        "N1_U102_ILIM",
+        "VBUS",
+        "unconnected-(U102-FAULT-Pad3)"
+      ],
+      "N5_CP": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
+      ],
+      "N2_V33_CPLD": [
+        "3V3D",
+        "N2_V33_CPLD"
       ],
       "3V3M": [
         "3V3M",
@@ -239,6 +260,81 @@
         "USB_DP",
         "VBUS_SENSE"
       ],
+      "DVCC": [
+        "1V3",
+        "AVCC_L",
+        "AVCC_R",
+        "BCLK",
+        "DACL",
+        "DACLB",
+        "DACR",
+        "DACRB",
+        "DAC_LOCK",
+        "DAC_RESETB",
+        "DVCC",
+        "GND",
+        "I2C_SCL",
+        "I2C_SDA",
+        "LRCLK",
+        "MCLK",
+        "SDATA",
+        "VCCA",
+        "unconnected-(U301-GPIO1-Pad24)",
+        "unconnected-(U301-XO-Pad6)"
+      ],
+      "N5_C1P": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
+      ],
+      "5V_SYS": [
+        "5V_ANA",
+        "5V_SYS",
+        "ANA_EN",
+        "ANA_FAULT_N",
+        "GND",
+        "N5_DVDT",
+        "N5_ILIM",
+        "unconnected-(U503-OVCSEL-Pad8)"
+      ],
+      "N2_J201_3V3": [
+        "3V3M",
+        "N2_J201_3V3"
+      ],
+      "3V3D": [
+        "3V3D",
+        "5V_SYS",
+        "AUD_EN",
+        "GND"
+      ],
+      "N4_VNEG_IV": [
+        "DACL",
+        "DACLB",
+        "N4_IVL_N",
+        "N4_IVL_P",
+        "N4_VNEG_IV",
+        "N4_VPOS_IV",
+        "VREF"
+      ],
+      "5V_ANA_F": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
+      ],
       "VREF": [
         "DACL",
         "DACLB",
@@ -248,62 +344,27 @@
         "N4_VPOS_IV",
         "VREF"
       ],
-      "VBUS_SENSE": [
-        "3V3M",
+      "5V_ANA": [
+        "5V_ANA",
+        "5V_SYS",
         "ANA_EN",
         "ANA_FAULT_N",
-        "ANA_SENSE",
-        "AVCC_EN",
-        "BOOT0",
-        "CC1_ADC",
-        "CC2_ADC",
-        "CPLD_IRQ",
-        "CPLD_NRST",
-        "DAC_LOCK",
-        "DC_PERMIT_N",
         "GND",
-        "I2C_SCL",
-        "I2C_SDA",
-        "ILIM_HI",
-        "LED_G",
-        "LED_R",
-        "LINK_MISO",
-        "LRCLK_FB",
-        "N2_AUD_EN_MCU",
-        "N2_BOOT1",
-        "N2_CAP_CK",
-        "N2_CAP_SD",
-        "N2_CAP_WS",
-        "N2_DCS_LN_PIN",
-        "N2_DCS_LP_PIN",
-        "N2_DCS_RN_PIN",
-        "N2_DCS_RP_PIN",
-        "N2_HSE_IN",
-        "N2_HSE_OUT",
-        "N2_LINK_FRAME_MCU",
-        "N2_LINK_MOSI_MCU",
-        "N2_LINK_SCK_MCU",
-        "N2_MCLK_OE",
-        "N2_MCLK_PERMIT",
-        "N2_RESET_DRV",
-        "N2_V3A_MON_PIN",
-        "N5_U102_OFF",
-        "N6_ARM_MCU",
-        "N6_ORTEST",
-        "N6_V13_TEST",
-        "N6_V3AG_A_MCU",
-        "N6_V3AG_B_MCU",
-        "NRST",
-        "PROG",
-        "RAILS_OK_N",
-        "RELAY_EN",
-        "SWCLK",
-        "SWDIO",
-        "USART_RX",
-        "USART_TX",
-        "USB_DN",
-        "USB_DP",
-        "VBUS_SENSE"
+        "N5_DVDT",
+        "N5_ILIM",
+        "unconnected-(U503-OVCSEL-Pad8)"
+      ],
+      "VNEG": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
       ],
       "AVCC_L": [
         "1V3",
@@ -327,18 +388,6 @@
         "unconnected-(U301-GPIO1-Pad24)",
         "unconnected-(U301-XO-Pad6)"
       ],
-      "VPOS": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
-      ],
       "1V3": [
         "1V3",
         "AVCC_L",
@@ -361,63 +410,14 @@
         "unconnected-(U301-GPIO1-Pad24)",
         "unconnected-(U301-XO-Pad6)"
       ],
-      "5V_SYS": [
-        "5V_ANA",
-        "5V_SYS",
-        "ANA_EN",
-        "ANA_FAULT_N",
-        "GND",
-        "N5_DVDT",
-        "N5_ILIM",
-        "unconnected-(U503-OVCSEL-Pad8)"
-      ],
-      "5V_ANA_F": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
-      ],
-      "N2_V33_CPLD": [
-        "3V3D",
-        "N2_V33_CPLD"
-      ],
-      "N2_J201_3V3": [
-        "3V3M",
-        "N2_J201_3V3"
-      ],
-      "5V_ANA": [
-        "5V_ANA",
-        "5V_SYS",
-        "ANA_EN",
-        "ANA_FAULT_N",
-        "GND",
-        "N5_DVDT",
-        "N5_ILIM",
-        "unconnected-(U503-OVCSEL-Pad8)"
-      ],
-      "N5_CP": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
-      ],
-      "3V3D": [
-        "3V3D",
-        "5V_SYS",
-        "AUD_EN",
-        "GND"
+      "N4_VPOS_IV": [
+        "DACL",
+        "DACLB",
+        "N4_IVL_N",
+        "N4_IVL_P",
+        "N4_VNEG_IV",
+        "N4_VPOS_IV",
+        "VREF"
       ]
     },
     "ltspice": "/Users/ooyang/dac_layout_work/wt/hardware/signoff/ltspice_wine.sh"
@@ -469,7 +469,7 @@
         "npth_count": 6,
         "min_silk_stroke_mm": 0.15,
         "min_silk_text_mm": 1.0,
-        "_runtime_s": 0.163
+        "_runtime_s": 0.167
       },
       "counts": {
         "FAIL": 0,
@@ -657,7 +657,7 @@
           "J101.A1/B12",
           "F.Cu"
         ],
-        "_runtime_s": 0.103
+        "_runtime_s": 0.106
       },
       "counts": {
         "FAIL": 0,
@@ -954,7 +954,7 @@
             "capacity_at_double_copper_a": null
           }
         },
-        "_runtime_s": 0.024
+        "_runtime_s": 0.02
       },
       "counts": {
         "FAIL": 0,
@@ -1242,7 +1242,7 @@
             ]
           }
         },
-        "_runtime_s": 0.014
+        "_runtime_s": 0.015
       },
       "counts": {
         "FAIL": 0,
@@ -1564,7 +1564,7 @@
             "nodes": 4
           }
         },
-        "_runtime_s": 0.028
+        "_runtime_s": 0.027
       },
       "counts": {
         "FAIL": 0,
@@ -2413,7 +2413,7 @@
           }
         ],
         "usb_impedance_basis": "2-D field solve (tline.py): F.Cu over 0.0994 mm 3313 prepreg er 4.1, mask 0.015 mm; build corners +/-10 % prepreg, +/-0.2 er, +/-5 um copper",
-        "_runtime_s": 38.163
+        "_runtime_s": 38.697
       },
       "counts": {
         "FAIL": 0,
@@ -3357,7 +3357,7 @@
           }
         },
         "criterion_frequency_hz": 22579200.0,
-        "_runtime_s": 250.692
+        "_runtime_s": 185.873
       },
       "counts": {
         "FAIL": 0,
@@ -3452,7 +3452,7 @@
         },
         "worst_damping_factor": 1028.4,
         "worst_net": "JACK_LN",
-        "_runtime_s": 12.244
+        "_runtime_s": 10.587
       },
       "counts": {
         "FAIL": 0,

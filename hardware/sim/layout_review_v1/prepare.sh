@@ -8,7 +8,11 @@ rm -rf "$HERE/analog_run" "$HERE/si_run" "$HERE/pw" "$HERE/pcbrev"
 cp -R "$TMP/analog" "$HERE/analog_run"; cp -R "$TMP/si" "$HERE/si_run"
 mkdir -p "$HERE/pw" "$HERE/pcbrev"; cp -R "$TMP/power" "$HERE/pw/power"; mkdir -p "$HERE/pw/power/cache"
 cp "$TMP"/geometry/*.py "$HERE/pcbrev/"
-sed -i '' "s|PCBREV = '/mnt/workspace/working/pcbrev'|PCBREV = '$HERE/pcbrev'|" "$HERE/si_run/brd.py"
+python3 - "$HERE" <<'PY'      # portable in-place edit (BSD and GNU sed differ)
+import sys, pathlib
+here = sys.argv[1]; p = pathlib.Path(here, "si_run", "brd.py")
+p.write_text(p.read_text().replace("PCBREV = '/mnt/workspace/working/pcbrev'", f"PCBREV = '{here}/pcbrev'"))
+PY
 cp "$HERE/../../DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb" "$HERE/pcbrev/board.kicad_pcb"
 (cd "$HERE/pcbrev" && python3 -c "import sys,pickle; sys.path.insert(0,'.'); import sexp; pickle.dump(sexp.parse(open('board.kicad_pcb').read()), open('board.pkl','wb'))" && python3 model.py)
 (cd "$HERE/pw/power" && python3 raster_cache.py)

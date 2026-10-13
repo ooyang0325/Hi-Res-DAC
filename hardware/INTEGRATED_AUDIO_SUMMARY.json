@@ -23,6 +23,7 @@
   },
   "bbox_overlaps": 0,
   "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
+  "drc_library_type_only_differences": 86,
   "drc_reported_unconnected_items": 0,
   "drc_violations": 0,
   "feedback_centreline_loop_area_mm2": {
@@ -118,7 +119,7 @@
   },
   "local_vneg_pad_to_cap_and_l2_return": "U401/C410 and U402/C412 connected; L3 VNEG trunk from U501/C511 and filled EP thermal vias (U401 x2, U402 x3) connected",
   "local_vpos_pin2_to_cap_and_l2_return": "U401/C409 and U402/C411 connected through local L3 bridges; L3 VPOS trunk from U501/C510 connected",
-  "manual_added_copper_items": 6723,
+  "manual_added_copper_items": 6724,
   "manual_moves": 209,
   "manual_replaced_source_copper_items": 8,
   "named_nets": 256,
@@ -133,7 +134,17 @@
     "U402.4 VNEG": 2.91,
     "U402.PAD VNEG": 3.0
   },
+  "owner_fitted_excluded_from_position_file": [
+    "D102",
+    "J701",
+    "K601",
+    "K602",
+    "K603",
+    "K604",
+    "R509"
+  ],
   "pad_centre_near_orthogonal_joins": 8,
+  "position_file_footprints": 476,
   "ratsnest_unconnected_items": 0,
   "right_angle_track_bends": 0,
   "routed_t_cell_branch_lengths_mm": {
@@ -221,5 +232,6 @@
     "3": 0.86,
     "8": 1.146
   },
-  "u501_vin_narrow_min_width_mm": 0.2
+  "u501_vin_narrow_min_width_mm": 0.2,
+  "untyped_bom_footprints": 0
 }

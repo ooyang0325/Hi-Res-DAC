@@ -1,0 +1,1668 @@
+{
+ "C206.2": {
+  "pad": "C206.2",
+  "pos": [
+   56.85,
+   66.0
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    56.67,
+    66.849999
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.869,
+   "FCu_geodesic_mm": 0.55,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    56.67,
+    66.849999
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.869,
+   "FCu_geodesic_mm": 0.55,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 2,
+  "n_FCu_connected": 1,
+  "all": [
+   {
+    "pos": [
+     56.67,
+     66.849999
+    ],
+    "drill": 0.2,
+    "straight_mm": 0.869,
+    "FCu_geodesic_mm": 0.55,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     57.92,
+     69.49
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.65,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "C207.2": {
+  "pad": "C207.2",
+  "pos": [
+   69.92,
+   55.4
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    70.152,
+    56.381
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.008,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    70.152,
+    56.381
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.008,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 5,
+  "n_FCu_connected": 1,
+  "all": [
+   {
+    "pos": [
+     70.152,
+     56.381
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.008,
+    "FCu_geodesic_mm": 0.75,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     69.45,
+     59.45
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.077,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     74.48,
+     55.79
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.577,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 9,
+    "In4_ring": 9,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     74.28,
+     57.12
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.687,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     68.15,
+     50.45
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.257,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 11,
+    "In4_ring": 11,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "C217.2": {
+  "pad": "C217.2",
+  "pos": [
+   86.345,
+   88.875
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    86.275,
+    87.575
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.302,
+   "FCu_geodesic_mm": 1.0,
+   "In1_ring": 9,
+   "In4_ring": 9,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    86.275,
+    87.575
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.302,
+   "FCu_geodesic_mm": 1.0,
+   "In1_ring": 9,
+   "In4_ring": 9,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 8,
+  "n_FCu_connected": 5,
+  "all": [
+   {
+    "pos": [
+     86.275,
+     87.575
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.302,
+    "FCu_geodesic_mm": 1.0,
+    "In1_ring": 9,
+    "In4_ring": 9,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     87.0,
+     87.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.986,
+    "FCu_geodesic_mm": 2.1,
+    "In1_ring": 11,
+    "In4_ring": 11,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     85.0,
+     86.54
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.695,
+    "FCu_geodesic_mm": 3.25,
+    "In1_ring": 10,
+    "In4_ring": 10,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     82.5,
+     90.07
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.026,
+    "FCu_geodesic_mm": 6.6,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     82.72,
+     86.72
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.217,
+    "FCu_geodesic_mm": 5.3,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     85.0,
+     93.4
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.721,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 9,
+    "In4_ring": 9,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     87.97,
+     93.545
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.945,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     90.49,
+     85.49
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.352,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "C218.2": {
+  "pad": "C218.2",
+  "pos": [
+   74.53,
+   58.25
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    74.28,
+    57.12
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.157,
+   "FCu_geodesic_mm": 0.9,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    74.28,
+    57.12
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.157,
+   "FCu_geodesic_mm": 0.9,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 7,
+  "n_FCu_connected": 2,
+  "all": [
+   {
+    "pos": [
+     74.28,
+     57.12
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.157,
+    "FCu_geodesic_mm": 0.9,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     74.48,
+     55.79
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.461,
+    "FCu_geodesic_mm": 2.2,
+    "In1_ring": 9,
+    "In4_ring": 9,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     77.5,
+     60.7
+    ],
+    "drill": 0.3,
+    "straight_mm": 3.85,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 10,
+    "In4_ring": 10,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     79.0,
+     57.34
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.562,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     74.83,
+     62.83
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.59,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 10,
+    "In4_ring": 10,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     70.152,
+     56.381
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.76,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     69.45,
+     59.45
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.22,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "C219.2": {
+  "pad": "C219.2",
+  "pos": [
+   72.6,
+   70.38000000000001
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    73.15,
+    70.62
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.6,
+   "FCu_geodesic_mm": 0.35,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    73.15,
+    70.62
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.6,
+   "FCu_geodesic_mm": 0.35,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 6,
+  "n_FCu_connected": 3,
+  "all": [
+   {
+    "pos": [
+     73.15,
+     70.62
+    ],
+    "drill": 0.2,
+    "straight_mm": 0.6,
+    "FCu_geodesic_mm": 0.35,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     74.97,
+     71.57
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.652,
+    "FCu_geodesic_mm": 9.1,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     70.96,
+     72.5
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.68,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     73.25,
+     67.75
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.709,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 9,
+    "In4_ring": 9,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     75.0,
+     75.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.206,
+    "FCu_geodesic_mm": 6.8,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     67.48,
+     71.49
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.239,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "C224.2": {
+  "pad": "C224.2",
+  "pos": [
+   87.305,
+   54.89
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    87.5,
+    55.05
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.252,
+   "FCu_geodesic_mm": 0.0,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    87.5,
+    55.05
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.252,
+   "FCu_geodesic_mm": 0.0,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 6,
+  "n_FCu_connected": 1,
+  "all": [
+   {
+    "pos": [
+     87.5,
+     55.05
+    ],
+    "drill": 0.2,
+    "straight_mm": 0.252,
+    "FCu_geodesic_mm": 0.0,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     85.0,
+     58.1
+    ],
+    "drill": 0.3,
+    "straight_mm": 3.952,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     91.33,
+     53.6
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.227,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 11,
+    "In4_ring": 11,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     83.0,
+     55.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.306,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     85.275,
+     50.8
+    ],
+    "drill": 0.3,
+    "straight_mm": 4.566,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     91.81,
+     56.45
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.767,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "C203.2": {
+  "pad": "C203.2",
+  "pos": [
+   61.5,
+   54.02
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    61.76,
+    53.06
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.995,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    61.76,
+    53.06
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.995,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 8,
+  "n_FCu_connected": 7,
+  "all": [
+   {
+    "pos": [
+     61.76,
+     53.06
+    ],
+    "drill": 0.2,
+    "straight_mm": 0.995,
+    "FCu_geodesic_mm": 0.75,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     60.01,
+     51.48
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.945,
+    "FCu_geodesic_mm": 3.55,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     63.0,
+     51.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.372,
+    "FCu_geodesic_mm": 4.05,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     59.46,
+     51.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.644,
+    "FCu_geodesic_mm": 4.55,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     65.5,
+     52.07
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.45,
+    "FCu_geodesic_mm": 5.5,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     61.75,
+     58.6
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.587,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     61.94,
+     49.24
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.8,
+    "FCu_geodesic_mm": 4.75,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     56.69,
+     52.21
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.139,
+    "FCu_geodesic_mm": 6.15,
+    "In1_ring": 10,
+    "In4_ring": 10,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   }
+  ]
+ },
+ "C204.2": {
+  "pad": "C204.2",
+  "pos": [
+   67.48,
+   72.5
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    67.48,
+    71.49
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.01,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    67.48,
+    71.49
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.01,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 4,
+  "n_FCu_connected": 4,
+  "all": [
+   {
+    "pos": [
+     67.48,
+     71.49
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.01,
+    "FCu_geodesic_mm": 0.75,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     67.85,
+     75.85
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.37,
+    "FCu_geodesic_mm": 3.35,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     70.96,
+     72.5
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.48,
+    "FCu_geodesic_mm": 6.1,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     63.4,
+     75.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.785,
+    "FCu_geodesic_mm": 8.95,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   }
+  ]
+ },
+ "C205.2": {
+  "pad": "C205.2",
+  "pos": [
+   69.98,
+   72.5
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    70.96,
+    72.5
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.98,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    70.96,
+    72.5
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.98,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 5,
+  "n_FCu_connected": 3,
+  "all": [
+   {
+    "pos": [
+     70.96,
+     72.5
+    ],
+    "drill": 0.2,
+    "straight_mm": 0.98,
+    "FCu_geodesic_mm": 0.75,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     67.48,
+     71.49
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.696,
+    "FCu_geodesic_mm": 6.0,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     73.15,
+     70.62
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.686,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     67.85,
+     75.85
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.97,
+    "FCu_geodesic_mm": 5.0,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     74.97,
+     71.57
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.076,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "C221.2": {
+  "pad": "C221.2",
+  "pos": [
+   70.0,
+   49.225
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    70.0,
+    48.12
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.105,
+   "FCu_geodesic_mm": 0.65,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    70.0,
+    48.12
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.105,
+   "FCu_geodesic_mm": 0.65,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 8,
+  "n_FCu_connected": 7,
+  "all": [
+   {
+    "pos": [
+     70.0,
+     48.12
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.105,
+    "FCu_geodesic_mm": 0.65,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     68.15,
+     50.45
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.219,
+    "FCu_geodesic_mm": 2.3,
+    "In1_ring": 11,
+    "In4_ring": 11,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     72.313,
+     49.264
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.313,
+    "FCu_geodesic_mm": 3.1,
+    "In1_ring": 8,
+    "In4_ring": 8,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     67.74,
+     50.01
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.392,
+    "FCu_geodesic_mm": 2.3,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     71.0,
+     47.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.439,
+    "FCu_geodesic_mm": 2.5,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     66.959999,
+     49.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.048,
+    "FCu_geodesic_mm": 3.6,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     75.2171,
+     49.2929
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.218,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     65.5,
+     52.07
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.324,
+    "FCu_geodesic_mm": 6.55,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   }
+  ]
+ },
+ "X201.2": {
+  "pad": "X201.2",
+  "pos": [
+   90.925,
+   91.225
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    92.1,
+    91.9
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.355,
+   "FCu_geodesic_mm": 0.9,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    92.1,
+    91.9
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.355,
+   "FCu_geodesic_mm": 0.9,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 5,
+  "n_FCu_connected": 3,
+  "all": [
+   {
+    "pos": [
+     92.1,
+     91.9
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.355,
+    "FCu_geodesic_mm": 0.9,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     91.76,
+     93.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.962,
+    "FCu_geodesic_mm": 1.65,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     93.3,
+     93.8
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.503,
+    "FCu_geodesic_mm": 3.95,
+    "In1_ring": 10,
+    "In4_ring": 10,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     87.97,
+     93.545
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.757,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     87.4,
+     95.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.165,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "X202.2": {
+  "pad": "X202.2",
+  "pos": [
+   74.825,
+   61.625
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    74.83,
+    62.83
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.205,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 10,
+   "In4_ring": 10,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    74.83,
+    62.83
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.205,
+   "FCu_geodesic_mm": 0.75,
+   "In1_ring": 10,
+   "In4_ring": 10,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 4,
+  "n_FCu_connected": 1,
+  "all": [
+   {
+    "pos": [
+     74.83,
+     62.83
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.205,
+    "FCu_geodesic_mm": 0.75,
+    "In1_ring": 10,
+    "In4_ring": 10,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     77.5,
+     60.7
+    ],
+    "drill": 0.3,
+    "straight_mm": 2.83,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 10,
+    "In4_ring": 10,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     74.25,
+     65.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.424,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     74.28,
+     57.12
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.538,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "X203.2": {
+  "pad": "X203.2",
+  "pos": [
+   75.825,
+   70.625
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    74.97,
+    71.57
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.274,
+   "FCu_geodesic_mm": 0.85,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    74.97,
+    71.57
+   ],
+   "drill": 0.2,
+   "straight_mm": 1.274,
+   "FCu_geodesic_mm": 0.85,
+   "In1_ring": 12,
+   "In4_ring": 12,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 6,
+  "n_FCu_connected": 4,
+  "all": [
+   {
+    "pos": [
+     74.97,
+     71.57
+    ],
+    "drill": 0.2,
+    "straight_mm": 1.274,
+    "FCu_geodesic_mm": 0.85,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     73.15,
+     70.62
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.675,
+    "FCu_geodesic_mm": 9.8,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     78.4,
+     68.45
+    ],
+    "drill": 0.3,
+    "straight_mm": 3.371,
+    "FCu_geodesic_mm": 3.8,
+    "In1_ring": 10,
+    "In4_ring": 10,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     73.25,
+     67.75
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.86,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 9,
+    "In4_ring": 9,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     75.0,
+     75.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.452,
+    "FCu_geodesic_mm": 4.25,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     70.96,
+     72.5
+    ],
+    "drill": 0.2,
+    "straight_mm": 5.214,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   }
+  ]
+ },
+ "U208.4": {
+  "pad": "U208.4",
+  "pos": [
+   91.55,
+   54.25
+  ],
+  "nearest_gnd_via_straight (method uses this)": {
+   "pos": [
+    91.33,
+    53.6
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.686,
+   "FCu_geodesic_mm": 0.5,
+   "In1_ring": 11,
+   "In4_ring": 11,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "nearest_connected_real_via": {
+   "pos": [
+    91.33,
+    53.6
+   ],
+   "drill": 0.2,
+   "straight_mm": 0.686,
+   "FCu_geodesic_mm": 0.5,
+   "In1_ring": 11,
+   "In4_ring": 11,
+   "In1_plane": true,
+   "In4_plane": true,
+   "real": true
+  },
+  "n_vias_within_6mm": 6,
+  "n_FCu_connected": 5,
+  "all": [
+   {
+    "pos": [
+     91.33,
+     53.6
+    ],
+    "drill": 0.2,
+    "straight_mm": 0.686,
+    "FCu_geodesic_mm": 0.5,
+    "In1_ring": 11,
+    "In4_ring": 11,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     91.81,
+     56.45
+    ],
+    "drill": 0.2,
+    "straight_mm": 2.215,
+    "FCu_geodesic_mm": 8.3,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     94.15,
+     51.85
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.538,
+    "FCu_geodesic_mm": 4.6,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     95.46,
+     55.0
+    ],
+    "drill": 0.2,
+    "straight_mm": 3.981,
+    "FCu_geodesic_mm": 4.3,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   },
+   {
+    "pos": [
+     87.5,
+     55.05
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.128,
+    "FCu_geodesic_mm": null,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": false
+   },
+   {
+    "pos": [
+     90.15,
+     50.15
+    ],
+    "drill": 0.2,
+    "straight_mm": 4.332,
+    "FCu_geodesic_mm": 5.15,
+    "In1_ring": 12,
+    "In4_ring": 12,
+    "In1_plane": true,
+    "In4_plane": true,
+    "real": true
+   }
+  ]
+ }
+}

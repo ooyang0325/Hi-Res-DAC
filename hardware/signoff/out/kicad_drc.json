@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-10-13T23:17:42",
+    "date": "2026-10-14T03:26:51",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -33,5 +33,1296 @@
     "schematic_parity": [],
     "source": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
     "unconnected_items": [],
-    "violations": []
+    "violations": [
+        {
+            "description": "Footprint 'SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U303",
+                    "pos": {
+                        "x": 85.03,
+                        "y": 55.6
+                    },
+                    "uuid": "045161a9-ee55-4263-bcab-72536d064303"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U403",
+                    "pos": {
+                        "x": 96.3,
+                        "y": 77.2
+                    },
+                    "uuid": "06f53286-06d9-427a-bea9-998ba0df05cf"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U103",
+                    "pos": {
+                        "x": 53.85,
+                        "y": 70.3
+                    },
+                    "uuid": "0a9a44c4-e078-40aa-bc8e-19ac97ff6c86"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L2.3-W2.0-P0.50-LS3.1-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U608",
+                    "pos": {
+                        "x": 95.0,
+                        "y": 134.0
+                    },
+                    "uuid": "0bbda6bf-3ff4-4315-82b4-b512140df024"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U502",
+                    "pos": {
+                        "x": 45.8,
+                        "y": 63.4
+                    },
+                    "uuid": "0bebc8fa-5e8e-4ff5-81ea-7d6baf15603a"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q502",
+                    "pos": {
+                        "x": 55.0,
+                        "y": 116.0
+                    },
+                    "uuid": "0c17de3e-8e79-44cc-bd47-2744b3930c93"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U614",
+                    "pos": {
+                        "x": 106.0,
+                        "y": 49.0
+                    },
+                    "uuid": "0cdcad07-50cc-4c5a-9a4c-f48cb6edaba8"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D610",
+                    "pos": {
+                        "x": 76.5,
+                        "y": 119.0
+                    },
+                    "uuid": "0e1f2c06-6fd8-4354-b5ea-5be71b7e9607"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U618",
+                    "pos": {
+                        "x": 123.0,
+                        "y": 49.0
+                    },
+                    "uuid": "101b0c91-b28b-4180-a3a4-f36afc05762c"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D105",
+                    "pos": {
+                        "x": 48.0,
+                        "y": 86.0
+                    },
+                    "uuid": "157f2a84-c397-489b-8671-3bd57e916544"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'WSON-6_L2.0-W2.0-P0.65-TL-EP_PAD' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint U504",
+                    "pos": {
+                        "x": 51.0,
+                        "y": 133.0
+                    },
+                    "uuid": "173f14c9-13cb-4dbf-ade7-d34abe9487a5"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U616",
+                    "pos": {
+                        "x": 106.0,
+                        "y": 63.0
+                    },
+                    "uuid": "1d9f0e87-e7c7-4aa8-a93a-5fd8baf20639"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q627",
+                    "pos": {
+                        "x": 89.0,
+                        "y": 132.0
+                    },
+                    "uuid": "1e4eb493-a8b4-4a8a-95d7-8bcf14976abe"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOD-523_L1.2-W0.8-LS1.6-BI' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D708",
+                    "pos": {
+                        "x": 148.31,
+                        "y": 117.1
+                    },
+                    "uuid": "1f784253-9345-48c6-82d2-e03a99b1bdf2"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q617",
+                    "pos": {
+                        "x": 127.0,
+                        "y": 122.0
+                    },
+                    "uuid": "1f9983c8-6d71-4340-9459-2fa680df2a64"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOD-123F_L2.8-W1.8-LS3.7-RD' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D412",
+                    "pos": {
+                        "x": 140.0,
+                        "y": 125.0
+                    },
+                    "uuid": "2a1b9b04-f447-4297-8fac-fb8c0ccdac8d"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOD-523_L1.2-W0.8-LS1.6-BI' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D702",
+                    "pos": {
+                        "x": 148.85,
+                        "y": 83.28
+                    },
+                    "uuid": "30d1cba7-34ae-402d-b0a7-ca79116fe34e"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'CRYSTAL-SMD_L5.0-W3.2' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Y201",
+                    "pos": {
+                        "x": 61.5,
+                        "y": 71.91
+                    },
+                    "uuid": "4226399f-3e39-4fe6-8b18-b3918393aca0"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'LED-SMD_L1.6-W0.8-R-RD' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D706",
+                    "pos": {
+                        "x": 106.0,
+                        "y": 136.0
+                    },
+                    "uuid": "42b2d01f-2760-4437-b006-42659f84a447"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'LQFP-64_L10.0-W10.0-P0.50-LS12.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U201",
+                    "pos": {
+                        "x": 65.0,
+                        "y": 63.0
+                    },
+                    "uuid": "47a3ce26-11b0-47ff-a2d3-b2226f0c089e"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'LED0805-R-RD' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D705",
+                    "pos": {
+                        "x": 100.0,
+                        "y": 136.0
+                    },
+                    "uuid": "4ace1d64-f7f4-415b-b38f-92dc9f40ba9e"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D414",
+                    "pos": {
+                        "x": 110.0,
+                        "y": 99.0
+                    },
+                    "uuid": "4bad0483-66eb-4c3c-853d-47219fbd0f2e"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'WSON-12_L3.0-W2.0-P0.50-BL-EP_PAD' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint U501",
+                    "pos": {
+                        "x": 72.0,
+                        "y": 132.0
+                    },
+                    "uuid": "53216bf5-9ad0-4352-8dbd-be32a7be515a"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q207",
+                    "pos": {
+                        "x": 64.5,
+                        "y": 54.0
+                    },
+                    "uuid": "55442990-8a20-4ba4-b28b-8cf219bd15dd"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q624",
+                    "pos": {
+                        "x": 94.0,
+                        "y": 115.0
+                    },
+                    "uuid": "5868d894-9614-4672-b841-830cd608b54b"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U610",
+                    "pos": {
+                        "x": 118.8,
+                        "y": 115.0
+                    },
+                    "uuid": "5a0f68f6-0539-4a79-aab1-67bbee713baf"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q612",
+                    "pos": {
+                        "x": 131.5,
+                        "y": 129.0
+                    },
+                    "uuid": "5d6589e2-04c8-458b-9490-4be8c8cc730c"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q506",
+                    "pos": {
+                        "x": 56.0,
+                        "y": 132.0
+                    },
+                    "uuid": "60bea3e1-6adb-4b41-b388-a0b93cf1ef08"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U619",
+                    "pos": {
+                        "x": 117.0,
+                        "y": 63.0
+                    },
+                    "uuid": "6224ad34-90cf-4618-b3e5-0ec288a4f1bf"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U404",
+                    "pos": {
+                        "x": 96.3,
+                        "y": 84.8
+                    },
+                    "uuid": "66e7ff23-b83c-4e36-b908-0c8bb80afc5e"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q507",
+                    "pos": {
+                        "x": 56.0,
+                        "y": 87.0
+                    },
+                    "uuid": "6757f7f9-18bf-4a59-8350-b05f825b0de9"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q618",
+                    "pos": {
+                        "x": 77.0,
+                        "y": 123.0
+                    },
+                    "uuid": "6b58fd9a-2b6b-45af-95da-ee17e00e1615"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U605",
+                    "pos": {
+                        "x": 74.8,
+                        "y": 85.0
+                    },
+                    "uuid": "6b7f3e80-3c2f-45af-a44a-a61d7b7cdc08"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOD-523_L1.2-W0.8-LS1.6-BI' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D704",
+                    "pos": {
+                        "x": 153.7,
+                        "y": 68.72
+                    },
+                    "uuid": "6c355747-c5df-482c-b4f8-a369a6587792"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U609",
+                    "pos": {
+                        "x": 99.0,
+                        "y": 116.05
+                    },
+                    "uuid": "779cf32e-7556-4ebf-80a4-f748bdd8b082"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'CASE-D_7343' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint C443",
+                    "pos": {
+                        "x": 141.5,
+                        "y": 129.5
+                    },
+                    "uuid": "7a75271a-08a6-4fb4-b6e4-d7fa46cc67ee"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q505",
+                    "pos": {
+                        "x": 56.0,
+                        "y": 128.0
+                    },
+                    "uuid": "7acf464c-2e39-4fa7-8c9e-cb14ce92f7c7"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'QFN-28_L5.0-W5.0-P0.50-BL-EP3.3_EP' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint U301",
+                    "pos": {
+                        "x": 90.5,
+                        "y": 81.0
+                    },
+                    "uuid": "8026bd42-c6e5-4c0b-b584-a97c7b0e8f65"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q622",
+                    "pos": {
+                        "x": 131.5,
+                        "y": 119.0
+                    },
+                    "uuid": "808c04ca-53ec-4fb7-a464-cc27e87cfe73"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U302",
+                    "pos": {
+                        "x": 81.0,
+                        "y": 75.5
+                    },
+                    "uuid": "82a48bcb-e322-4d28-a0f5-bf234bd50278"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q619",
+                    "pos": {
+                        "x": 80.0,
+                        "y": 91.0
+                    },
+                    "uuid": "8a7ed8aa-04f2-49a3-9855-1966548748a2"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U613",
+                    "pos": {
+                        "x": 100.0,
+                        "y": 49.0
+                    },
+                    "uuid": "8abc204b-8b3c-45f5-8328-40d567401abd"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D104",
+                    "pos": {
+                        "x": 47.0,
+                        "y": 82.0
+                    },
+                    "uuid": "9477752a-f9e6-404b-991a-a818a9ca884c"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q620",
+                    "pos": {
+                        "x": 65.5,
+                        "y": 93.5
+                    },
+                    "uuid": "94e3f911-9f28-448f-acd1-e20f623c9117"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'J701_GT-3321667P-01_maker_slots' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint J701",
+                    "pos": {
+                        "x": 146.5,
+                        "y": 76.0
+                    },
+                    "uuid": "982a5ee8-78a7-4202-89e1-5958c5724bac"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSON-10_L3.0-W3.0-P0.50-BL-EP1.65_PAD' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint U401",
+                    "pos": {
+                        "x": 117.0,
+                        "y": 79.0
+                    },
+                    "uuid": "9b2ce266-6661-4a4f-9048-7a8c75c60708"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q621",
+                    "pos": {
+                        "x": 85.5,
+                        "y": 107.0
+                    },
+                    "uuid": "9b7de9c1-b591-4b7e-90f3-9162ce7ef5ea"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D406",
+                    "pos": {
+                        "x": 104.0,
+                        "y": 70.0
+                    },
+                    "uuid": "a337935a-559d-4b28-a8f8-ad33e840ba7f"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'J702_PJ-332A-6A_peg_holes' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint J702",
+                    "pos": {
+                        "x": 150.84,
+                        "y": 109.5
+                    },
+                    "uuid": "a94aa927-573f-41ab-bbd9-88edec6ae292"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L2.1-W2.4-P0.50-LS3.2-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U208",
+                    "pos": {
+                        "x": 90.0,
+                        "y": 55.0
+                    },
+                    "uuid": "a9805d91-ee26-4733-a9b2-eb9e5809815c"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U101",
+                    "pos": {
+                        "x": 50.6,
+                        "y": 70.5
+                    },
+                    "uuid": "ab91e2e8-cb14-439d-bc6e-9ea144ec22df"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'J101_USB4105-GF-A_12lands_4stakes_NPTH030' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint J101",
+                    "pos": {
+                        "x": 45.0,
+                        "y": 75.0
+                    },
+                    "uuid": "ae433ba3-63d1-4255-b988-9efd4c9032aa"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q504",
+                    "pos": {
+                        "x": 51.0785,
+                        "y": 136.6
+                    },
+                    "uuid": "b10b09b3-7f2f-483d-a0ca-6511969aa8d1"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SC-70-6_L2.2-W1.3-P0.65-LS2.1-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U621",
+                    "pos": {
+                        "x": 68.0,
+                        "y": 87.5
+                    },
+                    "uuid": "b5e1080b-43b6-43df-8382-5b1bf5bbd199"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U505",
+                    "pos": {
+                        "x": 61.0,
+                        "y": 118.0
+                    },
+                    "uuid": "bd300af2-e74e-47c9-b33e-9fc2661ba8f9"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U603",
+                    "pos": {
+                        "x": 82.0,
+                        "y": 113.0
+                    },
+                    "uuid": "be07fcf3-0405-4f29-af63-eaa35ccd3424"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U611",
+                    "pos": {
+                        "x": 82.0,
+                        "y": 125.0
+                    },
+                    "uuid": "c20d11a7-2800-4dc7-991b-ec7432eef953"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U612",
+                    "pos": {
+                        "x": 96.0,
+                        "y": 125.0
+                    },
+                    "uuid": "c2238469-f17d-40e0-9dfe-1a3e60c1eb00"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOD-523_L1.2-W0.8-LS1.6-BI' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D701",
+                    "pos": {
+                        "x": 140.35,
+                        "y": 83.28
+                    },
+                    "uuid": "c2dc0c5a-58f8-4ce6-ab10-d61b3d796912"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D413",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 97.2
+                    },
+                    "uuid": "c461ed79-0c43-490b-99b6-edb073b42f70"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D609",
+                    "pos": {
+                        "x": 86.0,
+                        "y": 98.5
+                    },
+                    "uuid": "c55c08c6-f104-4ee7-8793-6d2f2ab635ee"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U615",
+                    "pos": {
+                        "x": 100.0,
+                        "y": 63.0
+                    },
+                    "uuid": "cbc4d81d-c534-4d3a-ac89-85cd2539b2ed"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q623",
+                    "pos": {
+                        "x": 106.8,
+                        "y": 115.0
+                    },
+                    "uuid": "ccee8e83-fac0-483d-8d47-2926506d3315"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U617",
+                    "pos": {
+                        "x": 117.0,
+                        "y": 49.0
+                    },
+                    "uuid": "d0e195b5-650c-4cdf-9b5a-8ff2e82dfd0f"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSON-10_L3.0-W3.0-P0.50-BL-EP1.65_PAD' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint U402",
+                    "pos": {
+                        "x": 129.0,
+                        "y": 79.0
+                    },
+                    "uuid": "d19b0757-74ff-474d-8236-88c4846dce84"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'ESOP-8_L4.9-W3.9-P1.27-LS6.0-BL-EP_PAD' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint U503",
+                    "pos": {
+                        "x": 54.0,
+                        "y": 122.0
+                    },
+                    "uuid": "d3d16a4e-0ccd-4f80-ba01-d037f8295848"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOD-523_L1.2-W0.8-LS1.6-BI' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D703",
+                    "pos": {
+                        "x": 148.3,
+                        "y": 68.72
+                    },
+                    "uuid": "d446d329-597f-4ccb-95c9-7ac12d763b52"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'QFN-32_L4.0-W4.0-P0.40-BL-EP2.7_EP' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint U202",
+                    "pos": {
+                        "x": 82.0,
+                        "y": 64.0
+                    },
+                    "uuid": "d4c6b6ab-a53b-4795-9964-5312d8a59a1f"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'CASE-D_7343' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint C442",
+                    "pos": {
+                        "x": 139.0,
+                        "y": 120.5
+                    },
+                    "uuid": "d4dbf2f9-5b29-4e61-9d7a-eda797fb206a"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D405",
+                    "pos": {
+                        "x": 108.6,
+                        "y": 78.5
+                    },
+                    "uuid": "d7ec055a-fd26-4728-832e-633716248c73"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'WSON-6_L2.0-W2.0-P0.65-TL-EP_PAD' does not match copy in library 'DAC_HPA'",
+            "items": [
+                {
+                    "description": "Footprint U102",
+                    "pos": {
+                        "x": 52.0,
+                        "y": 85.5
+                    },
+                    "uuid": "d7eee27e-ddb9-4254-aa61-b74786a39473"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D407",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 90.5
+                    },
+                    "uuid": "d84f62cb-1daa-465c-a02f-e186d9abe9cb"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U606",
+                    "pos": {
+                        "x": 89.0,
+                        "y": 113.0
+                    },
+                    "uuid": "d88c56eb-519a-42bc-b329-31234d73879d"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOD-523_L1.2-W0.8-LS1.6-BI' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D707",
+                    "pos": {
+                        "x": 152.0,
+                        "y": 102.3
+                    },
+                    "uuid": "db7a0d43-61e4-47ea-b793-bd26101de140"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q616",
+                    "pos": {
+                        "x": 131.5,
+                        "y": 124.0
+                    },
+                    "uuid": "e57537a2-ad09-4d05-a882-e7b2fb0c6874"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SC-88-6_L2.0-W1.3-P0.65-LS2.1-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U206",
+                    "pos": {
+                        "x": 85.0,
+                        "y": 91.5
+                    },
+                    "uuid": "e8a7a195-625b-43b7-b1cc-efe9843020ba"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D408",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 83.5
+                    },
+                    "uuid": "ea30952f-d757-46af-9248-d7bd1d044e72"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q626",
+                    "pos": {
+                        "x": 125.8,
+                        "y": 115.8
+                    },
+                    "uuid": "eba5ed54-7094-4b07-a59b-66e19f19b61b"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q625",
+                    "pos": {
+                        "x": 108.65,
+                        "y": 118.75
+                    },
+                    "uuid": "ebf867d8-4cb6-46b1-a9ce-109c2984e6d2"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U620",
+                    "pos": {
+                        "x": 123.0,
+                        "y": 63.0
+                    },
+                    "uuid": "ec688707-b448-4012-a6a2-c001e74c1b0a"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOD-123F_L2.8-W1.8-LS3.7-RD' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint D411",
+                    "pos": {
+                        "x": 138.0,
+                        "y": 116.0
+                    },
+                    "uuid": "ed2f0f35-1d9d-44a0-9e99-4d8bbac6116a"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOP-8_L4.9-W3.9-P1.27-LS6.0-BL' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U604",
+                    "pos": {
+                        "x": 112.0,
+                        "y": 112.0
+                    },
+                    "uuid": "f016a178-bc21-4007-a461-a4b0ff43428b"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q503",
+                    "pos": {
+                        "x": 51.0,
+                        "y": 116.0
+                    },
+                    "uuid": "f6b87e67-01aa-4d62-b791-e2eb2eb418eb"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint Q614",
+                    "pos": {
+                        "x": 127.0,
+                        "y": 127.0
+                    },
+                    "uuid": "fae6d372-19ed-48d5-8d51-1f326d30fedc"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'SOT-363_L2.0-W1.3-P0.65-LS2.1-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U205",
+                    "pos": {
+                        "x": 76.0,
+                        "y": 65.0
+                    },
+                    "uuid": "fdb66a3d-751f-4126-9409-141fd6610983"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        },
+        {
+            "description": "Footprint 'TSSOP-5_L2.1-W1.3-P0.65-LS2.2-BR' does not match copy in library 'JLC_Imported'",
+            "items": [
+                {
+                    "description": "Footprint U607",
+                    "pos": {
+                        "x": 89.5,
+                        "y": 87.0
+                    },
+                    "uuid": "ffed95e3-45b4-409a-b1d9-0e362bd0f574"
+                }
+            ],
+            "severity": "warning",
+            "type": "lib_footprint_mismatch"
+        }
+    ]
 }
