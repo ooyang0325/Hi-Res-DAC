@@ -31,3 +31,7 @@ __pycache__/
 /hardware/DAC_HPA_FUNCTIONAL_ECO_REVIEW.glb
 /hardware/sim/*.raw
 /hardware/sim/*.db
+/hardware/sim/layout_review_v1/analog_run/
+/hardware/sim/layout_review_v1/si_run/
+/hardware/sim/layout_review_v1/pw/
+/hardware/sim/layout_review_v1/pcbrev/

@@ -191,11 +191,12 @@ validate_integrated_audio_study:
     - python3 hardware/audit_film_solder_access.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json --gate
     - python3 hardware/audit_timer_routes.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_TIMER_ROUTE_AUDIT.json --gate --require-complete
     - kicad-cli pcb drc --format json --severity-error --severity-warning -o hardware/INTEGRATED_AUDIO_DRC.json hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb
+    - python3 hardware/check_integrated_parity.py --output hardware/INTEGRATED_AUDIO_DRC_PARITY.json
     - python3 hardware/audit_local_tvs_paths.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json
     - python3 hardware/audit_audio_output_traces.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json
     - python3 hardware/check_integrated_audio_study.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json hardware/INTEGRATED_AUDIO_DFA_AUDIT.json hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json hardware/INTEGRATED_AUDIO_DRC.json hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json --output hardware/INTEGRATED_AUDIO_SUMMARY.json
     - python3 hardware/check_dac_core_routes.py hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb --output hardware/DAC_CORE_ROUTE_AUDIT.json
-    - git diff --exit-code -- hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json hardware/INTEGRATED_AUDIO_SUMMARY.json hardware/DAC_CORE_ROUTE_AUDIT.json hardware/INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json hardware/INTEGRATED_AUDIO_POWER_ESCAPE_AUDIT.json hardware/INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json hardware/INTEGRATED_AUDIO_TIMER_ROUTE_AUDIT.json
+    - git diff --exit-code -- hardware/INTEGRATED_AUDIO_LOCAL_TVS_AUDIT.json hardware/INTEGRATED_AUDIO_TRACE_BUDGET.json hardware/INTEGRATED_AUDIO_SUMMARY.json hardware/DAC_CORE_ROUTE_AUDIT.json hardware/INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json hardware/INTEGRATED_AUDIO_POWER_ESCAPE_AUDIT.json hardware/INTEGRATED_AUDIO_FILM_SOLDER_ACCESS_AUDIT.json hardware/INTEGRATED_AUDIO_TIMER_ROUTE_AUDIT.json hardware/INTEGRATED_AUDIO_DRC_PARITY.json
     - echo "Partial audio/DAC/CPLD/regulator copper checked; remaining via-mask process, main feeds, L3/L4 return, measured outputs and full routing HOLD."
   artifacts:
     when: always
@@ -203,6 +204,7 @@ validate_integrated_audio_study:
     paths:
       - hardware/INTEGRATED_AUDIO_PLACEMENT_AUDIT.json
       - hardware/INTEGRATED_AUDIO_DFA_AUDIT.json
+      - hardware/INTEGRATED_AUDIO_DRC_PARITY.json
       - hardware/INTEGRATED_AUDIO_JLC_FAB_AUDIT.json
       - hardware/INTEGRATED_AUDIO_VIA_PAD_PROCESS_AUDIT.json
       - hardware/INTEGRATED_AUDIO_POWER_ESCAPE_AUDIT.json

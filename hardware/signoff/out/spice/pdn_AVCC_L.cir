@@ -9,7 +9,7 @@ Rsrc vdd nsrc 0.01
 Lsrc nsrc 0 {4.18879e-08*h}
 * C303 0603 2200 nF, 9.8 mm from the pin
 R0 vdd a0 0.0441036
-L0 a0 b0 {4.51369e-08*h+5.5e-10}
+L0 a0 b0 {4.49101e-08*h+5.5e-10}
 C0 b0 0 2.2e-06
 Rp0 b0 0 1G
 * C305 0402 100 nF, 2.4 mm from the pin

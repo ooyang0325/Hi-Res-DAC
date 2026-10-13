@@ -5,61 +5,61 @@
 * because the board declares no stackup.
 .param h=0.12
 Itest 0 vdd AC 1
-Rsrc vdd nsrc 0.117361
-Lsrc nsrc 0 {4.16106e-07*h}
-* C512 0805 10000 nF, 133.5 mm from the pin
-R0 vdd a0 0.138764
-L0 a0 b0 {4.26189e-07*h+7e-10}
+Rsrc vdd nsrc 0.0871867
+Lsrc nsrc 0 {3.20677e-07*h}
+* C512 0805 10000 nF, 103.1 mm from the pin
+R0 vdd a0 0.10859
+L0 a0 b0 {3.30759e-07*h+7e-10}
 C0 b0 0 1e-05
 Rp0 b0 0 1G
-* C311 0603 1000 nF, 9.4 mm from the pin
-R1 vdd a1 0.0416657
-L1 a1 b1 {3.81757e-08*h+5.5e-10}
+* C311 0603 1000 nF, 92.7 mm from the pin
+R1 vdd a1 0.132253
+L1 a1 b1 {2.99877e-07*h+5.5e-10}
 C1 b1 0 1e-06
 Rp1 b1 0 1G
-* C630 0402 100 nF, 108.6 mm from the pin
-R2 vdd a2 0.161946
-L2 a2 b2 {3.43501e-07*h+4e-10}
+* C630 0402 100 nF, 58.9 mm from the pin
+R2 vdd a2 0.108087
+L2 a2 b2 {1.87586e-07*h+4e-10}
 C2 b2 0 1e-07
 Rp2 b2 0 1G
-* C623 0402 100 nF, 126.9 mm from the pin
-R3 vdd a3 0.183578
-L3 a3 b3 {4.0702e-07*h+4e-10}
+* C623 0402 100 nF, 77.2 mm from the pin
+R3 vdd a3 0.129719
+L3 a3 b3 {2.51104e-07*h+4e-10}
 C3 b3 0 1e-07
 Rp3 b3 0 1G
-* C222 0402 100 nF, 25.3 mm from the pin
-R4 vdd a4 0.0829008
-L4 a4 b4 {8.64772e-08*h+4e-10}
+* C222 0402 100 nF, 75.3 mm from the pin
+R4 vdd a4 0.102975
+L4 a4 b4 {2.43306e-07*h+4e-10}
 C4 b4 0 1e-07
 Rp4 b4 0 1G
-* C223 0402 100 nF, 65.2 mm from the pin
-R5 vdd a5 0.11126
-L5 a5 b5 {2.10982e-07*h+4e-10}
+* C223 0402 100 nF, 47.5 mm from the pin
+R5 vdd a5 0.0889319
+L5 a5 b5 {1.55167e-07*h+4e-10}
 C5 b5 0 1e-07
 Rp5 b5 0 1G
-* C218 0402 100 nF, 21.0 mm from the pin
-R6 vdd a6 0.0780628
-L6 a6 b6 {7.20603e-08*h+4e-10}
+* C218 0402 100 nF, 80.2 mm from the pin
+R6 vdd a6 0.108541
+L6 a6 b6 {2.62239e-07*h+4e-10}
 C6 b6 0 1e-07
 Rp6 b6 0 1G
-* C219 0402 100 nF, 34.1 mm from the pin
-R7 vdd a7 0.0887936
-L7 a7 b7 {1.13088e-07*h+4e-10}
+* C219 0402 100 nF, 73.2 mm from the pin
+R7 vdd a7 0.10527
+L7 a7 b7 {2.40669e-07*h+4e-10}
 C7 b7 0 1e-07
 Rp7 b7 0 1G
-* C224 0402 100 nF, 8.5 mm from the pin
-R8 vdd a8 0.0462199
-L8 a8 b8 {3.27217e-08*h+4e-10}
+* C224 0402 100 nF, 103.1 mm from the pin
+R8 vdd a8 0.170407
+L8 a8 b8 {3.26464e-07*h+4e-10}
 C8 b8 0 1e-07
 Rp8 b8 0 1G
-* C622 0402 100 nF, 99.6 mm from the pin
-R9 vdd a9 0.149251
-L9 a9 b9 {3.23548e-07*h+4e-10}
+* C622 0402 100 nF, 4.6 mm from the pin
+R9 vdd a9 0.033623
+L9 a9 b9 {2.50121e-08*h+4e-10}
 C9 b9 0 1e-07
 Rp9 b9 0 1G
-* C217 0402 10 nF, 73.1 mm from the pin
-R10 vdd a10 0.120606
-L10 a10 b10 {2.35621e-07*h+4e-10}
+* C217 0402 10 nF, 51.8 mm from the pin
+R10 vdd a10 0.0935854
+L10 a10 b10 {1.69285e-07*h+4e-10}
 C10 b10 0 1e-08
 Rp10 b10 0 1G
 .step param h list 0.09 0.12 0.2

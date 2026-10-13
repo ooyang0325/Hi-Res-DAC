@@ -2,8 +2,8 @@
   "board": "hardware/DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
   "board_edge_body_spacing_violation_count": 0,
   "board_edge_body_spacing_violations": [],
-  "jlc_classified_refs": 448,
-  "jlc_placed_refs": 466,
+  "jlc_classified_refs": 451,
+  "jlc_placed_refs": 469,
   "jlc_source": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
   "jlc_unclassified_refs": [
     "C442",
@@ -61,13 +61,13 @@
       "body_to_edge_mm": 2.2,
       "class": null,
       "jlc_body_min_mm": 2.5,
-      "ref": "J202"
+      "ref": "J201"
     },
     {
       "body_to_edge_mm": 2.2,
       "class": null,
       "jlc_body_min_mm": 2.5,
-      "ref": "J201"
+      "ref": "J202"
     }
   ]
 }

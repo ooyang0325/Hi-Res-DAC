@@ -19,6 +19,8 @@ from pathlib import Path
 
 import pcbnew
 
+import place_board
+
 
 HERE = Path(__file__).resolve().parent
 MAC_CLI = "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli"
@@ -125,7 +127,8 @@ def build(output_path: Path) -> None:
         # library part (pad nets come from renamed_pads below).
         if ref in footprints:
             raise AssertionError(f"ECO footprint {ref} already exists")
-        new = pcbnew.FOOTPRINT(footprints[spec["clone_of"]])
+        # Duplicate() gives the copy fresh item UUIDs (the copy constructor keeps the source's).
+        new = pcbnew.Cast_to_FOOTPRINT(footprints[spec["clone_of"]].Duplicate(False))
         new.SetReference(ref)
         new.SetValue(spec["value"])
         new.SetPath(pcbnew.KIID_PATH())
@@ -197,6 +200,10 @@ def build(output_path: Path) -> None:
         zone.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
         zone.SetAssignedPriority(item.get("priority", 0))
         board.Add(zone)
+    for ref, value in record.get("value_overrides", {}).items():
+        footprints[ref].SetValue(value)      # BOM-only ECO (same footprint and nets)
+    sync_schematic(board)
+    fix_edge_corner(board)
     if "silk" in record:
         apply_silk(board, record["silk"])
     for drawing in board.GetDrawings():
@@ -221,6 +228,52 @@ def build(output_path: Path) -> None:
     refill_with_custom_rules(output_path)
     print(f"Saved {output_path.name}: {len(record['moved_footprints'])} explicit moves, "
           f"{len(record['added_copper'])} explicit copper items")
+
+
+def fix_edge_corner(board: pcbnew.BOARD) -> None:
+    """The source board's bottom-right fillet was a non-tangent 0.79 mm arc bulging 0.042 mm past the
+    x 160 / y 140 edges (layout review, geometry note); make it the same R1 fillet as the other corners."""
+    for drawing in board.GetDrawings():
+        if (drawing.GetLayer() == pcbnew.Edge_Cuts and drawing.GetShape() == pcbnew.SHAPE_T_ARC
+                and drawing.GetStart() == xy(160.0, 139.0) and drawing.GetEnd() == xy(159.0, 140.0)):
+            drawing.SetArcGeometry(xy(160.0, 139.0), xy(159.0 + 0.5 ** 0.5, 139.0 + 0.5 ** 0.5), xy(159.0, 140.0))
+            return
+    raise AssertionError("bottom-right board corner arc not found")
+
+
+def sync_schematic(board: pcbnew.BOARD) -> None:
+    """What KiCad's Update-PCB-from-Schematic would carry for schematic parity: symbol fields (hidden,
+    F.Fab), the DNP flag (DNP parts also leave the position file, so no board export places them;
+    they stay on the BOM as DNP lines, like their symbols) and the schematic's unconnected-(...) net
+    on each no-connect pad."""
+    root = place_board.netlist_xml()
+    footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    for comp in root.findall("./components/comp"):
+        fp = footprints.get(comp.get("ref"))
+        if fp is None:
+            continue
+        for field in comp.findall("./fields/field"):
+            if field.get("name") == "Footprint":
+                continue
+            fp.SetField(field.get("name"), field.text or "")
+            item = fp.GetField(field.get("name"))
+            item.SetVisible(False)
+            item.SetLayer(pcbnew.F_Fab)
+        dnp = comp.find("property[@name='dnp']") is not None
+        fp.SetDNP(dnp)
+        if dnp:
+            fp.SetExcludedFromPosFiles(True)
+    for net in root.findall("./nets/net"):
+        name = (net.get("name") or "").replace("/", "{slash}")   # KiCad's escaped net-name form
+        if not name.startswith("unconnected-"):
+            continue
+        for node in net.findall("node"):
+            fp = footprints.get(node.get("ref"))
+            pads = [pad for pad in fp.Pads() if pad.GetNumber() == node.get("pin")] if fp else []
+            if pads and not pads[0].GetNetname():
+                if board.FindNet(name) is None:
+                    board.Add(pcbnew.NETINFO_ITEM(board, name))
+                pads[0].SetNet(board.FindNet(name))
 
 
 def apply_silk(board: pcbnew.BOARD, spec: dict) -> None:

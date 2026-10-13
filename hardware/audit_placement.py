@@ -83,7 +83,8 @@ def copper_gap(a: tuple[float, float, float, float],
 # frozen (29 Sep). Those historical boards skip them; the integrated study carries every ECO and is checked in full.
 POST_FREEZE_ECO_REFS = frozenset({"J201", "J202", "U202", "R228", "R229", "R230",
                                   "R404", "R408", "R412", "R416", "R448",  # F10 ground sense
-                                  "J101"})  # NPTH030 land pattern (sign-off review, 7 Oct 2026)
+                                  "J101",  # NPTH030 land pattern (sign-off review, 7 Oct 2026)
+                                  "U208", "R247", "R248", "R249", "TP747"})  # F11/F13 (layout review, 13 Oct 2026)
 
 
 def check_board_netlist(path: Path, skip_refs: frozenset = frozenset()) -> None:
@@ -116,7 +117,8 @@ def check_board_netlist(path: Path, skip_refs: frozenset = frozenset()) -> None:
     actual_nets = {
         (fp.GetReference(), pad.GetNumber()): pad.GetNetname()
         for fp in actual_footprints.values() for pad in fp.Pads()
-        if pad.GetNumber() and pad.GetNetname() and fp.GetReference() not in skip_refs
+        if pad.GetNumber() and pad.GetNetname() and not pad.GetNetname().startswith("unconnected-")
+        and fp.GetReference() not in skip_refs
     }
     if actual_nets != expected_nets:
         wrong = sorted((key, expected_nets.get(key), actual_nets.get(key))
@@ -152,7 +154,7 @@ def audit(path: Path, height: float) -> dict:
     net_pads: dict[str, list[tuple[str, str, tuple[float, float, float, float]]]] = collections.defaultdict(list)
     for fp in footprints.values():
         for pad in fp.Pads():
-            if pad.GetNetname():
+            if pad.GetNetname() and not pad.GetNetname().startswith("unconnected-"):  # parity NC-pin names
                 all_nets[pad.GetNetname()].append(point(pad, height))
                 net_pads[pad.GetNetname()].append(
                     (fp.GetReference(), pad.GetNumber(), box(pad, height)))

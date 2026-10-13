@@ -417,6 +417,37 @@ def apply_functional_eco(
                 notes="Functional ECO F10: ground-sense reference join at the J702 sleeve"), {
         "R448": [Pin("1", "1", "N4_GSENSE"), Pin("2", "2", "GND")],
     })
+    # Functional ECO F11 (independent layout review T2, 13 October): 33 ohm source resistors at the three
+    # U208 outputs. LVC edges into the 28 mm LINK_SCK run put 0.93 V over VCC and 14 mA into the AGRV2K
+    # clamp at the fast corner; a series resistor at the driver makes the 17.5 ohm + 33 ohm source match
+    # the ~50 ohm line. Same part as R224/R225 (C25105). U208 pins 7/5/2 move to the new *_OUT nets.
+    links = {"7": ("LINK_SCK", "N2_LINK_SCK_OUT", "R247"), "5": ("LINK_MOSI", "N2_LINK_MOSI_OUT", "R248"),
+             "2": ("LINK_FRAME", "N2_LINK_FRAME_OUT", "R249")}
+    u208 = {pin.number: pin.net for pin in pins["U208"]}
+    if any(u208.get(number) != net for number, (net, _, _) in links.items()):
+        raise ValueError("U208 output nets changed; re-review link series-resistor ECO F11")
+    if {out for _, out, _ in links.values()} & {pin.net for group in pins.values() for pin in group}:
+        raise ValueError("ECO F11 net name already exists in the source")
+    pins["U208"] = [Pin(pin.number, pin.name, links[pin.number][1] if pin.number in links else pin.net)
+                    for pin in pins["U208"]]
+    add(replace(base_parts["R224"], row=9007, block=2, refs=[ref for _, _, ref in links.values()],
+                description="33 Ω source series resistor at a U208 LINK output",
+                notes="Functional ECO F11: LINK bus source termination (layout review T2)"), {
+        ref: [Pin("1", "1", net), Pin("2", "2", out)] for net, out, ref in links.values()})
+    # Functional ECO F12 (layout review T3, BOM only): R203 becomes 0 ohm. With 33 ohm into the 10 pF XI
+    # input the MCLK duty at the DAC die swings 47-63 % across the ES9018K2M's 0.4-2.05 V XI threshold
+    # range; with 0 ohm it is 48.9-54.8 %. Footprint and nets are unchanged, so it can be re-fitted.
+    require("R203", (("1", "1", "N2_X201_OUT"), ("2", "2", "MCLK")), "33 Ω")
+    zero = replace(base_parts["R107"], row=9008, block=parts["R203"].block, refs=["R203"],
+                   description="0 Ω link: X201 output to MCLK (33 Ω footprint kept for re-fit)",
+                   notes="Functional ECO F12: R203 33 Ω → 0 Ω (layout review T3)")
+    libparts[zero.symbol_id] = zero
+    parts["R203"] = zero
+    # Functional ECO F13 (layout review T1): TP747 moves from the 1 Mohm MCLK-alive hold node
+    # (N6_MCK_RC) to the comparator side of R667 (N6_MCK_CMP), so the probe and its exposed pad no longer
+    # sit on the hold node, which now stays a ~3 mm group at D609.
+    require("TP747", (("1", "TP", "N6_MCK_RC"),))
+    pins["TP747"] = [Pin("1", "TP", "N6_MCK_CMP")]
     return parts, pins, libparts
 
 
@@ -863,6 +894,7 @@ def make() -> None:
         "R954": (292, 278), "R955": (328, 278), "C667": (364, 278),
         "D707": (112, 105), "D708": (148, 105),
         "R448": (76, 207),  # ECO F10: next free cell after R447 on sheet 4
+        "R247": (256, 267), "R248": (40, 279), "R249": (76, 279),  # ECO F11: below sheet 2's last row
     })
     project_file = HERE / f"{PROJECT}.kicad_pro"
     if not project_file.exists():

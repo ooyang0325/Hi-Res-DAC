@@ -22,34 +22,165 @@
       "B.Cu": 0.0350346998
     },
     "rail_sources": {
-      "N2_J201_3V3": "R241",
-      "3V3M": "U201",
-      "VNEG": "U501",
-      "VBUS_SENSE": "U201",
-      "VPOS": "U501",
-      "DVCC": "U301",
-      "AVCC_L": "U301",
-      "N2_V33_CPLD": "FB202",
-      "VBUS": "U102",
-      "3V3A": "U302",
-      "N5_C1N": "U501",
-      "N5_CP": "U501",
-      "1V3": "U301",
-      "5V_ANA": "U503",
-      "5V_ANA_F": "U501",
-      "VREF": "U403",
-      "3V3D": "U504",
-      "N4_VPOS_IV": "U403",
-      "VCCA": "U301",
-      "AVCC_R": "U301",
       "N4_VNEG_IV": "U403",
+      "N5_C1N": "U501",
+      "N5_C1P": "U501",
+      "VBUS": "U102",
+      "DVCC": "U301",
+      "VNEG": "U501",
+      "N4_VPOS_IV": "U403",
+      "AVCC_R": "U301",
+      "3V3A": "U302",
+      "VCCA": "U301",
+      "3V3M": "U201",
+      "VREF": "U403",
+      "VBUS_SENSE": "U201",
+      "AVCC_L": "U301",
+      "VPOS": "U501",
+      "1V3": "U301",
       "5V_SYS": "U503",
-      "N5_C1P": "U501"
+      "5V_ANA_F": "U501",
+      "N2_V33_CPLD": "FB202",
+      "N2_J201_3V3": "R241",
+      "5V_ANA": "U503",
+      "N5_CP": "U501",
+      "3V3D": "U504"
     },
     "rail_source_evidence": {
-      "N2_J201_3V3": [
-        "3V3M",
-        "N2_J201_3V3"
+      "N4_VNEG_IV": [
+        "DACL",
+        "DACLB",
+        "N4_IVL_N",
+        "N4_IVL_P",
+        "N4_VNEG_IV",
+        "N4_VPOS_IV",
+        "VREF"
+      ],
+      "N5_C1N": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
+      ],
+      "N5_C1P": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
+      ],
+      "VBUS": [
+        "5V_SYS",
+        "GND",
+        "N1_U102_EN",
+        "N1_U102_ILIM",
+        "VBUS",
+        "unconnected-(U102-FAULT-Pad3)"
+      ],
+      "DVCC": [
+        "1V3",
+        "AVCC_L",
+        "AVCC_R",
+        "BCLK",
+        "DACL",
+        "DACLB",
+        "DACR",
+        "DACRB",
+        "DAC_LOCK",
+        "DAC_RESETB",
+        "DVCC",
+        "GND",
+        "I2C_SCL",
+        "I2C_SDA",
+        "LRCLK",
+        "MCLK",
+        "SDATA",
+        "VCCA",
+        "unconnected-(U301-GPIO1-Pad24)",
+        "unconnected-(U301-XO-Pad6)"
+      ],
+      "VNEG": [
+        "5V_ANA_F",
+        "GND",
+        "N5_C1N",
+        "N5_C1P",
+        "N5_CP",
+        "N5_FBN",
+        "N5_FBP",
+        "N5_PGOOD",
+        "VNEG",
+        "VPOS"
+      ],
+      "N4_VPOS_IV": [
+        "DACL",
+        "DACLB",
+        "N4_IVL_N",
+        "N4_IVL_P",
+        "N4_VNEG_IV",
+        "N4_VPOS_IV",
+        "VREF"
+      ],
+      "AVCC_R": [
+        "1V3",
+        "AVCC_L",
+        "AVCC_R",
+        "BCLK",
+        "DACL",
+        "DACLB",
+        "DACR",
+        "DACRB",
+        "DAC_LOCK",
+        "DAC_RESETB",
+        "DVCC",
+        "GND",
+        "I2C_SCL",
+        "I2C_SDA",
+        "LRCLK",
+        "MCLK",
+        "SDATA",
+        "VCCA",
+        "unconnected-(U301-GPIO1-Pad24)",
+        "unconnected-(U301-XO-Pad6)"
+      ],
+      "3V3A": [
+        "3V3A",
+        "5V_SYS",
+        "AVCC_EN",
+        "GND",
+        "unconnected-(U302-N{slash}C-Pad4)"
+      ],
+      "VCCA": [
+        "1V3",
+        "AVCC_L",
+        "AVCC_R",
+        "BCLK",
+        "DACL",
+        "DACLB",
+        "DACR",
+        "DACRB",
+        "DAC_LOCK",
+        "DAC_RESETB",
+        "DVCC",
+        "GND",
+        "I2C_SCL",
+        "I2C_SDA",
+        "LRCLK",
+        "MCLK",
+        "SDATA",
+        "VCCA",
+        "unconnected-(U301-GPIO1-Pad24)",
+        "unconnected-(U301-XO-Pad6)"
       ],
       "3V3M": [
         "3V3M",
@@ -108,17 +239,14 @@
         "USB_DP",
         "VBUS_SENSE"
       ],
-      "VNEG": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
+      "VREF": [
+        "DACL",
+        "DACLB",
+        "N4_IVL_N",
+        "N4_IVL_P",
+        "N4_VNEG_IV",
+        "N4_VPOS_IV",
+        "VREF"
       ],
       "VBUS_SENSE": [
         "3V3M",
@@ -177,38 +305,6 @@
         "USB_DP",
         "VBUS_SENSE"
       ],
-      "VPOS": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
-      ],
-      "DVCC": [
-        "1V3",
-        "AVCC_L",
-        "AVCC_R",
-        "BCLK",
-        "DACL",
-        "DACLB",
-        "DACR",
-        "DACRB",
-        "DAC_LOCK",
-        "DAC_RESETB",
-        "DVCC",
-        "GND",
-        "I2C_SCL",
-        "I2C_SDA",
-        "LRCLK",
-        "MCLK",
-        "SDATA",
-        "VCCA"
-      ],
       "AVCC_L": [
         "1V3",
         "AVCC_L",
@@ -227,38 +323,11 @@
         "LRCLK",
         "MCLK",
         "SDATA",
-        "VCCA"
+        "VCCA",
+        "unconnected-(U301-GPIO1-Pad24)",
+        "unconnected-(U301-XO-Pad6)"
       ],
-      "N2_V33_CPLD": [
-        "3V3D",
-        "N2_V33_CPLD"
-      ],
-      "VBUS": [
-        "5V_SYS",
-        "GND",
-        "N1_U102_EN",
-        "N1_U102_ILIM",
-        "VBUS"
-      ],
-      "3V3A": [
-        "3V3A",
-        "5V_SYS",
-        "AVCC_EN",
-        "GND"
-      ],
-      "N5_C1N": [
-        "5V_ANA_F",
-        "GND",
-        "N5_C1N",
-        "N5_C1P",
-        "N5_CP",
-        "N5_FBN",
-        "N5_FBP",
-        "N5_PGOOD",
-        "VNEG",
-        "VPOS"
-      ],
-      "N5_CP": [
+      "VPOS": [
         "5V_ANA_F",
         "GND",
         "N5_C1N",
@@ -288,16 +357,19 @@
         "LRCLK",
         "MCLK",
         "SDATA",
-        "VCCA"
+        "VCCA",
+        "unconnected-(U301-GPIO1-Pad24)",
+        "unconnected-(U301-XO-Pad6)"
       ],
-      "5V_ANA": [
+      "5V_SYS": [
         "5V_ANA",
         "5V_SYS",
         "ANA_EN",
         "ANA_FAULT_N",
         "GND",
         "N5_DVDT",
-        "N5_ILIM"
+        "N5_ILIM",
+        "unconnected-(U503-OVCSEL-Pad8)"
       ],
       "5V_ANA_F": [
         "5V_ANA_F",
@@ -311,89 +383,25 @@
         "VNEG",
         "VPOS"
       ],
-      "VREF": [
-        "DACL",
-        "DACLB",
-        "N4_IVL_N",
-        "N4_IVL_P",
-        "N4_VNEG_IV",
-        "N4_VPOS_IV",
-        "VREF"
-      ],
-      "3V3D": [
+      "N2_V33_CPLD": [
         "3V3D",
-        "5V_SYS",
-        "AUD_EN",
-        "GND"
+        "N2_V33_CPLD"
       ],
-      "N4_VPOS_IV": [
-        "DACL",
-        "DACLB",
-        "N4_IVL_N",
-        "N4_IVL_P",
-        "N4_VNEG_IV",
-        "N4_VPOS_IV",
-        "VREF"
+      "N2_J201_3V3": [
+        "3V3M",
+        "N2_J201_3V3"
       ],
-      "VCCA": [
-        "1V3",
-        "AVCC_L",
-        "AVCC_R",
-        "BCLK",
-        "DACL",
-        "DACLB",
-        "DACR",
-        "DACRB",
-        "DAC_LOCK",
-        "DAC_RESETB",
-        "DVCC",
-        "GND",
-        "I2C_SCL",
-        "I2C_SDA",
-        "LRCLK",
-        "MCLK",
-        "SDATA",
-        "VCCA"
-      ],
-      "AVCC_R": [
-        "1V3",
-        "AVCC_L",
-        "AVCC_R",
-        "BCLK",
-        "DACL",
-        "DACLB",
-        "DACR",
-        "DACRB",
-        "DAC_LOCK",
-        "DAC_RESETB",
-        "DVCC",
-        "GND",
-        "I2C_SCL",
-        "I2C_SDA",
-        "LRCLK",
-        "MCLK",
-        "SDATA",
-        "VCCA"
-      ],
-      "N4_VNEG_IV": [
-        "DACL",
-        "DACLB",
-        "N4_IVL_N",
-        "N4_IVL_P",
-        "N4_VNEG_IV",
-        "N4_VPOS_IV",
-        "VREF"
-      ],
-      "5V_SYS": [
+      "5V_ANA": [
         "5V_ANA",
         "5V_SYS",
         "ANA_EN",
         "ANA_FAULT_N",
         "GND",
         "N5_DVDT",
-        "N5_ILIM"
+        "N5_ILIM",
+        "unconnected-(U503-OVCSEL-Pad8)"
       ],
-      "N5_C1P": [
+      "N5_CP": [
         "5V_ANA_F",
         "GND",
         "N5_C1N",
@@ -404,6 +412,12 @@
         "N5_PGOOD",
         "VNEG",
         "VPOS"
+      ],
+      "3V3D": [
+        "3V3D",
+        "5V_SYS",
+        "AUD_EN",
+        "GND"
       ]
     },
     "ltspice": "/Users/ooyang/dac_layout_work/wt/hardware/signoff/ltspice_wine.sh"
@@ -420,15 +434,15 @@
       "assumptions": [],
       "metrics": {
         "track_width_histogram_mm": {
-          "0.15": 1024,
+          "0.15": 1034,
           "0.16": 7,
           "0.17": 6,
           "0.18": 4,
-          "0.2": 2560,
-          "0.25": 366,
-          "0.3": 445,
+          "0.2": 2551,
+          "0.25": 381,
+          "0.3": 441,
           "0.36": 2,
-          "0.4": 361,
+          "0.4": 352,
           "0.5": 162,
           "0.6": 41,
           "0.8": 62,
@@ -439,23 +453,23 @@
         },
         "min_track_width_mm": 0.15,
         "via_specs": {
-          "0.5/0.2": 133,
-          "0.6/0.2": 1367,
-          "0.7/0.3": 45,
+          "0.5/0.2": 134,
+          "0.6/0.2": 1364,
+          "0.7/0.3": 58,
           "0.8/0.4": 19
         },
-        "via_count": 1564,
+        "via_count": 1575,
         "min_hole_to_hole_mm": 0.2827,
         "min_hole_to_hole_between": [
-          "via@[115.25, 46.42]",
-          "via@[114.78, 46.53]"
+          "via@[98.25, 46.42]",
+          "via@[97.78, 46.53]"
         ],
         "min_copper_to_edge_mm": 0.58,
-        "min_copper_to_edge_at": "via GND @ [65.92, 139.12]",
+        "min_copper_to_edge_at": "via GND @ [159.12, 81.48]",
         "npth_count": 6,
         "min_silk_stroke_mm": 0.15,
         "min_silk_text_mm": 1.0,
-        "_runtime_s": 0.17
+        "_runtime_s": 0.163
       },
       "counts": {
         "FAIL": 0,
@@ -541,11 +555,11 @@
         {
           "severity": "WARN",
           "code": "ASPECT_RATIO_TIGHT",
-          "message": "1500 via(s) sit at or above 8.0:1 aspect ratio (1.6 mm board). Barrel plating thickness must be confirmed with the fabricator.",
+          "message": "1498 via(s) sit at or above 8.0:1 aspect ratio (1.6 mm board). Barrel plating thickness must be confirmed with the fabricator.",
           "detail": {
-            "count": 1500,
+            "count": 1498,
             "drills_mm": {
-              "0.2": 1500
+              "0.2": 1498
             },
             "worst": 8.0
           }
@@ -563,8 +577,8 @@
       ],
       "assumptions": [],
       "metrics": {
-        "footprints_total": 545,
-        "footprints_with_courtyard": 488,
+        "footprints_total": 548,
+        "footprints_with_courtyard": 483,
         "courtyard_overlap_pairs": 0,
         "_runtime_s": 0.002
       },
@@ -602,8 +616,8 @@
           "POWER",
           "USB_DIFF"
         ],
-        "silkscreen_text_items": 261,
-        "silkscreen_items": 1644,
+        "silkscreen_text_items": 257,
+        "silkscreen_items": 1646,
         "fiducial_candidates": [
           "FID1",
           "FID4",
@@ -643,7 +657,7 @@
           "J101.A1/B12",
           "F.Cu"
         ],
-        "_runtime_s": 0.104
+        "_runtime_s": 0.103
       },
       "counts": {
         "FAIL": 0,
@@ -789,11 +803,11 @@
             "budget_a": 0.17,
             "conductor_current_a": 0.17,
             "current_basis": "full rail budget",
-            "narrowest_mm": 0.4,
-            "layer": "PWR",
+            "narrowest_mm": 0.25,
+            "layer": "SIG",
             "required_mm": 0.1561,
-            "capacity_a": 0.3363,
-            "margin_x": 1.978,
+            "capacity_a": 0.2392,
+            "margin_x": 1.407,
             "capacity_at_double_copper_a": null
           },
           "3V3A": {
@@ -940,11 +954,11 @@
             "capacity_at_double_copper_a": null
           }
         },
-        "_runtime_s": 0.018
+        "_runtime_s": 0.024
       },
       "counts": {
         "FAIL": 0,
-        "WARN": 2,
+        "WARN": 3,
         "INFO": 0
       },
       "findings": [
@@ -954,7 +968,7 @@
           "message": "5V_SYS: narrowest conductor has only 1.10x margin over the 0.66 A it carries (solved per segment).",
           "detail": {
             "net": "5V_SYS",
-            "margin": 1.095653751751163,
+            "margin": 1.0956537429732052,
             "layer": "PWR",
             "width_mm": 1.15,
             "required_width_mm": 1.0139,
@@ -974,18 +988,38 @@
           "message": "5V_ANA: narrowest conductor has only 1.13x margin over the 0.49 A it carries (solved per segment).",
           "detail": {
             "net": "5V_ANA",
-            "margin": 1.1343719764493037,
+            "margin": 1.1343719732045745,
             "layer": "PWR",
             "width_mm": 0.8,
             "required_width_mm": 0.6723,
             "capacity_a": 0.5558,
-            "length_mm": 2.8,
+            "length_mm": 1.131,
             "at": [
-              63.0,
-              127.0875
+              59.9,
+              126.975
             ],
             "current_a": 0.49,
             "solved": true
+          }
+        },
+        {
+          "severity": "WARN",
+          "code": "AMPACITY_MARGIN",
+          "message": "3V3D: narrowest conductor has only 1.41x margin over the 0.17 A it carries (full rail budget).",
+          "detail": {
+            "net": "3V3D",
+            "margin": 1.4069184097918022,
+            "layer": "SIG",
+            "width_mm": 0.25,
+            "required_width_mm": 0.1561,
+            "capacity_a": 0.2392,
+            "length_mm": 0.4,
+            "at": [
+              87.25,
+              55.75
+            ],
+            "current_a": 0.17,
+            "solved": false
           }
         }
       ],
@@ -1093,8 +1127,8 @@
             "via_count": 1,
             "margin_x": 26.36,
             "at": [
-              103.85,
-              98.1
+              94.1,
+              63.0
             ]
           },
           "N4_VNEG_IV": {
@@ -1103,8 +1137,8 @@
             "via_count": 1,
             "margin_x": 26.36,
             "at": [
-              137.9,
-              118.8
+              97.78,
+              96.94
             ]
           },
           "3V3D": {
@@ -1113,8 +1147,8 @@
             "via_count": 1,
             "margin_x": 3.1,
             "at": [
-              86.85,
-              55.75
+              74.93,
+              124.4
             ]
           },
           "3V3A": {
@@ -1123,8 +1157,8 @@
             "via_count": 1,
             "margin_x": 21.09,
             "at": [
-              102.9159,
-              82.0523
+              50.67,
+              111.8
             ]
           },
           "3V3M": {
@@ -1153,8 +1187,8 @@
             "via_count": 1,
             "margin_x": 8.79,
             "at": [
-              53.79,
-              135.2
+              92.0,
+              95.0
             ]
           },
           "DVCC": {
@@ -1183,8 +1217,8 @@
             "via_count": 1,
             "margin_x": 65.9,
             "at": [
-              90.7,
-              65.4625
+              109.0015,
+              76.8
             ]
           },
           "AVCC_R": {
@@ -1193,8 +1227,8 @@
             "via_count": 1,
             "margin_x": 65.9,
             "at": [
-              94.7,
-              88.175
+              91.9,
+              73.675
             ]
           },
           "VREF": {
@@ -1331,11 +1365,11 @@
             "connected_pads": 42,
             "open_pads": 0,
             "worst_pad": "C659.2",
-            "worst_r_eff_ohm": 0.17915,
-            "worst_drop_mv": 1.066,
+            "worst_r_eff_ohm": 0.17889,
+            "worst_drop_mv": 1.065,
             "budget_mv": 38.5,
             "budget_pct": 1.0,
-            "nodes": 410
+            "nodes": 440
           },
           "N4_VPOS_IV": {
             "source": "U403",
@@ -1366,12 +1400,12 @@
             "load_pads": 32,
             "connected_pads": 32,
             "open_pads": 0,
-            "worst_pad": "J202.1",
-            "worst_r_eff_ohm": 0.12539,
-            "worst_drop_mv": 0.666,
+            "worst_pad": "C224.1",
+            "worst_r_eff_ohm": 0.13957,
+            "worst_drop_mv": 0.741,
             "budget_mv": 99.0,
             "budget_pct": 3.0,
-            "nodes": 280
+            "nodes": 273
           },
           "3V3A": {
             "source": "U302",
@@ -1628,26 +1662,6 @@
             "local_vias": false
           },
           {
-            "pin": "U201.64",
-            "net": "3V3M",
-            "cap": "C204",
-            "cap_value": "100 nF",
-            "distance_mm": 9.23,
-            "mount_inductance_nh": 0.288,
-            "mounted_srf_mhz": 16.89,
-            "local_vias": true
-          },
-          {
-            "pin": "U201.32",
-            "net": "3V3M",
-            "cap": "C221",
-            "cap_value": "1 \u00b5F",
-            "distance_mm": 8.504,
-            "mount_inductance_nh": 0.35,
-            "mounted_srf_mhz": 4.5,
-            "local_vias": true
-          },
-          {
             "pin": "U101.5",
             "net": "3V3M",
             "cap": "C502",
@@ -1688,16 +1702,6 @@
             "local_vias": true
           },
           {
-            "pin": "U201.1",
-            "net": "3V3M",
-            "cap": "C204",
-            "cap_value": "100 nF",
-            "distance_mm": 6.497,
-            "mount_inductance_nh": 0.288,
-            "mounted_srf_mhz": 16.89,
-            "local_vias": true
-          },
-          {
             "pin": "U619.4",
             "net": "VNEG",
             "cap": "C665",
@@ -1706,14 +1710,44 @@
             "mount_inductance_nh": 1.199,
             "mounted_srf_mhz": 11.87,
             "local_vias": false
+          },
+          {
+            "pin": "U613.4",
+            "net": "VNEG",
+            "cap": "C659",
+            "cap_value": "100 nF",
+            "distance_mm": 6.475,
+            "mount_inductance_nh": 1.199,
+            "mounted_srf_mhz": 11.87,
+            "local_vias": false
+          },
+          {
+            "pin": "U615.4",
+            "net": "VNEG",
+            "cap": "C661",
+            "cap_value": "100 nF",
+            "distance_mm": 6.475,
+            "mount_inductance_nh": 1.199,
+            "mounted_srf_mhz": 11.87,
+            "local_vias": false
+          },
+          {
+            "pin": "U617.4",
+            "net": "VNEG",
+            "cap": "C663",
+            "cap_value": "100 nF",
+            "distance_mm": 6.475,
+            "mount_inductance_nh": 1.199,
+            "mounted_srf_mhz": 11.87,
+            "local_vias": false
           }
         ],
-        "median_distance_mm": 3.201,
-        "_runtime_s": 0.008
+        "median_distance_mm": 3.083,
+        "_runtime_s": 0.009
       },
       "counts": {
         "FAIL": 0,
-        "WARN": 40,
+        "WARN": 38,
         "INFO": 0
       },
       "findings": [
@@ -1840,16 +1874,16 @@
         {
           "severity": "WARN",
           "code": "BYPASS_DISTANCE",
-          "message": "U201.1 (3V3M): nearest bypass C204 (100 nF) is 6.50 mm away, beyond the 3.0 mm high-frequency guideline.",
+          "message": "U201.1 (3V3M): nearest bypass C206 (100 nF) is 4.37 mm away, beyond the 3.0 mm high-frequency guideline.",
           "detail": {
             "pin": "U201.1",
             "net": "3V3M",
-            "cap": "C204",
+            "cap": "C206",
             "cap_value": "100 nF",
-            "distance_mm": 6.497,
-            "mount_inductance_nh": 0.288,
-            "mounted_srf_mhz": 16.89,
-            "local_vias": true
+            "distance_mm": 4.373,
+            "mount_inductance_nh": 1.172,
+            "mounted_srf_mhz": 11.96,
+            "local_vias": false
           }
         },
         {
@@ -1885,31 +1919,16 @@
         {
           "severity": "WARN",
           "code": "BYPASS_DISTANCE",
-          "message": "U201.32 (3V3M): nearest bypass C221 (1 \u00b5F) is 8.50 mm away, beyond the 3.0 mm high-frequency guideline.",
+          "message": "U201.32 (3V3M): nearest bypass C207 (100 nF) is 3.85 mm away, beyond the 3.0 mm high-frequency guideline.",
           "detail": {
             "pin": "U201.32",
             "net": "3V3M",
-            "cap": "C221",
-            "cap_value": "1 \u00b5F",
-            "distance_mm": 8.504,
-            "mount_inductance_nh": 0.35,
-            "mounted_srf_mhz": 4.5,
-            "local_vias": true
-          }
-        },
-        {
-          "severity": "WARN",
-          "code": "BYPASS_DISTANCE",
-          "message": "U201.64 (3V3M): nearest bypass C204 (100 nF) is 9.23 mm away, beyond the 3.0 mm high-frequency guideline.",
-          "detail": {
-            "pin": "U201.64",
-            "net": "3V3M",
-            "cap": "C204",
+            "cap": "C207",
             "cap_value": "100 nF",
-            "distance_mm": 9.23,
-            "mount_inductance_nh": 0.288,
-            "mounted_srf_mhz": 16.89,
-            "local_vias": true
+            "distance_mm": 3.854,
+            "mount_inductance_nh": 1.172,
+            "mounted_srf_mhz": 11.96,
+            "local_vias": false
           }
         },
         {
@@ -2005,16 +2024,16 @@
         {
           "severity": "WARN",
           "code": "BYPASS_DISTANCE",
-          "message": "U208.8 (3V3D): nearest bypass C224 (100 nF) is 5.13 mm away, beyond the 3.0 mm high-frequency guideline.",
+          "message": "U208.8 (3V3D): nearest bypass C224 (100 nF) is 3.40 mm away, beyond the 3.0 mm high-frequency guideline.",
           "detail": {
             "pin": "U208.8",
             "net": "3V3D",
             "cap": "C224",
             "cap_value": "100 nF",
-            "distance_mm": 5.125,
-            "mount_inductance_nh": 0.288,
-            "mounted_srf_mhz": 16.89,
-            "local_vias": true
+            "distance_mm": 3.395,
+            "mount_inductance_nh": 1.172,
+            "mounted_srf_mhz": 11.96,
+            "local_vias": false
           }
         },
         {
@@ -2301,21 +2320,6 @@
             "mounted_srf_mhz": 16.89,
             "local_vias": true
           }
-        },
-        {
-          "severity": "WARN",
-          "code": "BYPASS_DISTANCE",
-          "message": "U607.5 (3V3D): nearest bypass C223 (100 nF) is 3.60 mm away, beyond the 3.0 mm high-frequency guideline.",
-          "detail": {
-            "pin": "U607.5",
-            "net": "3V3D",
-            "cap": "C223",
-            "cap_value": "100 nF",
-            "distance_mm": 3.604,
-            "mount_inductance_nh": 0.288,
-            "mounted_srf_mhz": 16.89,
-            "local_vias": true
-          }
         }
       ],
       "error": ""
@@ -2409,7 +2413,7 @@
           }
         ],
         "usb_impedance_basis": "2-D field solve (tline.py): F.Cu over 0.0994 mm 3313 prepreg er 4.1, mask 0.015 mm; build corners +/-10 % prepreg, +/-0.2 er, +/-5 um copper",
-        "_runtime_s": 36.833
+        "_runtime_s": 38.163
       },
       "counts": {
         "FAIL": 0,
@@ -2485,10 +2489,11 @@
         "clock_lengths_mm": {
           "LRCLK_FB": 39.79,
           "N2_CAP_CK": 37.41,
+          "N6_MCK_CMP": 36.41,
           "N2_CAP_WS": 30.19,
-          "LINK_SCK": 27.91,
           "N2_LINK_SCK_BUF": 27.79,
           "CPLD_JTCK": 26.16,
+          "LINK_SCK": 25.74,
           "N2_CAP_SD": 24.72,
           "SWCLK": 20.83,
           "BCLK": 16.64,
@@ -2496,10 +2501,9 @@
           "SDATA": 15.2,
           "N2_HSE_OUT": 15.02,
           "N2_HSE_IN": 12.47,
-          "N6_REFMCK": 11.96,
-          "N6_MCK_BUF": 10.68
+          "N6_REFMCK": 11.96
         },
-        "_runtime_s": 0.006
+        "_runtime_s": 0.007
       },
       "counts": {
         "FAIL": 0,
@@ -2556,11 +2560,11 @@
           "GND5",
           "B.Cu"
         ],
-        "ground_stitching_vias": 751,
+        "ground_stitching_vias": 763,
         "stitching_distance_rule_mm": 2.0,
-        "signal_vias_checked": 241,
-        "worst_stitching_distance_mm": 4.68,
-        "worst_stitching_net": "LINK_MOSI",
+        "signal_vias_checked": 246,
+        "worst_stitching_distance_mm": 4.597,
+        "worst_stitching_net": "ANA_EN",
         "_runtime_s": 0.002
       },
       "counts": {
@@ -2572,10 +2576,10 @@
         {
           "severity": "WARN",
           "code": "RETURN_PATH_STITCHING",
-          "message": "99 layer-changing signal via(s) have no ground via within 2.0 mm, so the return current must detour.",
+          "message": "98 layer-changing signal via(s) have no ground via within 2.0 mm, so the return current must detour.",
           "detail": {
-            "count": 99,
-            "total_checked": 241,
+            "count": 98,
+            "total_checked": 246,
             "worst": [
               {
                 "net": "LEG_RN",
@@ -2586,20 +2590,20 @@
                 "nearest_gnd_via_mm": null
               },
               {
-                "net": "LINK_MOSI",
-                "pos_mm": [
-                  87.6603,
-                  54.25
-                ],
-                "nearest_gnd_via_mm": 4.68
-              },
-              {
                 "net": "ANA_EN",
                 "pos_mm": [
                   58.1347,
                   61.4386
                 ],
                 "nearest_gnd_via_mm": 4.597
+              },
+              {
+                "net": "LINK_MOSI",
+                "pos_mm": [
+                  87.4534,
+                  54.25
+                ],
+                "nearest_gnd_via_mm": 4.565
               },
               {
                 "net": "DC_PERMIT_N",
@@ -2742,7 +2746,7 @@
           "LEG_LP/LEG_RP": 0.00038,
           "LEG_LN/LEG_RN": 0.00079
         },
-        "_runtime_s": 0.017
+        "_runtime_s": 0.015
       },
       "counts": {
         "FAIL": 0,
@@ -2960,7 +2964,7 @@
               "J701",
               "J702"
             ],
-            "stub_mm": 3.35
+            "stub_mm": 3.25
           },
           "JACK_RN": {
             "parts": [
@@ -3057,10 +3061,10 @@
             "ground_bond": [
               "C102"
             ],
-            "stub_mm": 6.21
+            "stub_mm": 6.84
           }
         },
-        "_runtime_s": 0.006
+        "_runtime_s": 0.007
       },
       "counts": {
         "FAIL": 0,
@@ -3131,37 +3135,37 @@
             "track_width_mm": 0.4
           },
           "3V3D": {
-            "z_at_mclk_ohm": 0.2519,
+            "z_at_mclk_ohm": 0.3227,
             "z_target_ohm": 0.9706,
-            "z_max_in_band_ohm": 1.1533,
-            "z_at_100khz_ohm": 0.0851,
-            "z_at_100mhz_ohm": 1.1533,
-            "decoupling_bandwidth_hz": 84216694,
+            "z_max_in_band_ohm": 1.5118,
+            "z_at_100khz_ohm": 0.0726,
+            "z_at_100mhz_ohm": 1.5118,
+            "decoupling_bandwidth_hz": 64456393,
             "cap_count": 11,
-            "local_cap_count": 2,
+            "local_cap_count": 1,
             "total_capacitance_uf": 11.81,
-            "worst_pin": "U208.8",
-            "nearest_cap_mm": 8.49,
-            "margin_db_at_mclk": 11.72,
+            "worst_pin": "U604.8",
+            "nearest_cap_mm": 4.61,
+            "margin_db_at_mclk": 9.56,
             "assumed_current_a": 0.17,
-            "passes_if_transient_below_a": 0.6551,
+            "passes_if_transient_below_a": 0.5112,
             "track_width_mm": 0.4
           },
           "3V3M": {
-            "z_at_mclk_ohm": 0.4278,
+            "z_at_mclk_ohm": 0.4229,
             "z_target_ohm": 1.8333,
-            "z_max_in_band_ohm": 1.9215,
+            "z_max_in_band_ohm": 1.8996,
             "z_at_100khz_ohm": 0.1435,
-            "z_at_100mhz_ohm": 1.9215,
-            "decoupling_bandwidth_hz": 95415938,
+            "z_at_100mhz_ohm": 1.8996,
+            "decoupling_bandwidth_hz": 96516801,
             "cap_count": 14,
             "local_cap_count": 0,
             "total_capacitance_uf": 6.5,
             "worst_pin": "U505.5",
-            "nearest_cap_mm": 16.42,
-            "margin_db_at_mclk": 12.64,
+            "nearest_cap_mm": 16.37,
+            "margin_db_at_mclk": 12.74,
             "assumed_current_a": 0.09,
-            "passes_if_transient_below_a": 0.3857,
+            "passes_if_transient_below_a": 0.3902,
             "track_width_mm": 0.4
           },
           "5V_ANA_F": {
@@ -3184,9 +3188,9 @@
           "5V_SYS": {
             "z_at_mclk_ohm": 0.1641,
             "z_target_ohm": 1.4706,
-            "z_max_in_band_ohm": 0.7415,
+            "z_max_in_band_ohm": 0.7416,
             "z_at_100khz_ohm": 0.0111,
-            "z_at_100mhz_ohm": 0.7415,
+            "z_at_100mhz_ohm": 0.7416,
             "decoupling_bandwidth_hz": null,
             "cap_count": 3,
             "local_cap_count": 1,
@@ -3199,20 +3203,20 @@
             "track_width_mm": 1.0
           },
           "AVCC_L": {
-            "z_at_mclk_ohm": 0.2243,
+            "z_at_mclk_ohm": 0.2241,
             "z_target_ohm": 4.125,
-            "z_max_in_band_ohm": 1.1056,
+            "z_max_in_band_ohm": 1.1047,
             "z_at_100khz_ohm": 0.0123,
-            "z_at_100mhz_ohm": 1.1056,
+            "z_at_100mhz_ohm": 1.1047,
             "decoupling_bandwidth_hz": null,
             "cap_count": 2,
             "local_cap_count": 2,
             "total_capacitance_uf": 2.3,
             "worst_pin": "U301.15",
             "nearest_cap_mm": 2.44,
-            "margin_db_at_mclk": 25.29,
+            "margin_db_at_mclk": 25.3,
             "assumed_current_a": 0.008,
-            "passes_if_transient_below_a": 0.1471,
+            "passes_if_transient_below_a": 0.1473,
             "track_width_mm": 0.3
           },
           "AVCC_R": {
@@ -3250,11 +3254,11 @@
             "track_width_mm": 0.25
           },
           "N4_VNEG_IV": {
-            "z_at_mclk_ohm": 0.2203,
+            "z_at_mclk_ohm": 0.2204,
             "z_target_ohm": 1.75,
-            "z_max_in_band_ohm": 1.0396,
+            "z_max_in_band_ohm": 1.0398,
             "z_at_100khz_ohm": 0.0178,
-            "z_at_100mhz_ohm": 1.0396,
+            "z_at_100mhz_ohm": 1.0398,
             "decoupling_bandwidth_hz": null,
             "cap_count": 3,
             "local_cap_count": 1,
@@ -3286,18 +3290,18 @@
           "VBUS": {
             "z_at_mclk_ohm": 0.2752,
             "z_target_ohm": 0.9615,
-            "z_max_in_band_ohm": 1.2192,
+            "z_max_in_band_ohm": 1.2191,
             "z_at_100khz_ohm": 0.0111,
-            "z_at_100mhz_ohm": 1.2192,
-            "decoupling_bandwidth_hz": 78867722,
+            "z_at_100mhz_ohm": 1.2191,
+            "decoupling_bandwidth_hz": 78875837,
             "cap_count": 1,
             "local_cap_count": 0,
             "total_capacitance_uf": 2.2,
             "worst_pin": "U102.6",
-            "nearest_cap_mm": 23.64,
-            "margin_db_at_mclk": 10.86,
+            "nearest_cap_mm": 23.63,
+            "margin_db_at_mclk": 10.87,
             "assumed_current_a": 0.26,
-            "passes_if_transient_below_a": 0.9083,
+            "passes_if_transient_below_a": 0.9084,
             "track_width_mm": 1.0
           },
           "VCCA": {
@@ -3318,42 +3322,42 @@
             "track_width_mm": 0.25
           },
           "VNEG": {
-            "z_at_mclk_ohm": 0.3431,
+            "z_at_mclk_ohm": 0.3454,
             "z_target_ohm": 1.1,
-            "z_max_in_band_ohm": 1.5415,
+            "z_max_in_band_ohm": 1.5516,
             "z_at_100khz_ohm": 0.0455,
-            "z_at_100mhz_ohm": 1.5415,
-            "decoupling_bandwidth_hz": 71413019,
+            "z_at_100mhz_ohm": 1.5516,
+            "decoupling_bandwidth_hz": 70948618,
             "cap_count": 19,
             "local_cap_count": 0,
             "total_capacitance_uf": 31.6,
             "worst_pin": "U606.12",
-            "nearest_cap_mm": 22.84,
-            "margin_db_at_mclk": 10.12,
+            "nearest_cap_mm": 23.14,
+            "margin_db_at_mclk": 10.06,
             "assumed_current_a": 0.035,
-            "passes_if_transient_below_a": 0.1122,
+            "passes_if_transient_below_a": 0.1115,
             "track_width_mm": 0.4
           },
           "VPOS": {
-            "z_at_mclk_ohm": 0.3446,
+            "z_at_mclk_ohm": 0.3452,
             "z_target_ohm": 1.0694,
-            "z_max_in_band_ohm": 1.5488,
+            "z_max_in_band_ohm": 1.5515,
             "z_at_100khz_ohm": 0.0481,
-            "z_at_100mhz_ohm": 1.5488,
-            "decoupling_bandwidth_hz": 69109830,
+            "z_at_100mhz_ohm": 1.5515,
+            "decoupling_bandwidth_hz": 68990624,
             "cap_count": 19,
             "local_cap_count": 0,
             "total_capacitance_uf": 31.6,
             "worst_pin": "U603.3",
-            "nearest_cap_mm": 20.73,
-            "margin_db_at_mclk": 9.84,
+            "nearest_cap_mm": 20.48,
+            "margin_db_at_mclk": 9.82,
             "assumed_current_a": 0.036,
-            "passes_if_transient_below_a": 0.1117,
+            "passes_if_transient_below_a": 0.1115,
             "track_width_mm": 0.4
           }
         },
         "criterion_frequency_hz": 22579200.0,
-        "_runtime_s": 160.684
+        "_runtime_s": 250.692
       },
       "counts": {
         "FAIL": 0,
@@ -3448,7 +3452,7 @@
         },
         "worst_damping_factor": 1028.4,
         "worst_net": "JACK_LN",
-        "_runtime_s": 9.792
+        "_runtime_s": 12.244
       },
       "counts": {
         "FAIL": 0,

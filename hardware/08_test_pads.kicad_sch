@@ -918,7 +918,7 @@
 (instances (project "DAC_HPA" (path "/0c6c0976-e401-5c8a-8977-bc60da031e5e/6875d29f-8c08-594f-9699-596787d4701d" (reference "TP747") (unit 1))))
 )
 (wire (pts (xy 43.18 198.12) (xy 40.64 198.12)) (stroke (width 0) (type solid)) (uuid "38f765fb-2ab0-56f5-a31f-5dfe801d44ef"))
-(global_label "N6_MCK_RC" (shape bidirectional) (at 40.64 198.12 180) (effects (font (size 0.762 0.762)) (justify right bottom)) (uuid "8aa1e215-a111-569d-9424-9cf44cd9cae6"))
+(global_label "N6_MCK_CMP" (shape bidirectional) (at 40.64 198.12 180) (effects (font (size 0.762 0.762)) (justify right bottom)) (uuid "8aa1e215-a111-569d-9424-9cf44cd9cae6"))
 (symbol (lib_id "DAC_HPA:P183") (at 88.9 198.12 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "4715c033-6673-5b8b-ad31-474fd5c3faa3")
 (property "Reference" "TP748" (at 88.9 193.04 0) (effects (font (size 0.889 0.889))))
 (property "Value" "No part" (at 88.9 203.2 0) (effects (font (size 0.889 0.889))))

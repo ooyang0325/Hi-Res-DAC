@@ -1,13 +1,97 @@
 {
   "board": "DAC_HPA_120x100_INTEGRATED_AUDIO_STUDY_ONLY.kicad_pcb",
-  "different_net_near_smd_pad_count": 176,
-  "filled_capped_near_smd_pad_count": 40,
+  "different_net_near_smd_pad_count": 182,
+  "filled_capped_near_smd_pad_count": 55,
   "jlc_mask_bridge_source": "https://jlcpcb.com/help/article/instructions-for-ordering",
   "jlc_source": "https://jlcpcb.com/help/article/pcb-via-covering",
   "mask_bridge_screen_mm": 0.1,
   "method": "nearest SMT pad axis-aligned copper bounding box to via copper circle; conservative for nonrectangular pads and excludes mask expansion",
   "minimum_unfilled_near_pad_gap_mm": 0.1,
   "near_smd_pad_vias": [
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U503.PAD",
+      "side": "top",
+      "via_at_mm": [
+        53.25,
+        121.4
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U503.PAD",
+      "side": "top",
+      "via_at_mm": [
+        53.25,
+        122.3
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U503.PAD",
+      "side": "top",
+      "via_at_mm": [
+        54.2,
+        121.4
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U503.PAD",
+      "side": "top",
+      "via_at_mm": [
+        54.2,
+        122.3
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U503.PAD",
+      "side": "top",
+      "via_at_mm": [
+        55.15,
+        121.4
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U503.PAD",
+      "side": "top",
+      "via_at_mm": [
+        55.15,
+        122.3
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "GND"
+    },
     {
       "conservative_copper_edge_gap_mm": -0.35,
       "filled_and_capped": true,
@@ -104,6 +188,132 @@
       ],
       "via_diameter_mm": 0.7,
       "via_drill_mm": 0.3,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "VNEG",
+      "nearest_smd_pad": "U401.PAD",
+      "side": "top",
+      "via_at_mm": [
+        116.625,
+        80.05
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "VNEG"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "VNEG",
+      "nearest_smd_pad": "U401.PAD",
+      "side": "top",
+      "via_at_mm": [
+        117.225,
+        78.85
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "VNEG"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "VNEG",
+      "nearest_smd_pad": "U401.PAD",
+      "side": "top",
+      "via_at_mm": [
+        117.425,
+        80.05
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "VNEG"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "VNEG",
+      "nearest_smd_pad": "U402.PAD",
+      "side": "top",
+      "via_at_mm": [
+        128.625,
+        78.45
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "VNEG"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "VNEG",
+      "nearest_smd_pad": "U402.PAD",
+      "side": "top",
+      "via_at_mm": [
+        128.625,
+        79.55
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "VNEG"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "VNEG",
+      "nearest_smd_pad": "U402.PAD",
+      "side": "top",
+      "via_at_mm": [
+        129.425,
+        78.45
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "VNEG"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.35,
+      "filled_and_capped": true,
+      "nearest_pad_net": "VNEG",
+      "nearest_smd_pad": "U402.PAD",
+      "side": "top",
+      "via_at_mm": [
+        129.425,
+        79.55
+      ],
+      "via_diameter_mm": 0.7,
+      "via_drill_mm": 0.3,
+      "via_net": "VNEG"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.3,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U504.PAD",
+      "side": "top",
+      "via_at_mm": [
+        51.0,
+        132.6
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "GND"
+    },
+    {
+      "conservative_copper_edge_gap_mm": -0.3,
+      "filled_and_capped": true,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "U504.PAD",
+      "side": "top",
+      "via_at_mm": [
+        51.0,
+        133.4
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
       "via_net": "GND"
     },
     {
@@ -357,20 +567,6 @@
       "via_diameter_mm": 0.5,
       "via_drill_mm": 0.2,
       "via_net": "RAILS_OK_N"
-    },
-    {
-      "conservative_copper_edge_gap_mm": -0.025,
-      "filled_and_capped": true,
-      "nearest_pad_net": "3V3D",
-      "nearest_smd_pad": "X203.4",
-      "side": "top",
-      "via_at_mm": [
-        73.175,
-        68.6
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3D"
     },
     {
       "conservative_copper_edge_gap_mm": -0.015,
@@ -1143,20 +1339,6 @@
       "via_net": "LEG_RN"
     },
     {
-      "conservative_copper_edge_gap_mm": 0.1482,
-      "filled_and_capped": false,
-      "nearest_pad_net": "VNEG",
-      "nearest_smd_pad": "TP708.1",
-      "side": "top",
-      "via_at_mm": [
-        90.85,
-        97.78
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "VNEG"
-    },
-    {
       "conservative_copper_edge_gap_mm": 0.15,
       "filled_and_capped": false,
       "nearest_pad_net": "N2_HSE_OUT",
@@ -1423,6 +1605,20 @@
       "via_net": "5V_SYS"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.155,
+      "filled_and_capped": false,
+      "nearest_pad_net": "3V3D",
+      "nearest_smd_pad": "C217.1",
+      "side": "top",
+      "via_at_mm": [
+        88.04,
+        89.18
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "3V3D"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.1557,
       "filled_and_capped": false,
       "nearest_pad_net": "ANA_FAULT_N",
@@ -1481,20 +1677,6 @@
     {
       "conservative_copper_edge_gap_mm": 0.1579,
       "filled_and_capped": false,
-      "nearest_pad_net": "GND",
-      "nearest_smd_pad": "C207.2",
-      "side": "top",
-      "via_at_mm": [
-        68.15,
-        50.45
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "GND"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.1579,
-      "filled_and_capped": false,
       "nearest_pad_net": "VPOS",
       "nearest_smd_pad": "C411.1",
       "side": "top",
@@ -1505,20 +1687,6 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "VPOS"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.158,
-      "filled_and_capped": false,
-      "nearest_pad_net": "MCLK_EN",
-      "nearest_smd_pad": "R218.1",
-      "side": "top",
-      "via_at_mm": [
-        72.812,
-        58.25
-      ],
-      "via_diameter_mm": 0.5,
-      "via_drill_mm": 0.2,
-      "via_net": "MCLK_EN"
     },
     {
       "conservative_copper_edge_gap_mm": 0.1584,
@@ -1743,20 +1911,6 @@
       "via_diameter_mm": 0.5,
       "via_drill_mm": 0.2,
       "via_net": "CPLD_NRST"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.1647,
-      "filled_and_capped": false,
-      "nearest_pad_net": "LINK_MOSI",
-      "nearest_smd_pad": "U208.5",
-      "side": "top",
-      "via_at_mm": [
-        87.6603,
-        54.25
-      ],
-      "via_diameter_mm": 0.5,
-      "via_drill_mm": 0.2,
-      "via_net": "LINK_MOSI"
     },
     {
       "conservative_copper_edge_gap_mm": 0.1662,
@@ -2291,6 +2445,20 @@
       "via_net": "NRST"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.19,
+      "filled_and_capped": false,
+      "nearest_pad_net": "3V3D",
+      "nearest_smd_pad": "C224.1",
+      "side": "top",
+      "via_at_mm": [
+        90.1,
+        52.15
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "3V3D"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.1912,
       "filled_and_capped": false,
       "nearest_pad_net": "GND",
@@ -2373,6 +2541,48 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "VPOS"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.1973,
+      "filled_and_capped": false,
+      "nearest_pad_net": "MCLK_EN",
+      "nearest_smd_pad": "R218.1",
+      "side": "top",
+      "via_at_mm": [
+        72.74,
+        57.25
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "3V3D"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.1988,
+      "filled_and_capped": false,
+      "nearest_pad_net": "3V3M",
+      "nearest_smd_pad": "C206.1",
+      "side": "top",
+      "via_at_mm": [
+        57.566,
+        65.1912
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "N6_V13_TEST"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.1992,
+      "filled_and_capped": false,
+      "nearest_pad_net": "3V3D",
+      "nearest_smd_pad": "C217.1",
+      "side": "top",
+      "via_at_mm": [
+        86.96,
+        88.07
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "3V3D"
     },
     {
       "conservative_copper_edge_gap_mm": 0.1998,
@@ -2643,20 +2853,6 @@
     {
       "conservative_copper_edge_gap_mm": 0.2,
       "filled_and_capped": false,
-      "nearest_pad_net": "N6_MCK_RC",
-      "nearest_smd_pad": "D609.2",
-      "side": "top",
-      "via_at_mm": [
-        86.0,
-        97.75
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "N6_MCK_RC"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.2,
-      "filled_and_capped": false,
       "nearest_pad_net": "GND",
       "nearest_smd_pad": "D609.1",
       "side": "top",
@@ -2797,7 +2993,7 @@
     {
       "conservative_copper_edge_gap_mm": 0.2028,
       "filled_and_capped": false,
-      "nearest_pad_net": "",
+      "nearest_pad_net": "unconnected-(U202-IO{slash}PIN_29-Pad29)",
       "nearest_smd_pad": "U202.29",
       "side": "top",
       "via_at_mm": [
@@ -3145,6 +3341,20 @@
       "via_net": "N6_OLP_R"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.2087,
+      "filled_and_capped": false,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "C207.2",
+      "side": "top",
+      "via_at_mm": [
+        69.2616,
+        55.9693
+      ],
+      "via_diameter_mm": 0.5,
+      "via_drill_mm": 0.2,
+      "via_net": "N2_CAP_WS"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.2099,
       "filled_and_capped": false,
       "nearest_pad_net": "N5_ILIM",
@@ -3385,7 +3595,7 @@
     {
       "conservative_copper_edge_gap_mm": 0.2148,
       "filled_and_capped": false,
-      "nearest_pad_net": "",
+      "nearest_pad_net": "unconnected-(J101-SBU1-PadA8)",
       "nearest_smd_pad": "J101.A8",
       "side": "top",
       "via_at_mm": [
@@ -3507,34 +3717,6 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "VNEG"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.2192,
-      "filled_and_capped": false,
-      "nearest_pad_net": "3V3D",
-      "nearest_smd_pad": "C218.1",
-      "side": "top",
-      "via_at_mm": [
-        72.74,
-        57.25
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3D"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.2192,
-      "filled_and_capped": false,
-      "nearest_pad_net": "3V3D",
-      "nearest_smd_pad": "C219.1",
-      "side": "top",
-      "via_at_mm": [
-        77.45,
-        71.26
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3D"
     },
     {
       "conservative_copper_edge_gap_mm": 0.2192,
@@ -3733,20 +3915,6 @@
       "via_net": "AVCC_EN"
     },
     {
-      "conservative_copper_edge_gap_mm": 0.2239,
-      "filled_and_capped": false,
-      "nearest_pad_net": "3V3D",
-      "nearest_smd_pad": "X201.4",
-      "side": "top",
-      "via_at_mm": [
-        88.04,
-        89.18
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3D"
-    },
-    {
       "conservative_copper_edge_gap_mm": 0.225,
       "filled_and_capped": false,
       "nearest_pad_net": "5V_ANA",
@@ -3845,20 +4013,6 @@
       "via_net": "AVCC_EN"
     },
     {
-      "conservative_copper_edge_gap_mm": 0.227,
-      "filled_and_capped": false,
-      "nearest_pad_net": "N6_MCK_RC",
-      "nearest_smd_pad": "C625.1",
-      "side": "top",
-      "via_at_mm": [
-        71.9,
-        91.2
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "N6_MCK_RC"
-    },
-    {
       "conservative_copper_edge_gap_mm": 0.2278,
       "filled_and_capped": false,
       "nearest_pad_net": "N2_HSE_IN",
@@ -3875,7 +4029,7 @@
     {
       "conservative_copper_edge_gap_mm": 0.228,
       "filled_and_capped": false,
-      "nearest_pad_net": "",
+      "nearest_pad_net": "unconnected-(U102-FAULT-Pad3)",
       "nearest_smd_pad": "U102.3",
       "side": "top",
       "via_at_mm": [
@@ -3885,6 +4039,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "N1_U102_ILIM"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.228,
+      "filled_and_capped": false,
+      "nearest_pad_net": "3V3D",
+      "nearest_smd_pad": "C218.1",
+      "side": "top",
+      "via_at_mm": [
+        72.812,
+        58.25
+      ],
+      "via_diameter_mm": 0.5,
+      "via_drill_mm": 0.2,
+      "via_net": "MCLK_EN"
     },
     {
       "conservative_copper_edge_gap_mm": 0.2285,
@@ -4209,6 +4377,20 @@
       "via_net": "N6_REF13"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.2339,
+      "filled_and_capped": false,
+      "nearest_pad_net": "OSC44_EN",
+      "nearest_smd_pad": "X203.1",
+      "side": "top",
+      "via_at_mm": [
+        74.97,
+        71.57
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "GND"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.234,
       "filled_and_capped": false,
       "nearest_pad_net": "N2_HSE_OUT",
@@ -4291,6 +4473,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "N4_VNEG_IV"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.2374,
+      "filled_and_capped": false,
+      "nearest_pad_net": "VNEG",
+      "nearest_smd_pad": "TP708.1",
+      "side": "top",
+      "via_at_mm": [
+        95.85,
+        100.48
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "VNEG"
     },
     {
       "conservative_copper_edge_gap_mm": 0.2375,
@@ -4587,6 +4783,20 @@
       "via_net": "GND"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.2478,
+      "filled_and_capped": false,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "R666.2",
+      "side": "top",
+      "via_at_mm": [
+        88.79,
+        99.35
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "GND"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.25,
       "filled_and_capped": false,
       "nearest_pad_net": "GND",
@@ -4669,6 +4879,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "3V3M"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.25,
+      "filled_and_capped": false,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "C218.2",
+      "side": "top",
+      "via_at_mm": [
+        75.36,
+        58.35
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "3V3D"
     },
     {
       "conservative_copper_edge_gap_mm": 0.25,
@@ -4881,20 +5105,6 @@
       "via_net": "N6_ARM"
     },
     {
-      "conservative_copper_edge_gap_mm": 0.2544,
-      "filled_and_capped": false,
-      "nearest_pad_net": "GND",
-      "nearest_smd_pad": "X201.2",
-      "side": "top",
-      "via_at_mm": [
-        90.05,
-        92.13
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3D"
-    },
-    {
       "conservative_copper_edge_gap_mm": 0.255,
       "filled_and_capped": false,
       "nearest_pad_net": "GND",
@@ -4991,20 +5201,6 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "3V3M"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.2593,
-      "filled_and_capped": false,
-      "nearest_pad_net": "3V3D",
-      "nearest_smd_pad": "FB202.1",
-      "side": "top",
-      "via_at_mm": [
-        75.36,
-        58.35
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3D"
     },
     {
       "conservative_copper_edge_gap_mm": 0.26,
@@ -5301,6 +5497,20 @@
       "via_net": "DC_SENSE_LP"
     },
     {
+      "conservative_copper_edge_gap_mm": 0.2706,
+      "filled_and_capped": true,
+      "nearest_pad_net": "3V3D",
+      "nearest_smd_pad": "X203.4",
+      "side": "top",
+      "via_at_mm": [
+        73.175,
+        68.6
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "3V3D"
+    },
+    {
       "conservative_copper_edge_gap_mm": 0.2718,
       "filled_and_capped": false,
       "nearest_pad_net": "N6_V3AG_A_BUF_OUT",
@@ -5313,6 +5523,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "N5_U102_OFF"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.2743,
+      "filled_and_capped": false,
+      "nearest_pad_net": "LINK_FRAME",
+      "nearest_smd_pad": "R249.1",
+      "side": "top",
+      "via_at_mm": [
+        94.25,
+        56.0
+      ],
+      "via_diameter_mm": 0.5,
+      "via_drill_mm": 0.2,
+      "via_net": "LINK_FRAME"
     },
     {
       "conservative_copper_edge_gap_mm": 0.275,
@@ -5696,20 +5920,6 @@
       "conservative_copper_edge_gap_mm": 0.29,
       "filled_and_capped": false,
       "nearest_pad_net": "3V3M",
-      "nearest_smd_pad": "C207.1",
-      "side": "top",
-      "via_at_mm": [
-        65.65,
-        50.77
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3M"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.29,
-      "filled_and_capped": false,
-      "nearest_pad_net": "3V3M",
       "nearest_smd_pad": "C204.1",
       "side": "top",
       "via_at_mm": [
@@ -5719,6 +5929,20 @@
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
       "via_net": "3V3M"
+    },
+    {
+      "conservative_copper_edge_gap_mm": 0.29,
+      "filled_and_capped": false,
+      "nearest_pad_net": "GND",
+      "nearest_smd_pad": "C207.2",
+      "side": "top",
+      "via_at_mm": [
+        69.81,
+        54.5
+      ],
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.2,
+      "via_net": "3V3D"
     },
     {
       "conservative_copper_edge_gap_mm": 0.29,
@@ -5757,20 +5981,6 @@
       "via_at_mm": [
         84.77,
         89.35
-      ],
-      "via_diameter_mm": 0.6,
-      "via_drill_mm": 0.2,
-      "via_net": "3V3D"
-    },
-    {
-      "conservative_copper_edge_gap_mm": 0.29,
-      "filled_and_capped": false,
-      "nearest_pad_net": "3V3D",
-      "nearest_smd_pad": "C224.1",
-      "side": "top",
-      "via_at_mm": [
-        92.65,
-        55.23
       ],
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
@@ -6659,10 +6869,10 @@
       "via_net": "N6_VT"
     },
     {
-      "conservative_copper_edge_gap_mm": 0.3239,
+      "conservative_copper_edge_gap_mm": 0.323,
       "filled_and_capped": false,
       "nearest_pad_net": "GND",
-      "nearest_smd_pad": "R218.2",
+      "nearest_smd_pad": "C218.2",
       "side": "top",
       "via_at_mm": [
         75.01,
@@ -7118,7 +7328,7 @@
       ],
       "via_diameter_mm": 0.6,
       "via_drill_mm": 0.2,
-      "via_net": "N6_MCK_RC"
+      "via_net": "N6_MCK_CMP"
     },
     {
       "conservative_copper_edge_gap_mm": 0.34,
@@ -7252,5 +7462,5 @@
   "unfilled_below_0p10_copper_gap_count": 0,
   "unfilled_near_smd_pad_count": 477,
   "unfilled_smd_pad_overlap_count": 0,
-  "via_count": 1564
+  "via_count": 1575
 }

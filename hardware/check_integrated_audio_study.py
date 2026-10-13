@@ -596,7 +596,7 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
     tvs = json.loads(tvs_path.read_text())
     trace = json.loads(trace_path.read_text())
     manual = json.loads((HERE / "INTEGRATED_AUDIO_MANUAL_DELTA.json").read_text())
-    if placement["footprints"] != 545 or placement["named_nets"] != 253:  # F07: +2 CPLD copy nets; F10: R448, N4_GSENSE
+    if placement["footprints"] != 548 or placement["named_nets"] != 256:  # F07: +2 CPLD copy nets; F10: R448, N4_GSENSE; F11: R247-R249 + 3 nets
         raise AssertionError("Integrated study population/net count changed")
     if placement["bbox_overlaps"] or placement["high_z_clock_pad_gap_violations"]:
         raise AssertionError("Integrated study overlap or sensitive-to-clock gap")
@@ -806,7 +806,11 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
             raise AssertionError(f"{ref}.{pin} GND lacks L2 connection")
     for ref, pin in (("J701", "9"), ("J701", "10"),
                      ("J702", "5"), ("J702", "6")):
-        if pad(ref, pin).GetNetname() or connectivity.GetConnectedItems(pad(ref, pin)):
+        name = pad(ref, pin).GetNetname()   # an unconnected-(...) parity name is still a no-connect
+        copper = [item for item in connectivity.GetConnectedItems(pad(ref, pin))
+                  if not (item.GetClass() == "PAD" and item.GetParentFootprint().GetReference() == ref
+                          and item.GetNumber() == pin)]   # its own same-numbered lands
+        if (name and not name.startswith("unconnected-")) or copper:
             raise AssertionError(f"{ref}.{pin} must remain a physical no-connect")
     bypass_pad_distances = {}
     for opamp, rail, pins, caps in (
@@ -885,8 +889,8 @@ def check(board_path: Path, placement_path: Path, dfa_path: Path,
             raise AssertionError(f"{shunt} reference is not ground-sensed through R448")
     return {
         "board": board_path.name,
-        "footprints": 545,
-        "named_nets": 253,
+        "footprints": 548,
+        "named_nets": 256,
         "manual_moves": len(manual["moved_footprints"]),
         "manual_replaced_source_copper_items": len(manual.get("removed_source_copper", [])),
         "manual_added_copper_items": len(manual["added_copper"]),
