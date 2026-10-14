@@ -2,7 +2,8 @@
 # check_cpld_pins.py fails CI if this file and the schematic netlist disagree.
 set_location_assignment PIN_1 -to FAM_CLK
 set_location_assignment PIN_3 -to CPLD_IRQ
-set_location_assignment PIN_4 -to CPLD_NRST
+# Pin 4 is the dedicated NRST pad; Supra names it PIN_NRST and routes it into the fabric (fit 15 Oct 2026).
+set_location_assignment PIN_NRST -to CPLD_NRST
 set_location_assignment PIN_8 -to OSC44_EN
 set_location_assignment PIN_9 -to LINK_SCK
 set_location_assignment PIN_13 -to LRCLK_FB
@@ -19,8 +20,9 @@ set_location_assignment PIN_31 -to OSC48_EN
 # OD-16: LINK_SCK (pin 9 is not an IO_GB pin) must be promoted to a global clock network.
 set_instance_assignment -name GLOBAL_SIGNAL "GLOBAL CLOCK" -to LINK_SCK
 set_instance_assignment -name GLOBAL_SIGNAL "GLOBAL CLOCK" -to FAM_CLK
-# Layout review R2: <= 8 mA drive (or slow slew) on pins 28 and 13. Confirm the assignment names
-# Supra accepts for the AGRV2K; the fitter report must show the reduced drive.
+# Layout review R2: <= 8 mA drive or slow slew on pins 28 and 13. Supra 2026.09 applies SLEW_RATE 0 as
+# CFG_SLR = 1 on these two pins only (routed netlist); CURRENT_STRENGTH_NEW is accepted but leaves
+# CFG_PDRCTRL at the default 4'b0100 on every pin, so slow slew is what meets R2.
 set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LINK_MISO
 set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LRCLK_FB
 set_instance_assignment -name SLEW_RATE 0 -to LINK_MISO

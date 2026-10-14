@@ -15,7 +15,9 @@ netlist = {node.get("pin"): net.get("name") for net in root.findall("./nets/net"
            for node in net.findall("node") if node.get("ref") == "U202"}
 io = {pin: net for pin, net in netlist.items()
       if not net.startswith("unconnected-") and net not in ("GND", "N2_V33_CPLD", "CPLD_JTMS", "CPLD_JTCK")}
-asf = dict(re.findall(r"set_location_assignment PIN_(\w+) -to (\w+)", (HERE / "U202_pins.asf").read_text()))
+SUPRA_NAMED = {"NRST": "4"}  # Supra names the dedicated reset pad PIN_NRST, not PIN_4
+asf = {SUPRA_NAMED.get(p, p): net for p, net in
+       re.findall(r"set_location_assignment PIN_(\w+) -to (\w+)", (HERE / "U202_pins.asf").read_text())}
 ports = set(re.findall(r"^\s*(?:input|output)\s+(?:wire|reg)\s+(\w+)", (HERE / "link_fit_skeleton.v").read_text(), re.M))
 errors = [f"pin {p}: netlist {io.get(p)} vs asf {asf.get(p)}" for p in sorted(set(io) | set(asf), key=int) if io.get(p) != asf.get(p)]
 errors += [f"port set differs from asf: {sorted(ports ^ set(asf.values()))}"] if ports != set(asf.values()) else []

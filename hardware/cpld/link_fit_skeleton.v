@@ -45,8 +45,18 @@ module link_fit_skeleton (
     reg         hi_valid;     // high half of an audio word received
     reg  [15:0] hi;
     // Frame-scoped counters clear while LINK_FRAME is low (LINK_SCK does not run between frames).
+    // Supra's mapper (Yosys, which defines ALTA_SYN) takes one asynchronous clear per flop, so it gets
+    // the combined clear. Simulators and Quartus keep both edges and test the ports themselves: a clear
+    // held low from time 0 has no edge of its own (the testbench pulses CPLD_NRST while LINK_FRAME is
+    // low), and a wire read on the reset edge can still hold its old value.
+    wire frame_clr_n = LINK_FRAME & CPLD_NRST;
+`ifdef ALTA_SYN
+    always @(posedge LINK_SCK or negedge frame_clr_n)
+        if (!frame_clr_n) begin
+`else
     always @(posedge LINK_SCK or negedge LINK_FRAME or negedge CPLD_NRST)
         if (!LINK_FRAME || !CPLD_NRST) begin
+`endif
             bitcnt <= 0; in_hdr <= 1'b1; hi_valid <= 1'b0;
         end else begin
             bitcnt <= bitcnt + 1'b1;
@@ -121,8 +131,13 @@ module link_fit_skeleton (
     endcase
     always @(posedge LINK_SCK)
         if (in_hdr && bitcnt == 4'd15) rd_sh <= rd_word;
+`ifdef ALTA_SYN
+    always @(negedge LINK_SCK or negedge frame_clr_n)
+        if (!frame_clr_n) LINK_MISO <= 1'b0;
+`else
     always @(negedge LINK_SCK or negedge LINK_FRAME or negedge CPLD_NRST)
         if (!LINK_FRAME || !CPLD_NRST) LINK_MISO <= 1'b0;
+`endif
         else if (!in_hdr && hdr[15] && hdr[14]) LINK_MISO <= rd_sh[15 - bitcnt];
     assign CPLD_IRQ = ovf | unf_fam;    // level to the MCU; unf_s would go stale while LINK_SCK idles
 
@@ -136,7 +151,8 @@ module link_fit_skeleton (
     reg [3:0]  div_cnt;
     reg        bclk, lrclk, sdata;
     reg [5:0]  pos;                       // BCLK falls within the 64-bit frame
-    reg [31:0] word, out_sh;
+    wire [31:0] word;
+    reg  [31:0] out_sh;
     reg        unf;
     assign unf_fam = unf;
     wire       run = ctrl_s2[4];
@@ -171,12 +187,16 @@ module link_fit_skeleton (
                 end
             end
         end
-    reg fetch_ok;
+    // The RAM read register has no reset (M9K read ports have none), so the underflow zero is a
+    // separate per-slot flag.
+    reg        fetch_ok, slot_ok;
+    reg [31:0] rd_q;
     always @(posedge FAM_CLK) begin
         fetch_ok <= fall && pos[4:0] == 5'd0 && !empty;
-        if (fall && pos[4:0] == 5'd0) word <= 32'd0;        // underflow plays digital zero
-        if (fetch_ok) word <= mem[rptr_bin[AW-1:0] - 1'b1];
+        if (fall && pos[4:0] == 5'd0) slot_ok <= !empty;
+        if (fetch_ok) rd_q <= mem[rptr_bin[AW-1:0] - 1'b1];
     end
+    assign word = slot_ok ? rd_q : 32'd0;                   // underflow plays digital zero
 
     assign N2_BCLK_SRC  = bclk;
     assign N2_LRCLK_SRC = lrclk;
