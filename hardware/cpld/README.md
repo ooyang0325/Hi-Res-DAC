@@ -57,22 +57,27 @@ and timing in both flows.
 
 | OD-16 condition | Result |
 | --- | --- |
-| 1. LINK_SCK on a clock network | Yes: `LINK_SCK_i|o~ALTA_GCLK`, routed from pin 9 into a global clock (insertion about 5.8 ns, which the timing includes). Global signals 4 of 5: LINK_SCK, FAM_CLK, CPLD_NRST, the frame clear |
+| 1. LINK_SCK on a clock network | Yes: `LINK_SCK_i|o~ALTA_GCLK`, routed from pin 9 into a global clock (insertion about 5.8 ns, which the timing includes). Global signals: LINK_SCK, FAM_CLK, CPLD_NRST, the frame clear. Supra reports 4 of 5; the datasheet gives 4 global clock lines, so all are in use (see below) |
 | 2. Setup and hold at 36 MHz | LINK_SCK: setup +8.98 ns (Fmax 102 MHz), hold +0.29 ns (internal; from LINK_MOSI ≥ +7.80 ns). FAM_CLK at 49.152 MHz: setup +12.06 ns (Fmax 121 MHz), hold +0.62 ns. 0 errors. Repeat runs on the same input vary by about 0.5 ns (LINK_SCK setup +8.98 to +9.50 ns); these are the worst |
 | 3. Audio into FAM_CLK only through the FIFO | Yes: `set_clock_groups -asynchronous`; the FIFO is 4 M9K. Use: 274 of 2112 logic cells, 208 flops |
 
 Pins 28 (LINK_MISO) and 13 (LRCLK_FB): `SLEW_RATE 0` sets `CFG_SLR = 1` on those two pins only. A control
 run without it gives 0. `CURRENT_STRENGTH_NEW 8MA` is accepted but changes nothing: `CFG_PDRCTRL` stays
 `4'b0100` on every output. So **slow slew** is how layout review R2 is met. The drive in mA that code
-`0100` means is not in the Supra data. The fields are in `link_fit_skeleton_routed.v` in the work directory.
+`0100` means is not in the Supra data or the datasheet: Rev 3.0 lists programmable drive strength but
+gives no mA values. The fields are in `link_fit_skeleton_routed.v` in the work directory.
 
 Not timed: the 11 outputs (no output delay; the I²S lines all leave FAM_CLK flops, and LINK_MISO is
 read at 9 MHz) and the CPLD_NRST reset network.
 
 **Changes the fit needed.**
 - **Pin 4 is the NRST pad.** Supra has no `PIN_4`; it names the pad `PIN_NRST` and routes it into the
-  fabric. The `.asf` uses `PIN_NRST`, and `check_cpld_pins.py` maps it to pin 4. Check in the AGRV2K
-  datasheet whether NRST also restarts configuration. If it does, the RTL reset is redundant but harmless.
+  fabric. The `.asf` uses `PIN_NRST`, and `check_cpld_pins.py` maps it to pin 4 (CI passes against the
+  netlist). Datasheet Rev 3.0, Table 5-4, confirms pin 4 = `NRST`. It does not say what NRST does: §3.1
+  only says the power-on reset watches VDD33 and starts the configuration download. Whether NRST also
+  restarts configuration is therefore still open. Ask AGM, or check at bring-up: pull NRST low with the
+  part configured and see whether the outputs tri-state (I/Os are weakly pulled up while unconfigured,
+  §2.2). Either way the RTL reset is harmless.
 - **One asynchronous clear per flop.** Yosys rejects `negedge LINK_FRAME or negedge CPLD_NRST`, so under
   `ALTA_SYN` (defined by Supra's mapper) the flops clear on `frame_clr_n = LINK_FRAME & CPLD_NRST`.
   Simulators and Quartus keep the two-edge form. With only the combined clear, the RTL test fails: the
@@ -85,6 +90,15 @@ read at 9 MHz) and the CPLD_NRST reset network.
   single-clock model pairs FRAME's change with the same falling edge (removal −1.3 ns), but FRAME
   changes only while SCK idles. The first real falling edge comes at least 1.5 periods after release.
   Supra's `set_false_path` has no `-hold` option, so the recovery check on that endpoint is dropped too.
+
+**From the AGRV2K datasheet (Rev 3.0, 15 Oct 2026 check).**
+- **4 global clock lines.** This fit uses all four: LINK_SCK, FAM_CLK, CPLD_NRST and the frame clear
+  `frame_clr_n`. The product RTL has no spare global unless it drops one of these. The two clears could
+  stay on local routing, since their timing is set by the SPI protocol and by reset, not by a clock edge.
+- **4 M9K blocks** (8 Kbit each). The 1024 × 32 FIFO takes all four.
+- **Marking.** "AGRV2K part number is only used in AGM software": the silicon is sold as the AG32VF MCU
+  of the same package (32-pin QFN: `AG32VF?03K?U6`). LCSC C18208899 is listed under MPN `AGRV2KQ32`, but
+  the parts should be marked `AG32VF…`. Expect that at G-3/G-4 and in JLC's placement preview.
 
 **OD-16 fallback.** If the fit does not close at 36 MHz, run the link at 18 MHz; the maximum sample rate
 is then 192 kHz until a board revision.
