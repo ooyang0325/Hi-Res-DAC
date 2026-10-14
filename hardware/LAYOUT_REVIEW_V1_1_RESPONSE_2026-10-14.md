@@ -11,6 +11,17 @@ After the changes below:
 - The integrated-board CI job, replayed locally: pass.
 - The reviewer's PDN scripts from the v1.1 evidence package, run unchanged on the final board: [sim/layout_review_v1_1/](sim/layout_review_v1_1/README.md).
 
+**Owner decisions on this response (OD-14 conditions, OD-15 to OD-20, 14 Oct 2026; the owner's
+decision record, folded into Spec v1.3 / Notes v1.2 / Parts List v1.1 at the G-5 freeze):**
+- **OD-14:** accepted, pending the reviewer's re-run on the final commit.
+- **OD-15:** the X201 release test of §3 is **replaced**. The duty at 0.4 and 0.8 V cannot meet 45–55 % for any oscillator (a 0.4 ns part gives up to 62.8 % at 0.4 V). The release test is 45–55 % at 1.2, 1.65 and 2.05 V on two samples; if one fails, two SiT8208 samples are tested.
+- **OD-16:** the "sample LINK_SCK as data" option of §4 is **rejected**: 36 MHz sampled at 45–49 MHz gives about 1.3 samples per period. LINK_SCK must be a clock. An AGM Supra fit must close at 36 MHz before the PCBA order; the fallback is an 18 MHz link (192 kHz maximum). The fit skeleton, constraints and test are in [cpld/](cpld/README.md).
+- **OD-17:** G-4 accepted at netlist level.
+- **OD-18:** the G-5 freeze is conditional on the reviewer's re-run, the OD-16 fit and the OD-15 measurement.
+- **OD-19:** two JLCPCB questions are added: the J201/J202 assembly fixture and its cost, and 90 Ω USB impedance control.
+- **OD-20:** the re-quote adds the cleaning remark and the fixture.
+- The OD-11 silk and the library-type workaround are accepted. The workaround is removed at the next library cleanup.
+
 ## 1. OD-14 small fixes
 
 | Item | Change | Reviewer (14 Oct) | Now, same scripts |
@@ -68,19 +79,19 @@ the edge rate. At a mid-supply threshold every edge rate gives about 50 %.
 
 **Decision.** Keep X201 = KC2520K80.0000C1GE00, because its quartz phase jitter is what sets the
 DAC's output. Retire the risk **before** ordering the PCBA, not at bring-up:
-1. Measure two of the owner's X201 samples on a scope (≥ 1 GHz, 15 pF load, 3.3 V) before the PCBA release: 10–90 % edges and duty at 0.4, 0.8, 1.2, 1.65 and 2.05 V thresholds. This needs no DAC board; record it as a G-3 item.
-2. If an edge exceeds 1.5 ns, or the duty at any of those thresholds falls outside 45–55 %, re-open the choice before ordering. The only footprint-compatible fallback with ≤ 1 ps jitter is SiT8208AI-…-33S-80.000000 (default drive, 2 ns max).
+1. ~~Measure duty at 0.4–2.05 V~~ **Superseded by OD-15.** Measure two samples (≥ 1 GHz scope, 15 pF, 3.3 V) before the PCBA release: 10–90 % edges, and duty at 1.2, 1.65 and 2.05 V. Release when the duty is 45–55 % at all three, on both samples.
+2. If a sample fails, measure two SiT8208AI-…-33S-80.000000 samples the same way. Change X201 only if those pass (OD-15).
 3. Bring-up keeps the OD-6 conditions: duty at U301 XI within 45–55 %, and re-fit 33 Ω at R203 only if XI rings.
 
 ## 4. Remaining open items: decisions
 
 | Item | Decision / status |
 | --- | --- |
-| **CPLD pin-constraint file and fitter run** (F06–F09) | There is no CPLD RTL in the repository, so the fitter cannot run here. The netlist pin map the constraint file must follow is below. Two requirements go into the constraint file: ≤ 8 mA drive or slow slew on pins 28 (LINK_MISO) and 13 (LRCLK_FB), per review R2. **LINK_SCK is on pin 9, which is not a global-buffer pin**; the only `IO_GB` pin is pin 1 (FAM_CLK). The fitter report must therefore show LINK_SCK promoted to a global clock through internal routing, or the RTL must sample it as data in the FAM_CLK domain. The owner closes this with the RTL |
+| **CPLD pin-constraint file and fitter run** (F06–F09) | There is no CPLD RTL in the repository, so the fitter cannot run here. The netlist pin map the constraint file must follow is below. Two requirements go into the constraint file: ≤ 8 mA drive or slow slew on pins 28 (LINK_MISO) and 13 (LRCLK_FB), per review R2. **LINK_SCK is on pin 9, which is not a global-buffer pin**; the only `IO_GB` pin is pin 1 (FAM_CLK). The fitter report must therefore show LINK_SCK promoted to a global clock through internal routing (OD-16; sampling it as data is rejected). Fit skeleton, `.asf` pins, SDC and a passing functional test: [cpld/](cpld/README.md). The Supra fit itself runs on the owner's Windows machine |
 | **G-3** overlays | Physical, with the owner's samples. Add the X201 edge and duty measurement (§3) |
 | **G-4** polarity | Netlist level, done: every listed part's pin functions land on the intended nets. D102 K = VBUS; D104/D105 (BAT54) A → K = 5V_SYS; D411/D412 (PMEG2010) K on the positive side; D609 (BAS70-04) 1 A1 = GND, 2 K2 = N6_MCK_RC, 3 K1/A2 = N6_PMP; C442 + on N4_VPOS_IV, C443 + on GND; D705/D706 pad 1 = anode (owner override). The silk-mark-to-part check stays physical, with G-3 |
 | **G-5** netlist and BOM freeze | OD-14 changed no net and no value (parity 0/0/0; the schematic is unchanged). This commit is the freeze candidate. The owner freezes it after the reviewer's re-run |
-| **G-6** JLCPCB answers | Ask JLCPCB in writing: (1) the J101 S1–S4 stake slots and the J702 pads 1/2: pin-in-paste, or hand-solder; (2) the J201/J202 placement preview, per OD-10; (3) filling and capping of the 59 via-in-pad / near-pad vias; (4) the OD-9 wash and cleanliness record; (5) whether C631–C634 stay ≤ 95 s above 220 °C. The order remarks are in Spec v1.2 G-6 |
+| **G-6** JLCPCB answers | Ask JLCPCB in writing: (1) the J101 S1–S4 stake slots and the J702 pads 1/2: pin-in-paste, or hand-solder; (2) the J201/J202 placement preview, per OD-10; (3) filling and capping of the 59 via-in-pad / near-pad vias; (4) the OD-9 wash and cleanliness record; (5) whether C631–C634 stay ≤ 95 s above 220 °C; (6) the J201/J202 assembly fixture and its cost; (7) 90 Ω differential impedance control for the USB pair, or an order without impedance control (OD-19). The order remarks are in Spec v1.2 G-6 |
 | **Cost re-quote** | Owner, with JLCPCB. Quote inputs: 120 × 100 mm, 6 layers JLC06161H-3313, ENIG, 1578 vias (59 filled and capped), 469 JLC-placed parts, 2 JLC through-hole parts (J101, J702) |
 
 U202 (AGRV2KQ32) pins in use, from the schematic netlist:
