@@ -75,3 +75,37 @@ Thank you. We look forward to your reply.
 Best regards,
 [Name]
 [Company / contact details]
+
+---
+
+# JLCPCB reply (15 Oct 2026) and the resulting order settings
+
+Internal record; not part of the email above.
+
+| # | JLCPCB answer | What follows | Status |
+| --- | --- | --- | --- |
+| 1 | The stencil follows our paste layer: slots with paste are pin-in-paste; without, they get no paste. The method is confirmed in the DFM review | The slot pads carry no paste. This is the Spec v1.2 R01 fallback, since JLCPCB gave no aperture geometry. JLCPCB reflows the SMD lands; the owner hand-solders J101 S1–S4 and J702 pins 1/2 from the bottom side (6 joints per board). Order remark below | Decided by R01; confirm at DFM |
+| 2 | Fixture required: USD 8.21 each, 2 fixtures for 5 boards = USD 16.42 (not shipped). Both headers are shown in the DFM placement preview | Select "Confirm Parts Placement" and check pin 1 of J201/J202 in the preview (OD-10) | Closed; cost into the quote |
+| 3 | Epoxy filled & capped covers every via, including those in pads, plated flat; free on 6 layers | Order that option | Closed |
+| 4 | Board Cleaning service, USD 0.157 per board (dry-ice cleaning), including under bodies. **No SIR or ionic contamination report** | The ≥ 2 × 10¹⁰ Ω/sq requirement (OD-9) cannot be evidenced by JLCPCB. Recommendation: order the cleaning. After the owner's hand soldering, which adds its own flux, clean those joints with IPA (no ultrasonic: X201–X203 are crystal oscillators). Take the evidence from the planned 50 °C / 85 % RH bring-up test on the high-impedance nodes. That test also covers the open question of how well dry-ice cleaning reaches under QFN bodies | **Owner decision** |
+| 5 | Reflow peak 240 ± 5 °C, about 60–90 s above 217 °C | Within the film-capacitor limit (≤ 95 s above 220 °C, 260 °C peak) and J101 (255 °C / 5 s). C631–C634 are placed by JLCPCB | Closed |
+| 6 | Impedance control available, ±10 %. Give value, layer, reference, width/spacing and location with the Gerber; JLCPCB re-verifies and proposes widths before production | ±10 % is 81–99 Ω; the solved build corners are 82.2–98.6 Ω, inside it. Requirement text below. If JLCPCB proposes other widths, re-run the field solve and the clearance check before approving | Closed; text with the order |
+| 7 | C18208899 is in stock; the AG32VF marking is expected and accepted against the part number and datasheet | Nothing to do | Closed |
+| 8 | Upload Gerber, BOM and CPL for the base quote; the options are confirmed after the order is placed | Files from `python3 hardware/export_jlc_order.py OUT_DIR`: Gerber + drill zip, BOM, CPL (469 placements = BOM). For the real order, regenerate them from the frozen commit | Quote: owner |
+
+**Impedance requirement (to attach with the Gerber).**
+
+> Controlled impedance: 90 Ω ± 10 % differential, USB D+/D− pair. Layer L1 (top), reference plane L2
+> (first inner layer, solid ground), stackup JLC06161H-3313. Coupled sections: 0.17 mm width / 0.215 mm
+> spacing (about 10 mm), and 0.18 mm width / 0.32 mm spacing (about 2.5 mm). Location: between J101
+> (USB-C) and U201, passing U101. The short 0.20 mm split runs around U101 and the 0.16 mm escapes at
+> J101 are not controlled.
+
+**Order remark.**
+
+> 1. J101 slots S1–S4 and J702 pins 1/2: no solder paste by design. Please reflow the SMD lands only and
+>    leave these slots unsoldered; we will solder them by hand.
+> 2. Please apply Board Cleaning after assembly.
+> 3. Impedance control on the USB pair as specified in the attached requirement.
+> 4. U202 (C18208899) parts marked "AG32VF…" are expected.
+> 5. Please show the J201/J202 placement in the DFM preview for our pin-1 check.
