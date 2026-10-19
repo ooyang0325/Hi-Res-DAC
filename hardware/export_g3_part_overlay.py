@@ -25,7 +25,8 @@ Q623 Q624 Q625 Q626 C631 C632 C633 C634 U611 U612 Q627
 C647 C648 C649 C650 C651 C652 C653 C654
 U613 U614 U615 U616 U617 U618 U619 U620 U202 D405 D406 D407 D408
 U621 D701 D707 D708
-""".split()
+U403 U404 J201 J202 R247 R248 R249
+""".split()  # v1.2: OPA2210 DGK (joins the U613 cell), F05 headers, F11 resistors
 CONNECTORS = {"J101", "J701", "J702"}
 CSV_SOURCES = (
     "JLCPCB_BOM_REVIEW_ONLY.csv",
@@ -75,7 +76,7 @@ def group_footprints(ref_to_fp: dict[str, str]) -> list[tuple[str, list[str]]]:
     groups: dict[str, list[str]] = {}
     for ref in FOOTPRINT_REFS:
         groups.setdefault(ref_to_fp[ref], []).append(ref)
-    assert len(groups) == 30, f"G-3 footprint count changed: {len(groups)}"
+    assert len(groups) == 33, f"G-3 footprint count changed: {len(groups)}"
     return list(groups.items())
 
 
@@ -103,11 +104,11 @@ def main() -> None:
     grouped = group_footprints(assembly_footprints())
     connectors = [(fp, refs) for fp, refs in grouped if refs[0] in CONNECTORS]
     others = [(fp, refs) for fp, refs in grouped if refs[0] not in CONNECTORS]
-    assert len(connectors) == 3 and len(others) == 27
+    assert len(connectors) == 3 and len(others) == 30
     drawings = []
     for offset, (fp, refs) in enumerate(others):
         row, column = divmod(offset, 5)
-        drawings.append(part_svg(fp, refs, offset + 4, 25 + column * 39, 56 + row * 41))
+        drawings.append(part_svg(fp, refs, offset + 4, 25 + column * 39, 58 + row * 35))
     SVG.write_text(
         '''<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297">
 <style>
@@ -132,7 +133,7 @@ def main() -> None:
         encoding="utf-8",
     )
     lines = [
-        "# G-3 overlay index — design set v1.1-ECO1",
+        "# G-3 overlay index — design set v1.2 (Spec v1.2 / Notes v1.1)",
         "",
         "Print both review-only SVGs at 100% / Actual Size. First measure each 10 mm bar. "
         "Place a real part on each 1:1 footprint and check that every terminal overlaps "
@@ -152,7 +153,7 @@ def main() -> None:
         lines.append(f"| {index:02d} | {', '.join(refs)} | `{fp}` |")
     lines += [
         "",
-        "Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–30 "
+        "Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–33 "
         "are on `G3_PART_OVERLAY_REVIEW_ONLY.svg`. For X201, also overlay the "
         "specified NDK second source. For U613–U620, the TI DGK drawing and JLCPCB "
         "3D preview can replace physical samples per Notes §9.6. Record the U202 "

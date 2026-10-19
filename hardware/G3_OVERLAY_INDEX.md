@@ -1,4 +1,4 @@
-# G-3 overlay index — design set v1.1-ECO1
+# G-3 overlay index — design set v1.2 (Spec v1.2 / Notes v1.1)
 
 Print both review-only SVGs at 100% / Actual Size. First measure each 10 mm bar. Place a real part on each 1:1 footprint and check that every terminal overlaps its pad by at least 0.1 mm on each side, that pin-1/polarity marks and body orientation agree, and that slots/peg holes clear the part. Record deviations in `G3_OVERLAY_CHECKLIST.md` before routing. The printed sheets are review aids, not fabrication outputs.
 
@@ -31,10 +31,13 @@ Use manufacturer dimensions or a calibrated optical/CAD overlay for 0.4/0.5 mm p
 | 23 | Q623, Q624, Q625, Q626, Q627 | `JLC_Imported:SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR` |
 | 24 | C631, C632, C633, C634 | `DAC_HPA:C631_ECHU1H224GX9_D4` |
 | 25 | C647, C648, C649, C650, C651, C652, C653, C654 | `Capacitor_SMD:C_1206_3216Metric` |
-| 26 | U613, U614, U615, U616, U617, U618, U619, U620 | `JLC_Imported:VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL` |
+| 26 | U613, U614, U615, U616, U617, U618, U619, U620, U403, U404 | `JLC_Imported:VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL` |
 | 27 | U202 | `DAC_HPA:QFN-32_L4.0-W4.0-P0.40-BL-EP2.7_EP` |
 | 28 | D405, D406, D407, D408 | `JLC_Imported:SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR` |
 | 29 | U621 | `JLC_Imported:SC-70-6_L2.2-W1.3-P0.65-LS2.1-BL` |
 | 30 | D701, D707, D708 | `JLC_Imported:SOD-523_L1.2-W0.8-LS1.6-BI` |
+| 31 | J201 | `DAC_HPA:PinHeader_1x08_P2.54mm_SMD_XKB_X6511WVS-08H-C60D48R1` |
+| 32 | J202 | `DAC_HPA:PinHeader_1x05_P2.54mm_SMD_XKB_X6511WVS-05H-C60D48R1` |
+| 33 | R247, R248, R249 | `Resistor_SMD:R_0402_1005Metric` |
 
-Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–30 are on `G3_PART_OVERLAY_REVIEW_ONLY.svg`. For X201, also overlay the specified NDK second source. For U613–U620, the TI DGK drawing and JLCPCB 3D preview can replace physical samples per Notes §9.6. Record the U202 exposed-pad size and net. For U621, compare the TI DCK example land to the exact JLC C507231 land before order. X-ray is an assembly review, not a paper-overlay result.
+Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–33 are on `G3_PART_OVERLAY_REVIEW_ONLY.svg`. For X201, also overlay the specified NDK second source. For U613–U620, the TI DGK drawing and JLCPCB 3D preview can replace physical samples per Notes §9.6. Record the U202 exposed-pad size and net. For U621, compare the TI DCK example land to the exact JLC C507231 land before order. X-ray is an assembly review, not a paper-overlay result.

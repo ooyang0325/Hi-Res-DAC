@@ -13,8 +13,8 @@
 <text x="165" y="39" class="note">10 mm reference</text>
 <g>
 <title>K601, K602, K603, K604: DAC_HPA:K601_TLP3545A_LF1_HandSolder</title>
-<text x="25" y="43" class="ref">04 · K601 +3</text>
-<g transform="translate(25 56)">
+<text x="25" y="45" class="ref">04 · K601 +3</text>
+<g transform="translate(25 58)">
 <rect x="-3.56" y="-3.2" width="7.12" height="6.4" class="body"/>
 <g transform="translate(-2.54 4.5) rotate(0)">
 <rect x="-0.75" y="-0.95" width="1.5" height="1.9" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
@@ -44,8 +44,8 @@
 </g>
 <g>
 <title>X201: DAC_HPA:X201_KC2520K80_Kyocera</title>
-<text x="64" y="43" class="ref">05 · X201</text>
-<g transform="translate(64 56)">
+<text x="64" y="45" class="ref">05 · X201</text>
+<g transform="translate(64 58)">
 <rect x="-1.25" y="-1" width="2.5" height="2" class="body"/>
 <g transform="translate(-0.925 0.725) rotate(0)">
 <rect x="-0.525" y="-0.475" width="1.05" height="0.95" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
@@ -67,8 +67,8 @@
 </g>
 <g>
 <title>X202, X203: DAC_HPA:X202_X203_NDK_NZ2520SDA</title>
-<text x="103" y="43" class="ref">06 · X202 +1</text>
-<g transform="translate(103 56)">
+<text x="103" y="45" class="ref">06 · X202 +1</text>
+<g transform="translate(103 58)">
 <rect x="-1.25" y="-1" width="2.5" height="2" class="body"/>
 <g transform="translate(-0.825 0.625) rotate(0)">
 <rect x="-0.5" y="-0.5" width="1" height="1" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
@@ -90,8 +90,8 @@
 </g>
 <g>
 <title>U503: DAC_HPA:ESOP-8_L4.9-W3.9-P1.27-LS6.0-BL-EP_PAD</title>
-<text x="142" y="43" class="ref">07 · U503</text>
-<g transform="translate(142 56)">
+<text x="142" y="45" class="ref">07 · U503</text>
+<g transform="translate(142 58)">
 <line x1="-2.45" y1="-1.95" x2="2.45" y2="-1.95" class="body"/>
 <line x1="-2.45" y1="1.95" x2="-2.45" y2="-1.95" class="body"/>
 <line x1="2.45" y1="-1.95" x2="2.45" y2="1.95" class="body"/>
@@ -136,8 +136,8 @@
 </g>
 <g>
 <title>U103: JLC_Imported:SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1</title>
-<text x="181" y="43" class="ref">08 · U103</text>
-<g transform="translate(181 56)">
+<text x="181" y="45" class="ref">08 · U103</text>
+<g transform="translate(181 58)">
 <line x1="-0.6" y1="-0.78" x2="0.61" y2="-0.77" class="body"/>
 <line x1="-0.6" y1="0.83" x2="-0.6" y2="-0.78" class="body"/>
 <line x1="0.61" y1="-0.77" x2="0.61" y2="0.83" class="body"/>
@@ -166,8 +166,8 @@
 </g>
 <g>
 <title>U206: JLC_Imported:SC-88-6_L2.0-W1.3-P0.65-LS2.1-BL</title>
-<text x="25" y="84" class="ref">09 · U206</text>
-<g transform="translate(25 97)">
+<text x="25" y="80" class="ref">09 · U206</text>
+<g transform="translate(25 93)">
 
 <g transform="translate(-0.65 0.92) rotate(0)">
 <rect x="-0.15" y="-0.33" width="0.3" height="0.66" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
@@ -197,8 +197,8 @@
 </g>
 <g>
 <title>D705: JLC_Imported:LED0805-R-RD</title>
-<text x="64" y="84" class="ref">10 · D705</text>
-<g transform="translate(64 97)">
+<text x="64" y="80" class="ref">10 · D705</text>
+<g transform="translate(64 93)">
 <line x1="-1" y1="-0.625" x2="1" y2="-0.625" class="body"/>
 <line x1="-1" y1="0.625" x2="-1" y2="-0.625" class="body"/>
 <line x1="1" y1="-0.625" x2="1" y2="0.625" class="body"/>
@@ -215,8 +215,8 @@
 </g>
 <g>
 <title>D706: JLC_Imported:LED-SMD_L1.6-W0.8-R-RD</title>
-<text x="103" y="84" class="ref">11 · D706</text>
-<g transform="translate(103 97)">
+<text x="103" y="80" class="ref">11 · D706</text>
+<g transform="translate(103 93)">
 <line x1="-0.8" y1="-0.4" x2="0.8" y2="-0.4" class="body"/>
 <line x1="-0.8" y1="0.4" x2="-0.8" y2="-0.4" class="body"/>
 <line x1="0.8" y1="-0.4" x2="0.8" y2="0.4" class="body"/>
@@ -233,8 +233,8 @@
 </g>
 <g>
 <title>D102: DAC_HPA:D102_SMDJ12A_HandSolder</title>
-<text x="142" y="84" class="ref">12 · D102</text>
-<g transform="translate(142 97)">
+<text x="142" y="80" class="ref">12 · D102</text>
+<g transform="translate(142 93)">
 <line x1="-3.55" y1="3.1" x2="-3.55" y2="-3.1" class="body"/>
 <line x1="-0.649" y1="-0.799" x2="-0.649" y2="0.801" class="body"/>
 <line x1="-0.649" y1="0.001" x2="-1.551" y2="0.001" class="body"/>
@@ -257,8 +257,8 @@
 </g>
 <g>
 <title>D104, D105: JLC_Imported:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR</title>
-<text x="181" y="84" class="ref">13 · D104 +1</text>
-<g transform="translate(181 97)">
+<text x="181" y="80" class="ref">13 · D104 +1</text>
+<g transform="translate(181 93)">
 <line x1="-0.65" y1="-1.45" x2="0.65" y2="-1.45" class="body"/>
 <line x1="-0.65" y1="1.45" x2="-0.65" y2="-1.45" class="body"/>
 <line x1="0.65" y1="-1.45" x2="0.65" y2="1.45" class="body"/>
@@ -279,8 +279,8 @@
 </g>
 <g>
 <title>D411, D412: JLC_Imported:SOD-123F_L2.8-W1.8-LS3.7-RD</title>
-<text x="25" y="125" class="ref">14 · D411 +1</text>
-<g transform="translate(25 138)">
+<text x="25" y="115" class="ref">14 · D411 +1</text>
+<g transform="translate(25 128)">
 <line x1="-1.35" y1="-0.85" x2="1.35" y2="-0.85" class="body"/>
 <line x1="-1.35" y1="0.85" x2="-1.35" y2="-0.85" class="body"/>
 <line x1="1.35" y1="-0.85" x2="1.35" y2="0.85" class="body"/>
@@ -297,8 +297,8 @@
 </g>
 <g>
 <title>C442, C443: JLC_Imported:CASE-D_7343</title>
-<text x="64" y="125" class="ref">15 · C442 +1</text>
-<g transform="translate(64 138)">
+<text x="64" y="115" class="ref">15 · C442 +1</text>
+<g transform="translate(64 128)">
 <line x1="-3.35" y1="-2.15" x2="3.35" y2="-2.15" class="body"/>
 <line x1="-3.35" y1="2.15" x2="-3.35" y2="-2.15" class="body"/>
 <line x1="3.35" y1="-2.15" x2="3.35" y2="2.15" class="body"/>
@@ -315,8 +315,8 @@
 </g>
 <g>
 <title>U208: JLC_Imported:VSSOP-8_L2.1-W2.4-P0.50-LS3.2-BR</title>
-<text x="103" y="125" class="ref">16 · U208</text>
-<g transform="translate(103 138)">
+<text x="103" y="115" class="ref">16 · U208</text>
+<g transform="translate(103 128)">
 <line x1="-1.15" y1="-1" x2="1.15" y2="-1" class="body"/>
 <line x1="-1.15" y1="1" x2="-1.15" y2="-1" class="body"/>
 <line x1="1.15" y1="-1" x2="1.15" y2="1" class="body"/>
@@ -357,8 +357,8 @@
 </g>
 <g>
 <title>U605: JLC_Imported:SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL</title>
-<text x="142" y="125" class="ref">17 · U605</text>
-<g transform="translate(142 138)">
+<text x="142" y="115" class="ref">17 · U605</text>
+<g transform="translate(142 128)">
 
 <g transform="translate(-1.905 2.6) rotate(0)">
 <rect x="-0.294" y="-0.9" width="0.588" height="1.8" rx="0.294" fill="#dedede" stroke="#111" stroke-width="0.13"/>
@@ -396,8 +396,8 @@
 </g>
 <g>
 <title>U606, U609, U610, U611, U612: JLC_Imported:TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL</title>
-<text x="181" y="125" class="ref">18 · U606 +4</text>
-<g transform="translate(181 138)">
+<text x="181" y="115" class="ref">18 · U606 +4</text>
+<g transform="translate(181 128)">
 <line x1="-2.5" y1="-2.2" x2="-2.5" y2="2.2" class="body"/>
 <line x1="-2.5" y1="2.2" x2="2.5" y2="2.2" class="body"/>
 <line x1="2.5" y1="-2.2" x2="-2.5" y2="-2.2" class="body"/>
@@ -462,8 +462,8 @@
 </g>
 <g>
 <title>U607: JLC_Imported:TSSOP-5_L2.1-W1.3-P0.65-LS2.2-BR</title>
-<text x="25" y="166" class="ref">19 · U607</text>
-<g transform="translate(25 179)">
+<text x="25" y="150" class="ref">19 · U607</text>
+<g transform="translate(25 163)">
 <line x1="-0.625" y1="-1.025" x2="0.625" y2="-1.025" class="body"/>
 <line x1="-0.625" y1="1.025" x2="-0.625" y2="-1.025" class="body"/>
 <line x1="0.625" y1="-1.025" x2="0.625" y2="1.025" class="body"/>
@@ -492,8 +492,8 @@
 </g>
 <g>
 <title>D609, D610, Q207, Q619, Q620, Q507, Q621, Q622: JLC_Imported:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR</title>
-<text x="64" y="166" class="ref">20 · D609 +7</text>
-<g transform="translate(64 179)">
+<text x="64" y="150" class="ref">20 · D609 +7</text>
+<g transform="translate(64 163)">
 <line x1="-0.65" y1="-1.45" x2="0.65" y2="-1.45" class="body"/>
 <line x1="-0.65" y1="1.45" x2="-0.65" y2="-1.45" class="body"/>
 <line x1="0.65" y1="-1.45" x2="0.65" y2="1.45" class="body"/>
@@ -514,8 +514,8 @@
 </g>
 <g>
 <title>U502: JLC_Imported:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR</title>
-<text x="103" y="166" class="ref">21 · U502</text>
-<g transform="translate(103 179)">
+<text x="103" y="150" class="ref">21 · U502</text>
+<g transform="translate(103 163)">
 <line x1="-0.8" y1="-1.45" x2="0.8" y2="-1.45" class="body"/>
 <line x1="-0.8" y1="1.45" x2="-0.8" y2="-1.45" class="body"/>
 <line x1="0.8" y1="-1.45" x2="0.8" y2="1.45" class="body"/>
@@ -544,8 +544,8 @@
 </g>
 <g>
 <title>U608: JLC_Imported:VSSOP-8_L2.3-W2.0-P0.50-LS3.1-BR</title>
-<text x="142" y="166" class="ref">22 · U608</text>
-<g transform="translate(142 179)">
+<text x="142" y="150" class="ref">22 · U608</text>
+<g transform="translate(142 163)">
 <line x1="-1.15" y1="-1" x2="1.15" y2="-1" class="body"/>
 <line x1="-1.15" y1="1" x2="-1.15" y2="-1" class="body"/>
 <line x1="1.15" y1="-1" x2="1.15" y2="1" class="body"/>
@@ -586,8 +586,8 @@
 </g>
 <g>
 <title>Q623, Q624, Q625, Q626, Q627: JLC_Imported:SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR</title>
-<text x="181" y="166" class="ref">23 · Q623 +4</text>
-<g transform="translate(181 179)">
+<text x="181" y="150" class="ref">23 · Q623 +4</text>
+<g transform="translate(181 163)">
 
 <g transform="translate(1.235 0.95) rotate(0)">
 <rect x="-0.535" y="-0.3" width="1.07" height="0.6" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
@@ -605,8 +605,8 @@
 </g>
 <g>
 <title>C631, C632, C633, C634: DAC_HPA:C631_ECHU1H224GX9_D4</title>
-<text x="25" y="207" class="ref">24 · C631 +3</text>
-<g transform="translate(25 220)">
+<text x="25" y="185" class="ref">24 · C631 +3</text>
+<g transform="translate(25 198)">
 <rect x="-3" y="-2.05" width="6" height="4.1" class="body"/>
 <g transform="translate(-2.75 0) rotate(0)">
 <rect x="-0.75" y="-1.9" width="1.5" height="3.8" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
@@ -620,8 +620,8 @@
 </g>
 <g>
 <title>C647, C648, C649, C650, C651, C652, C653, C654: Capacitor_SMD:C_1206_3216Metric</title>
-<text x="64" y="207" class="ref">25 · C647 +7</text>
-<g transform="translate(64 220)">
+<text x="64" y="185" class="ref">25 · C647 +7</text>
+<g transform="translate(64 198)">
 <rect x="-1.6" y="-0.8" width="3.2" height="1.6" class="body"/>
 <g transform="translate(-1.475 0) rotate(0)">
 <rect x="-0.575" y="-0.9" width="1.15" height="1.8" rx="0.25" fill="#dedede" stroke="#111" stroke-width="0.13"/>
@@ -634,9 +634,9 @@
 </g>
 </g>
 <g>
-<title>U613, U614, U615, U616, U617, U618, U619, U620: JLC_Imported:VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL</title>
-<text x="103" y="207" class="ref">26 · U613 +7</text>
-<g transform="translate(103 220)">
+<title>U613, U614, U615, U616, U617, U618, U619, U620, U403, U404: JLC_Imported:VSSOP-8_L3.0-W3.0-P0.65-LS5.0-BL</title>
+<text x="103" y="185" class="ref">26 · U613 +9</text>
+<g transform="translate(103 198)">
 <line x1="-1.5" y1="-1.5" x2="1.5" y2="-1.5" class="body"/>
 <line x1="-1.5" y1="1.5" x2="-1.5" y2="-1.5" class="body"/>
 <line x1="1.5" y1="-1.5" x2="1.5" y2="1.5" class="body"/>
@@ -677,8 +677,8 @@
 </g>
 <g>
 <title>U202: DAC_HPA:QFN-32_L4.0-W4.0-P0.40-BL-EP2.7_EP</title>
-<text x="142" y="207" class="ref">27 · U202</text>
-<g transform="translate(142 220)">
+<text x="142" y="185" class="ref">27 · U202</text>
+<g transform="translate(142 198)">
 <line x1="-2" y1="-2" x2="2" y2="-2" class="body"/>
 <line x1="-2" y1="2" x2="-2" y2="-2" class="body"/>
 <line x1="2" y1="-2" x2="2" y2="2" class="body"/>
@@ -819,8 +819,8 @@
 </g>
 <g>
 <title>D405, D406, D407, D408: JLC_Imported:SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR</title>
-<text x="181" y="207" class="ref">28 · D405 +3</text>
-<g transform="translate(181 220)">
+<text x="181" y="185" class="ref">28 · D405 +3</text>
+<g transform="translate(181 198)">
 <line x1="-0.85" y1="-1.5" x2="0.85" y2="-1.5" class="body"/>
 <line x1="-0.85" y1="1.5" x2="-0.85" y2="-1.5" class="body"/>
 <line x1="0.85" y1="-1.5" x2="0.85" y2="1.5" class="body"/>
@@ -841,8 +841,8 @@
 </g>
 <g>
 <title>U621: JLC_Imported:SC-70-6_L2.2-W1.3-P0.65-LS2.1-BL</title>
-<text x="25" y="248" class="ref">29 · U621</text>
-<g transform="translate(25 261)">
+<text x="25" y="220" class="ref">29 · U621</text>
+<g transform="translate(25 233)">
 <line x1="-1" y1="-0.625" x2="1" y2="-0.625" class="body"/>
 <line x1="-1" y1="0.625" x2="-1" y2="-0.625" class="body"/>
 <line x1="1" y1="-0.625" x2="1" y2="0.625" class="body"/>
@@ -875,8 +875,8 @@
 </g>
 <g>
 <title>D701, D707, D708: JLC_Imported:SOD-523_L1.2-W0.8-LS1.6-BI</title>
-<text x="64" y="248" class="ref">30 · D701 +2</text>
-<g transform="translate(64 261)">
+<text x="64" y="220" class="ref">30 · D701 +2</text>
+<g transform="translate(64 233)">
 <line x1="-0.6" y1="-0.4" x2="0.6" y2="-0.4" class="body"/>
 <line x1="-0.6" y1="0.4" x2="-0.6" y2="-0.4" class="body"/>
 <line x1="0.6" y1="-0.4" x2="0.6" y2="0.4" class="body"/>
@@ -887,6 +887,87 @@
 </g>
 <g transform="translate(0.75 0) rotate(180)">
 <rect x="-0.3" y="-0.2" width="0.6" height="0.4" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">2</text>
+</g>
+</g>
+</g>
+<g>
+<title>J201: DAC_HPA:PinHeader_1x08_P2.54mm_SMD_XKB_X6511WVS-08H-C60D48R1</title>
+<text x="103" y="220" class="ref">31 · J201</text>
+<g transform="translate(103 233)">
+<rect x="-1.27" y="-1.25" width="20.32" height="2.5" class="body"/>
+<g transform="translate(0 -1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">1</text>
+</g>
+<g transform="translate(2.54 1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">2</text>
+</g>
+<g transform="translate(5.08 -1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">3</text>
+</g>
+<g transform="translate(7.62 1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">4</text>
+</g>
+<g transform="translate(10.16 -1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">5</text>
+</g>
+<g transform="translate(12.7 1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">6</text>
+</g>
+<g transform="translate(15.24 -1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">7</text>
+</g>
+<g transform="translate(17.78 1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">8</text>
+</g>
+</g>
+</g>
+<g>
+<title>J202: DAC_HPA:PinHeader_1x05_P2.54mm_SMD_XKB_X6511WVS-05H-C60D48R1</title>
+<text x="142" y="220" class="ref">32 · J202</text>
+<g transform="translate(142 233)">
+<rect x="-1.27" y="-1.25" width="12.7" height="2.5" class="body"/>
+<g transform="translate(0 -1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">1</text>
+</g>
+<g transform="translate(2.54 1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">2</text>
+</g>
+<g transform="translate(5.08 -1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">3</text>
+</g>
+<g transform="translate(7.62 1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">4</text>
+</g>
+<g transform="translate(10.16 -1.8) rotate(0)">
+<rect x="-0.635" y="-1.1" width="1.27" height="2.2" rx="0" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">5</text>
+</g>
+</g>
+</g>
+<g>
+<title>R247, R248, R249: Resistor_SMD:R_0402_1005Metric</title>
+<text x="181" y="220" class="ref">33 · R247 +2</text>
+<g transform="translate(181 233)">
+<rect x="-0.525" y="-0.27" width="1.05" height="0.54" class="body"/>
+<g transform="translate(-0.51 0) rotate(0)">
+<rect x="-0.27" y="-0.32" width="0.54" height="0.64" rx="0.135" fill="#dedede" stroke="#111" stroke-width="0.13"/>
+<text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">1</text>
+</g>
+<g transform="translate(0.51 0) rotate(0)">
+<rect x="-0.27" y="-0.32" width="0.54" height="0.64" rx="0.135" fill="#dedede" stroke="#111" stroke-width="0.13"/>
 <text x="0" y="0.21" text-anchor="middle" font-size="0.7" fill="#111">2</text>
 </g>
 </g>

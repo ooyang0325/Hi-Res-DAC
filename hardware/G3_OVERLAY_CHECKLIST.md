@@ -1,4 +1,4 @@
-# G-3 overlay checklist — design set v1.1-ECO1
+# G-3 overlay checklist — design set v1.2 (Spec v1.2 / Notes v1.1)
 
 Print both review-only SVGs at 100% / Actual Size. First measure each 10 mm bar. Place a real part on each 1:1 footprint and check that every terminal overlaps its pad by at least 0.1 mm on each side, that pin-1/polarity marks and body orientation agree, and that slots/peg holes clear the part. Record deviations before routing. Use the generated `G3_OVERLAY_INDEX.md` to identify each cell. This checklist is editable; the generated index and SVGs are review aids, not fabrication outputs.
 
@@ -36,8 +36,11 @@ For 0.4/0.5 mm pitch and the 0.1 mm overlap limit, use manufacturer dimensions o
 | 28 |  |  |  |
 | 29 |  |  |  |
 | 30 |  |  |  |
+| 31 |  |  |  |
+| 32 |  |  |  |
+| 33 |  |  |  |
 
-Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–30 are on `G3_PART_OVERLAY_REVIEW_ONLY.svg`. For X201, also overlay the specified NDK second source. For U613–U620, the TI DGK drawing and JLCPCB 3D preview can replace physical samples per Notes §9.6. Record the U202 exposed-pad size/net. For U621, document the TI DCK versus exact JLC C507231 pad-row difference and JLC DFM answer; X-ray is an assembly review, not a paper-overlay result.
+Cells 01–03 are on `G3_CONNECTOR_OVERLAY_REVIEW_ONLY.svg`; cells 04–33 are on `G3_PART_OVERLAY_REVIEW_ONLY.svg`. For X201, also overlay the specified NDK second source. For U613–U620, the TI DGK drawing and JLCPCB 3D preview can replace physical samples per Notes §9.6. Record the U202 exposed-pad size/net. For U621, document the TI DCK versus exact JLC C507231 pad-row difference and JLC DFM answer; X-ray is an assembly review, not a paper-overlay result.
 
 Printed 10 mm bar: ______ mm. Review date: __________. Reviewer/signature: ____________________.
 
