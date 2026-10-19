@@ -168,6 +168,18 @@ def read_source() -> tuple[dict[str, Part], dict[str, list[Pin]], dict[str, Part
             # Without it JLC's auto-match offered thick-film C22975.
             part.lcsc = "C4101918"
             part.source = "JLCPCB C4101918 (pre-order, 0 stock on 19 Oct 2026)"
+        # Owner-supplied JLC numbers, 19 Oct 2026. JLC lists NDK oscillators by
+        # spec code: NSC5083D is the 3.3 V NZ2520SDA. C17523715 is named
+        # "45.158M" (truncated 45.1584 MHz); 0 in stock, so pre-order.
+        for ref, mpn, lcsc, stock in (
+            ("X202", "NDK NZ2520SDA-49.152MHZ-NSC5083D", "C17466132", "48 in stock"),
+            ("X203", "NDK NZ2520SDA-45.1584MHZ-NSC5083D", "C17523715", "pre-order, 0 stock"),
+        ):
+            if refs == [ref]:
+                if (part.mpn, part.lcsc) != (mpn, "—"):
+                    raise ValueError(f"{ref} source changed; review the {lcsc} ECO")
+                part.lcsc = lcsc
+                part.source = f"JLCPCB {lcsc} ({stock} on 19 Oct 2026)"
         libparts[part.symbol_id] = part
         for ref in refs:
             if ref in parts:

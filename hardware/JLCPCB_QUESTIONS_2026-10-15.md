@@ -121,13 +121,15 @@ SMT DFM (BOM + CPL):
 | --- | --- | --- | --- |
 | C631–C634 | Panasonic ECH-U1H224GX9 | C5447085, an RS-485 transceiver | **C569856**, exact MPN, 2,828 in stock |
 | R402–R416 (even) | Susumu RG1608N-202-W-T1 (0.05 %, 10 ppm/K) | C22975, a 2 kΩ thick-film 0603WAF2001T5E | **C4101918**, exact MPN, 0 in stock (pre-order) |
-| X202 | NDK NZ2520SDA-49.152MHZ-NSC5083D | C5632403, a Crystek CCHD-575 in 7.5 × 5 mm | open |
-| X203 | NDK NZ2520SDA-45.1584MHZ-NSC5083D | C5632479, a Crystek CCHD-575 in 7.5 × 5 mm | open |
+| X202 | NDK NZ2520SDA-49.152MHZ-NSC5083D | C5632403, a Crystek CCHD-575 in 7.5 × 5 mm | **C17466132** (listed as NSC5083D-49.152M), 48 in stock |
+| X203 | NDK NZ2520SDA-45.1584MHZ-NSC5083D | C5632479, a Crystek CCHD-575 in 7.5 × 5 mm | **C17523715** (listed as NSC5083D-45.158M), 0 in stock (pre-order) |
 
 Rejected candidates: C2073999 is Susumu RR0816P-202-D (0.5 %, 25 ppm/K, 0 in stock), outside the R402–R416
 requirement. C5122395 is a generic "NZ2520SDA" listing with no frequency or option code (0 in stock), so it
-cannot identify either X202 or X203. Until X202/X203 have exact numbers, deselect them at order or source
-the listed MPNs through Global Sourcing; never accept the auto-match.
+cannot identify either X202 or X203. JLCPCB lists NDK oscillators by spec code: NSC5083D is the 3.3 V
+NZ2520SDA, and "45.158M" is the truncated 45.1584 MHz. Every placed BOM line now has an LCSC number.
+At order, confirm the matched parts are these numbers, pre-order C4101918 and C17523715, and check X202/X203
+pin 1 (stand-by) in the placement preview: the JLC footprint for SMD2520-4P may be rotated against ours.
 
 **Impedance requirement (to attach with the Gerber).**
 
@@ -147,4 +149,4 @@ the listed MPNs through Global Sourcing; never accept the auto-match.
 > 5. Please show the J201/J202 placement in the DFM preview for our pin-1 check.
 > 6. J201/J202 are 0.68 mm apart (body 2.54 × n ± 0.5 mm per the XKB drawing). The online DFM models show
 >    a 0.31 mm overlap; the real parts do not collide.
-> 7. X202 and X203 must be the NDK MPNs in our BOM (no LCSC stock part). Please do not substitute.
+> 7. X203 (C17523715, NDK NSC5083D-45.158M) must be the 45.1584 MHz part. Please do not substitute.
