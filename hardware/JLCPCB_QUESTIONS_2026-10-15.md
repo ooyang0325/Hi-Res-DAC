@@ -93,6 +93,37 @@ Internal record; not part of the email above.
 | 7 | C18208899 is in stock; the AG32VF marking is expected and accepted against the part number and datasheet | Nothing to do | Closed |
 | 8 | Upload Gerber, BOM and CPL for the base quote; the options are confirmed after the order is placed | Files from `python3 hardware/export_jlc_order.py OUT_DIR`: Gerber + drill zip, BOM, CPL (469 placements = BOM). For the real order, regenerate them from the frozen commit | Quote: owner |
 
+**JLCDFM check (19 Oct 2026, JLCONE app, files from `0b8a4d6`).**
+
+PCB DFM. Every red or orange item was traced to the board. None needs a change:
+
+| Check | Result | Where / why acceptable |
+| --- | --- | --- |
+| Slot width | 18 red | J701 0.50 mm, J101 S1–S4 and J702 pins 1/2 0.60 mm plated slots. JLCDFM's red limit is 0.61 mm; JLCPCB's published plated-slot minimum is 0.50 mm, and every slot is ≥ 2 × its width (short-slot check: 0) |
+| Pad spacing | 2 red, 9 orange | All same-net: VPOS via pair 0.052 mm and VNEG via pair 0.100 mm on B.Cu, plus 0.6 mm vias next to their own SMD pads (U609, Q619, R951, R905, R941, R412). Hole spacing check: 0 |
+| Via to pad | 3 red, 1 orange | R218, C433, R671 and the U401/U402 pad vias. All are in the filled-and-capped set |
+| Mask opening exposes trace | 1 red, 6 orange | Same-net trace leaving its pad (R928 LEG_RP 0.065 mm and others) |
+| Trace spacing | 1 orange | N6_VT to N6_VT, same net |
+| Annular ring | orange (vias) | 0.15 mm on the 0.3/0.6 mm vias; JLCDFM red limit 0.10 mm |
+| Silkscreen to pad / hole, line width | red/orange (capped at 50) | Silk is clipped at mask openings and over capped vias; 0.15 mm lines are JLCDFM's orange band. Cosmetic |
+
+SMT DFM (BOM + CPL):
+- **J201/J202 position: fixed.** Their footprint origin is pin 1, so the CPL placed both headers 8.89 / 5.08 mm left of their lands. `export_jlc_order.py` now writes the body centre (`CENTRE_OFFSETS`); the preview then shows both on their lands with the legs on the alternating pads. Only J201/J202 changed in the CPL.
+- **J201/J202 "collision" (red):** JLCDFM's models overlap by 0.31 mm. The XKB drawing gives the body as B = 2.54 × n ± 0.5 mm (20.32 / 12.70 mm), so the real gap is 0.68 mm nominal, 0.18 mm worst case. Not a clash; noted in the order remark.
+- Component to edge: J101 and J702, edge connectors by design.
+- Lead to hole (32): the filled-and-capped vias in the R218, C224, R690 and exposed-pad lands.
+- Pin edge (U202, U301, U503): terminals flush with the land edges (0–0.008 mm). Accepted.
+- Silk under body (34): pin-1 marks and outlines under part bodies. Cosmetic.
+
+**BOM match: four lines have no LCSC number, and JLCPCB's auto-match picks wrong parts for them.** At order, deselect these lines or source the listed MPN through Global Sourcing; never accept the suggestion:
+
+| Line | Required part | Auto-match offered |
+| --- | --- | --- |
+| C631–C634 | Panasonic ECH-U1H224GX9 | C5447085, an RS-485 transceiver |
+| R402–R416 (even) | Susumu RG1608N-202-W-T1 (thin film) | C22975, a 2 kΩ thick-film 0603WAF2001T5E |
+| X202 | NDK NZ2520SDA-49.152MHZ-NSC5083D | C5632403, a Crystek CCHD-575 in 7.5 × 5 mm |
+| X203 | NDK NZ2520SDA-45.1584MHZ-NSC5083D | C5632479, a Crystek CCHD-575 in 7.5 × 5 mm |
+
 **Impedance requirement (to attach with the Gerber).**
 
 > Controlled impedance: 90 Ω ± 10 % differential, USB D+/D− pair. Layer L1 (top), reference plane L2
@@ -109,3 +140,7 @@ Internal record; not part of the email above.
 > 3. Impedance control on the USB pair as specified in the attached requirement.
 > 4. U202 (C18208899) parts marked "AG32VF…" are expected.
 > 5. Please show the J201/J202 placement in the DFM preview for our pin-1 check.
+> 6. J201/J202 are 0.68 mm apart (body 2.54 × n ± 0.5 mm per the XKB drawing). The online DFM models show
+>    a 0.31 mm overlap; the real parts do not collide.
+> 7. C631–C634, R402/R404/R406/R408/R410/R412/R414/R416, X202 and X203 must be the MPNs in our BOM
+>    (no LCSC stock part). Please do not substitute.
