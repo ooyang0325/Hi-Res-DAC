@@ -152,6 +152,22 @@ def read_source() -> tuple[dict[str, Part], dict[str, list[Pin]], dict[str, Part
                 "JLC C4044221 availability, footprint, assembly and R-15 "
                 "measurement require order-stage confirmation."
             )
+        if set(refs) == {"C631", "C632", "C633", "C634"}:
+            if (part.mpn, part.lcsc) != ("Panasonic ECH-U1H224GX9", "—"):
+                raise ValueError("C631-C634 source changed; review the C569856 ECO")
+            # Owner-supplied JLC number, 19 Oct 2026: C569856 is ECHU1H224GX9
+            # (2,828 in stock). Without it JLC's BOM auto-match offered an
+            # RS-485 IC (C5447085). Same part, so value and land are unchanged.
+            part.lcsc = "C569856"
+            part.source = "JLCPCB C569856; order availability recheck"
+        if set(refs) == {"R402", "R404", "R406", "R408", "R410", "R412", "R414", "R416"}:
+            if (part.mpn, part.lcsc) != ("Susumu RG1608N-202-W-T1", "—"):
+                raise ValueError("R402-R416 source changed; review the C4101918 ECO")
+            # Owner-supplied JLC number, 19 Oct 2026: C4101918 is exactly
+            # RG1608N-202-W-T1 (0.05 %, 10 ppm/K); 0 in stock, so pre-order.
+            # Without it JLC's auto-match offered thick-film C22975.
+            part.lcsc = "C4101918"
+            part.source = "JLCPCB C4101918 (pre-order, 0 stock on 19 Oct 2026)"
         libparts[part.symbol_id] = part
         for ref in refs:
             if ref in parts:

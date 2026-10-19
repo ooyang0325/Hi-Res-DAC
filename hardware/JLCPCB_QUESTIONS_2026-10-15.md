@@ -115,14 +115,19 @@ SMT DFM (BOM + CPL):
 - Pin edge (U202, U301, U503): terminals flush with the land edges (0–0.008 mm). Accepted.
 - Silk under body (34): pin-1 marks and outlines under part bodies. Cosmetic.
 
-**BOM match: four lines have no LCSC number, and JLCPCB's auto-match picks wrong parts for them.** At order, deselect these lines or source the listed MPN through Global Sourcing; never accept the suggestion:
+**BOM match: four lines had no LCSC number, and JLCPCB's auto-match picked wrong parts for them.** The owner supplied numbers on 19 Oct; checked on the JLCPCB part pages:
 
-| Line | Required part | Auto-match offered |
-| --- | --- | --- |
-| C631–C634 | Panasonic ECH-U1H224GX9 | C5447085, an RS-485 transceiver |
-| R402–R416 (even) | Susumu RG1608N-202-W-T1 (thin film) | C22975, a 2 kΩ thick-film 0603WAF2001T5E |
-| X202 | NDK NZ2520SDA-49.152MHZ-NSC5083D | C5632403, a Crystek CCHD-575 in 7.5 × 5 mm |
-| X203 | NDK NZ2520SDA-45.1584MHZ-NSC5083D | C5632479, a Crystek CCHD-575 in 7.5 × 5 mm |
+| Line | Required part | Auto-match offered | LCSC number now |
+| --- | --- | --- | --- |
+| C631–C634 | Panasonic ECH-U1H224GX9 | C5447085, an RS-485 transceiver | **C569856**, exact MPN, 2,828 in stock |
+| R402–R416 (even) | Susumu RG1608N-202-W-T1 (0.05 %, 10 ppm/K) | C22975, a 2 kΩ thick-film 0603WAF2001T5E | **C4101918**, exact MPN, 0 in stock (pre-order) |
+| X202 | NDK NZ2520SDA-49.152MHZ-NSC5083D | C5632403, a Crystek CCHD-575 in 7.5 × 5 mm | open |
+| X203 | NDK NZ2520SDA-45.1584MHZ-NSC5083D | C5632479, a Crystek CCHD-575 in 7.5 × 5 mm | open |
+
+Rejected candidates: C2073999 is Susumu RR0816P-202-D (0.5 %, 25 ppm/K, 0 in stock), outside the R402–R416
+requirement. C5122395 is a generic "NZ2520SDA" listing with no frequency or option code (0 in stock), so it
+cannot identify either X202 or X203. Until X202/X203 have exact numbers, deselect them at order or source
+the listed MPNs through Global Sourcing; never accept the auto-match.
 
 **Impedance requirement (to attach with the Gerber).**
 
@@ -142,5 +147,4 @@ SMT DFM (BOM + CPL):
 > 5. Please show the J201/J202 placement in the DFM preview for our pin-1 check.
 > 6. J201/J202 are 0.68 mm apart (body 2.54 × n ± 0.5 mm per the XKB drawing). The online DFM models show
 >    a 0.31 mm overlap; the real parts do not collide.
-> 7. C631–C634, R402/R404/R406/R408/R410/R412/R414/R416, X202 and X203 must be the MPNs in our BOM
->    (no LCSC stock part). Please do not substitute.
+> 7. X202 and X203 must be the NDK MPNs in our BOM (no LCSC stock part). Please do not substitute.
